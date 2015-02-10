@@ -2,6 +2,13 @@
 <items version="2" >
 
     <item
+        jar="/home/rdlb/programing/android/trackmytrain/core/build/libs/core.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="c6866222ad8e58e9a7d55e1d0394c3989f6a11de">
+        <dex dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/core-99ebd5d5f95f7d4ffed24ddc73a3d33976688506.jar" />
+    </item>
+    <item
         jar="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.1.71/classes.jar"
         jumboMode="false"
         revision="21.1.1"
