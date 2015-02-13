@@ -1,19 +1,21 @@
 package uk.co.rossbeazley.trackmytrain.android;
 
 public class Train {
-    public final String eta;
-    public final String std;
+    public final String scheduledTime;
+    public final String estimatedTime;
     public final String id;
+    public final String platform;
 
-    public Train(String id, String eta, String std)
+    public Train(String id, String estimatedTime, String scheduledTime)
     {
         this.id = id;
-        this.eta = eta;
-        this.std = std;
+        this.estimatedTime = estimatedTime;
+        this.scheduledTime = scheduledTime;
+        this.platform = "";
     }
 
     public String toString() {
-        return eta + " : " + std + " : " + id + System.getProperty("line.separator");
+        return scheduledTime + " : " + estimatedTime + " : " + id + System.getProperty("line.separator");
     }
 
 }
