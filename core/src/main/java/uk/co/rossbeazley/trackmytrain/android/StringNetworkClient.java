@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class NetworkClient {
+public class StringNetworkClient {
 
     static public interface Success {
         void ok(String data);

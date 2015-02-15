@@ -10,10 +10,10 @@ import java.util.List;
 
 public class TrainRepo {
 
-    private NetworkClient networkClient;
+    private StringNetworkClient networkClient;
 
     public TrainRepo() {
-        networkClient = new NetworkClient();
+        networkClient = new StringNetworkClient();
     }
 
     public interface ServiceSuccess {
@@ -24,12 +24,12 @@ public class TrainRepo {
 
         String url = "http://tmt.rossbeazley.co.uk/trackmytrain/rest/api/service/" + URLEncoder.encode(serviceId);
 
-        networkClient.stringFromUrl(url, new NetworkClient.Success() {
+        networkClient.stringFromUrl(url, new StringNetworkClient.Success() {
             @Override
             public void ok(String data) {
                 try {
                     JSONObject jtrain = new JSONObject(data);
-                    Train train = new Train(serviceId, jtrain.getString("eta"), jtrain.getString("sta"));
+                    Train train = new Train(serviceId, jtrain.getString("eta"), jtrain.getString("sta"), "");
                     serviceSuccess.ok(train);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -49,7 +49,7 @@ public class TrainRepo {
     public void departures(final DeparturesSuccess result) {
 
         String url = "http://tmt.rossbeazley.co.uk/trackmytrain/rest/api/departures/MCO/to/SLD";
-        new NetworkClient().stringFromUrl(url, new NetworkClient.Success() {
+        new StringNetworkClient().stringFromUrl(url, new StringNetworkClient.Success() {
             @Override
             public void ok(String data) {
                 List<Train> trains = createTrainList(data);
@@ -58,16 +58,16 @@ public class TrainRepo {
         });
     }
 
-    private List<Train> createTrainList(String urlresult)
+    public static List<Train> createTrainList(String urlresult)
     {
         List<Train> trains = new ArrayList<Train>();
         try
         {
             final JSONObject jobj = new JSONObject(urlresult);
-            JSONArray jtrains = jobj.getJSONArray("rows");
+            JSONArray jtrains = jobj.getJSONArray("trains");
             for(int i=0 ; i<jtrains.length() ; i++) {
                 JSONObject jtrain = jtrains.getJSONObject(i);
-                Train train = new Train(jtrain.getString("sid"), jtrain.getString("eta"), jtrain.getString("std"));
+                Train train = new Train(jtrain.getString("id"), jtrain.getString("estimatedTime"), jtrain.getString("scheduledTime"), jtrain.getString("platform"));
                 trains.add(train);
             }
 
