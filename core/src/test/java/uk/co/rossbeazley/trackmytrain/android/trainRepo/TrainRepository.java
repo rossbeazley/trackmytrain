@@ -1,6 +1,13 @@
-package uk.co.rossbeazley.trackmytrain.android;
+package uk.co.rossbeazley.trackmytrain.android.trainRepo;
 
 import java.util.List;
+
+import uk.co.rossbeazley.trackmytrain.android.Direction;
+import uk.co.rossbeazley.trackmytrain.android.Station;
+import uk.co.rossbeazley.trackmytrain.android.Train;
+import uk.co.rossbeazley.trackmytrain.android.trainRepo.DeparturesFromToRequest;
+import uk.co.rossbeazley.trackmytrain.android.trainRepo.DeparturesResponse;
+import uk.co.rossbeazley.trackmytrain.android.trainRepo.NetworkClient;
 
 public class TrainRepository {
     private NetworkClient networkClient;

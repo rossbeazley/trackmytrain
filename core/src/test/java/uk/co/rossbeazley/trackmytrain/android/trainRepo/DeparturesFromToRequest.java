@@ -1,4 +1,6 @@
-package uk.co.rossbeazley.trackmytrain.android;
+package uk.co.rossbeazley.trackmytrain.android.trainRepo;
+
+import uk.co.rossbeazley.trackmytrain.android.Station;
 
 public class DeparturesFromToRequest implements NetworkClient.Request {
 

@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.trackmytrain.android;
+package uk.co.rossbeazley.trackmytrain.android.trainRepo;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -6,6 +6,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import uk.co.rossbeazley.trackmytrain.android.Train;
 
 public class DeparturesResponse implements NetworkClient.Response {
     private final TrainRepository.DeparturesSuccess result;

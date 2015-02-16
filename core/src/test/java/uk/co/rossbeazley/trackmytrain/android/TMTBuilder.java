@@ -1,5 +1,8 @@
 package uk.co.rossbeazley.trackmytrain.android;
 
+import uk.co.rossbeazley.trackmytrain.android.trainRepo.NetworkClient;
+import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
+
 public class TMTBuilder {
 
     private DeparturesView departuresView;

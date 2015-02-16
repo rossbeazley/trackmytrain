@@ -5,6 +5,9 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 
+import uk.co.rossbeazley.trackmytrain.android.trainRepo.DeparturesFromToRequest;
+import uk.co.rossbeazley.trackmytrain.android.trainRepo.NetworkClient;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 

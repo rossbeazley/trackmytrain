@@ -2,6 +2,8 @@ package uk.co.rossbeazley.trackmytrain.android;
 
 import java.util.List;
 
+import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
+
 public class TrackMyTrain {
 
     private final DeparturesView departuresView;

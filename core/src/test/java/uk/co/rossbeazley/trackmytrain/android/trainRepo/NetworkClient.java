@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.trackmytrain.android;
+package uk.co.rossbeazley.trackmytrain.android.trainRepo;
 
 public interface NetworkClient {
 
