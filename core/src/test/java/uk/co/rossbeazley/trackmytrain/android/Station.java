@@ -8,6 +8,11 @@ public class Station {
     }
 
     @Override
+    public String toString() {
+        return stationCode;
+    }
+
+    @Override
     public boolean equals(Object obj) {
         return stationCode.equals(((Station) obj).stationCode);
     }

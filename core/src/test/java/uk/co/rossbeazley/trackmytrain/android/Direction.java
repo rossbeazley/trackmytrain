@@ -21,4 +21,8 @@ public class Direction {
     public static Direction to(Station station) {
         return new Direction(TO, station);
     }
+
+    public Station station() {
+        return station;
+    }
 }

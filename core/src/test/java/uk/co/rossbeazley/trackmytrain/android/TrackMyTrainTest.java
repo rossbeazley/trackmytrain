@@ -43,7 +43,8 @@ public class TrackMyTrainTest {
                         "]\n" +
                         "}";
 
-                if(request.asUrlString().equals("http://tmt.rossbeazley.co.uk/trackmytrain/rest/api/departures/MCO/to/SLD")) {
+                DeparturesFromToRequest req = new DeparturesFromToRequest(Station.fromString("SLD"), Station.fromString("CRL"));
+                if(request.equals(req)) {
                     response.ok(result);
                 }
             }
@@ -81,7 +82,7 @@ public class TrackMyTrainTest {
 
     }
 
-    private class TMTBuilder {
+    public static class TMTBuilder {
 
         private DeparturesView departuresView;
         private TrackMyTrain.TrainRepository trainRepository;
@@ -92,24 +93,9 @@ public class TrackMyTrainTest {
                 @Override
                 public void departures(Station at, Direction direction, final DeparturesSuccess result) {
 
-                    NetworkClient.Request request = new NetworkClient.Request() {
-                        @Override
-                        public String asUrlString() {
-                            return "http://tmt.rossbeazley.co.uk/trackmytrain/rest/api/departures/MCO/to/SLD";
-                        }
-                    };
-                    NetworkClient.Response response = new NetworkClient.Response() {
-                        @Override
-                        public void ok(String response) {
-                            List<Train> expectedList = parse(response);
-                            result.result(expectedList);
-                        }
-                    };
+                    NetworkClient.Request request = new DeparturesFromToRequest(at,direction.station());
+                    NetworkClient.Response response = new DeparturesResponse(result);
                     networkClient.requestString(request, response);
-                }
-
-                private List<Train> parse(String response) {
-                    return TrainRepo.createTrainList(response);
                 }
             };
         }
@@ -126,6 +112,57 @@ public class TrackMyTrainTest {
         public TMTBuilder with(NetworkClient networkClient) {
             this.networkClient = networkClient;
             return this;
+        }
+
+
+    }
+
+    public static class DeparturesFromToRequest implements NetworkClient.Request {
+
+        public static final String WS_URL_ROOT = "http://tmt.rossbeazley.co.uk/trackmytrain/rest/api/";
+        private final String from;
+        private final String to;
+
+        public DeparturesFromToRequest(Station from, Station to) {
+            this.from = from.toString();
+            this.to = to.toString();
+        }
+
+        @Override
+        public String asUrlString() {
+            return WS_URL_ROOT + "departures/" + from + "/to/" + to;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (o == null || getClass() != o.getClass()) return false;
+            DeparturesFromToRequest that = (DeparturesFromToRequest) o;
+            return from.equals(that.from) && to.equals(that.to);
+        }
+
+        @Override
+        public int hashCode() {
+            int result = from.hashCode();
+            result = 31 * result + to.hashCode();
+            return result;
+        }
+    }
+
+    public static class DeparturesResponse implements NetworkClient.Response {
+        private final TrackMyTrain.TrainRepository.DeparturesSuccess result;
+
+        public DeparturesResponse(TrackMyTrain.TrainRepository.DeparturesSuccess result) {
+            this.result = result;
+        }
+
+        @Override
+        public void ok(String response) {
+            List<Train> expectedList = parse(response);
+            result.result(expectedList);
+        }
+
+        private List<Train> parse(String response) {
+            return TrainRepo.createTrainList(response);
         }
     }
 }
