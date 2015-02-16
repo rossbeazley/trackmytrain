@@ -22,13 +22,4 @@ public class TrackMyTrain {
         });
     }
 
-    public static interface TrainRepository {
-
-        void departures(Station at, Direction direction, TrainRepository.DeparturesSuccess result);
-
-        public static interface DeparturesSuccess {
-            void result(List<Train> expectedList);
-        }
-
-    }
 }
