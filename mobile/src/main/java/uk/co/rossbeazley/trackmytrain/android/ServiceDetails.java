@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepo;
+
 public class ServiceDetails extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState)

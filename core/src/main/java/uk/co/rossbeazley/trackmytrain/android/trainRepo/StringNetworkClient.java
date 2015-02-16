@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.trackmytrain.android;
+package uk.co.rossbeazley.trackmytrain.android.trainRepo;
 
 import com.sun.net.httpserver.Authenticator;
 
@@ -9,14 +9,13 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class StringNetworkClient {
+import uk.co.rossbeazley.trackmytrain.android.trainRepo.NetworkClient;
 
-    static public interface Success {
-        void ok(String data);
-    }
+public class StringNetworkClient implements NetworkClient {
 
-    public void stringFromUrl(final String url, final Success result)
-    {
+    @Override
+    public void requestString(final Request request, final Response response) {
+
         Runnable runnable = new Runnable() {
             public void run() {
                 final StringBuilder total = new StringBuilder();
@@ -25,7 +24,7 @@ public class StringNetworkClient {
                 BufferedReader r = null;
                 try
                 {
-                    URL ws = new URL(url);
+                    URL ws = new URL(request.asUrlString());
                     con = (HttpURLConnection) ws.openConnection();
                     inputStream = con.getInputStream();
                     r = new BufferedReader(new InputStreamReader(inputStream));
@@ -66,7 +65,7 @@ public class StringNetworkClient {
 
                 String urlresult = total.toString();
 
-                result.ok(urlresult);
+                response.ok(urlresult);
             }
         };
 

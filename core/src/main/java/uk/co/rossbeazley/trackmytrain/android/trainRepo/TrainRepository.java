@@ -12,7 +12,7 @@ import uk.co.rossbeazley.trackmytrain.android.trainRepo.NetworkClient;
 public class TrainRepository {
     private NetworkClient networkClient;
 
-    TrainRepository(NetworkClient networkClient) {
+    public TrainRepository(NetworkClient networkClient) {
         this.networkClient = networkClient;
     }
 

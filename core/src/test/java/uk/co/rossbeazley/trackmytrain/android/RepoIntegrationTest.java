@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import java.util.List;
 
+import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepo;
+
 public class RepoIntegrationTest {
 
     @Test
