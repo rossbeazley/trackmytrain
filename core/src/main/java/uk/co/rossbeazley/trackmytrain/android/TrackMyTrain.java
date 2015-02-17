@@ -24,4 +24,7 @@ public class TrackMyTrain {
         });
     }
 
+    public void watch(String serviceId) {
+
+    }
 }
