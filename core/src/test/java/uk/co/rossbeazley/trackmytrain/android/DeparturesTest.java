@@ -3,15 +3,17 @@ package uk.co.rossbeazley.trackmytrain.android;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.DeparturesFromToRequest;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.NetworkClient;
+import uk.co.rossbeazley.trackmytrain.android.trainRepo.RequestMapNetworkClient;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
-public class TrackMyTrainTest {
+public class DeparturesTest {
 
     private List<Train> trainList;
 
@@ -26,32 +28,25 @@ public class TrackMyTrainTest {
         };
 
         TrackMyTrain tmt;
-        NetworkClient networkClient = new NetworkClient() {
-            @Override public void requestString(Request request, Response response) {
-                String result = "{\n" +
-                        "\"error\": \"\",\n" +
-                        "\"trains\": [\n" +
-                        "{\n" +
-                        "\"id\": \"aN5S6pak5nKFawy0sXb65Q==\",\n" +
-                        "\"scheduledTime\": \"21:39\",\n" +
-                        "\"estimatedTime\": \"On time\",\n" +
-                        "\"platform\": \"2\"\n" +
-                        "},\n" +
-                        "{\n" +
-                        "\"id\": \"EAG/q7qfInIUZyPhCdwQKw==\",\n" +
-                        "\"scheduledTime\": \"22:38\",\n" +
-                        "\"estimatedTime\": \"On time\",\n" +
-                        "\"platform\": \"2\"\n" +
-                        "}\n" +
-                        "]\n" +
-                        "}";
-
-                DeparturesFromToRequest req = new DeparturesFromToRequest(Station.fromString("SLD"), Station.fromString("CRL"));
-                if(request.equals(req)) {
-                    response.ok(result);
-                }
-            }
-        };
+        NetworkClient networkClient = new RequestMapNetworkClient(new HashMap<NetworkClient.Request, String>() {{
+            put(new DeparturesFromToRequest(Station.fromString("SLD"), Station.fromString("CRL")), "{\n" +
+                    "\"error\": \"\",\n" +
+                    "\"trains\": [\n" +
+                    "{\n" +
+                    "\"id\": \"aN5S6pak5nKFawy0sXb65Q==\",\n" +
+                    "\"scheduledTime\": \"21:39\",\n" +
+                    "\"estimatedTime\": \"On time\",\n" +
+                    "\"platform\": \"2\"\n" +
+                    "},\n" +
+                    "{\n" +
+                    "\"id\": \"EAG/q7qfInIUZyPhCdwQKw==\",\n" +
+                    "\"scheduledTime\": \"22:38\",\n" +
+                    "\"estimatedTime\": \"On time\",\n" +
+                    "\"platform\": \"2\"\n" +
+                    "}\n" +
+                    "]\n" +
+                    "}");
+        }});
 
         Train train1 = new Train("aN5S6pak5nKFawy0sXb65Q==","On time","21:39","2");
         Train train2 = new Train("EAG/q7qfInIUZyPhCdwQKw==","On time","22:38","2");
@@ -72,9 +67,8 @@ public class TrackMyTrainTest {
 
     @Test
     public void departuresToFromRequestRendersToString() {
-
         DeparturesFromToRequest req = new DeparturesFromToRequest(Station.fromString("MCO"),Station.fromString("SLD"));
-        assertThat(req.asUrlString(),is("http://tmt.rossbeazley.co.uk/trackmytrain/rest/api/departures/MCO/to/SLD"));
+        assertThat(req.asUrlString(),is(DeparturesFromToRequest.WS_URL_ROOT + "departures/MCO/to/SLD"));
     }
 
 }

@@ -31,25 +31,25 @@ public class ServiceDetails extends Activity {
             }
         });
 
-        findViewById(R.id.get).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new TrainRepo().departures(
-                        new TrainRepo.DeparturesSuccess() {
-                            public void ok(final List<Train> jobj) {
-
-                                serviceIdTV.post(new Runnable() {
-                                    public void run() {
-                                        ArrayAdapter<Train> adapter;
-                                        adapter = new ArrayAdapter<Train>(ServiceDetails.this, android.R.layout.simple_list_item_1, jobj);
-                                        departures.setAdapter(adapter);
-                                    }
-                                });
-                            }
-                        }
-                );
-            }
-        });
+//        findViewById(R.id.get).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                new TrainRepo().departures(
+//                        new TrainRepo.DeparturesSuccess() {
+//                            public void ok(final List<Train> jobj) {
+//
+//                                serviceIdTV.post(new Runnable() {
+//                                    public void run() {
+//                                        ArrayAdapter<Train> adapter;
+//                                        adapter = new ArrayAdapter<Train>(ServiceDetails.this, android.R.layout.simple_list_item_1, jobj);
+//                                        departures.setAdapter(adapter);
+//                                    }
+//                                });
+//                            }
+//                        }
+//                );
+//            }
+//        });
 
 
     }
