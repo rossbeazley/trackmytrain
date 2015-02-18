@@ -8,11 +8,13 @@ public class TrackMyTrain {
 
     private final DeparturesView departuresView;
     private final TrainRepository trainRepository;
+    private final ServiceView serviceView;
 
-    public TrackMyTrain(DeparturesView departuresView, TrainRepository trainRepository) {
+    public TrackMyTrain(DeparturesView departuresView, TrainRepository trainRepository, ServiceView serviceView) {
 
         this.departuresView = departuresView;
         this.trainRepository = trainRepository;
+        this.serviceView = serviceView;
     }
 
     public void departures(Station at, Direction direction) {
@@ -25,6 +27,11 @@ public class TrackMyTrain {
     }
 
     public void watch(String serviceId) {
-
+        this.trainRepository.service(serviceId, new TrainRepository.ServiceSuccess(){
+            @Override
+            public void result(Train train) {
+                TrackMyTrain.this.serviceView.present(train);
+            }
+        });
     }
 }

@@ -4,13 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import java.util.List;
-
-import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepo;
 
 public class ServiceDetails extends Activity {
     @Override

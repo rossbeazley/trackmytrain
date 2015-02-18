@@ -22,7 +22,7 @@ public class TMTBuilder {
 
     public TrackMyTrain build() {
         trainRepository = new TrainRepository(networkClient);
-        return new TrackMyTrain(departuresView, trainRepository);
+        return new TrackMyTrain(departuresView, trainRepository, serviceView);
     }
 
     public TMTBuilder with(NetworkClient networkClient) {
@@ -32,6 +32,6 @@ public class TMTBuilder {
 
     public TMTBuilder with(ServiceView serviceView) {
         this.serviceView = serviceView;
-        return null;
+        return this;
     }
 }

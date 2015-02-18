@@ -12,7 +12,7 @@ public class RequestMapNetworkClient implements NetworkClient {
 
     public final Map<Request, String> mapOfRequestToString;
 
-    public RequestMapNetworkClient(HashMap<Request, String> mapOfRequestToString) {
+    public RequestMapNetworkClient(Map<Request, String> mapOfRequestToString) {
         this.mapOfRequestToString = mapOfRequestToString;
     }
 
