@@ -49,4 +49,10 @@ public class ServiceTest {
 
     }
 
+    @Test
+    public void serviceDetailsRequestRenderesToString() {
+
+        assertThat(new ServiceDetailsRequest("123456").asUrlString(),is("http://tmt.rossbeazley.co.uk/trackmytrain/rest/api/service/123456"));
+    }
+
 }

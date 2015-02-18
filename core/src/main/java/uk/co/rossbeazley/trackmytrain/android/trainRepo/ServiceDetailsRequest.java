@@ -9,7 +9,7 @@ public class ServiceDetailsRequest implements NetworkClient.Request {
 
     @Override
     public String asUrlString() {
-        return "";
+        return "http://tmt.rossbeazley.co.uk/trackmytrain/rest/api/service/"+serviceId;
     }
 
     public boolean equals(Object object) {
