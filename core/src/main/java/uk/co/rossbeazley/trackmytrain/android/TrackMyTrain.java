@@ -10,11 +10,14 @@ public class TrackMyTrain {
     private final TrainRepository trainRepository;
     private final ServiceView serviceView;
 
+    private String trackedService;
+
     public TrackMyTrain(DeparturesView departuresView, TrainRepository trainRepository, ServiceView serviceView) {
 
         this.departuresView = departuresView;
         this.trainRepository = trainRepository;
         this.serviceView = serviceView;
+        this.trackedService = null;
     }
 
     public void departures(Station at, Direction direction) {
@@ -27,11 +30,16 @@ public class TrackMyTrain {
     }
 
     public void watch(String serviceId) {
+        this.trackedService = serviceId;
         this.trainRepository.service(serviceId, new TrainRepository.ServiceSuccess(){
             @Override
             public void result(Train train) {
                 TrackMyTrain.this.serviceView.present(train);
             }
         });
+    }
+
+    public void tick() {
+        watch(this.trackedService);
     }
 }

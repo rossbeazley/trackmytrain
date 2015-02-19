@@ -63,7 +63,7 @@ public class ServiceTest {
         assertThat(new ServiceDetailsRequest("123456").asUrlString(),is("http://tmt.rossbeazley.co.uk/trackmytrain/rest/api/service/123456"));
     }
 
-    @Test @Ignore("wip")
+    @Test //@Ignore("wip")
     public void theOneWhereWeAreUpdatedAboutTheSelectedService() {
         final String serviceId = "3Olk7M389Qp5JIdkXAQt4g==";
         final String scheduledTime = "20:48";
@@ -95,8 +95,9 @@ public class ServiceTest {
         map.put(serviceDetailsRequest,jsonForTrain(serviceId, scheduledTime, lateTime, platform));
 
         // time passes
+        tmt.tick();
 
-        assertThat(serviceDisplayed, is(new Train(serviceId, estimatedTime, lateTime, platform)));
+        assertThat(serviceDisplayed, is(new Train(serviceId, lateTime, scheduledTime, platform)));
 
     }
 
