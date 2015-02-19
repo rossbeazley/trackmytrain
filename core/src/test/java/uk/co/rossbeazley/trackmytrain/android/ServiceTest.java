@@ -11,6 +11,7 @@ import uk.co.rossbeazley.trackmytrain.android.trainRepo.RequestMapNetworkClient;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.ServiceDetailsRequest;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -63,7 +64,7 @@ public class ServiceTest {
         assertThat(new ServiceDetailsRequest("123456").asUrlString(),is("http://tmt.rossbeazley.co.uk/trackmytrain/rest/api/service/123456"));
     }
 
-    @Test //@Ignore("wip")
+    @Test
     public void theOneWhereWeAreUpdatedAboutTheSelectedService() {
         final String serviceId = "3Olk7M389Qp5JIdkXAQt4g==";
         final String scheduledTime = "20:48";
@@ -98,6 +99,47 @@ public class ServiceTest {
         tmt.tick();
 
         assertThat(serviceDisplayed, is(new Train(serviceId, lateTime, scheduledTime, platform)));
+
+    }
+
+    @Test
+    public void theOneWhereWeStopTracking() {
+        final String serviceId = "3Olk7M389Qp5JIdkXAQt4g==";
+        final String scheduledTime = "20:48";
+        String estimatedTime = "On time";
+        final String platform = "2";
+
+        final String initialJson = jsonForTrain(serviceId, scheduledTime, estimatedTime, platform);
+        final ServiceDetailsRequest serviceDetailsRequest = new ServiceDetailsRequest(serviceId);
+
+        Map<NetworkClient.Request, String> map = new HashMap<NetworkClient.Request, String>(){{
+            put(serviceDetailsRequest, initialJson);
+        }};
+        NetworkClient client = new RequestMapNetworkClient(map);
+        ServiceView serviceView = new ServiceView() {
+            @Override public void present(Train train) {
+                serviceDisplayed = train;
+            }
+        };
+        TrackMyTrain tmt = new TMTBuilder()
+                .with(client)
+                .with(serviceView)
+                .build();
+
+        tmt.watch(serviceId);
+
+        String lateTime = "20:52";
+        map.put(serviceDetailsRequest,jsonForTrain(serviceId, scheduledTime, lateTime, platform));
+
+        // time passes
+        tmt.tick();
+
+        serviceDisplayed=null;
+
+        tmt.unwatch();
+        tmt.tick();
+
+        assertThat(serviceDisplayed, is(nullValue()));
 
     }
 

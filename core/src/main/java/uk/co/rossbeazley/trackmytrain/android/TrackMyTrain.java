@@ -39,7 +39,11 @@ public class TrackMyTrain {
         });
     }
 
+    public void unwatch() {
+        this.trackedService = null;
+    }
+
     public void tick() {
-        watch(this.trackedService);
+        if(this.trackedService!=null) watch(this.trackedService);
     }
 }
