@@ -6,4 +6,6 @@ package uk.co.rossbeazley.trackmytrain.android;
 public interface ServiceView {
 
     void present(Train train);
+
+    void hide();
 }

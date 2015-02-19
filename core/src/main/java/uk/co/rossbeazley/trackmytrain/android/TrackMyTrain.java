@@ -40,6 +40,7 @@ public class TrackMyTrain {
     }
 
     public void unwatch() {
+        this.serviceView.hide();
         this.trackedService = null;
     }
 
