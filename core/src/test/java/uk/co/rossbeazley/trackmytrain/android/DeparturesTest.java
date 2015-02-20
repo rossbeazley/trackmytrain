@@ -26,7 +26,9 @@ public class DeparturesTest {
                 trainList = trains;
             }
         };
-
+/**
+ * connascence of algorithm with all this json and url strings :S
+ */
         TrackMyTrain tmt;
         NetworkClient networkClient = new RequestMapNetworkClient(new HashMap<NetworkClient.Request, String>() {{
             put(new DeparturesFromToRequest(Station.fromString("SLD"), Station.fromString("CRL")), "{\n" +
