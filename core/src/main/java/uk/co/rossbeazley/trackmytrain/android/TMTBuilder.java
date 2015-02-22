@@ -6,7 +6,6 @@ import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
 
 public class TMTBuilder {
 
-    private DeparturesView departuresView;
     private TrainRepository trainRepository;
     private NetworkClient networkClient;
     private ServiceView serviceView;
@@ -15,14 +14,9 @@ public class TMTBuilder {
         networkClient = new StringNetworkClient();
     }
 
-    public TMTBuilder with(DeparturesView departuresView) {
-        this.departuresView = departuresView;
-        return this;
-    }
-
     public TrackMyTrain build() {
         trainRepository = new TrainRepository(networkClient);
-        return new TrackMyTrain(departuresView, trainRepository, serviceView);
+        return new TrackMyTrain(trainRepository, serviceView);
     }
 
     public TMTBuilder with(NetworkClient networkClient) {

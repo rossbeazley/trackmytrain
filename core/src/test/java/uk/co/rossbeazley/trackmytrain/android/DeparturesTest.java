@@ -48,9 +48,10 @@ public class DeparturesTest {
         List<Train> expectedList = Arrays.asList(train1,train2);
 
         tmt = new TMTBuilder()
-                .with(departuresView)
                 .with(networkClient)
                 .build();
+
+        tmt.attach(departuresView);
 
         Station at = Station.fromString("SLD");
         Direction direction = Direction.to(Station.fromString("CRL"));

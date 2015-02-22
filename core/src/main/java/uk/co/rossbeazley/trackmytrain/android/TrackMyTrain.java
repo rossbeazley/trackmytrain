@@ -6,15 +6,14 @@ import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
 
 public class TrackMyTrain {
 
-    private final DeparturesView departuresView;
+    private List<DeparturesView> departuresViews;
     private final TrainRepository trainRepository;
     private final ServiceView serviceView;
 
     private String trackedService;
 
-    public TrackMyTrain(DeparturesView departuresView, TrainRepository trainRepository, ServiceView serviceView) {
+    public TrackMyTrain(TrainRepository trainRepository, ServiceView serviceView) {
 
-        this.departuresView = departuresView;
         this.trainRepository = trainRepository;
         this.serviceView = serviceView;
         this.trackedService = null;
@@ -24,7 +23,8 @@ public class TrackMyTrain {
         this.trainRepository.departures(at,direction, new TrainRepository.DeparturesSuccess() {
             @Override
             public void result(List<Train> expectedList) {
-                TrackMyTrain.this.departuresView.present(expectedList);
+
+                //TrackMyTrain.this.departuresView.present(expectedList);
             }
         });
     }
@@ -46,5 +46,9 @@ public class TrackMyTrain {
 
     public void tick() {
         if(this.trackedService!=null) watch(this.trackedService);
+    }
+
+    public void attach(DeparturesView departuresView) {
+
     }
 }
