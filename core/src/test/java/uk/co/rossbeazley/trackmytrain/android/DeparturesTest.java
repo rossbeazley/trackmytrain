@@ -30,28 +30,21 @@ public class DeparturesTest {
  * connascence of algorithm with all this json and url strings :S
  */
         TrackMyTrain tmt;
+
+        final Train train1, train2;
+        train1 = new Train("aN5S6pak5nKFawy0sXb65Q==", "On time", "21:39", "2");
+        train2 = new Train("EAG/q7qfInIUZyPhCdwQKw==", "On time", "22:38", "2");
+
         NetworkClient networkClient = new RequestMapNetworkClient(new HashMap<NetworkClient.Request, String>() {{
             put(new DeparturesFromToRequest(Station.fromString("SLD"), Station.fromString("CRL")), "{\n" +
                     "\"error\": \"\",\n" +
                     "\"trains\": [\n" +
-                    "{\n" +
-                    "\"id\": \"aN5S6pak5nKFawy0sXb65Q==\",\n" +
-                    "\"scheduledTime\": \"21:39\",\n" +
-                    "\"estimatedTime\": \"On time\",\n" +
-                    "\"platform\": \"2\"\n" +
-                    "},\n" +
-                    "{\n" +
-                    "\"id\": \"EAG/q7qfInIUZyPhCdwQKw==\",\n" +
-                    "\"scheduledTime\": \"22:38\",\n" +
-                    "\"estimatedTime\": \"On time\",\n" +
-                    "\"platform\": \"2\"\n" +
-                    "}\n" +
+                    TestDataBuilder.jsonForTrain(train1) + ",\n" +
+                    TestDataBuilder.jsonForTrain(train2) + "\n" +
                     "]\n" +
                     "}");
         }});
 
-        Train train1 = new Train("aN5S6pak5nKFawy0sXb65Q==","On time","21:39","2");
-        Train train2 = new Train("EAG/q7qfInIUZyPhCdwQKw==","On time","22:38","2");
         List<Train> expectedList = Arrays.asList(train1,train2);
 
         tmt = new TMTBuilder()

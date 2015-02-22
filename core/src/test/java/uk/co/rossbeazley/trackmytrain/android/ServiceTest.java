@@ -1,7 +1,6 @@
 package uk.co.rossbeazley.trackmytrain.android;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -30,6 +29,7 @@ public class ServiceTest {
     private ServiceDetailsRequest serviceDetailsRequest;
     private Map<NetworkClient.Request, String> map;
     private TrackMyTrain tmt;
+    private Train expectedTrain;
 
     @Before
     public void setUp() throws Exception {
@@ -37,7 +37,8 @@ public class ServiceTest {
         scheduledTime = "20:48";
         estimatedTime = "On time";
         platform = "2";
-        final String initialJson = jsonForTrain(serviceId, scheduledTime, estimatedTime, platform);
+        expectedTrain = new Train(serviceId, estimatedTime, scheduledTime, platform);
+        final String initialJson = TestDataBuilder.jsonForTrain(expectedTrain);
         serviceDetailsRequest = new ServiceDetailsRequest(serviceId);
         map = new HashMap<NetworkClient.Request, String>(){{
             put(serviceDetailsRequest, initialJson);
@@ -67,16 +68,7 @@ public class ServiceTest {
     public void theOneWhereWeSelectAServiceAndTrackingStarts() {
         tmt.watch(serviceId);
 
-        assertThat(serviceDisplayed, is(new Train(serviceId, estimatedTime, scheduledTime, platform)));
-    }
-
-    private String jsonForTrain(String serviceId, String scheduledTime, String estimatedTime, String platform) {
-        return "{\n" +
-                "\"id\": \"" + serviceId + "\",\n" +
-                "\"scheduledTime\": \"" + scheduledTime + "\",\n" +
-                "\"estimatedTime\": \"" + estimatedTime + "\",\n" +
-                "\"platform\": \"" + platform + "\"\n" +
-                "}";
+        assertThat(serviceDisplayed, is(expectedTrain));
     }
 
     @Test
@@ -90,11 +82,11 @@ public class ServiceTest {
     public void theOneWhereWeAreUpdatedAboutTheSelectedService() {
         tmt.watch(serviceId);
         serviceDisplayed=null;
-        String lateTime = "20:52";
-        map.put(serviceDetailsRequest,jsonForTrain(serviceId, scheduledTime, lateTime, platform));
+        final Train expectedTrain = new Train(serviceId, "20:52", scheduledTime, platform);
+        map.put(serviceDetailsRequest, TestDataBuilder.jsonForTrain(expectedTrain));
         tmt.tick();
 
-        assertThat(serviceDisplayed, is(new Train(serviceId, lateTime, scheduledTime, platform)));
+        assertThat(serviceDisplayed, is(expectedTrain));
     }
 
     @Test
