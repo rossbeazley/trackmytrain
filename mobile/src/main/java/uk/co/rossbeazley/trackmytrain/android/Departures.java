@@ -7,7 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class ServiceDetails extends Activity {
+public class Departures extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {

@@ -1,2 +1,15 @@
-Implement views:
+Implement view:
+an activity,
+inflate custom view,
+create departures presenter
+create presenter for service
+service for notifications?
+notification view (builer), action on notification to stop
+tear down notification
 
+
+
+------ redesign ------
+- keep controllers/presenters within boundary and attach views to controller
+- still keep the "show" operation as this is a "ui navigation" concern
+- when view attaches to core it gets updates of state etc

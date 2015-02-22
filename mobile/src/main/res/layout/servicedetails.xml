@@ -1,25 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button android:id="@+id/get"
-        android:layout_width="match_parent"
+    <TextView android:id="@+id/from"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="GET"/>
+        android:text="from..."/>
+
+    <TextView android:id="@+id/to"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="to..."
+        android:layout_toRightOf="@id/from"/>
+
+    <Button android:id="@+id/getdepartures"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="find"
+        android:layout_toRightOf="@id/to"
+        android:layout_alignParentRight="true"/>
+
 
     <ListView android:id="@+id/departurelist"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></ListView>
+        android:layout_height="300dp"
+        android:layout_below="@id/from"/>
 
-    <TextView android:id="@+id/serviceid"
-        android:layout_width="match_parent"
+    <Button android:id="@+id/trackbutton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="choose..."/>
+        android:text="TRACK"
+        android:layout_below="@id/departurelist"
+        />
+
+    <TextView android:id="@+id/selectedservice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/departurelist"
+        android:layout_toLeftOf="@id/trackbutton"
+        android:text="choose a service..."/>
 
 
-    <TextView android:id="@+id/servicetime"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-</LinearLayout>
+</RelativeLayout>

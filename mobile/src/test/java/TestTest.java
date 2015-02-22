@@ -5,10 +5,9 @@ import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
-import org.robolectric.util.ActivityController;
 
+import uk.co.rossbeazley.trackmytrain.android.Departures;
 import uk.co.rossbeazley.trackmytrain.android.R;
-import uk.co.rossbeazley.trackmytrain.android.ServiceDetails;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.core.IsNot.not;
@@ -22,7 +21,7 @@ public class TestTest {
     @Test
     public void findsViewInActivity() {
 
-        ServiceDetails act = Robolectric.buildActivity(ServiceDetails.class)
+        Departures act = Robolectric.buildActivity(Departures.class)
                 .create()
                 .start()
                 .resume()
