@@ -15,7 +15,7 @@ public class TMTBuilder {
 
     public TrackMyTrain build() {
         trainRepository = new TrainRepository(networkClient);
-        return new TrackMyTrain(trainRepository);
+        return new TrackMyTrainDefault(trainRepository);
     }
 
     public TMTBuilder with(NetworkClient networkClient) {
