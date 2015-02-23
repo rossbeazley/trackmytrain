@@ -9,11 +9,11 @@ public class TrackMyTrain {
 
     private List<DeparturesView> departuresViews;
     private final TrainRepository trainRepository;
-    private final List<ServiceView> serviceViews;
 
+    private final List<ServiceView> serviceViews;
     private String trackedService;
 
-    public TrackMyTrain(TrainRepository trainRepository, ServiceView serviceView) {
+    public TrackMyTrain(TrainRepository trainRepository) {
 
         this.trainRepository = trainRepository;
         this.serviceViews = new ArrayList<ServiceView>(2);
