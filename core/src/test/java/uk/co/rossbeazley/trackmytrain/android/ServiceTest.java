@@ -60,8 +60,9 @@ public class ServiceTest {
 
         tmt = new TMTBuilder()
                 .with(client)
-                .with(serviceView)
                 .build();
+
+        tmt.attach(serviceView);
     }
 
     @Test
