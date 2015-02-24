@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.trackmytrain.android;
+package uk.co.rossbeazley.trackmytrain.android.mobile;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import uk.co.rossbeazley.trackmytrain.android.R;
+
 public class Departures extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -14,7 +16,11 @@ public class Departures extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.servicedetails);
         final TextView from = (TextView) findViewById(R.id.from);
-        from.setText("SLD");
+        //from.setText("SLD");
+
+        final TextView to = (TextView) findViewById(R.id.from);
+        //to.setText("CRL");
+
 //
 //        final TextView serviceIdTV = (TextView) findViewById(R.id.selectedservice);
 //

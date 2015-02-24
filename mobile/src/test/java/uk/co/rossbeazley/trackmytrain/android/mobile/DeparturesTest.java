@@ -1,9 +1,8 @@
-package uk.co.rossbeazley.trackmytrain.android;
+package uk.co.rossbeazley.trackmytrain.android.mobile;
 
 import android.widget.TextView;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
@@ -11,11 +10,14 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.robolectric.util.ActivityController;
 
+import uk.co.rossbeazley.trackmytrain.android.R;
+import uk.co.rossbeazley.trackmytrain.android.mobile.Departures;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 @RunWith(RobolectricTestRunner.class)
-@Config(manifest="mobile/src/main/AndroidManifest.xml", emulateSdk = 18)
+@Config(manifest="src/main/AndroidManifest.xml", emulateSdk = 18)
 public class DeparturesTest {
 
     public Departures act;
@@ -30,11 +32,18 @@ public class DeparturesTest {
                 .get();
     }
 
-    @Test @Ignore("Wip")
-    public void theScreenLoadsWithDefaultStations() {
+    @Test
+    public void theScreenLoadsWithDefaultFromStation() {
         TextView viewById = (TextView) act.findViewById(R.id.from);
         String fromText = String.valueOf(viewById.getText());
         assertThat(fromText,is("SLD"));
+    }
+
+    @Test
+    public void theScreenLoadsWithDefaultToStation() {
+        TextView viewById = (TextView) act.findViewById(R.id.to);
+        String toText = String.valueOf(viewById.getText());
+        assertThat(toText,is("CRL"));
     }
 
 }

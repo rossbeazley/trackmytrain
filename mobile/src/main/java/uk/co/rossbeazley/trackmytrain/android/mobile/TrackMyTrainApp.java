@@ -1,7 +1,9 @@
-package uk.co.rossbeazley.trackmytrain.android;
+package uk.co.rossbeazley.trackmytrain.android.mobile;
 
 import android.app.Application;
 
+import uk.co.rossbeazley.trackmytrain.android.TMTBuilder;
+import uk.co.rossbeazley.trackmytrain.android.TrackMyTrain;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.StringNetworkClient;
 
 public class TrackMyTrainApp extends Application{
