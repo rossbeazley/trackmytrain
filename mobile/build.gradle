@@ -31,5 +31,6 @@ dependencies {
     compile 'com.google.android.gms:play-services:6.5.87'
     compile project(':core')
     testCompile 'junit:junit:4.12'
+    testCompile 'ham'
     testCompile 'org.robolectric:robolectric:2.4'
 }
