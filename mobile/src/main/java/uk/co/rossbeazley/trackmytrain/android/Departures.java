@@ -13,6 +13,8 @@ public class Departures extends Activity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.servicedetails);
+        final TextView from = (TextView) findViewById(R.id.from);
+        from.setText("SLD");
 //
 //        final TextView serviceIdTV = (TextView) findViewById(R.id.selectedservice);
 //
