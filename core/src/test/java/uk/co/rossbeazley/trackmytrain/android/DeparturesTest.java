@@ -11,7 +11,6 @@ import uk.co.rossbeazley.trackmytrain.android.trainRepo.NetworkClient;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.RequestMapNetworkClient;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.*;
 
 public class DeparturesTest {
@@ -59,7 +58,7 @@ public class DeparturesTest {
 
         tmt.departures(at, direction);
 
-        assertThat(trainList, is(nullValue()));
+        assertThat(trainList, is(expectedList));
     }
 
     @Test
