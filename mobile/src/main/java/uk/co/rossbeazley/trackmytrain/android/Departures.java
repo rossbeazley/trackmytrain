@@ -13,19 +13,19 @@ public class Departures extends Activity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.servicedetails);
-
-        final TextView serviceIdTV = (TextView) findViewById(R.id.serviceid);
-
-        final ListView departures = (ListView) findViewById(R.id.departurelist);
-
-        departures.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Train train = (Train) parent.getItemAtPosition(position);
-                serviceIdTV.setText(train.id);
-            }
-        });
-
+//
+//        final TextView serviceIdTV = (TextView) findViewById(R.id.selectedservice);
+//
+//        final ListView departures = (ListView) findViewById(R.id.departurelist);
+//
+//        departures.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Train train = (Train) parent.getItemAtPosition(position);
+//                serviceIdTV.setText(train.id);
+//            }
+//        });
+//
 
 
     }
