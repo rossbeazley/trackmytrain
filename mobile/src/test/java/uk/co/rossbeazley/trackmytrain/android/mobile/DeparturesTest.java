@@ -2,6 +2,7 @@ package uk.co.rossbeazley.trackmytrain.android.mobile;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -55,7 +56,7 @@ public class DeparturesTest {
         assertThat(toText,is("CRL"));
     }
 
-    @Test @Ignore("WIP")
+    @Test @Ignore("wip")
     public void displaysTheDepartureResultsForAJourney() {
         final Train train = new Train("1", "", "", "");
         final Train train1 = new Train("2", "", "", "");
@@ -65,11 +66,12 @@ public class DeparturesTest {
 
         final ListView departureList = (ListView) act.findViewById(R.id.departurelist);
 
-        //List<Train> trains = departureList.getAdapter().;
+        ListAdapter adapter = departureList.getAdapter();
+        Train viewedTrain1 = (Train) adapter.getItem(0);
+        Train viewedTrain2 = (Train) adapter.getItem(1);
 
-
-
-        //assertThat(trains,hasItems(train,train1));
+        assertThat(viewedTrain1,is(train));
+        assertThat(viewedTrain2,is(train1));
     }
 
 }
