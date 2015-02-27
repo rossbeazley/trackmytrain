@@ -77,7 +77,6 @@ public class ServiceTest {
                     @Override
                     public void cancel() {
                         cancelable = null;
-
                         scheduledCommand = NO_COMMAND;
                     }
                 };
@@ -96,13 +95,11 @@ public class ServiceTest {
     @Test
     public void theOneWhereWeSelectAServiceAndTrackingStarts() {
         tmt.watch(serviceId);
-
         assertThat(serviceDisplayed, is(expectedTrain));
     }
 
     @Test
     public void serviceDetailsRequestRendersToString() {
-
         final String serviceUrl = "http://tmt.rossbeazley.co.uk/trackmytrain/rest/api/service/123456";
         assertThat(new ServiceDetailsRequest("123456").asUrlString(),is(serviceUrl));
     }
@@ -138,6 +135,16 @@ public class ServiceTest {
         scheduledCommand.run();
 
         assertThat(serviceView, is(HIDDEN));
+    }
+
+    @Test
+    public void theOneWhereTheTimerIsStopped() {
+        tmt.watch(serviceId);
+        scheduledCommand.run();
+        tmt.unwatch();
+        scheduledCommand.run();
+
+        assertThat(cancelable, is(nullValue()));
     }
 
 }

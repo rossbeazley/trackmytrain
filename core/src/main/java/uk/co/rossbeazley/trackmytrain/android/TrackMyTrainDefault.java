@@ -2,20 +2,25 @@ package uk.co.rossbeazley.trackmytrain.android;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
+import uk.co.rossbeazley.time.NarrowScheduledExecutorService;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
 
 public class TrackMyTrainDefault implements TrackMyTrain {
 
     private List<DeparturesView> departuresViews;
     private final TrainRepository trainRepository;
+    private final NarrowScheduledExecutorService executorService;
 
     private final List<ServiceView> serviceViews;
     private String trackedService;
+    private NarrowScheduledExecutorService.Cancelable cancelable;
 
-    public TrackMyTrainDefault(TrainRepository trainRepository) {
+    public TrackMyTrainDefault(TrainRepository trainRepository, NarrowScheduledExecutorService executorService) {
 
         this.trainRepository = trainRepository;
+        this.executorService = executorService;
         this.serviceViews = new ArrayList<ServiceView>(2);
         this.trackedService = null;
         this.departuresViews = new ArrayList<DeparturesView>(2);
@@ -45,10 +50,18 @@ public class TrackMyTrainDefault implements TrackMyTrain {
                 }
             }
         });
+        cancelable = executorService.scheduleAtFixedRate(new Runnable() {
+            @Override
+            public void run() {
+                tick();
+            }
+        },30, TimeUnit.SECONDS);
     }
 
     @Override
     public void unwatch() {
+        cancelable.cancel();
+        cancelable=null;
         for (ServiceView serviceView : serviceViews) {
             serviceView.hide();
         }
