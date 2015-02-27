@@ -91,20 +91,12 @@ public class Departures extends Activity {
             }
         });
 
-//
-//        final TextView serviceIdTV = (TextView) findViewById(R.id.selectedservice);
-//
-//        final ListView departures = (ListView) findViewById(R.id.departurelist);
-//
-//        departures.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Train train = (Train) parent.getItemAtPosition(position);
-//                serviceIdTV.setText(train.id);
-//            }
-//        });
-//
-
+        findViewById(R.id.trackbutton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                instance.watch(String.valueOf(selectedService.getText()));
+            }
+        });
 
     }
 

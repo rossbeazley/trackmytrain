@@ -6,11 +6,13 @@
     <TextView android:id="@+id/from"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
+        android:editable="true"
         android:text="SLD"/>
 
     <TextView android:id="@+id/to"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
+        android:editable="true"
         android:text="CRL"
         android:layout_toRightOf="@id/from"/>
 

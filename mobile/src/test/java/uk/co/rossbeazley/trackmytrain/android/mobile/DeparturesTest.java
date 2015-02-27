@@ -83,7 +83,7 @@ public class DeparturesTest {
         assertThat(trainId,is("2"));
     }
 
-    @Test @Ignore
+    @Test
     public void startsTrackingAService() {
         Train train = new Train("2", "", "", "");
         CapturingServiceView csv = new CapturingServiceView();
