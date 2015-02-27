@@ -82,32 +82,4 @@ public class DeparturesTest {
         String trainId = String.valueOf(((TextView)act.findViewById(R.id.selectedservice)).getText());
         assertThat(trainId,is("2"));
     }
-
-    @Test
-    public void startsTrackingAService() {
-        Train train = new Train("2", "", "", "");
-        CapturingServiceView csv = new CapturingServiceView();
-
-        TrackMyTrainApp.instance.attach(csv);
-        ((TextView)act.findViewById(R.id.selectedservice)).setText("2");
-        act.findViewById(R.id.trackbutton).performClick();
-
-        assertThat(csv.trackedTrain,is(train));
-    }
-
-    private static class CapturingServiceView implements ServiceView {
-
-        public Train trackedTrain;
-
-        @Override
-        public void present(Train train) {
-            trackedTrain=train;
-
-        }
-
-        @Override
-        public void hide() {
-
-        }
-    }
 }
