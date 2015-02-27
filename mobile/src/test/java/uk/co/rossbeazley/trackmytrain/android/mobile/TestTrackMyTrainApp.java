@@ -1,29 +1,64 @@
 package uk.co.rossbeazley.trackmytrain.android.mobile;
 
-import uk.co.rossbeazley.trackmytrain.android.TMTBuilder;
-import uk.co.rossbeazley.trackmytrain.android.TestDataBuilder;
+import java.util.Arrays;
+
+import uk.co.rossbeazley.trackmytrain.android.DeparturesView;
+import uk.co.rossbeazley.trackmytrain.android.Direction;
+import uk.co.rossbeazley.trackmytrain.android.ServiceView;
+import uk.co.rossbeazley.trackmytrain.android.Station;
+import uk.co.rossbeazley.trackmytrain.android.TrackMyTrain;
 import uk.co.rossbeazley.trackmytrain.android.Train;
-import uk.co.rossbeazley.trackmytrain.android.trainRepo.NetworkClient;
 
 public class TestTrackMyTrainApp extends TrackMyTrainApp {
     public TestTrackMyTrainApp() {
-        super(new TMTBuilder().with(new NetworkClient() {
+        super(buildCore());
+    }
+
+    private static TrackMyTrain buildCore() {
+        return new TrackMyTrain() {
+            private DeparturesView departureView;
+
             @Override
-            public void requestString(Request request, final Response response) {
+            public void departures(Station at, Direction direction) {
                 final Train train = new Train("1", "", "", "");
                 final Train train1 = new Train("2", "", "", "");
-
-                Runnable runnable = new Runnable() {
-                    public void run() {
-                        response.ok(TestDataBuilder.jsonForTrains(train, train1));
-                    }
-                };
-                //new Thread(runnable).start();   //cant get threads to work proper with robolectric
-                runnable.run();
+                this.departureView.present(Arrays.asList(train, train1));
             }
-        }).build());
 
+            @Override
+            public void watch(String serviceId) {
 
-        getMainLooper();
+            }
+
+            @Override
+            public void unwatch() {
+
+            }
+
+            @Override
+            public void tick() {
+
+            }
+
+            @Override
+            public void attach(DeparturesView departureView) {
+                this.departureView = departureView;
+            }
+
+            @Override
+            public void detach(DeparturesView departuresView) {
+                this.departureView = null;
+            }
+
+            @Override
+            public void attach(ServiceView serviceView) {
+
+            }
+
+            @Override
+            public void detach(ServiceView serviceView) {
+
+            }
+        };
     }
 }

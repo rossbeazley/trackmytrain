@@ -59,6 +59,7 @@ public class Departures extends Activity {
                             public View getView(int position, View convertView, ViewGroup parent) {
                                 TextView textView = new TextView(parent.getContext());
                                 textView.setText(trains.get(position).toString());
+                                //textView.setTextColor(0x00ff00); //or toggle red if late, suggesting we need a view model
                                 return textView;
                             }
                         });
