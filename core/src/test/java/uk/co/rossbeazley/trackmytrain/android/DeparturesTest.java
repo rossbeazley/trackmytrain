@@ -36,14 +36,11 @@ public class DeparturesTest {
         train2 = new Train("EAG/q7qfInIUZyPhCdwQKw==", "On time", "22:38", "2");
 
         NetworkClient networkClient = new RequestMapNetworkClient(new HashMap<NetworkClient.Request, String>() {{
-            put(new DeparturesFromToRequest(Station.fromString("SLD"), Station.fromString("CRL")), "{\n" +
-                    "\"error\": \"\",\n" +
-                    "\"trains\": [\n" +
-                    TestDataBuilder.jsonForTrain(train1) + ",\n" +
-                    TestDataBuilder.jsonForTrain(train2) + "\n" +
-                    "]\n" +
-                    "}");
-        }});
+            put(new DeparturesFromToRequest(Station.fromString("SLD"), Station.fromString("CRL")), TestDataBuilder.jsonForTrains(train1, train2));
+        }
+
+
+        });
 
         List<Train> expectedList = Arrays.asList(train1,train2);
 

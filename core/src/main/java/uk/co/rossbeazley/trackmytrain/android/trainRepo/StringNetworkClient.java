@@ -22,24 +22,20 @@ public class StringNetworkClient implements NetworkClient {
                 HttpURLConnection con = null;
                 InputStream inputStream = null;
                 BufferedReader r = null;
-                try
-                {
+                try {
                     URL ws = new URL(request.asUrlString());
                     con = (HttpURLConnection) ws.openConnection();
+                    con.setDoInput(true);
                     inputStream = con.getInputStream();
                     r = new BufferedReader(new InputStreamReader(inputStream));
 
                     String line;
-                    while ((line = r.readLine()) != null)
-                    {
+                    while ((line = r.readLine()) != null) {
                         total.append(line);
                     }
-                }
-                catch (final Exception e)
-                {
+                } catch (Throwable e) {
                     e.printStackTrace();
-                }
-                finally {
+                } finally {
 
                     if (r != null) {
                         try {

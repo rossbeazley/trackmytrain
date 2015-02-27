@@ -56,7 +56,7 @@ public class DeparturesTest {
         assertThat(toText,is("CRL"));
     }
 
-    @Test @Ignore("wip")
+    @Test
     public void displaysTheDepartureResultsForAJourney() {
         final Train train = new Train("1", "", "", "");
         final Train train1 = new Train("2", "", "", "");

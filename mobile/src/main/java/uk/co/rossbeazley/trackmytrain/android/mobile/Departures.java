@@ -20,44 +20,53 @@ import uk.co.rossbeazley.trackmytrain.android.Train;
 
 public class Departures extends Activity {
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.servicedetails);
         final TextView from = (TextView) findViewById(R.id.from);
         //from.setText("SLD");
 
-        final TextView to = (TextView) findViewById(R.id.from);
+        final TextView to = (TextView) findViewById(R.id.to);
         //to.setText("CRL");
+
+        final ListView listView = (ListView) findViewById(R.id.departurelist);
 
         final TrackMyTrain instance = TrackMyTrainApp.instance;
 
         instance.attach(new DeparturesView() {
             @Override
             public void present(final List<Train> trains) {
-                ((ListView)findViewById(R.id.departurelist)).setAdapter(new BaseAdapter() {
+                Runnable action = new Runnable() {
                     @Override
-                    public int getCount() {
-                        return trains.size();
-                    }
+                    public void run() {
+                        listView.setAdapter(new BaseAdapter() {
+                            @Override
+                            public int getCount() {
+                                return trains.size();
+                            }
 
-                    @Override
-                    public Object getItem(int position) {
-                        return trains.get(position);
-                    }
+                            @Override
+                            public Object getItem(int position) {
+                                return trains.get(position);
+                            }
 
-                    @Override
-                    public long getItemId(int position) {
-                        return trains.get(position).id.hashCode();
-                    }
+                            @Override
+                            public long getItemId(int position) {
+                                return trains.get(position).id.hashCode();
+                            }
 
-                    @Override
-                    public View getView(int position, View convertView, ViewGroup parent) {
-                        TextView textView = new TextView(parent.getContext());
-                        textView.setText(trains.get(position).toString());
-                        return textView;
+                            @Override
+                            public View getView(int position, View convertView, ViewGroup parent) {
+                                TextView textView = new TextView(parent.getContext());
+                                textView.setText(trains.get(position).toString());
+                                return textView;
+                            }
+                        });
                     }
-                });
+                };
+
+                listView.post(action);
+
             }
         });
 
