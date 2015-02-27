@@ -80,6 +80,16 @@ public class Departures extends Activity {
             }
         });
 
+        final TextView selectedService = (TextView) findViewById(R.id.selectedservice);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Train train = (Train) parent.getItemAtPosition(position);
+                selectedService.setText(train.id);
+            }
+        });
 
 //
 //        final TextView serviceIdTV = (TextView) findViewById(R.id.selectedservice);

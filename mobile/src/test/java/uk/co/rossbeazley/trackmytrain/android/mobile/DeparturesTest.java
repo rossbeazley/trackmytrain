@@ -19,6 +19,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import uk.co.rossbeazley.trackmytrain.android.R;
+import uk.co.rossbeazley.trackmytrain.android.ServiceView;
 import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.mobile.Departures;
 
@@ -60,7 +61,6 @@ public class DeparturesTest {
     public void displaysTheDepartureResultsForAJourney() {
         final Train train = new Train("1", "", "", "");
         final Train train1 = new Train("2", "", "", "");
-        List<Train> expected = Arrays.asList(train, train1);
 
         act.findViewById(R.id.getdepartures).performClick();
 
@@ -74,4 +74,40 @@ public class DeparturesTest {
         assertThat(viewedTrain2,is(train1));
     }
 
+    @Test
+    public void selectsTrainIdFromList() {
+        act.findViewById(R.id.getdepartures).performClick();
+        Robolectric.shadowOf((ListView)act.findViewById(R.id.departurelist)).performItemClick(1);
+
+        String trainId = String.valueOf(((TextView)act.findViewById(R.id.selectedservice)).getText());
+        assertThat(trainId,is("2"));
+    }
+
+    @Test @Ignore
+    public void startsTrackingAService() {
+        Train train = new Train("2", "", "", "");
+        CapturingServiceView csv = new CapturingServiceView();
+
+        TrackMyTrainApp.instance.attach(csv);
+        ((TextView)act.findViewById(R.id.selectedservice)).setText("2");
+        act.findViewById(R.id.trackbutton).performClick();
+
+        assertThat(csv.trackedTrain,is(train));
+    }
+
+    private static class CapturingServiceView implements ServiceView {
+
+        public Train trackedTrain;
+
+        @Override
+        public void present(Train train) {
+            trackedTrain=train;
+
+        }
+
+        @Override
+        public void hide() {
+
+        }
+    }
 }
