@@ -7,8 +7,6 @@ public interface TrackMyTrain {
 
     void unwatch();
 
-    void tick();
-
     void attach(DeparturesView departureView);
 
     void detach(DeparturesView departuresView);

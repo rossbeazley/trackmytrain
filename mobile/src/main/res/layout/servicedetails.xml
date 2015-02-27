@@ -5,42 +5,54 @@
 
     <EditText android:id="@+id/from"
         android:layout_width="100dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:text="SLD"/>
 
     <EditText android:id="@+id/to"
         android:layout_width="100dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:text="CRL"
         android:layout_toRightOf="@id/from"/>
 
     <Button android:id="@+id/getdepartures"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:text="find"
         android:layout_toRightOf="@id/to"
         android:layout_alignParentRight="true"/>
 
-
     <ListView android:id="@+id/departurelist"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_below="@id/getdepartures"/>
-
+        android:layout_below="@id/getdepartures"
+        />
 
     <TextView android:id="@+id/selectedservice"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_below="@id/departurelist"
         android:text="choose a service..."/>
 
     <Button android:id="@+id/trackbutton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_toRightOf="@id/selectedservice"
         android:text="TRACK"
         android:layout_below="@id/departurelist"
-        />
+        android:layout_alignParentRight="true"/>
 
+    <TextView android:id="@+id/trackedservice"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/selectedservice"
+        android:text="tracked service..."/>
+
+    <Button android:id="@+id/stopbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_toRightOf="@id/trackedservice"
+        android:text="STOP"
+        android:layout_below="@id/trackbutton"
+        android:layout_alignParentRight="true"/>
 
 </RelativeLayout>

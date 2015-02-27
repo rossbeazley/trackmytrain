@@ -18,7 +18,6 @@ public class TrackMyTrainDefault implements TrackMyTrain {
     private NarrowScheduledExecutorService.Cancelable cancelable;
 
     public TrackMyTrainDefault(TrainRepository trainRepository, NarrowScheduledExecutorService executorService) {
-
         this.trainRepository = trainRepository;
         this.executorService = executorService;
         this.serviceViews = new ArrayList<ServiceView>(2);
@@ -34,7 +33,6 @@ public class TrackMyTrainDefault implements TrackMyTrain {
                 for (DeparturesView departuresView : departuresViews) {
                     departuresView.present(expectedList);
                 }
-
             }
         });
     }
@@ -65,7 +63,6 @@ public class TrackMyTrainDefault implements TrackMyTrain {
         for (ServiceView serviceView : serviceViews) {
             serviceView.hide();
         }
-
         this.trackedService = null;
     }
 

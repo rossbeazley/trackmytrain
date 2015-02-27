@@ -45,11 +45,6 @@ public class TestTrackMyTrainApp extends TrackMyTrainApp {
             }
 
             @Override
-            public void tick() {
-
-            }
-
-            @Override
             public void attach(DeparturesView departureView) {
                 this.departureView = departureView;
             }
