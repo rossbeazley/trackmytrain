@@ -40,14 +40,7 @@ public class TrackMyTrainDefault implements TrackMyTrain {
     @Override
     public void watch(String serviceId) {
         this.trackedService = serviceId;
-        this.trainRepository.service(serviceId, new TrainRepository.ServiceSuccess(){
-            @Override
-            public void result(Train train) {
-                for (ServiceView serviceView : serviceViews) {
-                    serviceView.present(train);
-                }
-            }
-        });
+        tick();
         cancelable = executorService.scheduleAtFixedRate(new Runnable() {
             @Override
             public void run() {
@@ -68,7 +61,16 @@ public class TrackMyTrainDefault implements TrackMyTrain {
 
 
     public void tick() {
-        if(this.trackedService!=null) watch(this.trackedService);
+        if(this.trackedService!=null) {
+            this.trainRepository.service(this.trackedService, new TrainRepository.ServiceSuccess() {
+                @Override
+                public void result(Train train) {
+                    for (ServiceView serviceView : serviceViews) {
+                        serviceView.present(train);
+                    }
+                }
+            });
+        }
     }
 
     @Override
