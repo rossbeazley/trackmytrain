@@ -5,7 +5,9 @@ import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
+import uk.co.rossbeazley.time.NarrowScheduledExecutorService;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.NetworkClient;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.RequestMapNetworkClient;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.ServiceDetailsRequest;
@@ -30,6 +32,15 @@ public class ServiceTest {
     private Map<NetworkClient.Request, String> map;
     private TrackMyTrain tmt;
     private Train expectedTrain;
+
+    private NarrowScheduledExecutorService ness;
+    private NarrowScheduledExecutorService.Cancelable cancelable;
+    private Runnable NO_COMMAND = new Runnable() {
+        @Override
+        public void run() {
+        }
+    };
+    private Runnable scheduledCommand = NO_COMMAND;
 
     @Before
     public void setUp() throws Exception {
@@ -58,8 +69,25 @@ public class ServiceTest {
             }
         };
 
+        ness = new NarrowScheduledExecutorService() {
+            @Override
+            public Cancelable scheduleAtFixedRate(Runnable command, long period, TimeUnit unit) {
+                scheduledCommand = command;
+                cancelable = new Cancelable() {
+                    @Override
+                    public void cancel() {
+                        cancelable = null;
+
+                        scheduledCommand = NO_COMMAND;
+                    }
+                };
+                return cancelable;
+            }
+        };
+
         tmt = new TMTBuilder()
                 .with(client)
+                .with(ness)
                 .build();
 
         tmt.attach(serviceView);
@@ -85,7 +113,7 @@ public class ServiceTest {
         serviceDisplayed=null;
         final Train expectedTrain = new Train(serviceId, "20:52", scheduledTime, platform);
         map.put(serviceDetailsRequest, TestDataBuilder.jsonForTrain(expectedTrain));
-        tmt.tick();
+        scheduledCommand.run();
 
         assertThat(serviceDisplayed, is(expectedTrain));
     }
@@ -93,10 +121,10 @@ public class ServiceTest {
     @Test
     public void theOneWhereWeStopTracking() {
         tmt.watch(serviceId);
-        tmt.tick();
+        scheduledCommand.run();
         serviceDisplayed=null;
         tmt.unwatch();
-        tmt.tick();
+        scheduledCommand.run();
 
         assertThat(serviceDisplayed, is(nullValue()));
     }
@@ -104,10 +132,10 @@ public class ServiceTest {
     @Test
     public void theOneWhereTheServiceViewIsHidden() {
         tmt.watch(serviceId);
-        tmt.tick();
+        scheduledCommand.run();
         serviceDisplayed=null;
         tmt.unwatch();
-        tmt.tick();
+        scheduledCommand.run();
 
         assertThat(serviceView, is(HIDDEN));
     }

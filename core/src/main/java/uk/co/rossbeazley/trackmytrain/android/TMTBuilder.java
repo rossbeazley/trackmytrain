@@ -1,5 +1,6 @@
 package uk.co.rossbeazley.trackmytrain.android;
 
+import uk.co.rossbeazley.time.NarrowScheduledExecutorService;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.NetworkClient;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.StringNetworkClient;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
@@ -8,6 +9,7 @@ public class TMTBuilder {
 
     private TrainRepository trainRepository;
     private NetworkClient networkClient;
+    private NarrowScheduledExecutorService executorService;
 
     public TMTBuilder() {
         networkClient = new StringNetworkClient();
@@ -23,4 +25,8 @@ public class TMTBuilder {
         return this;
     }
 
+    public TMTBuilder with(NarrowScheduledExecutorService ness) {
+        executorService = ness;
+        return this;
+    }
 }
