@@ -1,5 +1,8 @@
 package uk.co.rossbeazley.trackmytrain.android.trainRepo;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 public class ServiceDetailsRequest implements NetworkClient.Request {
     private final String serviceId;
 
@@ -9,7 +12,13 @@ public class ServiceDetailsRequest implements NetworkClient.Request {
 
     @Override
     public String asUrlString() {
-        return "http://tmt.rossbeazley.co.uk/trackmytrain/rest/api/service/"+serviceId;
+        String encode;
+        try {
+            encode = URLEncoder.encode(serviceId, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            encode = serviceId;
+        }
+        return "http://tmt.rossbeazley.co.uk/trackmytrain/rest/api/service/"+ encode;
     }
 
     public boolean equals(Object object) {

@@ -105,6 +105,12 @@ public class ServiceTest {
     }
 
     @Test
+    public void serviceDetailsEncodesID() {
+        final String serviceUrl = "http://tmt.rossbeazley.co.uk/trackmytrain/rest/api/service/123%2F456";
+        assertThat(new ServiceDetailsRequest("123/456").asUrlString(),is(serviceUrl));
+    }
+
+    @Test
     public void theOneWhereWeAreUpdatedAboutTheSelectedService() {
         tmt.watch(serviceId);
         serviceDisplayed=null;
