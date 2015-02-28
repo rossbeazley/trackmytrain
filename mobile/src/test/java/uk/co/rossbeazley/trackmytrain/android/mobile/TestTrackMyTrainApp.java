@@ -1,5 +1,6 @@
 package uk.co.rossbeazley.trackmytrain.android.mobile;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,8 +28,10 @@ public class TestTrackMyTrainApp extends TrackMyTrainApp {
         private DeparturesView departureView;
         private List<Train> trains = Arrays.asList(new Train("1", "", "", ""), new Train("2", "", "", ""));
         private Train watching;
-        private ServiceView serviceView;
 
+
+
+        private final List<ServiceView> serviceViews = new ArrayList<>();
 
         @Override
         public void departures(Station at, Direction direction) {
@@ -47,7 +50,10 @@ public class TestTrackMyTrainApp extends TrackMyTrainApp {
         @Override
         public void unwatch() {
             this.watching = null;
-            this.serviceView.hide();
+
+            for (ServiceView serviceView : serviceViews) {
+                serviceView.hide();
+            }
         }
 
         @Override
@@ -60,14 +66,14 @@ public class TestTrackMyTrainApp extends TrackMyTrainApp {
             this.departureView = null;
         }
 
-        @Override
-        public void attach(ServiceView serviceView) {
-            this.serviceView = serviceView;
-        }
 
         @Override
+        public void attach(ServiceView serviceView) {
+            this.serviceViews.add(serviceView);
+        }
+        @Override
         public void detach(ServiceView serviceView) {
-            this.serviceView = null;
+            this.serviceViews.remove(serviceView);
         }
 
         public void announceWatchedService(Train expectedTrain) {
@@ -76,7 +82,9 @@ public class TestTrackMyTrainApp extends TrackMyTrainApp {
 
         public void setWatching(Train watching) {
             this.watching = watching;
-            this.serviceView.present(watching);
+            for (ServiceView serviceView : serviceViews) {
+                serviceView.present(watching);
+            }
         }
     }
 }
