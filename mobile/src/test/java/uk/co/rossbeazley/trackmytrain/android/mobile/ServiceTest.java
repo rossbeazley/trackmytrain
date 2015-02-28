@@ -48,7 +48,7 @@ public class ServiceTest {
         assertThat(csv.trackedTrain,is(train));
     }
 
-    @Test @Ignore("wip")
+    @Test
     public void trackedServiceOnScreen() {
 
         ((TextView)act.findViewById(R.id.selectedservice)).setText("2");
@@ -62,7 +62,41 @@ public class ServiceTest {
 
     }
 
-    private static class CapturingServiceView implements ServiceView {
+
+    @Test
+    public void trackedServiceOnScreenUpdates() {
+
+        ((TextView)act.findViewById(R.id.selectedservice)).setText("2");
+        act.findViewById(R.id.trackbutton).performClick();
+
+        TestTrackMyTrainApp.fakeTrackMyTrain.announceWatchedService(new Train("2", "On Time", "09:00", "1"));
+
+        Train expectedTrain = new Train("2", "10:00", "09:00", "1");
+        TestTrackMyTrainApp.fakeTrackMyTrain.announceWatchedService(expectedTrain);
+
+        String trackedText = String.valueOf(((TextView)act.findViewById(R.id.trackedservice)).getText());
+        assertThat(trackedText,is(expectedTrain.toString()));
+
+    }
+
+
+
+    @Test
+    public void stoppingTrackingClears() {
+        ((TextView)act.findViewById(R.id.selectedservice)).setText("2");
+        act.findViewById(R.id.trackbutton).performClick();
+
+        TestTrackMyTrainApp.fakeTrackMyTrain.announceWatchedService(new Train("2", "10:00", "09:00", "1"));
+
+        act.findViewById(R.id.stopbutton).performClick();
+
+        String trackedText = String.valueOf(((TextView)act.findViewById(R.id.trackedservice)).getText());
+        assertThat(trackedText,is(""));
+    }
+
+
+
+    static class CapturingServiceView implements ServiceView {
 
         public Train trackedTrain;
 

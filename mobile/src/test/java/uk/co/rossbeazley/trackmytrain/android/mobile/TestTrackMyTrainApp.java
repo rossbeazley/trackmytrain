@@ -46,7 +46,7 @@ public class TestTrackMyTrainApp extends TrackMyTrainApp {
 
         @Override
         public void unwatch() {
-            this.setWatching(null);
+            this.watching = null;
             this.serviceView.hide();
         }
 

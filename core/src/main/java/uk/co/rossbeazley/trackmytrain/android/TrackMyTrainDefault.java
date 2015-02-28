@@ -60,7 +60,7 @@ public class TrackMyTrainDefault implements TrackMyTrain {
     }
 
 
-    public void tick() {
+    void tick() {
         if(this.trackedService!=null) {
             this.trainRepository.service(this.trackedService, new TrainRepository.ServiceSuccess() {
                 @Override
