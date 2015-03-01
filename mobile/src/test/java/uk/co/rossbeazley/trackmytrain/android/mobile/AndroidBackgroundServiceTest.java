@@ -1,5 +1,6 @@
 package uk.co.rossbeazley.trackmytrain.android.mobile;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.widget.TextView;
 
@@ -15,6 +16,7 @@ import uk.co.rossbeazley.trackmytrain.android.R;
 import uk.co.rossbeazley.trackmytrain.android.ServiceView;
 import uk.co.rossbeazley.trackmytrain.android.Train;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.nullValue;
@@ -31,7 +33,18 @@ public class AndroidBackgroundServiceTest {
         TestTrackMyTrainApp.fakeTrackMyTrain.announceWatchedService(expectedTrain);
 
         Intent intent = Robolectric.getShadowApplication().getNextStartedService();
-        assertThat(intent,is(not(nullValue())));
+        String aClass = intent.getComponent().getClassName();
+        assertThat(aClass,is(equalTo(TrackingService.class.getName())));
+    }
+
+    @Test
+    public void androidServiceStopsWhenTrackingEnds() {
+
+        TestTrackMyTrainApp.fakeTrackMyTrain.unwatch();
+
+        Intent intent = Robolectric.getShadowApplication().getNextStoppedService();
+        String aClass = intent.getComponent().getClassName();
+        assertThat(aClass,is(equalTo(TrackingService.class.getName())));
     }
 
 }
