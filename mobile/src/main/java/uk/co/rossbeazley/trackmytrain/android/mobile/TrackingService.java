@@ -1,10 +1,13 @@
 package uk.co.rossbeazley.trackmytrain.android.mobile;
 
 import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 
 import uk.co.rossbeazley.trackmytrain.android.R;
 import uk.co.rossbeazley.trackmytrain.android.ServiceView;
@@ -50,10 +53,16 @@ public class TrackingService extends Service {
             Notification not;
             not = new Notification.Builder(service)
                     .setContentTitle("Platform " + train.platform)
-                    .setContentText(train.scheduledTime+" exp "+train.estimatedTime)
+                    .setContentText(train.scheduledTime + " exp " + train.estimatedTime)
                     .setSmallIcon(R.drawable.ic_launcher)
+                    //.setVisibility(Notification.VISIBILITY_PUBLIC)
                     .build();
-            service.startForeground(ID, not);
+
+            NotificationManagerCompat notificationManager =
+                    NotificationManagerCompat.from(service);
+
+            notificationManager.notify(1337, not);
+            //service.startForeground(ID, not);   //wont make notification show up on wearable
         }
 
         @Override
