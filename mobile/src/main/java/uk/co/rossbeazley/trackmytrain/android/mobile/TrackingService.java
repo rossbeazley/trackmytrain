@@ -58,7 +58,7 @@ public class TrackingService extends Service {
 
         @Override
         public void hide() {
-
+            service.stopForeground(true);
         }
     }
 }

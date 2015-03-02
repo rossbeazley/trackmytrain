@@ -69,4 +69,28 @@ public class AndroidBackgroundServiceTest {
         assertThat(shadowOf(notification).getContentText(), CoreMatchers.<CharSequence>is("09:00 exp On Time"));
     }
 
+
+    @Test
+    public void trackingEndsNotificationRemoved() {
+        NotificationManager notificationManager = (NotificationManager) Robolectric.application.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        Train expectedTrain = new Train("2", "On Time", "09:00", "1");
+        TestTrackMyTrainApp.fakeTrackMyTrain.announceWatchedService(expectedTrain);
+
+        TrackingService trackingService = new TrackingService(){
+            {
+                attachBaseContext(Robolectric.application);
+            }
+        };
+
+        trackingService.onCreate();
+
+        TestTrackMyTrainApp.fakeTrackMyTrain.unwatch();
+
+        ShadowNotificationManager shadowNotificationManager = shadowOf(notificationManager);
+        final Notification notification = shadowNotificationManager.getNotification(TrackingService.TrackingNotification.ID);
+
+        assertThat(notification,is(nullValue()));
+    }
+
 }
