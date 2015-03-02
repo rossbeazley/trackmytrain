@@ -11,7 +11,7 @@ public class Train {
         this.id = id;
         this.estimatedTime = estimatedTime;
         this.scheduledTime = scheduledTime;
-        this.platform = "";
+        this.platform = platform;
     }
 
     public String toString() {

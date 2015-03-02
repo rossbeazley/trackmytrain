@@ -86,6 +86,7 @@ public class TrackMyTrainDefault implements TrackMyTrain {
     @Override
     public void attach(ServiceView serviceView) {
         this.serviceViews.add(serviceView);
+        tick();
     }
     @Override
     public void detach(ServiceView serviceView) {

@@ -1,23 +1,18 @@
 package uk.co.rossbeazley.trackmytrain.android.mobile;
 
+import android.app.Notification;
 import android.app.NotificationManager;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.widget.TextView;
 
-import org.junit.Before;
-import org.junit.Ignore;
+import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowNotificationManager;
-import org.robolectric.util.ActivityController;
 
-import uk.co.rossbeazley.trackmytrain.android.R;
-import uk.co.rossbeazley.trackmytrain.android.ServiceView;
 import uk.co.rossbeazley.trackmytrain.android.Train;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -53,9 +48,12 @@ public class AndroidBackgroundServiceTest {
     }
 
 
-    @Test //@Ignore("WIP")
+    @Test
     public void startingServiceCreatesNotification() {
         NotificationManager notificationManager = (NotificationManager) Robolectric.application.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        Train expectedTrain = new Train("2", "On Time", "09:00", "1");
+        TestTrackMyTrainApp.fakeTrackMyTrain.announceWatchedService(expectedTrain);
 
         TrackingService trackingService = new TrackingService(){
             {
@@ -66,7 +64,9 @@ public class AndroidBackgroundServiceTest {
         trackingService.onCreate();
 
         ShadowNotificationManager shadowNotificationManager = shadowOf(notificationManager);
-        assertThat(shadowNotificationManager.getNotification(1337),is(not(nullValue())));
+        final Notification notification = shadowNotificationManager.getNotification(TrackingService.TrackingNotification.ID);
+        assertThat(shadowOf(notification).getContentTitle(), CoreMatchers.<CharSequence>is("Platform 1"));
+        assertThat(shadowOf(notification).getContentText(), CoreMatchers.<CharSequence>is("09:00 exp On Time"));
     }
 
 }

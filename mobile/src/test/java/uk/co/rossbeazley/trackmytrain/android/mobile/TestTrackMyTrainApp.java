@@ -69,6 +69,9 @@ public class TestTrackMyTrainApp extends TrackMyTrainApp {
 
         @Override
         public void attach(ServiceView serviceView) {
+            if(this.watching!=null) {
+                serviceView.present(this.watching);
+            }
             this.serviceViews.add(serviceView);
         }
         @Override
