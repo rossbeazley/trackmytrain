@@ -53,10 +53,17 @@ public class AndroidBackgroundServiceTest {
     }
 
 
-    @Test @Ignore("WIP")
+    @Test //@Ignore("WIP")
     public void startingServiceCreatesNotification() {
         NotificationManager notificationManager = (NotificationManager) Robolectric.application.getSystemService(Context.NOTIFICATION_SERVICE);
-        TrackingService.startTrackingService(Robolectric.application);
+
+        TrackingService trackingService = new TrackingService(){
+            {
+                attachBaseContext(Robolectric.application);
+            }
+        };
+
+        trackingService.onCreate();
 
         ShadowNotificationManager shadowNotificationManager = shadowOf(notificationManager);
         assertThat(shadowNotificationManager.getNotification(1337),is(not(nullValue())));
