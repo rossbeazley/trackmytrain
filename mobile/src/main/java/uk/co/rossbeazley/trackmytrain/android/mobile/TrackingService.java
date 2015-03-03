@@ -38,6 +38,7 @@ public class TrackingService extends Service {
                 .setContentText("Tracking a train")
                 .setSmallIcon(R.drawable.n_none)
                 .setVibrate(vibratePattern)
+                .setPriority(Notification.PRIORITY_MIN)
                 .build();
         startForeground(ID,not);
 
