@@ -67,7 +67,7 @@ public class AndroidBackgroundServiceTest {
 
 
     @Test
-    public void trackingEndsNotificationRemoved() {
+    public void serviceStopsNotificationRemoved() {
         NotificationManager notificationManager = (NotificationManager) Robolectric.application.getSystemService(Context.NOTIFICATION_SERVICE);
 
         TrackingService trackingService = new TrackingService(){
