@@ -100,13 +100,13 @@ public class ServiceTest {
 
     @Test
     public void serviceDetailsRequestRendersToString() {
-        final String serviceUrl = "http://tmt.rossbeazley.co.uk/trackmytrain/rest/api/service/123456";
+        final String serviceUrl = "http://tmt.rossbeazley.co.uk/trackmytrain/rest/api/service?id=123456";
         assertThat(new ServiceDetailsRequest("123456").asUrlString(),is(serviceUrl));
     }
 
     @Test
     public void serviceDetailsEncodesID() {
-        final String serviceUrl = "http://tmt.rossbeazley.co.uk/trackmytrain/rest/api/service/123%2F456";
+        final String serviceUrl = "http://tmt.rossbeazley.co.uk/trackmytrain/rest/api/service?id=123%2F456";
         assertThat(new ServiceDetailsRequest("123/456").asUrlString(),is(serviceUrl));
     }
 

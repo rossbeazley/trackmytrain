@@ -18,7 +18,7 @@ public class ServiceDetailsRequest implements NetworkClient.Request {
         } catch (UnsupportedEncodingException e) {
             encode = serviceId;
         }
-        return "http://tmt.rossbeazley.co.uk/trackmytrain/rest/api/service/"+ encode;
+        return "http://tmt.rossbeazley.co.uk/trackmytrain/rest/api/service?id="+ encode;
     }
 
     public boolean equals(Object object) {
