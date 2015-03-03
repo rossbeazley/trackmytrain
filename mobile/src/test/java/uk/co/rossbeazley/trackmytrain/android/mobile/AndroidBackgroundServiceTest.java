@@ -52,15 +52,17 @@ public class AndroidBackgroundServiceTest {
     public void startingServiceCreatesNotification() {
         NotificationManager notificationManager = (NotificationManager) Robolectric.application.getSystemService(Context.NOTIFICATION_SERVICE);
 
-        Train expectedTrain = new Train("2", "On Time", "09:00", "1");
-        TestTrackMyTrainApp.fakeTrackMyTrain.announceWatchedService(expectedTrain);
+        TrackingService trackingService = new TrackingService(){
+            {
+                attachBaseContext(Robolectric.application);
+            }
+        };
 
-        TrackMyTrainApp.instance.attach(new TrackingNotification(Robolectric.application));
+        trackingService.onCreate();
 
         ShadowNotificationManager shadowNotificationManager = shadowOf(notificationManager);
         final Notification notification = shadowNotificationManager.getNotification(TrackingService.ID);
-        assertThat(shadowOf(notification).getContentTitle(), CoreMatchers.<CharSequence>is("Platform 1"));
-        assertThat(shadowOf(notification).getContentText(), CoreMatchers.<CharSequence>is("09:00 exp On Time"));
+        assertThat(notification, is(not(nullValue())));
     }
 
 
@@ -68,12 +70,15 @@ public class AndroidBackgroundServiceTest {
     public void trackingEndsNotificationRemoved() {
         NotificationManager notificationManager = (NotificationManager) Robolectric.application.getSystemService(Context.NOTIFICATION_SERVICE);
 
-        Train expectedTrain = new Train("2", "On Time", "09:00", "1");
-        TestTrackMyTrainApp.fakeTrackMyTrain.announceWatchedService(expectedTrain);
+        TrackingService trackingService = new TrackingService(){
+            {
+                attachBaseContext(Robolectric.application);
+            }
+        };
 
-        TrackMyTrainApp.instance.attach(new TrackingNotification(Robolectric.application));
+        trackingService.onCreate();
 
-        TestTrackMyTrainApp.fakeTrackMyTrain.unwatch();
+        trackingService.onDestroy();
 
         ShadowNotificationManager shadowNotificationManager = shadowOf(notificationManager);
         final Notification notification = shadowNotificationManager.getNotification(TrackingService.ID);
