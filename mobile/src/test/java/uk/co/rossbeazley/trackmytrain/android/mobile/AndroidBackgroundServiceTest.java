@@ -58,7 +58,7 @@ public class AndroidBackgroundServiceTest {
         TrackMyTrainApp.instance.attach(new TrackingNotification(Robolectric.application));
 
         ShadowNotificationManager shadowNotificationManager = shadowOf(notificationManager);
-        final Notification notification = shadowNotificationManager.getNotification(TrackingNotification.ID);
+        final Notification notification = shadowNotificationManager.getNotification(TrackingService.ID);
         assertThat(shadowOf(notification).getContentTitle(), CoreMatchers.<CharSequence>is("Platform 1"));
         assertThat(shadowOf(notification).getContentText(), CoreMatchers.<CharSequence>is("09:00 exp On Time"));
     }
@@ -76,7 +76,7 @@ public class AndroidBackgroundServiceTest {
         TestTrackMyTrainApp.fakeTrackMyTrain.unwatch();
 
         ShadowNotificationManager shadowNotificationManager = shadowOf(notificationManager);
-        final Notification notification = shadowNotificationManager.getNotification(TrackingNotification.ID);
+        final Notification notification = shadowNotificationManager.getNotification(TrackingService.ID);
 
         assertThat(notification,is(nullValue()));
     }
