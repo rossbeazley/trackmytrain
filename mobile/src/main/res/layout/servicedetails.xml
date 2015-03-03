@@ -1,58 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <EditText android:id="@+id/from"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:text="SLD"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-    <EditText android:id="@+id/to"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:text="CRL"
-        android:layout_toRightOf="@id/from"/>
+        <EditText
+            android:id="@+id/from"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="SLD"
+            android:inputType="textCapCharacters"
+            />
 
-    <Button android:id="@+id/getdepartures"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:text="find"
-        android:layout_toRightOf="@id/to"
-        android:layout_alignParentRight="true"/>
+        <EditText
+            android:id="@+id/to"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_toRightOf="@id/from"
+            android:text="CRL"
+            android:inputType="textCapCharacters"/>
 
-    <ListView android:id="@+id/departurelist"
+        <Button
+            android:id="@+id/getdepartures"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@id/to"
+            android:text="find" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/departurelist"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_below="@id/getdepartures"
-        />
+        android:layout_weight="1" />
 
-    <TextView android:id="@+id/selectedservice"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:layout_below="@id/departurelist"
-        android:text="choose a service..."/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <Button android:id="@+id/trackbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_toRightOf="@id/selectedservice"
-        android:text="TRACK"
-        android:layout_below="@id/departurelist"
-        android:layout_alignParentRight="true"/>
+        <TextView
+            android:id="@+id/selectedservice"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:text="choose a service..." />
 
-    <TextView android:id="@+id/trackedservice"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_below="@id/selectedservice"
-        android:text="tracked service..."/>
+        <Button
+            android:id="@+id/trackbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@id/selectedservice"
+            android:text="TRACK" />
 
-    <Button android:id="@+id/stopbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_toRightOf="@id/trackedservice"
-        android:text="STOP"
-        android:layout_below="@id/trackbutton"
-        android:layout_alignParentRight="true"/>
+        <TextView
+            android:id="@+id/trackedservice"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/selectedservice"
+            android:text="tracked service..." />
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/stopbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/trackbutton"
+            android:layout_toRightOf="@id/trackedservice"
+            android:text="STOP" />
+    </RelativeLayout>
+
+</LinearLayout>

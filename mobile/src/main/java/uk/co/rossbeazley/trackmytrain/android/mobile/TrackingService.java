@@ -32,12 +32,11 @@ public class TrackingService extends Service {
     public void onCreate() {
         super.onCreate();
         Notification not;
-        long[] vibratePattern = {100,500,100,900};
+
         not = new Notification.Builder(this)
-                .setContentTitle("")
-                .setContentText("Tracking a train")
-                .setSmallIcon(R.drawable.n_none)
-                .setVibrate(vibratePattern)
+                .setContentTitle("Track My Train")
+                .setContentText("...is currently tracking")
+                .setSmallIcon(R.drawable.n_train)
                 .setPriority(Notification.PRIORITY_MIN)
                 .build();
         startForeground(ID,not);
