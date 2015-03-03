@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import org.hamcrest.CoreMatchers;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
@@ -17,46 +18,31 @@ import uk.co.rossbeazley.trackmytrain.android.Train;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 import static org.robolectric.Robolectric.shadowOf;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest="src/main/AndroidManifest.xml", emulateSdk = 18)
-public class AndroidBackgroundServiceTest {
-
-    @Test
-    public void androidServiceStartsWhenTrackingAService() {
-
-        Train expectedTrain = new Train("2", "10:00", "09:00", "1");
-        TestTrackMyTrainApp.fakeTrackMyTrain.announceWatchedService(expectedTrain);
-
-        Intent intent = Robolectric.getShadowApplication().getNextStartedService();
-        String aClass = intent.getComponent().getClassName();
-        assertThat(aClass,is(equalTo(TrackingService.class.getName())));
-    }
-
-    @Test
-    public void androidServiceStopsWhenTrackingEnds() {
-
-        TestTrackMyTrainApp.fakeTrackMyTrain.unwatch();
-
-        Intent intent = Robolectric.getShadowApplication().getNextStoppedService();
-        String aClass = intent.getComponent().getClassName();
-        assertThat(aClass,is(equalTo(TrackingService.class.getName())));
-    }
+public class TrackingNotificationTest {
 
 
-    @Test
-    public void startingServiceCreatesNotification() {
-        NotificationManager notificationManager = (NotificationManager) Robolectric.application.getSystemService(Context.NOTIFICATION_SERVICE);
+    public NotificationManager notificationManager;
+
+    @Before
+    public void setUp() throws Exception {
+        notificationManager = (NotificationManager) Robolectric.application.getSystemService(Context.NOTIFICATION_SERVICE);
+
 
         Train expectedTrain = new Train("2", "On Time", "09:00", "1");
         TestTrackMyTrainApp.fakeTrackMyTrain.announceWatchedService(expectedTrain);
 
-        TrackMyTrainApp.instance.attach(new TrackingNotification(Robolectric.application));
 
+        TrackMyTrainApp.instance.attach(new TrackingNotification(Robolectric.application));
+    }
+
+    @Test
+    public void startingServiceCreatesNotification() {
         ShadowNotificationManager shadowNotificationManager = shadowOf(notificationManager);
         final Notification notification = shadowNotificationManager.getNotification(TrackingNotification.ID);
         assertThat(shadowOf(notification).getContentTitle(), CoreMatchers.<CharSequence>is("Platform 1"));
@@ -66,13 +52,6 @@ public class AndroidBackgroundServiceTest {
 
     @Test
     public void trackingEndsNotificationRemoved() {
-        NotificationManager notificationManager = (NotificationManager) Robolectric.application.getSystemService(Context.NOTIFICATION_SERVICE);
-
-        Train expectedTrain = new Train("2", "On Time", "09:00", "1");
-        TestTrackMyTrainApp.fakeTrackMyTrain.announceWatchedService(expectedTrain);
-
-        TrackMyTrainApp.instance.attach(new TrackingNotification(Robolectric.application));
-
         TestTrackMyTrainApp.fakeTrackMyTrain.unwatch();
 
         ShadowNotificationManager shadowNotificationManager = shadowOf(notificationManager);
