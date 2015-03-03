@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 
 import org.hamcrest.CoreMatchers;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
@@ -49,7 +48,7 @@ public class AndroidBackgroundServiceTest {
     }
 
 
-    @Test @Ignore("robo break")
+    @Test //@Ignore("robo break")
     public void startingServiceCreatesNotification() {
         NotificationManager notificationManager = (NotificationManager) Robolectric.application.getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -65,13 +64,13 @@ public class AndroidBackgroundServiceTest {
         trackingService.onCreate();
 
         ShadowNotificationManager shadowNotificationManager = shadowOf(notificationManager);
-        final Notification notification = shadowNotificationManager.getNotification(TrackingService.TrackingNotification.ID);
+        final Notification notification = shadowNotificationManager.getNotification(TrackingNotification.ID);
         assertThat(shadowOf(notification).getContentTitle(), CoreMatchers.<CharSequence>is("Platform 1"));
         assertThat(shadowOf(notification).getContentText(), CoreMatchers.<CharSequence>is("09:00 exp On Time"));
     }
 
 
-    @Test @Ignore("robo break")
+    @Test //@Ignore("robo break")
     public void trackingEndsNotificationRemoved() {
         NotificationManager notificationManager = (NotificationManager) Robolectric.application.getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -89,7 +88,7 @@ public class AndroidBackgroundServiceTest {
         TestTrackMyTrainApp.fakeTrackMyTrain.unwatch();
 
         ShadowNotificationManager shadowNotificationManager = shadowOf(notificationManager);
-        final Notification notification = shadowNotificationManager.getNotification(TrackingService.TrackingNotification.ID);
+        final Notification notification = shadowNotificationManager.getNotification(TrackingNotification.ID);
 
         assertThat(notification,is(nullValue()));
     }

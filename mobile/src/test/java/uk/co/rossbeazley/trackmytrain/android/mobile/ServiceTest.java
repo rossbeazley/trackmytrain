@@ -59,7 +59,6 @@ public class ServiceTest {
 
         String trackedText = String.valueOf(((TextView)act.findViewById(R.id.trackedservice)).getText());
         assertThat(trackedText,is(expectedTrain.toString()));
-
     }
 
 
@@ -76,7 +75,6 @@ public class ServiceTest {
 
         String trackedText = String.valueOf(((TextView)act.findViewById(R.id.trackedservice)).getText());
         assertThat(trackedText,is(expectedTrain.toString()));
-
     }
 
 
@@ -103,7 +101,6 @@ public class ServiceTest {
         @Override
         public void present(Train train) {
             trackedTrain=train;
-
         }
 
         @Override
