@@ -29,6 +29,7 @@ public class TrackMyTrainApp extends Application{
     public void onCreate() {
         super.onCreate();
         instance.attach(new ServiceTrackingNavigationController());
+        instance.attach(new TrackingNotification(this));
     }
 
     class ServiceTrackingNavigationController implements ServiceView {

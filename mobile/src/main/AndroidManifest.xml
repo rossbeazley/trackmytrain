@@ -6,7 +6,7 @@
     <uses-sdk android:minSdkVersion="22"/>
 
     <application android:allowBackup="true" android:label="@string/app_name"
-        android:icon="@drawable/ic_launcher" android:theme="@style/AppTheme"
+        android:icon="@drawable/ic_train" android:theme="@style/AppTheme"
         android:name=".mobile.TrackMyTrainApp">
 
         <service android:name=".mobile.TrackingService" android:exported="false"/>

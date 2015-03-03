@@ -26,8 +26,6 @@ public class TrackingService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        final TrackingNotification trackingNotification = new TrackingNotification(this);
-        TrackMyTrainApp.instance.attach(trackingNotification);
     }
 
 
