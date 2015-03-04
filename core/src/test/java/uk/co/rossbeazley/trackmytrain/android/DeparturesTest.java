@@ -15,14 +15,14 @@ import static org.junit.Assert.*;
 
 public class DeparturesTest {
 
-    private List<Train> trainList;
+    private List<TrainViewModel> trainList;
 
     @Test
     public void theOneWhereWeRequestDetailsOfAServiceAndTheResultsAreDisplayed() {
 
         DeparturesView departuresView = new DeparturesView() {
             @Override
-            public void present(List<Train> trains) {
+            public void present(List<TrainViewModel> trains) {
                 trainList = trains;
             }
         };
@@ -42,7 +42,7 @@ public class DeparturesTest {
 
         });
 
-        List<Train> expectedList = Arrays.asList(train1,train2);
+        List<TrainViewModel> expectedList = TrainViewModel.list(Arrays.asList(train1,train2));
 
         tmt = new TMTBuilder()
                 .with(networkClient)

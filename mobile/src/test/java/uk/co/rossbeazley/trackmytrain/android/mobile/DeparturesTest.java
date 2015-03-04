@@ -1,13 +1,10 @@
 package uk.co.rossbeazley.trackmytrain.android.mobile;
 
-import android.view.View;
-import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
@@ -15,17 +12,12 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.robolectric.util.ActivityController;
 
-import java.util.Arrays;
-import java.util.List;
-
 import uk.co.rossbeazley.trackmytrain.android.R;
-import uk.co.rossbeazley.trackmytrain.android.ServiceView;
 import uk.co.rossbeazley.trackmytrain.android.Train;
-import uk.co.rossbeazley.trackmytrain.android.mobile.Departures;
+import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 
-import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest="src/main/AndroidManifest.xml", emulateSdk = 18)
@@ -59,16 +51,16 @@ public class DeparturesTest {
 
     @Test
     public void displaysTheDepartureResultsForAJourney() {
-        final Train train = new Train("1", "", "", "");
-        final Train train1 = new Train("2", "", "", "");
+        final TrainViewModel train = new TrainViewModel(new Train("1", "", "", ""));
+        final TrainViewModel train1 = new TrainViewModel( new Train("2", "", "", ""));
 
         act.findViewById(R.id.getdepartures).performClick();
 
         final ListView departureList = (ListView) act.findViewById(R.id.departurelist);
 
         ListAdapter adapter = departureList.getAdapter();
-        Train viewedTrain1 = (Train) adapter.getItem(0);
-        Train viewedTrain2 = (Train) adapter.getItem(1);
+        TrainViewModel viewedTrain1 = (TrainViewModel) adapter.getItem(0);
+        TrainViewModel viewedTrain2 = (TrainViewModel) adapter.getItem(1);
 
         assertThat(viewedTrain1,is(train));
         assertThat(viewedTrain2,is(train1));

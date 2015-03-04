@@ -15,6 +15,7 @@ import uk.co.rossbeazley.trackmytrain.android.Direction;
 import uk.co.rossbeazley.trackmytrain.android.R;
 import uk.co.rossbeazley.trackmytrain.android.Station;
 import uk.co.rossbeazley.trackmytrain.android.Train;
+import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 
 class ListViewDeparturesView implements DeparturesView {
     private final ListView listView;
@@ -53,7 +54,7 @@ class ListViewDeparturesView implements DeparturesView {
     }
 
     @Override
-    public void present(final List<Train> trains) {
+    public void present(final List<TrainViewModel> trains) {
         Runnable action = new Runnable() {
             @Override
             public void run() {

@@ -33,7 +33,7 @@ public class TrackMyTrainDefault implements TrackMyTrain {
             @Override
             public void result(List<Train> expectedList) {
                 for (DeparturesView departuresView : departuresViews) {
-                    departuresView.present(expectedList);
+                    departuresView.present(TrainViewModel.list(expectedList));
                 }
             }
         });
