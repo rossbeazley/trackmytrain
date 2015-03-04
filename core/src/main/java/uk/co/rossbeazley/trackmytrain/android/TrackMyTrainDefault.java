@@ -23,6 +23,7 @@ public class TrackMyTrainDefault implements TrackMyTrain {
         this.serviceViews = new ArrayList<ServiceView>(2);
         this.trackedService = null;
         this.departuresViews = new ArrayList<DeparturesView>(2);
+        cancelable= NarrowScheduledExecutorService.Cancelable.NULL;
     }
 
     @Override
@@ -52,7 +53,7 @@ public class TrackMyTrainDefault implements TrackMyTrain {
     @Override
     public void unwatch() {
         cancelable.cancel();
-        cancelable=null;
+        cancelable= NarrowScheduledExecutorService.Cancelable.NULL;
         for (ServiceView serviceView : serviceViews) {
             serviceView.hide();
         }
