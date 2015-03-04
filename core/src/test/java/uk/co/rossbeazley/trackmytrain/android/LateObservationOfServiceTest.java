@@ -22,8 +22,8 @@ public class LateObservationOfServiceTest {
 
     private ServiceDetailsRequest serviceDetailsRequest;
     private TrackMyTrain tmt;
-    private Train expectedTrain;
-    private Train presentedTrain;
+    private TrainViewModel expectedTrain;
+    private TrainViewModel presentedTrain;
 
     @Before
     public void setUp() throws Exception {
@@ -31,8 +31,9 @@ public class LateObservationOfServiceTest {
         String scheduledTime = "20:48";
         String estimatedTime = "On time";
         String platform = "2";
-        expectedTrain = new Train(serviceId, estimatedTime, scheduledTime, platform);
-        final String initialJson = TestDataBuilder.jsonForTrain(expectedTrain);
+        final Train train = new Train(serviceId, estimatedTime, scheduledTime, platform);
+        expectedTrain = new TrainViewModel(train);
+        final String initialJson = TestDataBuilder.jsonForTrain(train);
         serviceDetailsRequest = new ServiceDetailsRequest(serviceId);
         Map<NetworkClient.Request, String> map = new HashMap<NetworkClient.Request, String>() {{
             put(serviceDetailsRequest, initialJson);

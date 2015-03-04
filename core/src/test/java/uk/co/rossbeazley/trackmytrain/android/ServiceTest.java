@@ -21,7 +21,7 @@ public class ServiceTest {
     private static final String HIDDEN = "Hidden";
     private static final String VISIBLE = "Visible";
     private String serviceView = "UNKNOWN";
-    private Train serviceDisplayed;
+    private TrainViewModel serviceDisplayed;
 
     private String serviceId;
     private String scheduledTime;
@@ -31,7 +31,7 @@ public class ServiceTest {
     private ServiceDetailsRequest serviceDetailsRequest;
     private Map<NetworkClient.Request, String> map;
     private TrackMyTrain tmt;
-    private Train expectedTrain;
+    private TrainViewModel expectedTrain;
 
     private NarrowScheduledExecutorService ness;
     private NarrowScheduledExecutorService.Cancelable cancelable;
@@ -48,8 +48,9 @@ public class ServiceTest {
         scheduledTime = "20:48";
         estimatedTime = "On time";
         platform = "2";
-        expectedTrain = new Train(serviceId, estimatedTime, scheduledTime, platform);
-        final String initialJson = TestDataBuilder.jsonForTrain(expectedTrain);
+        final Train train = new Train(serviceId, estimatedTime, scheduledTime, platform);
+        expectedTrain = new TrainViewModel(train);
+        final String initialJson = TestDataBuilder.jsonForTrain(train);
         serviceDetailsRequest = new ServiceDetailsRequest(serviceId);
         map = new HashMap<NetworkClient.Request, String>(){{
             put(serviceDetailsRequest, initialJson);
@@ -114,8 +115,9 @@ public class ServiceTest {
     public void theOneWhereWeAreUpdatedAboutTheSelectedService() {
         tmt.watch(serviceId);
         serviceDisplayed=null;
-        final Train expectedTrain = new Train(serviceId, "20:52", scheduledTime, platform);
-        map.put(serviceDetailsRequest, TestDataBuilder.jsonForTrain(expectedTrain));
+        final Train train = new Train(serviceId, "20:52", scheduledTime, platform);
+        final TrainViewModel expectedTrain = new TrainViewModel(train);
+        map.put(serviceDetailsRequest, TestDataBuilder.jsonForTrain(train));
         scheduledCommand.run();
 
         assertThat(serviceDisplayed, is(expectedTrain));

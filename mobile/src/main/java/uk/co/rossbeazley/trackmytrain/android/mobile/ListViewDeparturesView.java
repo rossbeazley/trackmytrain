@@ -31,8 +31,8 @@ class ListViewDeparturesView implements DeparturesView {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Train train = (Train) parent.getItemAtPosition(position);
-                selectedService.setText(train.id);
+                TrainViewModel train = (TrainViewModel) parent.getItemAtPosition(position);
+                selectedService.setText(train.id());
             }
         });
 
@@ -71,7 +71,7 @@ class ListViewDeparturesView implements DeparturesView {
 
                     @Override
                     public long getItemId(int position) {
-                        return trains.get(position).id.hashCode();
+                        return trains.get(position).id().hashCode();
                     }
 
                     @Override
