@@ -5,7 +5,6 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 
-import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
@@ -30,7 +29,7 @@ public class AndroidBackgroundServiceTest {
     public void androidServiceStartsWhenTrackingAService() {
 
         Train expectedTrain = new Train("2", "10:00", "09:00", "1");
-        TestTrackMyTrainApp.fakeTrackMyTrain.announceWatchedService(expectedTrain);
+        TestTrackMyTrainApp.fakeTrackMyTrain.watch("2");
 
         Intent intent = Robolectric.getShadowApplication().getNextStartedService();
         String aClass = intent.getComponent().getClassName();

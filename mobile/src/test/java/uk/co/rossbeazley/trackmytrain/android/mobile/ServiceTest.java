@@ -1,11 +1,8 @@
 package uk.co.rossbeazley.trackmytrain.android.mobile;
 
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
@@ -38,7 +35,7 @@ public class ServiceTest {
 
     @Test
     public void startsTrackingAService() {
-        Train train = new Train("2", "", "", "");
+        Train train = new Train("2", "10:00", "09:00", "1");
         CapturingServiceView csv = new CapturingServiceView();
 
         TrackMyTrainApp.instance.attach(csv);
@@ -55,7 +52,7 @@ public class ServiceTest {
         act.findViewById(R.id.trackbutton).performClick();
 
         Train expectedTrain = new Train("2", "10:00", "09:00", "1");
-        TestTrackMyTrainApp.fakeTrackMyTrain.announceWatchedService(expectedTrain);
+        TestTrackMyTrainApp.fakeTrackMyTrain.watch("2");
 
         String trackedText = String.valueOf(((TextView)act.findViewById(R.id.trackedservice)).getText());
         assertThat(trackedText,is(expectedTrain.toString()));
@@ -68,10 +65,12 @@ public class ServiceTest {
         ((TextView)act.findViewById(R.id.selectedservice)).setText("2");
         act.findViewById(R.id.trackbutton).performClick();
 
-        TestTrackMyTrainApp.fakeTrackMyTrain.announceWatchedService(new Train("2", "On Time", "09:00", "1"));
+        TestTrackMyTrainApp.trackedService = new Train("2", "On Time", "09:00", "1");
+        TestTrackMyTrainApp.fakeTrackMyTrain.watch("2");
 
         Train expectedTrain = new Train("2", "10:00", "09:00", "1");
-        TestTrackMyTrainApp.fakeTrackMyTrain.announceWatchedService(expectedTrain);
+        TestTrackMyTrainApp.trackedService = expectedTrain;
+        TestTrackMyTrainApp.fakeTrackMyTrain.watch("2");
 
         String trackedText = String.valueOf(((TextView)act.findViewById(R.id.trackedservice)).getText());
         assertThat(trackedText,is(expectedTrain.toString()));
@@ -84,7 +83,7 @@ public class ServiceTest {
         ((TextView)act.findViewById(R.id.selectedservice)).setText("2");
         act.findViewById(R.id.trackbutton).performClick();
 
-        TestTrackMyTrainApp.fakeTrackMyTrain.announceWatchedService(new Train("2", "10:00", "09:00", "1"));
+        TestTrackMyTrainApp.fakeTrackMyTrain.watch("2");
 
         act.findViewById(R.id.stopbutton).performClick();
 

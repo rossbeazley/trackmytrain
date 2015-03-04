@@ -19,7 +19,7 @@ public class TrackMyTrainDefault implements TrackMyTrain {
     private NarrowScheduledExecutorService.Cancelable cancelable;
 
     public TrackMyTrainDefault(NetworkClient networkClient, NarrowScheduledExecutorService executorService) {
-        this.trainRepository = new TrainRepository(networkClient);;
+        this.trainRepository = new TrainRepository(networkClient);
         this.executorService = executorService;
         this.serviceViews = new ArrayList<ServiceView>(2);
         this.trackedService = null;
@@ -54,7 +54,7 @@ public class TrackMyTrainDefault implements TrackMyTrain {
     @Override
     public void unwatch() {
         cancelable.cancel();
-        cancelable= NarrowScheduledExecutorService.Cancelable.NULL;
+        cancelable=NarrowScheduledExecutorService.Cancelable.NULL;
         for (ServiceView serviceView : serviceViews) {
             serviceView.hide();
         }

@@ -3,7 +3,6 @@ package uk.co.rossbeazley.trackmytrain.android.mobile;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
-import android.content.Intent;
 
 import org.hamcrest.CoreMatchers;
 import org.junit.Before;
@@ -16,7 +15,6 @@ import org.robolectric.shadows.ShadowNotificationManager;
 
 import uk.co.rossbeazley.trackmytrain.android.Train;
 
-import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
@@ -34,8 +32,8 @@ public class TrackingNotificationTest {
         notificationManager = (NotificationManager) Robolectric.application.getSystemService(Context.NOTIFICATION_SERVICE);
 
 
-        Train expectedTrain = new Train("2", "On Time", "09:00", "1");
-        TestTrackMyTrainApp.fakeTrackMyTrain.announceWatchedService(expectedTrain);
+        Train expectedTrain = new Train("2", "10:00", "09:00", "1");
+        TestTrackMyTrainApp.fakeTrackMyTrain.watch("2");
 
 
         TrackMyTrainApp.instance.attach(new TrackingNotification(Robolectric.application));
@@ -46,7 +44,7 @@ public class TrackingNotificationTest {
         ShadowNotificationManager shadowNotificationManager = shadowOf(notificationManager);
         final Notification notification = shadowNotificationManager.getNotification(TrackingNotification.ID);
         assertThat(shadowOf(notification).getContentTitle(), CoreMatchers.<CharSequence>is("Platform 1"));
-        assertThat(shadowOf(notification).getContentText(), CoreMatchers.<CharSequence>is("09:00 exp On Time"));
+        assertThat(shadowOf(notification).getContentText(), CoreMatchers.<CharSequence>is("09:00 exp 10:00"));
     }
 
 
