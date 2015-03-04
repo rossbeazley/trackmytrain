@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import uk.co.rossbeazley.time.NarrowScheduledExecutorService;
 import uk.co.rossbeazley.trackmytrain.android.DeparturesView;
 import uk.co.rossbeazley.trackmytrain.android.Direction;
 import uk.co.rossbeazley.trackmytrain.android.ServiceView;
 import uk.co.rossbeazley.trackmytrain.android.Station;
 import uk.co.rossbeazley.trackmytrain.android.TrackMyTrain;
+import uk.co.rossbeazley.trackmytrain.android.TrackMyTrainDefault;
 import uk.co.rossbeazley.trackmytrain.android.Train;
+import uk.co.rossbeazley.trackmytrain.android.trainRepo.NetworkClient;
 
 public class TestTrackMyTrainApp extends TrackMyTrainApp {
 
@@ -20,18 +23,20 @@ public class TestTrackMyTrainApp extends TrackMyTrainApp {
     }
 
     private static TrackMyTrain buildCore() {
-        fakeTrackMyTrain = new FakeTrackMyTrain();
+        fakeTrackMyTrain = new FakeTrackMyTrain(null,null);
         return fakeTrackMyTrain;
     }
 
-    public static class FakeTrackMyTrain implements TrackMyTrain {
+    public static class FakeTrackMyTrain extends TrackMyTrainDefault {
         private DeparturesView departureView;
         private List<Train> trains = Arrays.asList(new Train("1", "", "", ""), new Train("2", "", "", ""));
         private Train watching;
 
-
-
         private final List<ServiceView> serviceViews = new ArrayList<>();
+
+        public FakeTrackMyTrain(NetworkClient networkClient, NarrowScheduledExecutorService executorService) {
+            super(networkClient, executorService);
+        }
 
         @Override
         public void departures(Station at, Direction direction) {
