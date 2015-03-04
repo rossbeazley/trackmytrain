@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import uk.co.rossbeazley.time.NarrowScheduledExecutorService;
+import uk.co.rossbeazley.trackmytrain.android.trainRepo.NetworkClient;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
 
 public class TrackMyTrainDefault implements TrackMyTrain {
@@ -17,8 +18,8 @@ public class TrackMyTrainDefault implements TrackMyTrain {
     private String trackedService;
     private NarrowScheduledExecutorService.Cancelable cancelable;
 
-    public TrackMyTrainDefault(TrainRepository trainRepository, NarrowScheduledExecutorService executorService) {
-        this.trainRepository = trainRepository;
+    public TrackMyTrainDefault(NetworkClient networkClient, NarrowScheduledExecutorService executorService) {
+        this.trainRepository = new TrainRepository(networkClient);;
         this.executorService = executorService;
         this.serviceViews = new ArrayList<ServiceView>(2);
         this.trackedService = null;

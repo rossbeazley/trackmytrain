@@ -8,7 +8,6 @@ import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
 
 public class TMTBuilder {
 
-    private TrainRepository trainRepository;
     private NetworkClient networkClient;
     private NarrowScheduledExecutorService executorService;
 
@@ -18,8 +17,7 @@ public class TMTBuilder {
     }
 
     public TrackMyTrain build() {
-        trainRepository = new TrainRepository(networkClient);
-        return new TrackMyTrainDefault(trainRepository,executorService);
+        return new TrackMyTrainDefault(networkClient, executorService);
     }
 
     public TMTBuilder with(NetworkClient networkClient) {
