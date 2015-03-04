@@ -33,7 +33,7 @@ public class TrackingNotificationTest {
 
 
         Train expectedTrain = new Train("2", "10:00", "09:00", "1");
-        TestTrackMyTrainApp.fakeTrackMyTrain.watch("2");
+        TestTrackMyTrainApp.instance.watch("2");
 
 
         TrackMyTrainApp.instance.attach(new TrackingNotification(Robolectric.application));
@@ -50,7 +50,7 @@ public class TrackingNotificationTest {
 
     @Test
     public void trackingEndsNotificationRemoved() {
-        TestTrackMyTrainApp.fakeTrackMyTrain.unwatch();
+        TestTrackMyTrainApp.instance.unwatch();
 
         ShadowNotificationManager shadowNotificationManager = shadowOf(notificationManager);
         final Notification notification = shadowNotificationManager.getNotification(TrackingNotification.ID);

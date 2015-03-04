@@ -29,7 +29,7 @@ public class AndroidBackgroundServiceTest {
     public void androidServiceStartsWhenTrackingAService() {
 
         Train expectedTrain = new Train("2", "10:00", "09:00", "1");
-        TestTrackMyTrainApp.fakeTrackMyTrain.watch("2");
+        TestTrackMyTrainApp.instance.watch("2");
 
         Intent intent = Robolectric.getShadowApplication().getNextStartedService();
         String aClass = intent.getComponent().getClassName();
@@ -39,7 +39,7 @@ public class AndroidBackgroundServiceTest {
     @Test
     public void androidServiceStopsWhenTrackingEnds() {
 
-        TestTrackMyTrainApp.fakeTrackMyTrain.unwatch();
+        TestTrackMyTrainApp.instance.unwatch();
 
         Intent intent = Robolectric.getShadowApplication().getNextStoppedService();
         String aClass = intent.getComponent().getClassName();

@@ -52,7 +52,7 @@ public class ServiceTest {
         act.findViewById(R.id.trackbutton).performClick();
 
         Train expectedTrain = new Train("2", "10:00", "09:00", "1");
-        TestTrackMyTrainApp.fakeTrackMyTrain.watch("2");
+        TestTrackMyTrainApp.instance.watch("2");
 
         String trackedText = String.valueOf(((TextView)act.findViewById(R.id.trackedservice)).getText());
         assertThat(trackedText,is(expectedTrain.toString()));
@@ -66,11 +66,11 @@ public class ServiceTest {
         act.findViewById(R.id.trackbutton).performClick();
 
         TestTrackMyTrainApp.trackedService = new Train("2", "On Time", "09:00", "1");
-        TestTrackMyTrainApp.fakeTrackMyTrain.watch("2");
+        TestTrackMyTrainApp.instance.watch("2");
 
         Train expectedTrain = new Train("2", "10:00", "09:00", "1");
         TestTrackMyTrainApp.trackedService = expectedTrain;
-        TestTrackMyTrainApp.fakeTrackMyTrain.watch("2");
+        TestTrackMyTrainApp.instance.watch("2");
 
         String trackedText = String.valueOf(((TextView)act.findViewById(R.id.trackedservice)).getText());
         assertThat(trackedText,is(expectedTrain.toString()));
@@ -83,7 +83,7 @@ public class ServiceTest {
         ((TextView)act.findViewById(R.id.selectedservice)).setText("2");
         act.findViewById(R.id.trackbutton).performClick();
 
-        TestTrackMyTrainApp.fakeTrackMyTrain.watch("2");
+        TestTrackMyTrainApp.instance.watch("2");
 
         act.findViewById(R.id.stopbutton).performClick();
 
