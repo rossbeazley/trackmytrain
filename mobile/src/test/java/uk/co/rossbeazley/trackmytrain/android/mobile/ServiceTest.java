@@ -13,6 +13,7 @@ import org.robolectric.util.ActivityController;
 import uk.co.rossbeazley.trackmytrain.android.R;
 import uk.co.rossbeazley.trackmytrain.android.ServiceView;
 import uk.co.rossbeazley.trackmytrain.android.Train;
+import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -35,7 +36,7 @@ public class ServiceTest {
 
     @Test
     public void startsTrackingAService() {
-        Train train = new Train("2", "10:00", "09:00", "1");
+        TrainViewModel train = new TrainViewModel(new Train("2", "10:00", "09:00", "1"));
         CapturingServiceView csv = new CapturingServiceView();
 
         TrackMyTrainApp.instance.attach(csv);
@@ -51,7 +52,7 @@ public class ServiceTest {
         ((TextView)act.findViewById(R.id.selectedservice)).setText("2");
         act.findViewById(R.id.trackbutton).performClick();
 
-        Train expectedTrain = new Train("2", "10:00", "09:00", "1");
+        TrainViewModel expectedTrain = new TrainViewModel(new Train("2", "10:00", "09:00", "1"));
         TestTrackMyTrainApp.instance.watch("2");
 
         String trackedText = String.valueOf(((TextView)act.findViewById(R.id.trackedservice)).getText());
@@ -95,10 +96,10 @@ public class ServiceTest {
 
     static class CapturingServiceView implements ServiceView {
 
-        public Train trackedTrain;
+        public TrainViewModel trackedTrain;
 
         @Override
-        public void present(Train train) {
+        public void present(TrainViewModel train) {
             trackedTrain=train;
         }
 

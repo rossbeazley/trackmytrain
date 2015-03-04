@@ -65,7 +65,7 @@ public class LateObservationOfServiceTest {
 
         tmt.attach(new ServiceView() {
             @Override
-            public void present(Train train) {
+            public void present(TrainViewModel train) {
                 presentedTrain = train;
             }
 

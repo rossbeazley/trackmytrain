@@ -2,12 +2,11 @@ package uk.co.rossbeazley.trackmytrain.android.mobile;
 
 import android.app.Notification;
 import android.content.Context;
-import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 
 import uk.co.rossbeazley.trackmytrain.android.R;
 import uk.co.rossbeazley.trackmytrain.android.ServiceView;
-import uk.co.rossbeazley.trackmytrain.android.Train;
+import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 
 /**
  * Created by beazlr02 on 03/03/2015.
@@ -21,7 +20,7 @@ public class TrackingNotification implements ServiceView {
     }
 
     @Override
-    public void present(Train train) {
+    public void present(TrainViewModel train) {
         Notification not;
         not = new Notification.Builder(service)
                 .setContentTitle("Platform " + train.platform)

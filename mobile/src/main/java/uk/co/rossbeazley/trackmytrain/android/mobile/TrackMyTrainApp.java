@@ -5,7 +5,7 @@ import android.app.Application;
 import uk.co.rossbeazley.trackmytrain.android.ServiceView;
 import uk.co.rossbeazley.trackmytrain.android.TMTBuilder;
 import uk.co.rossbeazley.trackmytrain.android.TrackMyTrain;
-import uk.co.rossbeazley.trackmytrain.android.Train;
+import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 
 public class TrackMyTrainApp extends Application{
 
@@ -34,7 +34,7 @@ public class TrackMyTrainApp extends Application{
 
     class ServiceTrackingNavigationController implements ServiceView {
         @Override
-        public void present(Train train) {
+        public void present(TrainViewModel train) {
             TrackingService.startTrackingService(TrackMyTrainApp.this);
         }
 

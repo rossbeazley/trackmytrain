@@ -68,7 +68,7 @@ public class TrackMyTrainDefault implements TrackMyTrain {
                 @Override
                 public void result(Train train) {
                     for (ServiceView serviceView : new ArrayList<ServiceView>(serviceViews)) {
-                        serviceView.present(train);
+                        serviceView.present(new TrainViewModel(train));
                     }
                 }
             });

@@ -57,7 +57,7 @@ public class ServiceTest {
         NetworkClient client = new RequestMapNetworkClient(map);
         ServiceView serviceView = new ServiceView() {
             @Override
-            public void present(Train train) {
+            public void present(TrainViewModel train) {
                 ServiceTest.this.serviceView = VISIBLE;
                 serviceDisplayed = train;
             }
