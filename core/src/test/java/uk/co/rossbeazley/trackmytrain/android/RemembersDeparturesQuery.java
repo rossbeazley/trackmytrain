@@ -58,6 +58,20 @@ public class RemembersDeparturesQuery {
     }
 
 
+    @Test
+    public void theOneWhereTheAtIsRememberedAcrossSessions() {
+
+        tmt = TestDataBuilder.TMTBuilder()
+                .with(keyValuePersistence)
+                .build();
+
+        CapturingDeparturesQueryView departuresQueryView = new CapturingDeparturesQueryView();
+        tmt.attach(departuresQueryView);
+
+        assertThat(departuresQueryView.at, is(expectedStation));
+    }
+
+
     private static class CapturingDeparturesQueryView implements DeparturesQueryView {
         public Station at;
         public Direction direction;

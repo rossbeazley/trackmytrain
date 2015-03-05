@@ -19,7 +19,7 @@ public class TrackMyTrainDefault implements TrackMyTrain {
     private final List<ServiceView> serviceViews;
     private String trackedService;
     private NarrowScheduledExecutorService.Cancelable cancelable;
-    private Station currentAt;
+
 
     public TrackMyTrainDefault(NetworkClient networkClient, NarrowScheduledExecutorService executorService, KeyValuePersistence keyValuePersistence) {
         this.keyValuePersistence = keyValuePersistence;
@@ -36,7 +36,7 @@ public class TrackMyTrainDefault implements TrackMyTrain {
     @Override
     public void departures(Station at, Direction direction) {
 
-        this.currentAt = at;
+        this.setCurrentAt(at);
         this.setCurrentDirection(direction);
         this.trainRepository.departures(at,direction, new TrainRepository.DeparturesSuccess() {
             @Override
@@ -138,7 +138,7 @@ public class TrackMyTrainDefault implements TrackMyTrain {
 
     @Override
     public void attach(DeparturesQueryView departuresQueryView) {
-        departuresQueryView.present(this.currentAt, this.getCurrentDirection());
+        departuresQueryView.present(this.getCurrentAt(), this.getCurrentDirection());
         this.departuresQueryViews.add(departuresQueryView);
     }
 
@@ -155,5 +155,14 @@ public class TrackMyTrainDefault implements TrackMyTrain {
 
     private void setCurrentDirection(Direction currentDirection) {
         this.keyValuePersistence.put("direction",currentDirection.station().toString());
+    }
+
+    private Station getCurrentAt() {
+        String stationCode = this.keyValuePersistence.get("at");
+        return Station.fromString(stationCode);
+    }
+
+    private void setCurrentAt(Station currentAt) {
+        this.keyValuePersistence.put("at",currentAt.toString());
     }
 }
