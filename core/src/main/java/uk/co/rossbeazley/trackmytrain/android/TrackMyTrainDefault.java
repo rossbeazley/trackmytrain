@@ -32,46 +32,14 @@ public class TrackMyTrainDefault implements TrackMyTrain {
         this.trainRepository.departures(at,direction, new TrainRepository.DeparturesSuccess() {
             @Override
             public void result(List<Train> expectedList) {
-                for (DeparturesView departuresView : departuresViews) {
-                    departuresView.present(TrainViewModel.list(expectedList));
-                }
+                presentDepartures(expectedList);
             }
         });
     }
 
-    @Override
-    public void watch(String serviceId) {
-        this.trackedService = serviceId;
-        tick();
-        cancelable = executorService.scheduleAtFixedRate(new Runnable() {
-            @Override
-            public void run() {
-                tick();
-            }
-        },30, TimeUnit.SECONDS);
-    }
-
-    @Override
-    public void unwatch() {
-        cancelable.cancel();
-        cancelable=NarrowScheduledExecutorService.Cancelable.NULL;
-        for (ServiceView serviceView : serviceViews) {
-            serviceView.hide();
-        }
-        this.trackedService = null;
-    }
-
-
-    void tick() {
-        if(this.trackedService!=null) {
-            this.trainRepository.service(this.trackedService, new TrainRepository.ServiceSuccess() {
-                @Override
-                public void result(Train train) {
-                    for (ServiceView serviceView : new ArrayList<ServiceView>(serviceViews)) {
-                        serviceView.present(new TrainViewModel(train));
-                    }
-                }
-            });
+    private void presentDepartures(List<Train> expectedList) {
+        for (DeparturesView departuresView : departuresViews) {
+            departuresView.present(TrainViewModel.list(expectedList));
         }
     }
 
@@ -85,13 +53,77 @@ public class TrackMyTrainDefault implements TrackMyTrain {
         this.departuresViews.remove(departuresView);
     }
 
+
+
+
+
+
+
+
+    @Override
+    public void watch(String serviceId) {
+        this.trackedService = serviceId;
+        tick();
+        startTimer();
+    }
+
+    private void startTimer() {
+        cancelable = executorService.scheduleAtFixedRate(new Runnable() {
+            @Override
+            public void run() {
+                tick();
+            }
+        },30, TimeUnit.SECONDS);
+    }
+
+    @Override
+    public void unwatch() {
+        cancelTracking();
+        unpresentTrackedTrain();
+    }
+
+    private void cancelTracking() {
+        cancelable.cancel();
+        cancelable= NarrowScheduledExecutorService.Cancelable.NULL;
+        this.trackedService = null;
+    }
+
+
+    void tick() {
+        if(this.trackedService!=null) {
+            this.trainRepository.service(this.trackedService, new TrainRepository.ServiceSuccess() {
+                @Override
+                public void result(Train train) {
+                    presentTrackedTrain(train);
+                }
+            });
+        }
+    }
+
+    private void presentTrackedTrain(Train train) {
+        for (ServiceView serviceView : new ArrayList<ServiceView>(serviceViews)) {
+            serviceView.present(new TrainViewModel(train));
+        }
+    }
+
+    private void unpresentTrackedTrain() {
+        for (ServiceView serviceView : serviceViews) {
+            serviceView.hide();
+        }
+    }
+
     @Override
     public void attach(ServiceView serviceView) {
         this.serviceViews.add(serviceView);
         tick();
     }
+
     @Override
     public void detach(ServiceView serviceView) {
         this.serviceViews.remove(serviceView);
     }
+
+
+
+
 }
