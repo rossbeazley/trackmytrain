@@ -15,17 +15,7 @@ public class TMTBuilder {
     public TMTBuilder() {
         networkClient = new StringNetworkClient();
         executorService = new DefaultNarrowScheduledExecutorService();
-        keyValuePersistence = new KeyValuePersistence() {
-            @Override
-            public void put(String key, String value) {
-
-            }
-
-            @Override
-            public String get(String key) {
-                return null;
-            }
-        };
+        keyValuePersistence = new HashMapKeyValuePersistence();
     }
 
     public TrackMyTrain build() {

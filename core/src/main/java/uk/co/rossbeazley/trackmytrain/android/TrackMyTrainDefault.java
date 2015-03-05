@@ -20,23 +20,22 @@ public class TrackMyTrainDefault implements TrackMyTrain {
     private String trackedService;
     private NarrowScheduledExecutorService.Cancelable cancelable;
     private Station currentAt;
-    private Direction currentDirection;
 
     public TrackMyTrainDefault(NetworkClient networkClient, NarrowScheduledExecutorService executorService, KeyValuePersistence keyValuePersistence) {
         this.keyValuePersistence = keyValuePersistence;
         this.trainRepository = new TrainRepository(networkClient);
         this.executorService = executorService;
-        this.serviceViews = new ArrayList<ServiceView>(2);
+        this.serviceViews = new ArrayList<>(2);
         this.trackedService = null;
-        this.departuresViews = new ArrayList<DeparturesView>(2);
+        this.departuresViews = new ArrayList<>(2);
         cancelable= NarrowScheduledExecutorService.Cancelable.NULL;
-        this.departuresQueryViews = new ArrayList<DeparturesQueryView>();
+        this.departuresQueryViews = new ArrayList<>();
 
     }
 
     @Override
     public void departures(Station at, Direction direction) {
-        this.keyValuePersistence.put("direction",direction.station().toString());
+
         this.currentAt = at;
         this.setCurrentDirection(direction);
         this.trainRepository.departures(at,direction, new TrainRepository.DeparturesSuccess() {
@@ -155,6 +154,6 @@ public class TrackMyTrainDefault implements TrackMyTrain {
     }
 
     private void setCurrentDirection(Direction currentDirection) {
-        this.currentDirection = currentDirection;
+        this.keyValuePersistence.put("direction",currentDirection.station().toString());
     }
 }

@@ -3,9 +3,6 @@ package uk.co.rossbeazley.trackmytrain.android;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -18,20 +15,7 @@ public class RemembersDeparturesQuery {
 
     @Before
     public void setUp() throws Exception {
-        keyValuePersistence = new KeyValuePersistence() {
-
-            Map<String,String> kvStore = new HashMap<>();
-
-            @Override
-            public void put(String key, String value) {
-                kvStore.put(key,value);
-            }
-
-            @Override
-            public String get(String key) {
-                return kvStore.get(key);
-            }
-        };
+        keyValuePersistence = new HashMapKeyValuePersistence();
         tmt = TestDataBuilder.TMTBuilder()
                 .with(keyValuePersistence)
                 .build();
