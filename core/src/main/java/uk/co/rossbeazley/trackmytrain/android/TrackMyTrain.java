@@ -16,4 +16,5 @@ public interface TrackMyTrain {
     void detach(ServiceView serviceView);
 
 
+    void attach(DeparturesQueryView departuresQueryView);
 }

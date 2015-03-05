@@ -15,17 +15,12 @@ import static org.junit.Assert.*;
 
 public class DeparturesTest {
 
-    private List<TrainViewModel> trainList;
+
 
     @Test
     public void theOneWhereWeRequestDetailsOfAServiceAndTheResultsAreDisplayed() {
 
-        DeparturesView departuresView = new DeparturesView() {
-            @Override
-            public void present(List<TrainViewModel> trains) {
-                trainList = trains;
-            }
-        };
+        CapturingDeparturesView departuresView = new CapturingDeparturesView();
 /**
  * connascence of algorithm with all this json and url strings :S
  */
@@ -55,7 +50,7 @@ public class DeparturesTest {
 
         tmt.departures(at, direction);
 
-        assertThat(trainList, is(expectedList));
+        assertThat(departuresView.trainList, is(expectedList));
     }
 
     @Test

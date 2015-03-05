@@ -123,7 +123,10 @@ public class TrackMyTrainDefault implements TrackMyTrain {
         this.serviceViews.remove(serviceView);
     }
 
+    @Override
+    public void attach(DeparturesQueryView departuresQueryView) {
 
+    }
 
 
 }

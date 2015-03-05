@@ -14,7 +14,6 @@ import uk.co.rossbeazley.trackmytrain.android.DeparturesView;
 import uk.co.rossbeazley.trackmytrain.android.Direction;
 import uk.co.rossbeazley.trackmytrain.android.R;
 import uk.co.rossbeazley.trackmytrain.android.Station;
-import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 
 class ListViewDeparturesView implements DeparturesView {
@@ -87,4 +86,5 @@ class ListViewDeparturesView implements DeparturesView {
 
         listView.post(action);
     }
+
 }

@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import java.util.List;
 
+import static org.junit.Assert.assertThat;
+
 public class RemembersDeparturesQuery {
 
     @Test
@@ -12,13 +14,20 @@ public class RemembersDeparturesQuery {
         tmt = new TMTBuilder()
                 .build();
 
-        tmt.attach(new DeparturesView() {
-            @Override
-            public void present(List<TrainViewModel> trains) {
 
-            }
-        });
+        CapturingDeparturesQueryView departuresQueryView = new CapturingDeparturesQueryView();
+        tmt.attach(departuresQueryView);
 
+
+        //assertThat(departuresQueryView)
+
+    }
+
+    private static class CapturingDeparturesQueryView implements DeparturesQueryView {
+        @Override
+        public void present(Station at, Direction direction) {
+
+        }
 
     }
 }
