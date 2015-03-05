@@ -14,7 +14,7 @@ import static org.junit.Assert.assertThat;
 
 public class RemembersDeparturesQuery {
 
-    @Test //@Ignore("ignore")
+    @Test
     public void theOneWhereTheDirectionIsRemembered() {
         TrackMyTrain tmt;
         tmt = new TMTBuilder()
@@ -42,6 +42,36 @@ public class RemembersDeparturesQuery {
         assertThat(departuresQueryView.direction, is(expectedDirection));
 
     }
+
+    @Test
+    public void theOneWhereTheAtIsRemembered() {
+        TrackMyTrain tmt;
+        tmt = new TMTBuilder()
+                .with(new NetworkClient() {
+                    @Override
+                    public void requestString(Request request, Response response) {
+
+                    }
+                })
+                .with(new NarrowScheduledExecutorService() {
+                    @Override
+                    public Cancelable scheduleAtFixedRate(Runnable command, long period, TimeUnit unit) {
+                        return null;
+                    }
+                })
+                .build();
+
+        Direction anyDirection = Direction.to(Station.fromString("SLD"));
+        Station expectedStation = Station.fromString("CRL");
+        tmt.departures(expectedStation,anyDirection);
+
+        CapturingDeparturesQueryView departuresQueryView = new CapturingDeparturesQueryView();
+        tmt.attach(departuresQueryView);
+
+        assertThat(departuresQueryView.at, is(expectedStation));
+    }
+
+
 
     private static class CapturingDeparturesQueryView implements DeparturesQueryView {
         public Station at;
