@@ -11,6 +11,7 @@ import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
 public class TrackMyTrainDefault implements TrackMyTrain {
 
     private final ArrayList<DeparturesQueryView> departuresQueryViews;
+    private final KeyValuePersistence keyValuePersistence;
     private List<DeparturesView> departuresViews;
     private final TrainRepository trainRepository;
     private final NarrowScheduledExecutorService executorService;
@@ -21,7 +22,8 @@ public class TrackMyTrainDefault implements TrackMyTrain {
     private Station currentAt;
     private Direction currentDirection;
 
-    public TrackMyTrainDefault(NetworkClient networkClient, NarrowScheduledExecutorService executorService) {
+    public TrackMyTrainDefault(NetworkClient networkClient, NarrowScheduledExecutorService executorService, KeyValuePersistence keyValuePersistence) {
+        this.keyValuePersistence = keyValuePersistence;
         this.trainRepository = new TrainRepository(networkClient);
         this.executorService = executorService;
         this.serviceViews = new ArrayList<ServiceView>(2);
@@ -34,8 +36,9 @@ public class TrackMyTrainDefault implements TrackMyTrain {
 
     @Override
     public void departures(Station at, Direction direction) {
+        this.keyValuePersistence.put("direction",direction.station().toString());
         this.currentAt = at;
-        this.currentDirection = direction;
+        this.setCurrentDirection(direction);
         this.trainRepository.departures(at,direction, new TrainRepository.DeparturesSuccess() {
             @Override
             public void result(List<Train> expectedList) {
@@ -136,7 +139,7 @@ public class TrackMyTrainDefault implements TrackMyTrain {
 
     @Override
     public void attach(DeparturesQueryView departuresQueryView) {
-        departuresQueryView.present(this.currentAt, this.currentDirection);
+        departuresQueryView.present(this.currentAt, this.getCurrentDirection());
         this.departuresQueryViews.add(departuresQueryView);
     }
 
@@ -146,4 +149,12 @@ public class TrackMyTrainDefault implements TrackMyTrain {
     }
 
 
+    private Direction getCurrentDirection() {
+        String stationCode = this.keyValuePersistence.get("direction");
+        return Direction.to(Station.fromString(stationCode));
+    }
+
+    private void setCurrentDirection(Direction currentDirection) {
+        this.currentDirection = currentDirection;
+    }
 }

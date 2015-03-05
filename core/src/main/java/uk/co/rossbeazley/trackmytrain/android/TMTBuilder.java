@@ -10,14 +10,26 @@ public class TMTBuilder {
 
     private NetworkClient networkClient;
     private NarrowScheduledExecutorService executorService;
+    private KeyValuePersistence keyValuePersistence;
 
     public TMTBuilder() {
         networkClient = new StringNetworkClient();
         executorService = new DefaultNarrowScheduledExecutorService();
+        keyValuePersistence = new KeyValuePersistence() {
+            @Override
+            public void put(String key, String value) {
+
+            }
+
+            @Override
+            public String get(String key) {
+                return null;
+            }
+        };
     }
 
     public TrackMyTrain build() {
-        return new TrackMyTrainDefault(networkClient, executorService);
+        return new TrackMyTrainDefault(networkClient, executorService, keyValuePersistence);
     }
 
     public TMTBuilder with(NetworkClient networkClient) {
@@ -27,6 +39,11 @@ public class TMTBuilder {
 
     public TMTBuilder with(NarrowScheduledExecutorService ness) {
         executorService = ness;
+        return this;
+    }
+
+    public TMTBuilder with(KeyValuePersistence keyValuePersistence) {
+        this.keyValuePersistence = keyValuePersistence;
         return this;
     }
 }

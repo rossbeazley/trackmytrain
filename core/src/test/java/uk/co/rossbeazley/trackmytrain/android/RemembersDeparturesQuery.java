@@ -1,22 +1,48 @@
 package uk.co.rossbeazley.trackmytrain.android;
 
+import org.junit.Before;
 import org.junit.Test;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 public class RemembersDeparturesQuery {
 
+    private TrackMyTrain tmt;
+    private Direction expectedDirection;
+    private Station expectedStation;
+    private KeyValuePersistence keyValuePersistence;
+
+    @Before
+    public void setUp() throws Exception {
+        keyValuePersistence = new KeyValuePersistence() {
+
+            Map<String,String> kvStore = new HashMap<>();
+
+            @Override
+            public void put(String key, String value) {
+                kvStore.put(key,value);
+            }
+
+            @Override
+            public String get(String key) {
+                return kvStore.get(key);
+            }
+        };
+        tmt = TestDataBuilder.TMTBuilder()
+                .with(keyValuePersistence)
+                .build();
+        expectedDirection = Direction.to(Station.fromString("SLD"));
+        expectedStation = Station.fromString("CRL");
+
+        tmt.departures(expectedStation, expectedDirection);
+    }
+
     @Test
     public void theOneWhereTheDirectionIsRemembered() {
-        TrackMyTrain tmt;
-        tmt = TestDataBuilder.TMTBuilder()
-                .build();
-
-        Direction expectedDirection = Direction.to(Station.fromString("SLD"));
-        Station at = Station.fromString("ANY");
-        tmt.departures(at,expectedDirection);
-
         CapturingDeparturesQueryView departuresQueryView = new CapturingDeparturesQueryView();
         tmt.attach(departuresQueryView);
 
@@ -26,20 +52,26 @@ public class RemembersDeparturesQuery {
 
     @Test
     public void theOneWhereTheAtIsRemembered() {
-        TrackMyTrain tmt;
-        tmt = TestDataBuilder.TMTBuilder()
-                .build();
-
-        Direction anyDirection = Direction.to(Station.fromString("SLD"));
-        Station expectedStation = Station.fromString("CRL");
-        tmt.departures(expectedStation,anyDirection);
-
         CapturingDeparturesQueryView departuresQueryView = new CapturingDeparturesQueryView();
         tmt.attach(departuresQueryView);
 
         assertThat(departuresQueryView.at, is(expectedStation));
     }
 
+
+    @Test
+    public void theOneWhereTheDirectionIsRememberedBetweenSessions() {
+
+        tmt = TestDataBuilder.TMTBuilder()
+                .with(keyValuePersistence)
+                .build();
+
+        CapturingDeparturesQueryView departuresQueryView = new CapturingDeparturesQueryView();
+        tmt.attach(departuresQueryView);
+
+        assertThat(departuresQueryView.direction, is(expectedDirection));
+
+    }
 
 
     private static class CapturingDeparturesQueryView implements DeparturesQueryView {
@@ -53,4 +85,6 @@ public class RemembersDeparturesQuery {
         }
 
     }
+
+
 }
