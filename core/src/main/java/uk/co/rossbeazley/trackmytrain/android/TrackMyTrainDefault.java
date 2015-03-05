@@ -10,6 +10,7 @@ import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
 
 public class TrackMyTrainDefault implements TrackMyTrain {
 
+    private final ArrayList<DeparturesQueryView> departuresQueryViews;
     private List<DeparturesView> departuresViews;
     private final TrainRepository trainRepository;
     private final NarrowScheduledExecutorService executorService;
@@ -26,6 +27,8 @@ public class TrackMyTrainDefault implements TrackMyTrain {
         this.trackedService = null;
         this.departuresViews = new ArrayList<DeparturesView>(2);
         cancelable= NarrowScheduledExecutorService.Cancelable.NULL;
+        this.departuresQueryViews = new ArrayList<DeparturesQueryView>();
+
     }
 
     @Override
@@ -125,11 +128,21 @@ public class TrackMyTrainDefault implements TrackMyTrain {
         this.serviceViews.remove(serviceView);
     }
 
+
+
+
+
     @Override
     public void attach(DeparturesQueryView departuresQueryView) {
         if(this.currentDirection!=null) {
             departuresQueryView.present(null, this.currentDirection);
         }
+        this.departuresQueryViews.add(departuresQueryView);
+    }
+
+    @Override
+    public void detatch(DeparturesQueryView departuresQueryView) {
+        this.departuresQueryViews.remove(departuresQueryView);
     }
 
 
