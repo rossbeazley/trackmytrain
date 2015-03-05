@@ -14,7 +14,7 @@ import static org.junit.Assert.assertThat;
 
 public class RemembersDeparturesQuery {
 
-    @Test @Ignore("ignore")
+    @Test //@Ignore("ignore")
     public void theOneWhereTheDirectionIsRemembered() {
         TrackMyTrain tmt;
         tmt = new TMTBuilder()
