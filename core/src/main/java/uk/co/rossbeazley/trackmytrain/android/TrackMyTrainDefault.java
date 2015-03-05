@@ -18,6 +18,7 @@ public class TrackMyTrainDefault implements TrackMyTrain {
     private final List<ServiceView> serviceViews;
     private String trackedService;
     private NarrowScheduledExecutorService.Cancelable cancelable;
+    private Station currentAt;
     private Direction currentDirection;
 
     public TrackMyTrainDefault(NetworkClient networkClient, NarrowScheduledExecutorService executorService) {
@@ -33,7 +34,8 @@ public class TrackMyTrainDefault implements TrackMyTrain {
 
     @Override
     public void departures(Station at, Direction direction) {
-        currentDirection = direction;
+        this.currentAt = at;
+        this.currentDirection = direction;
         this.trainRepository.departures(at,direction, new TrainRepository.DeparturesSuccess() {
             @Override
             public void result(List<Train> expectedList) {
@@ -134,9 +136,7 @@ public class TrackMyTrainDefault implements TrackMyTrain {
 
     @Override
     public void attach(DeparturesQueryView departuresQueryView) {
-        if(this.currentDirection!=null) {
-            departuresQueryView.present(null, this.currentDirection);
-        }
+        departuresQueryView.present(this.currentAt, this.currentDirection);
         this.departuresQueryViews.add(departuresQueryView);
     }
 
