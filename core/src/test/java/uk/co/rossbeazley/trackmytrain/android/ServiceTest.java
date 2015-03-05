@@ -18,11 +18,6 @@ import static org.junit.Assert.assertThat;
 
 public class ServiceTest {
 
-    private static final String HIDDEN = "Hidden";
-    private static final String VISIBLE = "Visible";
-    private String serviceView = "UNKNOWN";
-    private TrainViewModel serviceDisplayed;
-
     private String serviceId;
     private String scheduledTime;
     private String estimatedTime;
@@ -33,14 +28,8 @@ public class ServiceTest {
     private TrackMyTrain tmt;
     private TrainViewModel expectedTrain;
 
-    private NarrowScheduledExecutorService ness;
-    private NarrowScheduledExecutorService.Cancelable cancelable;
-    private Runnable NO_COMMAND = new Runnable() {
-        @Override
-        public void run() {
-        }
-    };
-    private Runnable scheduledCommand = NO_COMMAND;
+    private ControllableExecutorService ness;
+    private CapturingServiceView serviceView;
 
     @Before
     public void setUp() throws Exception {
@@ -56,34 +45,9 @@ public class ServiceTest {
             put(serviceDetailsRequest, initialJson);
         }};
         NetworkClient client = new RequestMapNetworkClient(map);
-        ServiceView serviceView = new ServiceView() {
-            @Override
-            public void present(TrainViewModel train) {
-                ServiceTest.this.serviceView = VISIBLE;
-                serviceDisplayed = train;
-            }
+        serviceView = new CapturingServiceView();
 
-            @Override
-            public void hide() {
-                serviceDisplayed = null;
-                ServiceTest.this.serviceView = HIDDEN;
-            }
-        };
-
-        ness = new NarrowScheduledExecutorService() {
-            @Override
-            public Cancelable scheduleAtFixedRate(Runnable command, long period, TimeUnit unit) {
-                scheduledCommand = command;
-                cancelable = new Cancelable() {
-                    @Override
-                    public void cancel() {
-                        cancelable = null;
-                        scheduledCommand = NO_COMMAND;
-                    }
-                };
-                return cancelable;
-            }
-        };
+        ness = new ControllableExecutorService();
 
         tmt = TestDataBuilder.TMTBuilder()
                 .with(client)
@@ -96,7 +60,7 @@ public class ServiceTest {
     @Test
     public void theOneWhereWeSelectAServiceAndTrackingStarts() {
         tmt.watch(serviceId);
-        assertThat(serviceDisplayed, is(expectedTrain));
+        assertThat(serviceView.serviceDisplayed, is(expectedTrain));
     }
 
     @Test
@@ -114,45 +78,89 @@ public class ServiceTest {
     @Test
     public void theOneWhereWeAreUpdatedAboutTheSelectedService() {
         tmt.watch(serviceId);
-        serviceDisplayed=null;
+        serviceView.serviceDisplayed=null;
         final Train train = new Train(serviceId, "20:52", scheduledTime, platform);
         final TrainViewModel expectedTrain = new TrainViewModel(train);
         map.put(serviceDetailsRequest, TestDataBuilder.jsonForTrain(train));
-        scheduledCommand.run();
+        ness.scheduledCommand.run();
 
-        assertThat(serviceDisplayed, is(expectedTrain));
+        assertThat(serviceView.serviceDisplayed, is(expectedTrain));
     }
 
     @Test
     public void theOneWhereWeStopTracking() {
         tmt.watch(serviceId);
-        scheduledCommand.run();
-        serviceDisplayed=null;
+        ness.scheduledCommand.run();
+        serviceView.serviceDisplayed=null;
         tmt.unwatch();
-        scheduledCommand.run();
+        ness.scheduledCommand.run();
 
-        assertThat(serviceDisplayed, is(nullValue()));
+        assertThat(serviceView.serviceDisplayed, is(nullValue()));
     }
 
     @Test
     public void theOneWhereTheServiceViewIsHidden() {
         tmt.watch(serviceId);
-        scheduledCommand.run();
-        serviceDisplayed=null;
+        ness.scheduledCommand.run();
+        serviceView.serviceDisplayed=null;
         tmt.unwatch();
-        scheduledCommand.run();
+        ness.scheduledCommand.run();
 
-        assertThat(serviceView, is(HIDDEN));
+        assertThat(serviceView.visibility, is(serviceView.HIDDEN));
     }
 
     @Test
     public void theOneWhereTheTimerIsStopped() {
         tmt.watch(serviceId);
-        scheduledCommand.run();
+        ness.scheduledCommand.run();
         tmt.unwatch();
-        scheduledCommand.run();
+        ness.scheduledCommand.run();
 
-        assertThat(cancelable, is(nullValue()));
+        assertThat(ness.cancelable, is(nullValue()));
     }
 
+    public static class CapturingServiceView implements ServiceView {
+        public static final String HIDDEN = "Hidden";
+        public static final String VISIBLE = "Visible";
+        public String visibility = "UNKNOWN";
+        public TrainViewModel serviceDisplayed;
+
+        @Override
+        public void present(TrainViewModel train) {
+            visibility = VISIBLE;
+            serviceDisplayed = train;
+        }
+
+        @Override
+        public void hide() {
+            serviceDisplayed = null;
+            visibility = HIDDEN;
+        }
+    }
+
+    public static class ControllableExecutorService implements NarrowScheduledExecutorService {
+
+
+        public NarrowScheduledExecutorService.Cancelable cancelable;
+        public Runnable NO_COMMAND = new Runnable() {
+            @Override
+            public void run() {
+            }
+        };
+        public Runnable scheduledCommand = NO_COMMAND;
+
+
+        @Override
+        public Cancelable scheduleAtFixedRate(Runnable command, long period, TimeUnit unit) {
+            scheduledCommand = command;
+            cancelable = new Cancelable() {
+                @Override
+                public void cancel() {
+                    cancelable = null;
+                    scheduledCommand = NO_COMMAND;
+                }
+            };
+            return cancelable;
+        }
+    }
 }
