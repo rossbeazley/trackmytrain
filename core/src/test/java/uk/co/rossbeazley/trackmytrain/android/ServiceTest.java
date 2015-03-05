@@ -85,7 +85,7 @@ public class ServiceTest {
             }
         };
 
-        tmt = new TMTBuilder()
+        tmt = TestDataBuilder.TMTBuilder()
                 .with(client)
                 .with(ness)
                 .build();

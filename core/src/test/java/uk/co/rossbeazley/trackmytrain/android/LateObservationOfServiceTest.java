@@ -53,7 +53,7 @@ public class LateObservationOfServiceTest {
             }
         };
 
-        tmt = new TMTBuilder()
+        tmt = TestDataBuilder.TMTBuilder()
                 .with(client)
                 .with(ness)
                 .build();

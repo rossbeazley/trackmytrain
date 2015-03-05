@@ -57,34 +57,41 @@ class ListViewDeparturesView implements DeparturesView {
         Runnable action = new Runnable() {
             @Override
             public void run() {
-                listView.setAdapter(new BaseAdapter() {
-                    @Override
-                    public int getCount() {
-                        return trains.size();
-                    }
-
-                    @Override
-                    public Object getItem(int position) {
-                        return trains.get(position);
-                    }
-
-                    @Override
-                    public long getItemId(int position) {
-                        return trains.get(position).id().hashCode();
-                    }
-
-                    @Override
-                    public View getView(int position, View convertView, ViewGroup parent) {
-                        TextView textView = new TextView(parent.getContext());
-                        textView.setText(trains.get(position).toString());
-                        //textView.setTextColor(0x00ff00); //or toggle red if late, suggesting we need a view model
-                        return textView;
-                    }
-                });
+                listView.setAdapter(new TrainViewModelListAdapter(trains));
             }
         };
 
         listView.post(action);
     }
 
+    private static class TrainViewModelListAdapter extends BaseAdapter {
+        private final List<TrainViewModel> trains;
+
+        public TrainViewModelListAdapter(List<TrainViewModel> trains) {
+            this.trains = trains;
+        }
+
+        @Override
+        public int getCount() {
+            return trains.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return trains.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return trains.get(position).id().hashCode();
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            TextView textView = new TextView(parent.getContext());
+            textView.setText(trains.get(position).toString());
+            //textView.setTextColor(0x00ff00); //or toggle red if late, suggesting we need a view model
+            return textView;
+        }
+    }
 }

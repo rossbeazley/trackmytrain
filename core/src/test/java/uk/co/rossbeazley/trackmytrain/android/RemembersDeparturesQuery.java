@@ -1,13 +1,6 @@
 package uk.co.rossbeazley.trackmytrain.android;
 
-import org.junit.Ignore;
 import org.junit.Test;
-
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import uk.co.rossbeazley.time.NarrowScheduledExecutorService;
-import uk.co.rossbeazley.trackmytrain.android.trainRepo.NetworkClient;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -17,19 +10,7 @@ public class RemembersDeparturesQuery {
     @Test
     public void theOneWhereTheDirectionIsRemembered() {
         TrackMyTrain tmt;
-        tmt = new TMTBuilder()
-                .with(new NetworkClient() {
-                    @Override
-                    public void requestString(Request request, Response response) {
-
-                    }
-                })
-                .with(new NarrowScheduledExecutorService() {
-                    @Override
-                    public Cancelable scheduleAtFixedRate(Runnable command, long period, TimeUnit unit) {
-                        return null;
-                    }
-                })
+        tmt = TestDataBuilder.TMTBuilder()
                 .build();
 
         Direction expectedDirection = Direction.to(Station.fromString("SLD"));
@@ -46,19 +27,7 @@ public class RemembersDeparturesQuery {
     @Test
     public void theOneWhereTheAtIsRemembered() {
         TrackMyTrain tmt;
-        tmt = new TMTBuilder()
-                .with(new NetworkClient() {
-                    @Override
-                    public void requestString(Request request, Response response) {
-
-                    }
-                })
-                .with(new NarrowScheduledExecutorService() {
-                    @Override
-                    public Cancelable scheduleAtFixedRate(Runnable command, long period, TimeUnit unit) {
-                        return null;
-                    }
-                })
+        tmt = TestDataBuilder.TMTBuilder()
                 .build();
 
         Direction anyDirection = Direction.to(Station.fromString("SLD"));

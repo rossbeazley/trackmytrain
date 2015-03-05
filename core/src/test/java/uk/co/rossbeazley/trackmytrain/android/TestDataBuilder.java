@@ -1,5 +1,10 @@
 package uk.co.rossbeazley.trackmytrain.android;
 
+import java.util.concurrent.TimeUnit;
+
+import uk.co.rossbeazley.time.NarrowScheduledExecutorService;
+import uk.co.rossbeazley.trackmytrain.android.trainRepo.NetworkClient;
+
 public class TestDataBuilder {
     static public String jsonForTrain(Train trainParam) {
         return "{\n" +
@@ -32,5 +37,21 @@ public class TestDataBuilder {
         return header +
                 body +
                 tail;
+    }
+
+    public static TMTBuilder TMTBuilder() {
+        return new TMTBuilder()
+                .with(new NetworkClient() {
+                    @Override
+                    public void requestString(Request request, Response response) {
+
+                    }
+                })
+                .with(new NarrowScheduledExecutorService() {
+                    @Override
+                    public Cancelable scheduleAtFixedRate(Runnable command, long period, TimeUnit unit) {
+                        return null;
+                    }
+                });
     }
 }

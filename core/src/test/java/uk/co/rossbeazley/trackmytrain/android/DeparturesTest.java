@@ -39,7 +39,7 @@ public class DeparturesTest {
 
         List<TrainViewModel> expectedList = TrainViewModel.list(Arrays.asList(train1,train2));
 
-        tmt = new TMTBuilder()
+        tmt = TestDataBuilder.TMTBuilder()
                 .with(networkClient)
                 .build();
 
