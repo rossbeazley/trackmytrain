@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 public class RemembersDeparturesQuery {
 
@@ -85,4 +86,8 @@ public class RemembersDeparturesQuery {
     }
 
 
+    @Test
+    public void todo() {
+        fail("Implement the view properly for displaying last query");
+    }
 }
