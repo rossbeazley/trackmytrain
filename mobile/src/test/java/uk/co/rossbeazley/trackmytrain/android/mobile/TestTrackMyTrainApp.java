@@ -16,7 +16,7 @@ public class TestTrackMyTrainApp extends TrackMyTrainApp {
     public static Train trackedService;
 
     public TestTrackMyTrainApp() {
-        super(getCore());
+        instance = getCore();
     }
 
     public static TrackMyTrain getCore() {
