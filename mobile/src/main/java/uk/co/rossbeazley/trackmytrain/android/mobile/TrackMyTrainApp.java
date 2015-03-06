@@ -13,7 +13,7 @@ public class TrackMyTrainApp extends Application{
 
     public TrackMyTrainApp() {
         instance = new TMTBuilder()
-                .with(new SharedPrefKeyValuePersistence(getApplicationContext()))
+                .with(new SharedPrefKeyValuePersistence(this))
                 .build();
     }
 
