@@ -2,6 +2,7 @@ package uk.co.rossbeazley.trackmytrain.android.mobile;
 
 import android.app.Notification;
 import android.content.Context;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 
 import uk.co.rossbeazley.trackmytrain.android.R;
@@ -33,10 +34,10 @@ public class TrackingNotification implements ServiceView {
         NotificationManagerCompat.from(service).notify(ID, not);
     }
 
-    private Notification.WearableExtender replaceSmallIconWithLargeInlineIcon() {
-        Notification.WearableExtender ext;
-        ext = new Notification.WearableExtender()
-                .setContentIcon(R.drawable.ic_train)
+    private NotificationCompat.WearableExtender replaceSmallIconWithLargeInlineIcon() {
+        NotificationCompat.WearableExtender ext;
+        ext = new NotificationCompat.WearableExtender()
+                .setContentIcon(R.mipmap.ic_launcher)
                 .setHintHideIcon(true);
         return ext;
     }
