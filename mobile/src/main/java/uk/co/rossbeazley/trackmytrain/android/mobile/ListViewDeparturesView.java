@@ -1,5 +1,6 @@
 package uk.co.rossbeazley.trackmytrain.android.mobile;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -88,10 +89,16 @@ class ListViewDeparturesView implements DeparturesView {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            TextView textView = new TextView(parent.getContext());
-            textView.setText(trains.get(position).toString());
-            //textView.setTextColor(0x00ff00); //or toggle red if late, suggesting we need a view model
-            return textView;
+            DepartureRow row = null;
+            if (convertView == null) {
+                LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+                row = (DepartureRow) inflater.inflate(R.layout.departurerow, parent, false);
+            } else {
+                row = (DepartureRow) convertView;
+            }
+            row.bind(trains.get(position));
+
+            return row;
         }
     }
 }

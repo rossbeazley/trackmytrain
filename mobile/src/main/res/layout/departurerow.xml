@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<uk.co.rossbeazley.trackmytrain.android.mobile.DepartureRow xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
+    >
+
+    <View
+        android:layout_width="8dp"
+        android:layout_height="match_parent"
+        android:id="@+id/ontimeindicator"
+        android:visibility="visible"
+        android:background="@android:color/holo_green_dark"/>
+
+    <LinearLayout android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/scheduledtime"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="50"
+            android:textSize="20sp"
+            android:gravity="center_horizontal"
+            tools:text="09:00"/>
+
+        <TextView
+            android:id="@+id/estimatedtime"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="50"
+            android:textSize="20sp"
+            android:gravity="center_horizontal"
+            tools:text="On Time"/>
+    </LinearLayout>
+
+    <TextView android:id="@+id/platform"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="100"
+        android:textSize="24sp"
+        android:gravity="center_vertical"
+        tools:text="Platform 2"
+        />
+
+
+</uk.co.rossbeazley.trackmytrain.android.mobile.DepartureRow>
