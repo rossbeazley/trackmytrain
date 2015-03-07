@@ -143,7 +143,7 @@ public class TrackMyTrainDefault implements TrackMyTrain {
     }
 
     @Override
-    public void detatch(DeparturesQueryView departuresQueryView) {
+    public void detach(DeparturesQueryView departuresQueryView) {
         this.departuresQueryViews.remove(departuresQueryView);
     }
 

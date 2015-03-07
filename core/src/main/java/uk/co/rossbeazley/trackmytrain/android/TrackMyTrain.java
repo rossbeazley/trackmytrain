@@ -18,5 +18,5 @@ public interface TrackMyTrain {
 
     void attach(DeparturesQueryView departuresQueryView);
 
-    void detatch(DeparturesQueryView departuresQueryView);
+    void detach(DeparturesQueryView departuresQueryView);
 }

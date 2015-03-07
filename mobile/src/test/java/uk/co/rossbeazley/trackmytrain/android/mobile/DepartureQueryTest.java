@@ -42,7 +42,6 @@ public class DepartureQueryTest {
         assertThat(toText,is("MON"));
     }
 
-
     private Departures activity() {
         ActivityController<Departures> actCtl = Robolectric.buildActivity(Departures.class);
         return actCtl.create()
