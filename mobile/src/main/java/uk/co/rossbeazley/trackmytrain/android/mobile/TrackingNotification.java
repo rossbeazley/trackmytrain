@@ -24,7 +24,7 @@ public class TrackingNotification implements ServiceView {
     public void present(TrainViewModel train) {
         Notification not;
         not = new Notification.Builder(service)
-                .setContentTitle("Platform " + train.platform())
+                .setContentTitle(train.platform())
                 .setContentText(train.scheduledTime() + " exp " + train.estimatedTime())
                 .setSmallIcon(R.drawable.n_train)
                 .setVibrate(new long[]{10, 50, 100, 50})

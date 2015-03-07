@@ -40,11 +40,17 @@ public class TrackingNotificationTest {
     }
 
     @Test
-    public void startingServiceCreatesNotification() {
+    public void startingServiceCreatesNotificationShowingTime() {
+        ShadowNotificationManager shadowNotificationManager = shadowOf(notificationManager);
+        final Notification notification = shadowNotificationManager.getNotification(TrackingNotification.ID);
+        assertThat(shadowOf(notification).getContentText(), CoreMatchers.<CharSequence>is("09:00 exp 10:00"));
+    }
+
+    @Test
+    public void startingServiceCreatesNotificationShowingPlatform() {
         ShadowNotificationManager shadowNotificationManager = shadowOf(notificationManager);
         final Notification notification = shadowNotificationManager.getNotification(TrackingNotification.ID);
         assertThat(shadowOf(notification).getContentTitle(), CoreMatchers.<CharSequence>is("Platform 1"));
-        assertThat(shadowOf(notification).getContentText(), CoreMatchers.<CharSequence>is("09:00 exp 10:00"));
     }
 
 
