@@ -13,6 +13,10 @@ import uk.co.rossbeazley.trackmytrain.android.trainRepo.NetworkClient;
 
 public class StringNetworkClient implements NetworkClient {
 
+    public StringNetworkClient() {
+        //
+    }
+
     @Override
     public void requestString(final Request request, final Response response) {
 

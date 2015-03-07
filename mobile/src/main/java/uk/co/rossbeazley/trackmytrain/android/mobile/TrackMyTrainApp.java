@@ -1,6 +1,7 @@
 package uk.co.rossbeazley.trackmytrain.android.mobile;
 
 import android.app.Application;
+import android.os.Build;
 
 import uk.co.rossbeazley.trackmytrain.android.ServiceView;
 import uk.co.rossbeazley.trackmytrain.android.TMTBuilder;
@@ -12,6 +13,7 @@ public class TrackMyTrainApp extends Application{
     static TrackMyTrain instance;
 
     public TrackMyTrainApp() {
+        System.setProperty("http.agent", "TrackMyTrain/0.1 ("+ Build.DEVICE +", " +Build.MANUFACTURER+", "+Build.MODEL+")");
         instance = new TMTBuilder()
                 .with(new SharedPrefKeyValuePersistence(this))
                 .build();
