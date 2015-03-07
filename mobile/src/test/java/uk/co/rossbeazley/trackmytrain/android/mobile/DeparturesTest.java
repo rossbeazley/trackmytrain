@@ -36,20 +36,6 @@ public class DeparturesTest {
     }
 
     @Test
-    public void theScreenLoadsWithDefaultFromStation() {
-        TextView viewById = (TextView) act.findViewById(R.id.from);
-        String fromText = String.valueOf(viewById.getText());
-        assertThat(fromText,is("SLD"));
-    }
-
-    @Test
-    public void theScreenLoadsWithDefaultToStation() {
-        TextView viewById = (TextView) act.findViewById(R.id.to);
-        String toText = String.valueOf(viewById.getText());
-        assertThat(toText,is("CRL"));
-    }
-
-    @Test
     public void displaysTheDepartureResultsForAJourney() {
         final TrainViewModel train = new TrainViewModel(new Train("1", "", "", ""));
         final TrainViewModel train1 = new TrainViewModel( new Train("2", "", "", ""));

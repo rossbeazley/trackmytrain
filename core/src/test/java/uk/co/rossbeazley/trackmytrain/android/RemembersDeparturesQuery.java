@@ -84,10 +84,4 @@ public class RemembersDeparturesQuery {
         }
 
     }
-
-
-    @Test
-    public void todo() {
-        fail("Implement the view properly for displaying last query");
-    }
 }
