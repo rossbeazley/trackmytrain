@@ -1,6 +1,5 @@
 package uk.co.rossbeazley.trackmytrain.android.mobile;
 
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -16,6 +15,9 @@ import uk.co.rossbeazley.trackmytrain.android.Direction;
 import uk.co.rossbeazley.trackmytrain.android.R;
 import uk.co.rossbeazley.trackmytrain.android.Station;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
+
+import static uk.co.rossbeazley.trackmytrain.android.mobile.DepartureRow.createDepartureRow;
+import static uk.co.rossbeazley.trackmytrain.android.mobile.DepartureRow.recycleDepartureRow;
 
 class ListViewDeparturesView implements DeparturesView {
     private final ListView listView;
@@ -89,16 +91,8 @@ class ListViewDeparturesView implements DeparturesView {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            DepartureRow row = null;
-            if (convertView == null) {
-                LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-                row = (DepartureRow) inflater.inflate(R.layout.departurerow, parent, false);
-            } else {
-                row = (DepartureRow) convertView;
-            }
-            row.bind(trains.get(position));
-
-            return row;
+            return (convertView == null ? createDepartureRow(parent) : recycleDepartureRow(convertView)).bind(trains.get(position));
         }
+
     }
 }
