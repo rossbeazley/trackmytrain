@@ -42,14 +42,6 @@ class ListViewDeparturesView implements DeparturesView {
             }
         });
 
-        getDepartures.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Station at = Station.fromString(String.valueOf(from.getText()));
-                Direction direction = Direction.to(Station.fromString(String.valueOf(to.getText())));
-                TrackMyTrainApp.instance.departures(at, direction);
-            }
-        });
     }
 
     @Override
