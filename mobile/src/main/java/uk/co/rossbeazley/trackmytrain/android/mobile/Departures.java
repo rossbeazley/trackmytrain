@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import uk.co.rossbeazley.trackmytrain.android.R;
+import uk.co.rossbeazley.trackmytrain.android.mobile.departures.AndroidDeparturesQueryView;
+import uk.co.rossbeazley.trackmytrain.android.mobile.departures.ListViewDeparturesView;
 
 public class Departures extends Activity implements FindsView {
 

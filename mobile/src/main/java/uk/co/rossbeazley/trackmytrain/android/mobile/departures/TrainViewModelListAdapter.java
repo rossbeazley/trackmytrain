@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.trackmytrain.android.mobile;
+package uk.co.rossbeazley.trackmytrain.android.mobile.departures;
 
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,8 +8,8 @@ import java.util.List;
 
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 
-import static uk.co.rossbeazley.trackmytrain.android.mobile.DepartureRow.createDepartureRow;
-import static uk.co.rossbeazley.trackmytrain.android.mobile.DepartureRow.recycleDepartureRow;
+import static uk.co.rossbeazley.trackmytrain.android.mobile.departures.DepartureRow.createDepartureRow;
+import static uk.co.rossbeazley.trackmytrain.android.mobile.departures.DepartureRow.recycleDepartureRow;
 
 class TrainViewModelListAdapter extends BaseAdapter {
     private final List<TrainViewModel> trains;

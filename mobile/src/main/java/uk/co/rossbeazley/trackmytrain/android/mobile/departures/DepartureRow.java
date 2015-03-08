@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.trackmytrain.android.mobile;
+package uk.co.rossbeazley.trackmytrain.android.mobile.departures;
 
 import android.annotation.TargetApi;
 import android.content.Context;

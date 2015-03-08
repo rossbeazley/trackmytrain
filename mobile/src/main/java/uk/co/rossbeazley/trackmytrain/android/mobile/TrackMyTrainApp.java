@@ -10,7 +10,7 @@ import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 
 public class TrackMyTrainApp extends Application{
 
-    static TrackMyTrain instance;
+    public static TrackMyTrain instance;
 
     public TrackMyTrainApp() {
         System.setProperty("http.agent", "TrackMyTrain/0.1 ("+ Build.DEVICE +", " +Build.MANUFACTURER+", "+Build.MODEL+")");

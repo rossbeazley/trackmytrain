@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.trackmytrain.android.mobile;
+package uk.co.rossbeazley.trackmytrain.android.mobile.departures;
 
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,8 +13,10 @@ import uk.co.rossbeazley.trackmytrain.android.Direction;
 import uk.co.rossbeazley.trackmytrain.android.R;
 import uk.co.rossbeazley.trackmytrain.android.Station;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
+import uk.co.rossbeazley.trackmytrain.android.mobile.FindsView;
+import uk.co.rossbeazley.trackmytrain.android.mobile.TrackMyTrainApp;
 
-class ListViewDeparturesView implements DeparturesView {
+public class ListViewDeparturesView implements DeparturesView {
     private final ListView listView;
 
     public ListViewDeparturesView(FindsView findsView) {

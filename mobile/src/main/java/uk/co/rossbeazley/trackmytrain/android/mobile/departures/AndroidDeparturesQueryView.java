@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.trackmytrain.android.mobile;
+package uk.co.rossbeazley.trackmytrain.android.mobile.departures;
 
 import android.widget.TextView;
 
@@ -6,6 +6,7 @@ import uk.co.rossbeazley.trackmytrain.android.DeparturesQueryView;
 import uk.co.rossbeazley.trackmytrain.android.Direction;
 import uk.co.rossbeazley.trackmytrain.android.R;
 import uk.co.rossbeazley.trackmytrain.android.Station;
+import uk.co.rossbeazley.trackmytrain.android.mobile.FindsView;
 
 class AndroidDeparturesQueryView implements DeparturesQueryView {
     private final TextView from;
