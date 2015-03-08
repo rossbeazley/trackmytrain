@@ -5,7 +5,7 @@ public class Station {
     private final String stationName;
 
     public Station(String stationCode) {
-        this(stationCode,"");
+        this("",stationCode);
     }
 
     public Station(String stationName, String stationCode) {
