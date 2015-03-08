@@ -9,11 +9,11 @@ import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.mobile.FindsView;
 import uk.co.rossbeazley.trackmytrain.android.mobile.TrackMyTrainApp;
 
-public class OnScreenTrackedServiceView implements ServiceView {
+class OnScreenTrackedServiceView implements ServiceView {
 
     private TextView trackedTrain;
 
-    OnScreenTrackedServiceView(FindsView findsView) {
+    public OnScreenTrackedServiceView(FindsView findsView) {
         findsView.findViewById(R.id.stopbutton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

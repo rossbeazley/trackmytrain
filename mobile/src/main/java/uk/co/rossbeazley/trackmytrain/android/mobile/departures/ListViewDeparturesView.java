@@ -16,7 +16,7 @@ import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.mobile.FindsView;
 import uk.co.rossbeazley.trackmytrain.android.mobile.TrackMyTrainApp;
 
-public class ListViewDeparturesView implements DeparturesView {
+class ListViewDeparturesView implements DeparturesView {
     private final ListView listView;
 
     public ListViewDeparturesView(FindsView findsView) {

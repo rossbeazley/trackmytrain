@@ -1,15 +1,12 @@
-Implement view:
-an activity,
-inflate custom view,
-create departures presenter
-create presenter for service
-service for notifications?
-notification view (builer), action on notification to stop
-tear down notification
+Auto complete at/to fields
+Buzz only if train is late
+Stop tracking from notification
 
+Tracking button design
+Departures query panel design
 
+Stop tracking when train departed
+Buzz only if train "lateness" changes
 
------- redesign ------
-- keep controllers/presenters within boundary and attach views to controller
-- still keep the "show" operation as this is a "ui navigation" concern
-- when view attaches to core it gets updates of state etc
+optional to field
+choose direction to/from
