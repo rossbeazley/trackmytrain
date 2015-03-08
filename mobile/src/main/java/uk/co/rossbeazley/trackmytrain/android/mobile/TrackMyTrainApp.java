@@ -7,6 +7,8 @@ import uk.co.rossbeazley.trackmytrain.android.ServiceView;
 import uk.co.rossbeazley.trackmytrain.android.TMTBuilder;
 import uk.co.rossbeazley.trackmytrain.android.TrackMyTrain;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
+import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.TrackingNotification;
+import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.TrackingService;
 
 public class TrackMyTrainApp extends Application{
 

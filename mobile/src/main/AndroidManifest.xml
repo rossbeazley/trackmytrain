@@ -10,7 +10,7 @@
         android:icon="@mipmap/ic_launcher" android:theme="@style/AppTheme"
         android:name=".mobile.TrackMyTrainApp">
 
-        <service android:name=".mobile.TrackingService" android:exported="false"/>
+        <service android:name=".mobile.tracking.TrackingService" android:exported="false"/>
 
         <activity android:name=".mobile.Departures" >
             <intent-filter>

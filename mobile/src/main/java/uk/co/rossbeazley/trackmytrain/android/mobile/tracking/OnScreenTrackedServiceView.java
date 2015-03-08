@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.trackmytrain.android.mobile;
+package uk.co.rossbeazley.trackmytrain.android.mobile.tracking;
 
 import android.view.View;
 import android.widget.TextView;
@@ -6,8 +6,10 @@ import android.widget.TextView;
 import uk.co.rossbeazley.trackmytrain.android.R;
 import uk.co.rossbeazley.trackmytrain.android.ServiceView;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
+import uk.co.rossbeazley.trackmytrain.android.mobile.FindsView;
+import uk.co.rossbeazley.trackmytrain.android.mobile.TrackMyTrainApp;
 
-class OnScreenTrackedServiceView implements ServiceView {
+public class OnScreenTrackedServiceView implements ServiceView {
 
     private TextView trackedTrain;
 

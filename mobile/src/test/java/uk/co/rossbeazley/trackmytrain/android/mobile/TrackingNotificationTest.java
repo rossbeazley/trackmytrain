@@ -14,6 +14,7 @@ import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowNotificationManager;
 
 import uk.co.rossbeazley.trackmytrain.android.Train;
+import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.TrackingNotification;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
