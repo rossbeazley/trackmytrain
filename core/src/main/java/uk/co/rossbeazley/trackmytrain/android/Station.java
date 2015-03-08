@@ -2,13 +2,15 @@ package uk.co.rossbeazley.trackmytrain.android;
 
 public class Station {
     private final String stationCode;
+    private final String stationName;
 
     public Station(String stationCode) {
-        this.stationCode = stationCode;
+        this(stationCode,"");
     }
 
-    public Station(String s, String stationCode) {
-        this(stationCode);
+    public Station(String stationName, String stationCode) {
+        this.stationCode = stationCode;
+        this.stationName = stationName;
     }
 
     @Override

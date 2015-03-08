@@ -2564,4 +2564,7 @@ public class StationsViewModel {
 
     }
 
+    public List<Station> list() {
+        return list;
+    }
 }
