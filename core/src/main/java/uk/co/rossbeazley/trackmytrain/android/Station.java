@@ -7,6 +7,10 @@ public class Station {
         this.stationCode = stationCode;
     }
 
+    public Station(String s, String stationCode) {
+        this(stationCode);
+    }
+
     @Override
     public String toString() {
         return stationCode;
