@@ -10,10 +10,16 @@ public class DeparturesQueryViewModel {
     private final List<Station> stations;
 
     public DeparturesQueryViewModel(Station at, Direction direction) {
+        this(at,direction,new Stations().list());
+    }
+
+    public DeparturesQueryViewModel(Station at, Direction direction, List<Station> stations) {
         this.at = at;
         this.direction = direction;
-        stations = new Stations().list();
+        this.stations = stations;
     }
+
+
 
     public Station getAt() {
         return at;
