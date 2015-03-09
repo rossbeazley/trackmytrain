@@ -3,11 +3,11 @@ package uk.co.rossbeazley.trackmytrain.android;
 import java.util.Arrays;
 import java.util.List;
 
-public class StationsViewModel {
+public class Stations {
 
     private final List<Station> list;
 
-    public StationsViewModel() {
+    public Stations() {
         list = Arrays.asList(
                 new Station("Abbey Wood", "ABW")
                 , new Station("Aber", "ABE")
