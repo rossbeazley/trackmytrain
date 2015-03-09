@@ -130,7 +130,7 @@ public class TrackMyTrain {
 
 
     public void attach(DeparturesQueryView departuresQueryView) {
-        departuresQueryView.present(this.getCurrentAt(), this.getCurrentDirection());
+        departuresQueryView.present(new DeparturesQueryViewModel(this.getCurrentAt(), this.getCurrentDirection()));
         this.departuresQueryViews.add(departuresQueryView);
     }
 

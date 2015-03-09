@@ -78,9 +78,9 @@ public class RemembersDeparturesQuery {
         public Direction direction;
 
         @Override
-        public void present(Station at, Direction direction) {
-            this.at = at;
-            this.direction = direction;
+        public void present(DeparturesQueryViewModel departuresQueryViewModel) {
+            this.at = departuresQueryViewModel.getAt();
+            this.direction = departuresQueryViewModel.getDirection();
         }
 
     }

@@ -1,10 +1,10 @@
 package uk.co.rossbeazley.trackmytrain.android.mobile.departures;
 
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import uk.co.rossbeazley.trackmytrain.android.DeparturesQueryView;
+import uk.co.rossbeazley.trackmytrain.android.DeparturesQueryViewModel;
 import uk.co.rossbeazley.trackmytrain.android.Direction;
 import uk.co.rossbeazley.trackmytrain.android.R;
 import uk.co.rossbeazley.trackmytrain.android.Station;
@@ -30,12 +30,12 @@ class AndroidDeparturesQueryView implements DeparturesQueryView {
     }
 
     @Override
-    public void present(final Station at, final Direction direction) {
+    public void present(final DeparturesQueryViewModel departuresQueryViewModel) {
 
         from.post(new Runnable() {
             @Override
             public void run() {
-                from.setText(at.toString());
+                from.setText(departuresQueryViewModel.getAt().toString());
             }
         });
 
@@ -43,7 +43,7 @@ class AndroidDeparturesQueryView implements DeparturesQueryView {
         to.post(new Runnable() {
             @Override
             public void run() {
-                to.setText(direction.station().toString());
+                to.setText(departuresQueryViewModel.getDirection().station().toString());
             }
         });
     }
