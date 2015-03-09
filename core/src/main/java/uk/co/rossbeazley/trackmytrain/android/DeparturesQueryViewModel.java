@@ -22,4 +22,8 @@ public class DeparturesQueryViewModel {
     public Direction getDirection() {
         return direction;
     }
+
+    public List<Station> stations() {
+        return stations;
+    }
 }
