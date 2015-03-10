@@ -7,10 +7,13 @@ import android.content.Intent;
 import android.os.IBinder;
 
 import uk.co.rossbeazley.trackmytrain.android.R;
+import uk.co.rossbeazley.trackmytrain.android.TrackMyTrain;
+import uk.co.rossbeazley.trackmytrain.android.mobile.TrackMyTrainApp;
 
 public class TrackingService extends Service {
 
     public static final int ID = 80085;
+    public static final int STOP_TRACKING = 666;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -41,6 +44,15 @@ public class TrackingService extends Service {
                 .build();
         startForeground(ID,not);
 
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        super.onStartCommand(intent, flags, startId);
+        if( "stop".equals(intent.getStringExtra("action"))) {
+            TrackMyTrainApp.instance.unwatch();
+        }
+        return START_STICKY;
     }
 
     @Override

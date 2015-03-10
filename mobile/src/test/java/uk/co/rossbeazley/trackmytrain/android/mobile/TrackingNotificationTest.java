@@ -6,12 +6,15 @@ import android.content.Context;
 
 import org.hamcrest.CoreMatchers;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowNotificationManager;
+
+import java.util.ArrayList;
 
 import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.TrackingNotification;
@@ -52,6 +55,16 @@ public class TrackingNotificationTest {
         ShadowNotificationManager shadowNotificationManager = shadowOf(notificationManager);
         final Notification notification = shadowNotificationManager.getNotification(TrackingNotification.ID);
         assertThat(shadowOf(notification).getContentTitle(), CoreMatchers.<CharSequence>is("Platform 1"));
+    }
+
+    @Test @Ignore("API Level not supported by robolectric")
+    public void notificationOnlyHasStopActionWithTitleStop() {
+        ShadowNotificationManager shadowNotificationManager = shadowOf(notificationManager);
+        final Notification notification = shadowNotificationManager.getNotification(TrackingNotification.ID);
+        ArrayList<Notification.Action> actions = shadowOf(notification).getActions();
+        Notification.Action stopAction = actions.get(0);
+        //android.R.drawable.ic_menu_close_clear_cancel;
+        assertThat(stopAction.title, CoreMatchers.<CharSequence>is("Stop"));
     }
 
 
