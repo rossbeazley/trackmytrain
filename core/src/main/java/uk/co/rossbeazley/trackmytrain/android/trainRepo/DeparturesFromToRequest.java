@@ -9,8 +9,8 @@ public class DeparturesFromToRequest implements NetworkClient.Request {
     private final String to;
 
     public DeparturesFromToRequest(Station from, Station to) {
-        this.from = from.toString();
-        this.to = to.toString();
+        this.from = from.stationCode();
+        this.to = to.stationCode();
     }
 
     @Override

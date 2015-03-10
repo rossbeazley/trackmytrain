@@ -25,11 +25,11 @@ public class DepartureQueryTest {
     @Test
     public void theScreenLoadsWithLastQueriedFromStation() {
 
-        TestTrackMyTrainApp.instance.departures(Station.fromString("BON"), TestDataBuilder.anyDirection());
+        TestTrackMyTrainApp.instance.departures(Station.fromString("CRL"), TestDataBuilder.anyDirection());
 
         TextView viewById = (TextView) activity().findViewById(R.id.at);
         String fromText = String.valueOf(viewById.getText());
-        assertThat(fromText,is("BON"));
+        assertThat(fromText,is("Chorley [CRL]"));
     }
 
     @Test
@@ -39,7 +39,7 @@ public class DepartureQueryTest {
 
         TextView viewById = (TextView) activity().findViewById(R.id.to);
         String toText = String.valueOf(viewById.getText());
-        assertThat(toText,is("MON"));
+        assertThat(toText,is("Monifieth [MON]"));
     }
 
     private Departures activity() {

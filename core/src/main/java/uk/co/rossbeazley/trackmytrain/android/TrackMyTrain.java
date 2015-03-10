@@ -145,7 +145,7 @@ public class TrackMyTrain {
     }
 
     private void setCurrentDirection(Direction currentDirection) {
-        this.keyValuePersistence.put("direction",currentDirection.station().toString());
+        this.keyValuePersistence.put("direction",currentDirection.station().stationCode());
     }
 
     private Station getCurrentAt() {
@@ -154,6 +154,6 @@ public class TrackMyTrain {
     }
 
     private void setCurrentAt(Station currentAt) {
-        this.keyValuePersistence.put("at",currentAt.toString());
+        this.keyValuePersistence.put("at",currentAt.stationCode());
     }
 }

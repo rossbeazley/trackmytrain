@@ -72,13 +72,14 @@ class AndroidDeparturesQueryView implements DeparturesQueryView {
             }
         });
 
-
+        if(departuresQueryViewModel.getDirection()!=null && departuresQueryViewModel.getDirection().station()!=null) {
             to.post(new Runnable() {
                 @Override
                 public void run() {
                     to.setText(departuresQueryViewModel.getDirection().station().toString());
                 }
             });
+        }
 
 
     }

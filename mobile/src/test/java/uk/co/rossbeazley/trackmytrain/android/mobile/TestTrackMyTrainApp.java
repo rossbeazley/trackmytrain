@@ -24,7 +24,11 @@ public class TestTrackMyTrainApp extends TrackMyTrainApp {
 
     public static TrackMyTrain getCore() {
         trackedService = new Train("2", "10:00", "09:00", "1");
-        keyValuePersistence = new HashMapKeyValuePersistence();
+        keyValuePersistence = new HashMapKeyValuePersistence(){{
+            this.put("at","CRL");
+            this.put("direction","SLD");
+
+        }};
         final TrackMyTrain trackMyTrain;
 
         trackMyTrain = new TMTBuilder()

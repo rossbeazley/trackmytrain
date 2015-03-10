@@ -56,7 +56,7 @@ public class TestDataBuilder {
     }
 
     public static Station anyStation() {
-        return Station.fromString("ANY");
+        return Station.fromString("MAN");
     }
 
     public static Direction anyDirection() {
