@@ -12,17 +12,17 @@ import uk.co.rossbeazley.trackmytrain.android.mobile.FindsView;
 import uk.co.rossbeazley.trackmytrain.android.mobile.TrackMyTrainApp;
 
 class AndroidDeparturesQueryView implements DeparturesQueryView {
-    private final TextView from;
+    private final TextView at;
     private final TextView to;
 
     public AndroidDeparturesQueryView(FindsView findsView) {
-        from = (TextView) findsView.findViewById(R.id.from);
+        at = (TextView) findsView.findViewById(R.id.from);
         to = (TextView) findsView.findViewById(R.id.to);
 
         findsView.findViewById(R.id.getdepartures).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Station at = Station.fromString(String.valueOf(from.getText()));
+                Station at = Station.fromString(String.valueOf(AndroidDeparturesQueryView.this.at.getText()));
                 Direction direction = Direction.to(Station.fromString(String.valueOf(to.getText())));
                 TrackMyTrainApp.instance.departures(at, direction);
             }
@@ -33,10 +33,10 @@ class AndroidDeparturesQueryView implements DeparturesQueryView {
     public void present(final DeparturesQueryViewModel departuresQueryViewModel) {
 
         if (departuresQueryViewModel.getAt() != null) {
-            from.post(new Runnable() {
+            at.post(new Runnable() {
                 @Override
                 public void run() {
-                    from.setText(departuresQueryViewModel.getAt().toString());
+                    at.setText(departuresQueryViewModel.getAt().toString());
                 }
             });
         }
