@@ -11,7 +11,7 @@
         >
 
         <AutoCompleteTextView
-            android:id="@+id/from"
+            android:id="@+id/at"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -22,7 +22,7 @@
             android:id="@+id/to"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_toRightOf="@id/from"
+            android:layout_toRightOf="@id/at"
             android:layout_weight="1"
             android:inputType="textCapCharacters"/>
 

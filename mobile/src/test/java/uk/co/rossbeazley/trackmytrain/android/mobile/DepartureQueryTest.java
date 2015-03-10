@@ -27,7 +27,7 @@ public class DepartureQueryTest {
 
         TestTrackMyTrainApp.instance.departures(Station.fromString("BON"), TestDataBuilder.anyDirection());
 
-        TextView viewById = (TextView) activity().findViewById(R.id.from);
+        TextView viewById = (TextView) activity().findViewById(R.id.at);
         String fromText = String.valueOf(viewById.getText());
         assertThat(fromText,is("BON"));
     }

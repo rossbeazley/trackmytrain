@@ -9,9 +9,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import uk.co.rossbeazley.trackmytrain.android.DeparturesView;
-import uk.co.rossbeazley.trackmytrain.android.Direction;
 import uk.co.rossbeazley.trackmytrain.android.R;
-import uk.co.rossbeazley.trackmytrain.android.Station;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.mobile.FindsView;
 import uk.co.rossbeazley.trackmytrain.android.mobile.TrackMyTrainApp;
@@ -20,7 +18,7 @@ class ListViewDeparturesView implements DeparturesView {
     private final ListView listView;
 
     public ListViewDeparturesView(FindsView findsView) {
-        this((ListView) findsView.findViewById(R.id.departurelist), (TextView) findsView.findViewById(R.id.selectedservice), (Button) findsView.findViewById(R.id.trackbutton), (Button) findsView.findViewById(R.id.getdepartures), (TextView) findsView.findViewById(R.id.from), (TextView) findsView.findViewById(R.id.to));
+        this((ListView) findsView.findViewById(R.id.departurelist), (TextView) findsView.findViewById(R.id.selectedservice), (Button) findsView.findViewById(R.id.trackbutton), (Button) findsView.findViewById(R.id.getdepartures), (TextView) findsView.findViewById(R.id.at), (TextView) findsView.findViewById(R.id.to));
     }
 
     public ListViewDeparturesView(ListView listView, final TextView selectedService, Button trackButton, Button getDepartures, final TextView from, final TextView to) {

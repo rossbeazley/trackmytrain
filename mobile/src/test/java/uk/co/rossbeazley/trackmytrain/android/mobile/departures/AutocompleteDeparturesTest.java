@@ -32,25 +32,26 @@ import static org.junit.Assert.assertThat;
 public class AutocompleteDeparturesTest {
 
 
-    @Test @Ignore("WIP")
+    @Test @Ignore("WIP, totally stuffed")
     public void selectedSecondItemIsUsedInTheQuery() {
 
         final TestingAct activity = activity();
         activity.setContentView(R.layout.servicedetails);
+
         AndroidDeparturesQueryView view = new AndroidDeparturesQueryView(activity);
         final DeparturesQueryViewModel departuresQueryViewModel = new DeparturesQueryViewModel(null, TestDataBuilder.anyDirection(), Arrays.asList(new Station("First", "ONE"), new Station("Second", "TWO")));
+
         view.present(departuresQueryViewModel);
 
 
         AutoCompleteTextView actv = (AutoCompleteTextView) activity.findViewById(R.id.to);
+
         final ListView parent = new ListView(actv.getContext());
         parent.setAdapter(actv.getAdapter());
+
         actv.getOnItemClickListener().onItemClick(parent,actv,1,1);
 
-        //String storedStationCode = TestTrackMyTrainApp.keyValuePersistence.get("at");
-        //assertThat(storedStationCode,is("TWO"));
         assertThat(departuresQueryViewModel.getAt(),is(new Station("Second", "TWO")));
-
     }
 
     private TestingAct activity() {

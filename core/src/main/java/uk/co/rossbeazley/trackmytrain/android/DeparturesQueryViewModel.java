@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DeparturesQueryViewModel {
-    private final Station at;
-    private final Direction direction;
+    private Station at;
+    private Direction direction;
 
     private final List<Station> stations;
 
     public DeparturesQueryViewModel(Station at, Direction direction) {
-        this(at,direction,new Stations().list());
+        this(at, direction, new Stations().list());
     }
 
     public DeparturesQueryViewModel(Station at, Direction direction, List<Station> stations) {
@@ -31,5 +31,13 @@ public class DeparturesQueryViewModel {
 
     public List<Station> stations() {
         return stations;
+    }
+
+    public void setAt(Station at) {
+        this.at = at;
+    }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
     }
 }
