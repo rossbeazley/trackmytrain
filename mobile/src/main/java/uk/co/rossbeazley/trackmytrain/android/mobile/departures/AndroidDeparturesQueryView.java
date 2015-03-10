@@ -54,7 +54,8 @@ class AndroidDeparturesQueryView implements DeparturesQueryView {
             at.post(new Runnable() {
                 @Override
                 public void run() {
-                    at.setText(departuresQueryViewModel.getAt().toString());
+                    at.setText(
+                            departuresQueryViewModel.getAt().toString());
                 }
             });
         }

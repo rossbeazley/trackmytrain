@@ -20,8 +20,8 @@ public class RemembersDeparturesQuery {
         tmt = TestDataBuilder.TMTBuilder()
                 .with(keyValuePersistence)
                 .build();
-        expectedDirection = Direction.to(Station.fromString("SLD"));
-        expectedStation = Station.fromString("CRL");
+        expectedDirection = Direction.to(new Station("Salford Crescent","SLD"));
+        expectedStation = new Station("Chorley","CRL");
 
         tmt.departures(expectedStation, expectedDirection);
     }

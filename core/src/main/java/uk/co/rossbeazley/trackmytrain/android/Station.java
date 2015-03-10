@@ -20,10 +20,15 @@ public class Station {
 
     @Override
     public boolean equals(Object obj) {
-        return stationCode.equals(((Station) obj).stationCode);
+        final Station that = (Station) obj;
+        return stationCode.equals(that.stationCode) && stationName.equals(that.stationName);
     }
 
     public static Station fromString(String sld) {
-        return new Station(sld);
+        return Stations.fromStationCode(sld);
+    }
+
+    public String stationCode() {
+        return stationCode;
     }
 }

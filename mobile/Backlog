@@ -10,3 +10,10 @@ Buzz only if train "lateness" changes
 
 optional to field
 choose direction to/from
+
+------
+
+
+migrate network requests to use station code not toString
+
+make Station factory method flyweight using Stations object to lookup station-for-code
