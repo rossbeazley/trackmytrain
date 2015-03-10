@@ -32,7 +32,7 @@ import static org.junit.Assert.assertThat;
 public class AutocompleteDeparturesTest {
 
 
-    @Test @Ignore("WIP, totally stuffed")
+    @Test @Ignore("totally stuffed, cant get robolectric to play ball")
     public void selectedSecondItemIsUsedInTheQuery() {
 
         final TestingAct activity = activity();
@@ -72,7 +72,8 @@ public class AutocompleteDeparturesTest {
      *
      * when the screen loads, the to and from and displayed from persistence
      *
-     * when you select an item from the drop down, that station is sent in on the query
+     * --when you select an item from the drop down, that station is sent in on the query--
+     * -- cant do this one
      *
      *
      */
