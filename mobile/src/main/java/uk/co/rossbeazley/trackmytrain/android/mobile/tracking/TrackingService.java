@@ -1,19 +1,30 @@
 package uk.co.rossbeazley.trackmytrain.android.mobile.tracking;
 
 import android.app.Notification;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 
 import uk.co.rossbeazley.trackmytrain.android.R;
-import uk.co.rossbeazley.trackmytrain.android.TrackMyTrain;
 import uk.co.rossbeazley.trackmytrain.android.mobile.TrackMyTrainApp;
 
 public class TrackingService extends Service {
 
     public static final int ID = 80085;
-    public static final int STOP_TRACKING = 666;
+    public static final int STOP_TRACKING_ID = 666;
+    public static final String STOP_TRACKING_ACTION = "STOP_TRACKING_ACTION";
+
+    public static PendingIntent stopTrackingPendingIntent(Context context) {
+        return PendingIntent.getService(context, STOP_TRACKING_ID, stopTrackingIntent(context), PendingIntent.FLAG_UPDATE_CURRENT);
+    }
+
+    public static Intent stopTrackingIntent(Context context) {
+        Intent intent = new Intent(STOP_TRACKING_ACTION);
+        intent.setClass(context, TrackingService.class);
+        return intent;
+    }
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -50,7 +61,7 @@ public class TrackingService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         //super.onStartCommand(intent, flags, startId);
         String action = intent.getAction();
-        if ("STOP_TRACKING".equals(action)) {
+        if (STOP_TRACKING_ACTION.equals(action)) {
             TrackMyTrainApp.instance.unwatch();
         }
         return START_STICKY;

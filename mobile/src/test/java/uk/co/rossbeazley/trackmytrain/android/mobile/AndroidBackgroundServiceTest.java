@@ -103,9 +103,9 @@ public class AndroidBackgroundServiceTest {
         CapturingServiceView serviceView = new CapturingServiceView();
         TestTrackMyTrainApp.instance.attach(serviceView);
 
-        Intent intent = new Intent("STOP_TRACKING");
-        intent.setClass(trackingService, TrackingService.class);
-        trackingService.onStartCommand(intent,TrackingService.STOP_TRACKING,0);
+        Intent intent = TrackingService.stopTrackingIntent(trackingService);
+
+        trackingService.onStartCommand(intent,TrackingService.STOP_TRACKING_ID,0);
 
         assertThat(serviceView.STATE, is(CapturingServiceView.STATE_HIDDEN));
     }

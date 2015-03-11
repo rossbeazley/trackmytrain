@@ -3,7 +3,6 @@ package uk.co.rossbeazley.trackmytrain.android.mobile.tracking;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 
@@ -25,12 +24,6 @@ public class TrackingNotification implements ServiceView {
     @Override
     public void present(TrainViewModel train) {
         Notification not;
-        Intent intent = new Intent("STOP_TRACKING");
-        intent.setClass(service, TrackingService.class);
-
-
-        PendingIntent serviceStop;
-        serviceStop = PendingIntent.getService(service, TrackingService.STOP_TRACKING, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         not = new Notification.Builder(service)
                 .setContentTitle(train.platform())
@@ -38,7 +31,7 @@ public class TrackingNotification implements ServiceView {
                 .setSmallIcon(R.drawable.n_train)
                 .setVibrate(new long[]{10, 50, 100, 50})
               //.extend( replaceSmallIconWithLargeInlineIcon() )
-                .addAction(R.drawable.ic_close_24px,"Stop Tracking", serviceStop)
+                .addAction(R.drawable.ic_close_24px,"Stop Tracking", TrackingService.stopTrackingPendingIntent(service))
                 .build();
 
         NotificationManagerCompat.from(service).notify(ID, not);
