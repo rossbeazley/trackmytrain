@@ -25,8 +25,12 @@ public class TrackingNotification implements ServiceView {
     @Override
     public void present(TrainViewModel train) {
         Notification not;
-        PendingIntent serviceStop = PendingIntent.getService(service, TrackingService.STOP_TRACKING,
-                new Intent(service, TrackingService.class).putExtra("action","stop"), 0);
+        Intent intent = new Intent("STOP_TRACKING");
+        intent.setClass(service, TrackingService.class);
+
+
+        PendingIntent serviceStop;
+        serviceStop = PendingIntent.getService(service, TrackingService.STOP_TRACKING, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         not = new Notification.Builder(service)
                 .setContentTitle(train.platform())
@@ -34,7 +38,7 @@ public class TrackingNotification implements ServiceView {
                 .setSmallIcon(R.drawable.n_train)
                 .setVibrate(new long[]{10, 50, 100, 50})
               //.extend( replaceSmallIconWithLargeInlineIcon() )
-                .addAction(android.R.drawable.ic_menu_close_clear_cancel,"Stop Tracking", serviceStop)
+                .addAction(R.drawable.ic_close_24px,"Stop Tracking", serviceStop)
                 .build();
 
         NotificationManagerCompat.from(service).notify(ID, not);

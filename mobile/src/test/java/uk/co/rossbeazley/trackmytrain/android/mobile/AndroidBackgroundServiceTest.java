@@ -12,7 +12,9 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowNotificationManager;
 
+import uk.co.rossbeazley.trackmytrain.android.ServiceView;
 import uk.co.rossbeazley.trackmytrain.android.Train;
+import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.TrackingService;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -86,4 +88,47 @@ public class AndroidBackgroundServiceTest {
         assertThat(notification,is(nullValue()));
     }
 
+    @Test
+    public void intentWithActionStopStopsTracking() {
+        NotificationManager notificationManager = (NotificationManager) Robolectric.application.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        TrackingService trackingService = new TrackingService(){
+            {
+                attachBaseContext(Robolectric.application);
+            }
+        };
+
+        trackingService.onCreate();
+
+        CapturingServiceView serviceView = new CapturingServiceView();
+        TestTrackMyTrainApp.instance.attach(serviceView);
+
+        Intent intent = new Intent("STOP_TRACKING");
+        intent.setClass(trackingService, TrackingService.class);
+        trackingService.onStartCommand(intent,TrackingService.STOP_TRACKING,0);
+
+        assertThat(serviceView.STATE, is(CapturingServiceView.STATE_HIDDEN));
+    }
+
+    private static class CapturingServiceView implements ServiceView {
+
+        public String STATE;
+        static public final String STATE_HIDDEN = "hidden";
+        static public final String STATE_PRESENTED = "presented";
+        static public final String STATE_UNKONW = "unknown";
+
+        public CapturingServiceView() {
+            STATE = STATE_UNKONW;
+        }
+
+        @Override
+        public void present(TrainViewModel train) {
+            STATE = STATE_PRESENTED;
+        }
+
+        @Override
+        public void hide() {
+            STATE = STATE_HIDDEN;
+        }
+    }
 }

@@ -48,8 +48,9 @@ public class TrackingService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        super.onStartCommand(intent, flags, startId);
-        if( "stop".equals(intent.getStringExtra("action"))) {
+        //super.onStartCommand(intent, flags, startId);
+        String action = intent.getAction();
+        if ("STOP_TRACKING".equals(action)) {
             TrackMyTrainApp.instance.unwatch();
         }
         return START_STICKY;
