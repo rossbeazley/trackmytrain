@@ -54,17 +54,22 @@ public class AndroidBackgroundServiceTest {
     public void startingServiceCreatesNotification() {
         NotificationManager notificationManager = (NotificationManager) Robolectric.application.getSystemService(Context.NOTIFICATION_SERVICE);
 
-        TrackingService trackingService = new TrackingService(){
-            {
-                attachBaseContext(Robolectric.application);
-            }
-        };
+        TrackingService trackingService = createTrackingService();
 
-        trackingService.onCreate();
 
         ShadowNotificationManager shadowNotificationManager = shadowOf(notificationManager);
         final Notification notification = shadowNotificationManager.getNotification(TrackingService.ID);
         assertThat(notification, is(not(nullValue())));
+    }
+
+    private TrackingService createTrackingService() {
+        TrackingService trackingService = new TrackingService() {
+            {
+                attachBaseContext(Robolectric.application);
+            }
+        };
+        trackingService.onCreate();
+        return trackingService;
     }
 
 
@@ -72,13 +77,7 @@ public class AndroidBackgroundServiceTest {
     public void serviceStopsNotificationRemoved() {
         NotificationManager notificationManager = (NotificationManager) Robolectric.application.getSystemService(Context.NOTIFICATION_SERVICE);
 
-        TrackingService trackingService = new TrackingService(){
-            {
-                attachBaseContext(Robolectric.application);
-            }
-        };
-
-        trackingService.onCreate();
+        TrackingService trackingService = createTrackingService();
 
         trackingService.onDestroy();
 
@@ -92,13 +91,7 @@ public class AndroidBackgroundServiceTest {
     public void intentWithActionStopStopsTracking() {
         NotificationManager notificationManager = (NotificationManager) Robolectric.application.getSystemService(Context.NOTIFICATION_SERVICE);
 
-        TrackingService trackingService = new TrackingService(){
-            {
-                attachBaseContext(Robolectric.application);
-            }
-        };
-
-        trackingService.onCreate();
+        TrackingService trackingService = createTrackingService();
 
         CapturingServiceView serviceView = new CapturingServiceView();
         TestTrackMyTrainApp.instance.attach(serviceView);
