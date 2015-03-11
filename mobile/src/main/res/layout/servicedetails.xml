@@ -62,22 +62,7 @@
             android:layout_toRightOf="@id/selectedservice"
             android:text="TRACK" />
 
-        <TextView
-            android:id="@+id/trackedservice"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@id/selectedservice"
-            android:text="tracked service..." />
-
-        <Button
-            android:id="@+id/stopbutton"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/trackbutton"
-            android:layout_toRightOf="@id/trackedservice"
-            android:text="STOP" />
+        <!--include layout="@layout/tracking_screen" /-->
     </RelativeLayout>
 
 </LinearLayout>

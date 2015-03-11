@@ -17,13 +17,13 @@ public class Departures extends Activity implements FindsView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.servicedetails);
         departuresScreen = new DeparturesScreen(this);
-        trackingScreen = new TrackingScreen(this);
+        //trackingScreen = new TrackingScreen(this);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        trackingScreen.invoke();
+        //trackingScreen.invoke();
         departuresScreen.tearDown();
     }
 

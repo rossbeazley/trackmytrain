@@ -3,6 +3,7 @@ package uk.co.rossbeazley.trackmytrain.android.mobile;
 import android.widget.TextView;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
@@ -46,7 +47,7 @@ public class ServiceTest {
         assertThat(csv.trackedTrain,is(train));
     }
 
-    @Test
+    @Test @Ignore("dropped feature")
     public void trackedServiceOnScreen() {
 
         ((TextView)act.findViewById(R.id.selectedservice)).setText("2");
@@ -60,7 +61,7 @@ public class ServiceTest {
     }
 
 
-    @Test
+    @Test @Ignore("dropped feature")
     public void trackedServiceOnScreenUpdates() {
 
         ((TextView)act.findViewById(R.id.selectedservice)).setText("2");
@@ -79,7 +80,7 @@ public class ServiceTest {
 
 
 
-    @Test
+    @Test @Ignore("dropped feature")
     public void stoppingTrackingClears() {
         ((TextView)act.findViewById(R.id.selectedservice)).setText("2");
         act.findViewById(R.id.trackbutton).performClick();

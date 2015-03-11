@@ -31,7 +31,7 @@ public class TrackingNotification implements ServiceView {
                 .setSmallIcon(R.drawable.n_train)
                 .setVibrate(new long[]{10, 50, 100, 50})
               //.extend( replaceSmallIconWithLargeInlineIcon() )
-                .addAction(R.drawable.ic_close_24px,"Stop Tracking", TrackingService.stopTrackingPendingIntent(service))
+                .addAction(R.drawable.ic_stop_tracking,"Stop Tracking", TrackingService.stopTrackingPendingIntent(service))
                 .build();
 
         NotificationManagerCompat.from(service).notify(ID, not);
