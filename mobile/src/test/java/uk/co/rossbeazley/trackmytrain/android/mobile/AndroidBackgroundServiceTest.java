@@ -12,7 +12,7 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowNotificationManager;
 
-import uk.co.rossbeazley.trackmytrain.android.ServiceView;
+import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
 import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.TrackingService;
