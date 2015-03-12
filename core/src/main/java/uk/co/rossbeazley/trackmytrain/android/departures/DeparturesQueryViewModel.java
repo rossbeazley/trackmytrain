@@ -1,6 +1,5 @@
-package uk.co.rossbeazley.trackmytrain.android;
+package uk.co.rossbeazley.trackmytrain.android.departures;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DeparturesQueryViewModel {

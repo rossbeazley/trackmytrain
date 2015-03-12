@@ -4,13 +4,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.TextView;
 
-import uk.co.rossbeazley.trackmytrain.android.DeparturesQueryView;
-import uk.co.rossbeazley.trackmytrain.android.DeparturesQueryViewModel;
-import uk.co.rossbeazley.trackmytrain.android.Direction;
+import uk.co.rossbeazley.trackmytrain.android.departures.DeparturesQueryView;
+import uk.co.rossbeazley.trackmytrain.android.departures.DeparturesQueryViewModel;
+import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.R;
-import uk.co.rossbeazley.trackmytrain.android.Station;
+import uk.co.rossbeazley.trackmytrain.android.departures.Station;
 import uk.co.rossbeazley.trackmytrain.android.mobile.FindsView;
 import uk.co.rossbeazley.trackmytrain.android.mobile.TrackMyTrainApp;
 

@@ -5,6 +5,11 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import uk.co.rossbeazley.time.NarrowScheduledExecutorService;
+import uk.co.rossbeazley.trackmytrain.android.departures.DeparturesQueryView;
+import uk.co.rossbeazley.trackmytrain.android.departures.DeparturesQueryViewModel;
+import uk.co.rossbeazley.trackmytrain.android.departures.DeparturesView;
+import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
+import uk.co.rossbeazley.trackmytrain.android.departures.Station;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.NetworkClient;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
 

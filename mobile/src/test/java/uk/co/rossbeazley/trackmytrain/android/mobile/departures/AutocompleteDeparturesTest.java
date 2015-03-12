@@ -1,10 +1,8 @@
 package uk.co.rossbeazley.trackmytrain.android.mobile.departures;
 
 import android.app.Activity;
-import android.view.KeyEvent;
 import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -16,13 +14,11 @@ import org.robolectric.util.ActivityController;
 
 import java.util.Arrays;
 
-import uk.co.rossbeazley.trackmytrain.android.DeparturesQueryViewModel;
-import uk.co.rossbeazley.trackmytrain.android.Direction;
+import uk.co.rossbeazley.trackmytrain.android.departures.DeparturesQueryViewModel;
 import uk.co.rossbeazley.trackmytrain.android.R;
-import uk.co.rossbeazley.trackmytrain.android.Station;
+import uk.co.rossbeazley.trackmytrain.android.departures.Station;
 import uk.co.rossbeazley.trackmytrain.android.TestDataBuilder;
 import uk.co.rossbeazley.trackmytrain.android.mobile.FindsView;
-import uk.co.rossbeazley.trackmytrain.android.mobile.TestTrackMyTrainApp;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
