@@ -35,23 +35,4 @@ public class DepartureQueryCommand {
         return new DepartureQuery(stationRepository.loadCurrentAt(), stationRepository.loadCurrentDirection());
     }
 
-    public static class DepartureQuery {
-
-        private final Station currentAt;
-        private final Direction currentDirection;
-
-        public DepartureQuery(Station currentAt, Direction currentDirection) {
-
-            this.currentAt = currentAt;
-            this.currentDirection = currentDirection;
-        }
-
-        public Station at() {
-            return currentAt;
-        }
-
-        public Direction direction() {
-            return currentDirection;
-        }
-    }
 }

@@ -2,7 +2,7 @@ package uk.co.rossbeazley.trackmytrain.android.departures.presentation;
 
 import java.util.List;
 
-import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQueryCommand;
+import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQuery;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
 import uk.co.rossbeazley.trackmytrain.android.departures.Stations;
@@ -23,7 +23,7 @@ public class DeparturesQueryViewModel {
         this.stations = stations;
     }
 
-    public DeparturesQueryViewModel(DepartureQueryCommand.DepartureQuery departureQuery) {
+    public DeparturesQueryViewModel(DepartureQuery departureQuery) {
         this(departureQuery.at(),departureQuery.direction());
     }
 

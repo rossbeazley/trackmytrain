@@ -3,6 +3,7 @@ package uk.co.rossbeazley.trackmytrain.android.departures.presentation;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQuery;
 import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQueryCommand;
 import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
@@ -50,7 +51,7 @@ public class DeparturesPresenter {
     }
 
     public void attach(DeparturesQueryView departuresQueryView) {
-        DepartureQueryCommand.DepartureQuery departureQuery = departureQueryCommand.lastQuery();
+        DepartureQuery departureQuery = departureQueryCommand.lastQuery();
         departuresQueryView.present(new DeparturesQueryViewModel(departureQuery));
         this.departuresQueryViews.add(departuresQueryView);
     }
