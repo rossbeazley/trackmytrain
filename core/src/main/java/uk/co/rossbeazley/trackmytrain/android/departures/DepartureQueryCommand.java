@@ -2,7 +2,6 @@ package uk.co.rossbeazley.trackmytrain.android.departures;
 
 import java.util.List;
 
-import uk.co.rossbeazley.trackmytrain.android.StationRepository;
 import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesPresenter;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;

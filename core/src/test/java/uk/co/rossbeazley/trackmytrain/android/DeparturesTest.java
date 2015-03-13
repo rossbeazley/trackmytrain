@@ -9,7 +9,6 @@ import java.util.List;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.DeparturesFromToRequest;
-import uk.co.rossbeazley.trackmytrain.android.trainRepo.NetworkClient;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.RequestMapNetworkClient;
 
 import static org.hamcrest.CoreMatchers.is;

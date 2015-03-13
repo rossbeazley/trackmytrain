@@ -10,7 +10,7 @@ import uk.co.rossbeazley.trackmytrain.android.TestDataBuilder;
 import uk.co.rossbeazley.trackmytrain.android.TrackMyTrain;
 import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.DeparturesFromToRequest;
-import uk.co.rossbeazley.trackmytrain.android.trainRepo.NetworkClient;
+import uk.co.rossbeazley.trackmytrain.android.NetworkClient;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.ServiceDetailsRequest;
 
 public class TestTrackMyTrainApp extends TrackMyTrainApp {

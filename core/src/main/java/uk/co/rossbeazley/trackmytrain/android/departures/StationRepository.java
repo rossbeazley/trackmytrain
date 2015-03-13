@@ -1,5 +1,6 @@
-package uk.co.rossbeazley.trackmytrain.android;
+package uk.co.rossbeazley.trackmytrain.android.departures;
 
+import uk.co.rossbeazley.trackmytrain.android.KeyValuePersistence;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
 

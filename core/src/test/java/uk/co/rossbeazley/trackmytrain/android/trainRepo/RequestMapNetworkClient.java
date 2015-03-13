@@ -1,9 +1,8 @@
 package uk.co.rossbeazley.trackmytrain.android.trainRepo;
 
-import java.util.HashMap;
 import java.util.Map;
 
-import uk.co.rossbeazley.trackmytrain.android.trainRepo.NetworkClient;
+import uk.co.rossbeazley.trackmytrain.android.NetworkClient;
 
 /**
 * Created by beazlr02 on 17/02/2015.

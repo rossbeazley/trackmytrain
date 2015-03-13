@@ -3,6 +3,8 @@ package uk.co.rossbeazley.trackmytrain.android.trainRepo;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
+import uk.co.rossbeazley.trackmytrain.android.NetworkClient;
+
 public class ServiceDetailsRequest implements NetworkClient.Request {
     private final String serviceId;
 

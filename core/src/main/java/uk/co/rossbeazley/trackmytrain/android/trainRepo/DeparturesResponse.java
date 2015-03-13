@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.co.rossbeazley.trackmytrain.android.NetworkClient;
 import uk.co.rossbeazley.trackmytrain.android.Train;
 
 public class DeparturesResponse implements NetworkClient.Response {

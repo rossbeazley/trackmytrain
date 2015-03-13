@@ -2,6 +2,7 @@ package uk.co.rossbeazley.trackmytrain.android.trainRepo;
 
 import java.util.List;
 
+import uk.co.rossbeazley.trackmytrain.android.NetworkClient;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
 import uk.co.rossbeazley.trackmytrain.android.Train;

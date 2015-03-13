@@ -2,13 +2,13 @@ package uk.co.rossbeazley.trackmytrain.android;
 
 import uk.co.rossbeazley.time.NarrowScheduledExecutorService;
 import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQueryCommand;
+import uk.co.rossbeazley.trackmytrain.android.departures.StationRepository;
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesPresenter;
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesQueryView;
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesView;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
 import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
-import uk.co.rossbeazley.trackmytrain.android.trainRepo.NetworkClient;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
 
 public class TrackMyTrain {

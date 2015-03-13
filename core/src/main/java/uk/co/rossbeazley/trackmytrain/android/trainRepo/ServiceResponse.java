@@ -3,6 +3,7 @@ package uk.co.rossbeazley.trackmytrain.android.trainRepo;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import uk.co.rossbeazley.trackmytrain.android.NetworkClient;
 import uk.co.rossbeazley.trackmytrain.android.Train;
 
 class ServiceResponse implements NetworkClient.Response {
