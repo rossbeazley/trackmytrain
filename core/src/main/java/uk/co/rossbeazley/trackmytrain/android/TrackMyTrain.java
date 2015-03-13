@@ -12,13 +12,17 @@ import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
 public class TrackMyTrain {
 
     private final Tracking tracking;
-    private Departures departures;
+    private DeparturesPresenter departures;
 
     public TrackMyTrain(NetworkClient networkClient, NarrowScheduledExecutorService executorService, KeyValuePersistence keyValuePersistence) {
 
         TrainRepository trainRepository = new TrainRepository(networkClient);
         tracking = new Tracking(trainRepository, executorService);
-        this.departures = new Departures(keyValuePersistence, trainRepository);
+
+
+        StationRepository stationRepository = new StationRepository(keyValuePersistence);
+        DepartureQueryCommand departureQueryCommand = new DepartureQueryCommand(trainRepository, stationRepository);
+        this.departures = new DeparturesPresenter(departureQueryCommand);
     }
 
     public void departures(Station at, Direction direction) {

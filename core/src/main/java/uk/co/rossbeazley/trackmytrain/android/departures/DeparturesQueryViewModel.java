@@ -2,6 +2,8 @@ package uk.co.rossbeazley.trackmytrain.android.departures;
 
 import java.util.List;
 
+import uk.co.rossbeazley.trackmytrain.android.DepartureQueryCommand;
+
 public class DeparturesQueryViewModel {
     private Station at;
     private Direction direction;
@@ -18,6 +20,9 @@ public class DeparturesQueryViewModel {
         this.stations = stations;
     }
 
+    public DeparturesQueryViewModel(DepartureQueryCommand.DepartureQuery departureQuery) {
+        this(departureQuery.at(),departureQuery.direction());
+    }
 
 
     public Station getAt() {
