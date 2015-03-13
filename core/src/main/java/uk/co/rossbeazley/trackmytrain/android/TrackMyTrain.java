@@ -42,10 +42,6 @@ public class TrackMyTrain {
     }
 
 
-
-
-
-
     public void watch(String serviceId) {
         tracking.watch(serviceId);
     }
@@ -61,10 +57,5 @@ public class TrackMyTrain {
     public void detach(ServiceView serviceView) {
         tracking.detach(serviceView);
     }
-
-
-
-
-
 
 }
