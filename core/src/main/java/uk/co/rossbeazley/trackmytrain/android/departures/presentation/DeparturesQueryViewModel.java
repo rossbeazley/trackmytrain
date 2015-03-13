@@ -1,8 +1,11 @@
-package uk.co.rossbeazley.trackmytrain.android.departures;
+package uk.co.rossbeazley.trackmytrain.android.departures.presentation;
 
 import java.util.List;
 
-import uk.co.rossbeazley.trackmytrain.android.DepartureQueryCommand;
+import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQueryCommand;
+import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
+import uk.co.rossbeazley.trackmytrain.android.departures.Station;
+import uk.co.rossbeazley.trackmytrain.android.departures.Stations;
 
 public class DeparturesQueryViewModel {
     private Station at;

@@ -5,8 +5,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 
-import uk.co.rossbeazley.trackmytrain.android.departures.DeparturesQueryView;
-import uk.co.rossbeazley.trackmytrain.android.departures.DeparturesQueryViewModel;
+import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesQueryView;
+import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesQueryViewModel;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.R;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;

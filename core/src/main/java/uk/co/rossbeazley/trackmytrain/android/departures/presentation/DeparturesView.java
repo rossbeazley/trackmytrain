@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.trackmytrain.android.departures;
+package uk.co.rossbeazley.trackmytrain.android.departures.presentation;
 
 import java.util.List;
 

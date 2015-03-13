@@ -1,9 +1,10 @@
-package uk.co.rossbeazley.trackmytrain.android;
+package uk.co.rossbeazley.trackmytrain.android.departures;
 
 import java.util.List;
 
-import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
-import uk.co.rossbeazley.trackmytrain.android.departures.Station;
+import uk.co.rossbeazley.trackmytrain.android.StationRepository;
+import uk.co.rossbeazley.trackmytrain.android.Train;
+import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesPresenter;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
 
 /**
@@ -20,8 +21,8 @@ public class DepartureQueryCommand {
     }
 
     public void invoke(Station at, Direction direction, final DeparturesPresenter.Success success) {
-        stationRepository.setCurrentAt(at);
-        stationRepository.setCurrentDirection(direction);
+        stationRepository.storeCurrentAt(at);
+        stationRepository.loadCurrentDirection(direction);
         this.trainRepository.departures(at,direction, new TrainRepository.DeparturesSuccess() {
             @Override
             public void result(List<Train> expectedList) {
@@ -31,7 +32,7 @@ public class DepartureQueryCommand {
     }
 
     public DepartureQuery lastQuery() {
-        return new DepartureQuery(stationRepository.getCurrentAt(), stationRepository.getCurrentDirection());
+        return new DepartureQuery(stationRepository.loadCurrentAt(), stationRepository.loadCurrentDirection());
     }
 
     public static class DepartureQuery {

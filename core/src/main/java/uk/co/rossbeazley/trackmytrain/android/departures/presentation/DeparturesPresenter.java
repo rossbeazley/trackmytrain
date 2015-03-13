@@ -1,11 +1,11 @@
-package uk.co.rossbeazley.trackmytrain.android;
+package uk.co.rossbeazley.trackmytrain.android.departures.presentation;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import uk.co.rossbeazley.trackmytrain.android.departures.DeparturesQueryView;
-import uk.co.rossbeazley.trackmytrain.android.departures.DeparturesQueryViewModel;
-import uk.co.rossbeazley.trackmytrain.android.departures.DeparturesView;
+import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQueryCommand;
+import uk.co.rossbeazley.trackmytrain.android.Train;
+import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
 

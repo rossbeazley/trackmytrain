@@ -10,21 +10,21 @@ public class StationRepository {
         this.keyValuePersistence = keyValuePersistence;
     }
 
-    Direction getCurrentDirection() {
+    public Direction loadCurrentDirection() {
         String stationCode = this.keyValuePersistence.get("direction");
         return Direction.to(Station.fromString(stationCode));
     }
 
-    void setCurrentDirection(Direction currentDirection) {
+    public void loadCurrentDirection(Direction currentDirection) {
         this.keyValuePersistence.put("direction", currentDirection.station().stationCode());
     }
 
-    Station getCurrentAt() {
+    public Station loadCurrentAt() {
         String stationCode = this.keyValuePersistence.get("at");
         return Station.fromString(stationCode);
     }
 
-    void setCurrentAt(Station currentAt) {
+    public void storeCurrentAt(Station currentAt) {
         this.keyValuePersistence.put("at", currentAt.stationCode());
     }
 }

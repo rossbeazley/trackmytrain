@@ -14,7 +14,7 @@ import org.robolectric.util.ActivityController;
 
 import java.util.Arrays;
 
-import uk.co.rossbeazley.trackmytrain.android.departures.DeparturesQueryViewModel;
+import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesQueryViewModel;
 import uk.co.rossbeazley.trackmytrain.android.R;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
 import uk.co.rossbeazley.trackmytrain.android.TestDataBuilder;

@@ -3,8 +3,8 @@ package uk.co.rossbeazley.trackmytrain.android;
 import org.junit.Before;
 import org.junit.Test;
 
-import uk.co.rossbeazley.trackmytrain.android.departures.DeparturesQueryView;
-import uk.co.rossbeazley.trackmytrain.android.departures.DeparturesQueryViewModel;
+import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesQueryView;
+import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesQueryViewModel;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
 

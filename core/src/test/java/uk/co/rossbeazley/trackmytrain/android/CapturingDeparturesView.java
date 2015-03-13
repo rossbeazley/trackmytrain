@@ -2,7 +2,7 @@ package uk.co.rossbeazley.trackmytrain.android;
 
 import java.util.List;
 
-import uk.co.rossbeazley.trackmytrain.android.departures.DeparturesView;
+import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesView;
 
 /**
 * Created by beazlr02 on 05/03/2015.
