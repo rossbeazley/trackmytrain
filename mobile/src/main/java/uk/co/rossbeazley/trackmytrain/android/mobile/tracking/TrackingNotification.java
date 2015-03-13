@@ -1,13 +1,12 @@
 package uk.co.rossbeazley.trackmytrain.android.mobile.tracking;
 
 import android.app.Notification;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 
 import uk.co.rossbeazley.trackmytrain.android.R;
-import uk.co.rossbeazley.trackmytrain.android.ServiceView;
+import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 
 /**

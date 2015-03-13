@@ -2,7 +2,7 @@ package uk.co.rossbeazley.trackmytrain.android.mobile.tracking;
 
 import android.content.Context;
 
-import uk.co.rossbeazley.trackmytrain.android.ServiceView;
+import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 
 public class ServiceTrackingNavigationController implements ServiceView {

@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import uk.co.rossbeazley.trackmytrain.android.R;
-import uk.co.rossbeazley.trackmytrain.android.ServiceView;
+import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.mobile.FindsView;
 import uk.co.rossbeazley.trackmytrain.android.mobile.TrackMyTrainApp;

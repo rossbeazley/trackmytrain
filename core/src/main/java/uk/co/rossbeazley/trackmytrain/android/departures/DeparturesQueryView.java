@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.trackmytrain.android;
+package uk.co.rossbeazley.trackmytrain.android.departures;
 
 /**
  * Created by beazlr02 on 05/03/2015.

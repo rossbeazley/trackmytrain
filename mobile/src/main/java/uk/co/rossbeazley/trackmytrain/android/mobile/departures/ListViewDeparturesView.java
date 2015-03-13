@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import uk.co.rossbeazley.trackmytrain.android.DeparturesView;
+import uk.co.rossbeazley.trackmytrain.android.departures.DeparturesView;
 import uk.co.rossbeazley.trackmytrain.android.R;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.mobile.FindsView;
