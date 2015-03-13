@@ -38,7 +38,7 @@ class TrainViewModelListAdapter extends BaseAdapter {
         return departureRow(convertView, parent).bind(trains.get(position));
     }
 
-    private DepartureRow departureRow(View convertView, ViewGroup parent) {
+    private static DepartureRow departureRow(View convertView, ViewGroup parent) {
         return (convertView == null ? createDepartureRow(parent) : recycleDepartureRow(convertView));
     }
 

@@ -15,10 +15,6 @@ import uk.co.rossbeazley.trackmytrain.android.trainRepo.NetworkClient;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
 
 public class TrackMyTrain {
-
-    private final ArrayList<DeparturesQueryView> departuresQueryViews;
-    private final KeyValuePersistence keyValuePersistence;
-    private List<DeparturesView> departuresViews;
     private final TrainRepository trainRepository;
     private final NarrowScheduledExecutorService executorService;
 
@@ -26,43 +22,29 @@ public class TrackMyTrain {
     private String trackedService;
     private NarrowScheduledExecutorService.Cancelable cancelable;
 
+    private Departures departures;
 
     public TrackMyTrain(NetworkClient networkClient, NarrowScheduledExecutorService executorService, KeyValuePersistence keyValuePersistence) {
-        this.keyValuePersistence = keyValuePersistence;
+
         this.trainRepository = new TrainRepository(networkClient);
         this.executorService = executorService;
         this.serviceViews = new ArrayList<>(2);
         this.trackedService = null;
-        this.departuresViews = new ArrayList<>(2);
         cancelable= NarrowScheduledExecutorService.Cancelable.NULL;
-        this.departuresQueryViews = new ArrayList<>();
-
+        this.departures = new Departures(keyValuePersistence, trainRepository);
     }
 
     public void departures(Station at, Direction direction) {
-
-        this.setCurrentAt(at);
-        this.setCurrentDirection(direction);
-        this.trainRepository.departures(at,direction, new TrainRepository.DeparturesSuccess() {
-            @Override
-            public void result(List<Train> expectedList) {
-                presentDepartures(expectedList);
-            }
-        });
+        departures.departures(at, direction);
     }
 
-    private void presentDepartures(List<Train> expectedList) {
-        for (DeparturesView departuresView : departuresViews) {
-            departuresView.present(TrainViewModel.list(expectedList));
-        }
-    }
 
     public void attach(DeparturesView departureView) {
-        this.departuresViews.add(departureView);
+        departures.attach(departureView);
     }
 
     public void detach(DeparturesView departuresView) {
-        this.departuresViews.remove(departuresView);
+        departures.detach(departuresView);
     }
 
 
@@ -136,30 +118,11 @@ public class TrackMyTrain {
 
 
     public void attach(DeparturesQueryView departuresQueryView) {
-        departuresQueryView.present(new DeparturesQueryViewModel(this.getCurrentAt(), this.getCurrentDirection()));
-        this.departuresQueryViews.add(departuresQueryView);
+        departures.attach(departuresQueryView);
     }
 
     public void detach(DeparturesQueryView departuresQueryView) {
-        this.departuresQueryViews.remove(departuresQueryView);
+        departures.detach(departuresQueryView);
     }
 
-
-    private Direction getCurrentDirection() {
-        String stationCode = this.keyValuePersistence.get("direction");
-        return Direction.to(Station.fromString(stationCode));
-    }
-
-    private void setCurrentDirection(Direction currentDirection) {
-        this.keyValuePersistence.put("direction",currentDirection.station().stationCode());
-    }
-
-    private Station getCurrentAt() {
-        String stationCode = this.keyValuePersistence.get("at");
-        return Station.fromString(stationCode);
-    }
-
-    private void setCurrentAt(Station currentAt) {
-        this.keyValuePersistence.put("at",currentAt.stationCode());
-    }
 }
