@@ -4,7 +4,40 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:showIn="@layout/servicedetails">
+    tools:showIn="@layout/servicedetails"
+    android:layout_margin="16dp"
+    android:elevation="6dp"
+    android:background="#f0f0f0"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=" Track My Train"
+        android:textSize="24sp"
+        android:drawableLeft="@drawable/ic_tmt_logo"
+        android:layout_margin="16dp"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="To track a train, choose the station your train leaves from and the station its heading to"
+        android:textSize="12sp"
+        android:layout_margin="8dp"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        />
 
     <AutoCompleteTextView
         android:id="@+id/at"
@@ -12,23 +45,36 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:inputType="textCapCharacters"
-        android:selectAllOnFocus="true" />
+        android:selectAllOnFocus="true"
+        android:hint="Select station from"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="4dp"
+
+        />
 
     <AutoCompleteTextView
         android:id="@+id/to"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/at"
         android:layout_weight="1"
         android:inputType="textCapCharacters"
-        android:selectAllOnFocus="true" />
+        android:selectAllOnFocus="true"
+        android:hint="Selection train destination"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp"
+
+        />
 
     <Button
         android:id="@+id/getdepartures"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_toRightOf="@id/to"
-        android:text="find"
-        android:layout_weight="1" />
+        android:text="find trains..."
+        android:layout_weight="1"
+        android:layout_margin="16dp"
+        />
 </LinearLayout>

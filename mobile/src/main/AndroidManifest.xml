@@ -12,7 +12,7 @@
 
         <service android:name=".mobile.tracking.TrackingService" android:exported="false"/>
 
-        <activity android:name=".mobile.Departures" >
+        <activity android:name=".mobile.Departures" android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER" />
