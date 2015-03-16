@@ -21,7 +21,7 @@ public class DepartureQueryCommand {
 
     public void invoke(Station at, Direction direction, final DeparturesPresenter.Success success) {
         stationRepository.storeCurrentAt(at);
-        stationRepository.loadCurrentDirection(direction);
+        stationRepository.storeCurrentDirection(direction);
         this.trainRepository.departures(at,direction, new TrainRepository.DeparturesSuccess() {
             @Override
             public void result(List<Train> expectedList) {

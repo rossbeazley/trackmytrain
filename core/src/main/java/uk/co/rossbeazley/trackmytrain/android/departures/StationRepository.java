@@ -16,8 +16,10 @@ public class StationRepository {
         return Direction.to(Station.fromString(stationCode));
     }
 
-    public void loadCurrentDirection(Direction currentDirection) {
-        this.keyValuePersistence.put("direction", currentDirection.station().stationCode());
+    public void storeCurrentDirection(Direction currentDirection) {
+        if(currentDirection!=null) {
+            this.keyValuePersistence.put("direction", currentDirection.station().stationCode());
+        }
     }
 
     public Station loadCurrentAt() {
@@ -26,6 +28,8 @@ public class StationRepository {
     }
 
     public void storeCurrentAt(Station currentAt) {
-        this.keyValuePersistence.put("at", currentAt.stationCode());
+        if (currentAt!=null) {
+            this.keyValuePersistence.put("at", currentAt.stationCode());
+        }
     }
 }
