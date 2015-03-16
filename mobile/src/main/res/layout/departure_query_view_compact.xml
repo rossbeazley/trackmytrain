@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:showIn="@layout/servicedetails"
+    android:elevation="3dp"
+    android:background="#559B91"
+    >
+
+
+    <AutoCompleteTextView
+        android:id="@+id/at"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textCapCharacters"
+        android:selectAllOnFocus="true"
+        android:hint="Select station from"
+        android:layout_margin="4dp"
+        android:textColor="#f0f0f0"
+        android:textSize="12sp"
+
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        />
+
+    <AutoCompleteTextView
+        android:id="@+id/to"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textCapCharacters"
+        android:selectAllOnFocus="true"
+        android:hint="Selection train destination"
+        android:layout_margin="4dp"
+        android:textColor="#f0f0f0"
+        android:textSize="12sp"
+        />
+
+    <Button
+        android:id="@+id/getdepartures"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        />
+</LinearLayout>
