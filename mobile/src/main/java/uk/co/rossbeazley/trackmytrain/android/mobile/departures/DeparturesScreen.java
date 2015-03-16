@@ -1,5 +1,7 @@
 package uk.co.rossbeazley.trackmytrain.android.mobile.departures;
 
+import android.view.inputmethod.InputMethodManager;
+
 import uk.co.rossbeazley.trackmytrain.android.mobile.FindsView;
 import uk.co.rossbeazley.trackmytrain.android.mobile.TrackMyTrainApp;
 
@@ -8,9 +10,9 @@ public class DeparturesScreen {
     private ListViewDeparturesView departureView;
     private AndroidDeparturesQueryView departuresQueryView;
 
-    public DeparturesScreen(FindsView findsView) {
+    public DeparturesScreen(FindsView findsView, InputMethodManager inputMethodManager) {
         departureView = new ListViewDeparturesView(findsView);
-        departuresQueryView = new AndroidDeparturesQueryView(findsView);
+        departuresQueryView = new AndroidDeparturesQueryView(findsView, inputMethodManager);
         TrackMyTrainApp.instance.attach(departureView);
         TrackMyTrainApp.instance.attach(departuresQueryView);
     }

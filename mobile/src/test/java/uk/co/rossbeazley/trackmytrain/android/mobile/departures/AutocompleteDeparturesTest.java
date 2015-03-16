@@ -34,7 +34,7 @@ public class AutocompleteDeparturesTest {
         final TestingAct activity = activity();
         activity.setContentView(R.layout.servicedetails);
 
-        AndroidDeparturesQueryView view = new AndroidDeparturesQueryView(activity);
+        AndroidDeparturesQueryView view = new AndroidDeparturesQueryView(activity, null);
         final DeparturesQueryViewModel departuresQueryViewModel = new DeparturesQueryViewModel(null, TestDataBuilder.anyDirection(), Arrays.asList(new Station("First", "ONE"), new Station("Second", "TWO")));
 
         view.present(departuresQueryViewModel);

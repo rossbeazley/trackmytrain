@@ -5,6 +5,7 @@ import android.transition.TransitionManager;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -28,7 +29,7 @@ class AndroidDeparturesQueryView implements DeparturesQueryView {
     private View departureQueryView;
     private final View departureQueryViewCompact;
 
-    public AndroidDeparturesQueryView(final FindsView findsView) {
+    public AndroidDeparturesQueryView(final FindsView findsView, final InputMethodManager inputMethodManager) {
         at = (AutoCompleteTextView) findsView.findViewById(R.id.at);
         to = (AutoCompleteTextView) findsView.findViewById(R.id.to);
 
@@ -45,6 +46,7 @@ class AndroidDeparturesQueryView implements DeparturesQueryView {
             public void onClick(View v) {
                 dispatchQuery();
                 showCompactQueryBar();
+                inputMethodManager.hideSoftInputFromWindow(at.getWindowToken(), 0);
             }
         });
 
@@ -82,7 +84,6 @@ class AndroidDeparturesQueryView implements DeparturesQueryView {
     public void present(final DeparturesQueryViewModel departuresQueryViewModel) {
         this.departuresQueryViewModel = departuresQueryViewModel;
         presentStationNames(departuresQueryViewModel);
-
         presentStationLists(departuresQueryViewModel);
     }
 
@@ -91,8 +92,19 @@ class AndroidDeparturesQueryView implements DeparturesQueryView {
         presentAtStationList(departuresQueryViewModel);
     }
 
-    void presentStationNames(DeparturesQueryViewModel departuresQueryViewModel) {
-        presentTo(departuresQueryViewModel);
+    void presentStationNames(final DeparturesQueryViewModel departuresQueryViewModel) {
+        if(departuresQueryViewModel.getDirection()!=null && departuresQueryViewModel.getDirection().station()!=null) {
+            to.post(new Runnable() {
+                @Override
+              public void run() {
+                    final String stationName = departuresQueryViewModel.getDirection().station().toString();
+                    to.setText(stationName);
+                    to_compact.setText(stationName);
+                }
+            });
+        }
+
+
         presentAt(departuresQueryViewModel);
     }
 
@@ -120,21 +132,6 @@ class AndroidDeparturesQueryView implements DeparturesQueryView {
                 presentStationNames(departuresQueryViewModel);
             }
         });
-    }
-
-    private void presentTo(final DeparturesQueryViewModel departuresQueryViewModel) {
-        if(departuresQueryViewModel.getDirection()!=null && departuresQueryViewModel.getDirection().station()!=null) {
-            to.post(new Runnable() {
-                @Override
-              public void run() {
-                    final String stationName = departuresQueryViewModel.getDirection().station().toString();
-                    to.setText(stationName);
-                    to_compact.setText(stationName);
-                }
-            });
-        }
-
-
     }
 
     private void presentToStationList(final DeparturesQueryViewModel departuresQueryViewModel) {
