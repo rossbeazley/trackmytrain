@@ -15,6 +15,8 @@
         android:layout_height="0dp"
         android:layout_weight="90"
         android:background="#f0f0f0"
+        android:listSelector="#33559B91"
+        android:choiceMode="singleChoice"
         />
 
     <RelativeLayout

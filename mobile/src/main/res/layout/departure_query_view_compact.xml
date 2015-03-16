@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:showIn="@layout/servicedetails"
     android:elevation="3dp"
-    android:background="#559B91"
+    android:background="#33559B91"
     android:visibility="gone"
     android:padding="4dp"
     >
