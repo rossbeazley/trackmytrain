@@ -10,11 +10,10 @@
     >
 
 
-    <AutoCompleteTextView
-        android:id="@+id/at"
+    <TextView
+        android:id="@+id/at_compat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textCapCharacters"
         android:selectAllOnFocus="true"
         android:hint="Select station from"
         android:layout_margin="4dp"
@@ -29,22 +28,14 @@
         android:background="@android:color/darker_gray"
         />
 
-    <AutoCompleteTextView
-        android:id="@+id/to"
+    <TextView
+        android:id="@+id/to_compat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textCapCharacters"
         android:selectAllOnFocus="true"
         android:hint="Selection train destination"
         android:layout_margin="4dp"
         android:textColor="#f0f0f0"
         android:textSize="12sp"
-        />
-
-    <Button
-        android:id="@+id/getdepartures"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
         />
 </LinearLayout>
