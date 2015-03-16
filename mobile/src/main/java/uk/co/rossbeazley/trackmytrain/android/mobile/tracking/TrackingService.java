@@ -51,6 +51,7 @@ public class TrackingService extends Service {
                 .setContentTitle("Track My Train")
                 .setContentText("...is currently tracking")
                 .setSmallIcon(R.drawable.n_train)
+                .addAction(R.drawable.ic_stop_tracking,"Stop Tracking", TrackingService.stopTrackingPendingIntent(this))
                 .setPriority(Notification.PRIORITY_MIN)
                 .build();
         startForeground(ID,not);
