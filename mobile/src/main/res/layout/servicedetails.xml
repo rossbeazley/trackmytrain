@@ -3,18 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#d0d0d0">
+    android:background="#f0f0f0"
+    android:id="@+id/servicedetails">
 
-    <!--<FrameLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content">-->
-        <!---->
-        <include layout="@layout/departure_query_view" />
-        <!---->
-    <!--</FrameLayout>-->
-    <!---->
-
-    <!--include layout="@layout/departure_query_view_compact" /-->
+    <include layout="@layout/departure_query_view" />
+    <include layout="@layout/departure_query_view_compact" />
 
     <ListView
         android:id="@+id/departurelist"

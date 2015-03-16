@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/departure_query_view_compact"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:showIn="@layout/servicedetails"
     android:elevation="3dp"
     android:background="#559B91"
+    android:visibility="gone"
+    android:padding="4dp"
     >
 
 
     <TextView
-        android:id="@+id/at_compat"
+        android:id="@+id/at_compact"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:selectAllOnFocus="true"
         android:hint="Select station from"
         android:layout_margin="4dp"
+        android:padding="8dp"
         android:textColor="#f0f0f0"
         android:textSize="12sp"
 
@@ -25,16 +29,17 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
+        android:background="#f0f0f0"
         />
 
     <TextView
-        android:id="@+id/to_compat"
+        android:id="@+id/to_compact"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:selectAllOnFocus="true"
         android:hint="Selection train destination"
         android:layout_margin="4dp"
+        android:padding="8dp"
         android:textColor="#f0f0f0"
         android:textSize="12sp"
         />

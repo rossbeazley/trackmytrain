@@ -21,7 +21,7 @@ import static org.junit.Assert.assertThat;
 public class RemembersDepartureQueryTest {
 
 
-    @Test @Ignore("WIP, WTF")
+    @Test @Ignore("WIP, WTF, plan to migrate other DepartureQueryTest into this test where we poke view directly")
     public void theScreenLoadsWithLastQueriedFromStation() {
         Testing activity = activity();
         activity.setContentView(R.layout.servicedetails);

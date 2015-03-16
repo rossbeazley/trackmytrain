@@ -42,6 +42,26 @@ public class DepartureQueryTest {
         assertThat(toText,is("Monifieth [MON]"));
     }
 
+    @Test
+    public void theScreenLoadsWithCompactViewWithLastQueriedFromStation() {
+
+        TestTrackMyTrainApp.instance.departures(Station.fromString("CRL"), TestDataBuilder.anyDirection());
+
+        TextView viewById = (TextView) activity().findViewById(R.id.at_compact);
+        String fromText = String.valueOf(viewById.getText());
+        assertThat(fromText,is("Chorley [CRL]"));
+    }
+
+    @Test
+    public void theScreenLoadsWithCompactViewWithLastQueriedToStation() {
+
+        TestTrackMyTrainApp.instance.departures(TestDataBuilder.anyStation(), Direction.to(Station.fromString("MON")));
+
+        TextView viewById = (TextView) activity().findViewById(R.id.to_compact);
+        String toText = String.valueOf(viewById.getText());
+        assertThat(toText,is("Monifieth [MON]"));
+    }
+
     private Departures activity() {
         ActivityController<Departures> actCtl = Robolectric.buildActivity(Departures.class);
         return actCtl.create()
