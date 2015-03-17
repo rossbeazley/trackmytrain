@@ -14,9 +14,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=" Track My Train"
+        android:text=" Find a train to track"
         android:textSize="24sp"
-        android:drawableLeft="@drawable/ic_tmt_logo"
+        android:drawableLeft="@drawable/ic_train"
         android:layout_margin="16dp"
         />
 
