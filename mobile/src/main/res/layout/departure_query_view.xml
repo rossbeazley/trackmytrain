@@ -38,7 +38,11 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@android:color/darker_gray"
-        />
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        >
+        <requestFocus />
+        </View>
 
     <AutoCompleteTextView
         android:id="@+id/at"
@@ -52,7 +56,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="4dp"
-
+        android:completionThreshold="2"
         />
 
     <AutoCompleteTextView
@@ -67,6 +71,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp"
+        android:completionThreshold="2"
 
         />
 

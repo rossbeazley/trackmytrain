@@ -98,14 +98,18 @@ class AndroidDeparturesQueryView implements DeparturesQueryView {
                 @Override
               public void run() {
                     final String stationName = departuresQueryViewModel.getDirection().station().toString();
-                    to.setText(stationName);
-                    to_compact.setText(stationName);
+                    blitToName(stationName);
                 }
             });
         }
 
 
         presentAt(departuresQueryViewModel);
+    }
+
+    private void blitToName(String stationName) {
+        to.setText(stationName);
+        to_compact.setText(stationName);
     }
 
     private void presentAt(final DeparturesQueryViewModel departuresQueryViewModel) {
@@ -129,9 +133,14 @@ class AndroidDeparturesQueryView implements DeparturesQueryView {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Station station = (Station) parent.getAdapter().getItem(position);
                 departuresQueryViewModel.setAt(station);
-                presentStationNames(departuresQueryViewModel);
+                blitAtName(station);
             }
         });
+    }
+
+    private void blitAtName(Station station) {
+        at.setText(station.toString());
+        at_compact.setText(station.toString());
     }
 
     private void presentToStationList(final DeparturesQueryViewModel departuresQueryViewModel) {
@@ -142,7 +151,7 @@ class AndroidDeparturesQueryView implements DeparturesQueryView {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Station station = (Station) parent.getAdapter().getItem(position);
                 departuresQueryViewModel.setDirection(Direction.to(station));
-                presentStationNames(departuresQueryViewModel);
+                blitToName(station.toString());
             }
         });
     }
