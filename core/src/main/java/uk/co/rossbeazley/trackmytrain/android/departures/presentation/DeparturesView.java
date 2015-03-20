@@ -6,5 +6,4 @@ import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 
 public interface DeparturesView {
     void present(List<TrainViewModel> trains);
-//void present(Station at, Direction direction);
 }
