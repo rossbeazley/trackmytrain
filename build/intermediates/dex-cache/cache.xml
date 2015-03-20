@@ -33,7 +33,7 @@
         jar="/home/rdlb/programing/android/trackmytrain/core/build/libs/core.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="94f1c79bdcd1dde795431ae1c421e4442959cc72">
+        sha1="4031e97d4a18befca25dc88d0c4116b1907dfec4">
         <dex dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/core-99ebd5d5f95f7d4ffed24ddc73a3d33976688506.jar" />
     </item>
     <item

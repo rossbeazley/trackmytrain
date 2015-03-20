@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#f0f0f0"
+    android:background="#559B91"
     android:id="@+id/servicedetails">
 
     <include layout="@layout/departure_query_view" />
@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="90"
-        android:background="#f0f0f0"
+        android:background="@android:color/transparent"
         android:listSelector="#33559B91"
         android:choiceMode="singleChoice"
         />
