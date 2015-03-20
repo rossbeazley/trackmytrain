@@ -48,9 +48,8 @@ public class DepartureRow extends LinearLayout {
     }
 
     static public DepartureRow createDepartureRow(ViewGroup parent) {
-        DepartureRow row;LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        row = recycleDepartureRow((DepartureRow) inflater.inflate(R.layout.departurerow, parent, false));
-        return row;
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        return (DepartureRow) inflater.inflate(R.layout.departurerow, parent, false);
     }
 
     @Override

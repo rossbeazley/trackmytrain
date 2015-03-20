@@ -1,6 +1,7 @@
 package uk.co.rossbeazley.trackmytrain.android.mobile.departures;
 
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
@@ -16,13 +17,15 @@ import uk.co.rossbeazley.trackmytrain.android.mobile.TrackMyTrainApp;
 
 class ListViewDeparturesView implements DeparturesView {
     private final ListView listView;
+    private final Button trackButton;
 
     public ListViewDeparturesView(FindsView findsView) {
-        this((ListView) findsView.findViewById(R.id.departurelist), (TextView) findsView.findViewById(R.id.selectedservice), (Button) findsView.findViewById(R.id.trackbutton), (Button) findsView.findViewById(R.id.getdepartures), (TextView) findsView.findViewById(R.id.at), (TextView) findsView.findViewById(R.id.to));
+        this((ListView) findsView.findViewById(R.id.departurelist), (TextView) findsView.findViewById(R.id.selectedservice), (Button) findsView.findViewById(R.id.trackbutton));
     }
 
-    public ListViewDeparturesView(ListView listView, final TextView selectedService, Button trackButton, Button getDepartures, final TextView from, final TextView to) {
+    public ListViewDeparturesView(ListView listView, final TextView selectedService, Button trackButton) {
         this.listView = listView;
+        this.trackButton = trackButton;
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -30,6 +33,7 @@ class ListViewDeparturesView implements DeparturesView {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 TrainViewModel train = (TrainViewModel) parent.getItemAtPosition(position);
                 selectedService.setText(train.id());
+                moveTrackButtonToView(view);
             }
         });
 
@@ -40,6 +44,15 @@ class ListViewDeparturesView implements DeparturesView {
             }
         });
 
+    }
+
+    private void moveTrackButtonToView(View view) {
+        ViewGroup oldParent = (ViewGroup) trackButton.getParent();
+        oldParent.removeView(trackButton);
+
+        ViewGroup newParent = (ViewGroup) view;
+        newParent.addView(trackButton);
+        trackButton.setVisibility(View.VISIBLE);
     }
 
     @Override

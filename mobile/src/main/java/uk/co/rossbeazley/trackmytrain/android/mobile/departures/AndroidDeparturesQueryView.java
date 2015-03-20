@@ -50,6 +50,10 @@ class AndroidDeparturesQueryView implements DeparturesQueryView {
             }
         });
 
+        showFullQueryBoxWhenCompactTouched();
+    }
+
+    private void showFullQueryBoxWhenCompactTouched() {
         departureQueryViewCompact.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {

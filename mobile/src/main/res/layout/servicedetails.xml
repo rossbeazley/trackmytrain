@@ -21,14 +21,16 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/selectedservice"
             android:layout_width="250dp"
             android:layout_height="50dp"
             android:layout_alignParentLeft="true"
-            android:text="choose a service..." />
+            android:text="choose a service..."
+            />
 
         <Button
             android:id="@+id/trackbutton"
@@ -36,7 +38,8 @@
             android:layout_height="50dp"
             android:layout_alignParentRight="true"
             android:layout_toRightOf="@id/selectedservice"
-            android:text="TRACK" />
+            android:text="TRACK"
+            android:visibility="gone"/>
 
         <!--include layout="@layout/tracking_screen" /-->
     </RelativeLayout>
