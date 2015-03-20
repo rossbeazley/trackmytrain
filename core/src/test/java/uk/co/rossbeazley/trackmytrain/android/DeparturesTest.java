@@ -4,10 +4,10 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
+import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesViewModel;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.DeparturesFromToRequest;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.RequestMapNetworkClient;
 
@@ -38,7 +38,7 @@ public class DeparturesTest {
 
         });
 
-        List<TrainViewModel> expectedList = TrainViewModel.list(Arrays.asList(train1,train2));
+        DeparturesViewModel expectedList = TrainViewModel.list(Arrays.asList(train1, train2));
 
         tmt = TestDataBuilder.TMTBuilder()
                 .with(networkClient)

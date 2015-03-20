@@ -7,11 +7,10 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.List;
-
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesView;
 import uk.co.rossbeazley.trackmytrain.android.R;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
+import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesViewModel;
 import uk.co.rossbeazley.trackmytrain.android.mobile.FindsView;
 import uk.co.rossbeazley.trackmytrain.android.mobile.TrackMyTrainApp;
 
@@ -56,7 +55,7 @@ class ListViewDeparturesView implements DeparturesView {
     }
 
     @Override
-    public void present(final List<TrainViewModel> trains) {
+    public void present(final DeparturesViewModel trains) {
         Runnable action = new Runnable() {
             @Override
             public void run() {

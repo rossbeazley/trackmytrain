@@ -3,6 +3,8 @@ package uk.co.rossbeazley.trackmytrain.android;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesViewModel;
+
 public class TrainViewModel {
 
     private final Train train;
@@ -15,8 +17,8 @@ public class TrainViewModel {
         train = new Train(id, estimatedTime, scheduledTime, platform);
     }
 
-    public static List<TrainViewModel> list(List<Train> expectedList) {
-        List<TrainViewModel> rtn = new ArrayList<>(expectedList.size());
+    public static DeparturesViewModel list(List<Train> expectedList) {
+        DeparturesViewModel rtn = new DeparturesViewModel();
         for(Train train : expectedList) {
             rtn.add(new TrainViewModel(train));
         }

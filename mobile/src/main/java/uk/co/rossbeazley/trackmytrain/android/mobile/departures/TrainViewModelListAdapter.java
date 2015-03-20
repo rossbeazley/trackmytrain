@@ -7,14 +7,15 @@ import android.widget.BaseAdapter;
 import java.util.List;
 
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
+import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesViewModel;
 
 import static uk.co.rossbeazley.trackmytrain.android.mobile.departures.DepartureRow.createDepartureRow;
 import static uk.co.rossbeazley.trackmytrain.android.mobile.departures.DepartureRow.recycleDepartureRow;
 
 class TrainViewModelListAdapter extends BaseAdapter {
-    private final List<TrainViewModel> trains;
+    private final DeparturesViewModel trains;
 
-    public TrainViewModelListAdapter(List<TrainViewModel> trains) {
+    public TrainViewModelListAdapter(DeparturesViewModel trains) {
         this.trains = trains;
     }
 

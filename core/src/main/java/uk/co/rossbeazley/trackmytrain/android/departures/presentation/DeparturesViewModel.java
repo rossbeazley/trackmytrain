@@ -1,5 +1,6 @@
 package uk.co.rossbeazley.trackmytrain.android.departures.presentation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
@@ -7,6 +8,10 @@ import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 public class DeparturesViewModel {
 
     final List<TrainViewModel> trains;
+
+    public DeparturesViewModel() {
+        this(new ArrayList<TrainViewModel>(0));
+    }
 
     public DeparturesViewModel(List<TrainViewModel> trains) {
         this.trains = trains;
@@ -18,5 +23,26 @@ public class DeparturesViewModel {
 
     public int size() {
         return trains.size();
+    }
+
+    public void add(TrainViewModel trainViewModel) {
+        trains.add(trainViewModel);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        DeparturesViewModel that = (DeparturesViewModel) o;
+
+        if (!trains.equals(that.trains)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return trains.hashCode();
     }
 }

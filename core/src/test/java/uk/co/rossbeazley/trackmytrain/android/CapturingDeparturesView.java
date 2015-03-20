@@ -1,18 +1,17 @@
 package uk.co.rossbeazley.trackmytrain.android;
 
-import java.util.List;
-
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesView;
+import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesViewModel;
 
 /**
 * Created by beazlr02 on 05/03/2015.
 */
 public class CapturingDeparturesView implements DeparturesView {
 
-    public List<TrainViewModel> trainList;
+    public DeparturesViewModel trainList;
 
     @Override
-    public void present(List<TrainViewModel> trains) {
+    public void present(DeparturesViewModel trains) {
         trainList = trains;
     }
 
