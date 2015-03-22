@@ -63,4 +63,8 @@ public class DeparturesTest {
         View trackingButton = listView.findViewWithTag("2");
         assertThat(trackingButton.getVisibility(),is(View.VISIBLE));
     }
+
+    /**
+     * introduce tests for list adapter directly. exercise from view with a view model?
+     */
 }

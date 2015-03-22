@@ -8,7 +8,7 @@
     tools:showIn="@layout/servicedetails"
     android:layout_margin="16dp"
     android:elevation="6dp"
-    android:background="#f0f0f0"
+    android:background="@color/white"
     >
 
     <TextView
@@ -29,7 +29,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="To track a train, choose the station your train leaves from and the station its heading to"
+        android:text="To track a train, choose BOTH the station your train leaves from AND the station its heading to"
         android:textSize="12sp"
         android:layout_margin="8dp"
         />
@@ -82,5 +82,7 @@
         android:text="find trains..."
         android:layout_weight="1"
         android:layout_margin="16dp"
+        android:background="@color/dark_green"
+        android:textColor="@color/white"
         />
 </LinearLayout>

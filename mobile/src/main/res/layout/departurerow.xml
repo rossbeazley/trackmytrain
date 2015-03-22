@@ -6,7 +6,7 @@
     android:layout_height="60dp"
     android:layout_marginTop="4dp"
     android:layout_marginBottom="4dp"
-    android:background="#f0f0f0"
+    android:background="@color/white"
     >
 
     <View
@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:id="@+id/ontimeindicator"
         android:visibility="visible"
-        android:background="@android:color/holo_green_dark"/>
+        android:background="@color/dark_green"/>
 
     <LinearLayout android:layout_width="100dp"
         android:layout_height="match_parent"
@@ -52,9 +52,14 @@
     <Button
         android:id="@+id/trackbutton"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="42dp"
         android:layout_alignParentRight="true"
-        android:text="TRACK"
-        android:visibility="gone"/>
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="8dp"
+        android:text="start\ntracking"
+        android:lines="2"
+        android:visibility="gone"
+        android:background="@color/dark_green"
+        android:textColor="@color/white"/>
 
 </uk.co.rossbeazley.trackmytrain.android.mobile.departures.DepartureRow>
