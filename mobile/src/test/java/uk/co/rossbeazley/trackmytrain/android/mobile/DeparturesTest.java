@@ -1,5 +1,6 @@
 package uk.co.rossbeazley.trackmytrain.android.mobile;
 
+import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -56,9 +57,10 @@ public class DeparturesTest {
     @Test @Ignore("More failing robolectric")
     public void selectsTrainIdFromList() {
         act.findViewById(R.id.getdepartures).performClick();
-        Robolectric.shadowOf((ListView)act.findViewById(R.id.departurelist)).performItemClick(1);
+        final ListView listView = (ListView) act.findViewById(R.id.departurelist);
+        Robolectric.shadowOf(listView).performItemClick(1);
 
-        String trainId = String.valueOf(((TextView)act.findViewById(R.id.selectedservice)).getText());
-        assertThat(trainId,is("2"));
+        View trackingButton = listView.findViewWithTag("2");
+        assertThat(trackingButton.getVisibility(),is(View.VISIBLE));
     }
 }

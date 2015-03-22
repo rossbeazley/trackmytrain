@@ -8,6 +8,7 @@ import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 public class DeparturesViewModel {
 
     final List<TrainViewModel> trains;
+    private TrainViewModel selectedTrain;
 
     public DeparturesViewModel() {
         this(new ArrayList<TrainViewModel>(0));
@@ -44,5 +45,13 @@ public class DeparturesViewModel {
     @Override
     public int hashCode() {
         return trains.hashCode();
+    }
+
+    public void select(TrainViewModel train) {
+        selectedTrain = train;
+    }
+
+    public TrainViewModel selectedService() {
+        return selectedTrain;
     }
 }

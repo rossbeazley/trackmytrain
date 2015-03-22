@@ -30,6 +30,7 @@ public class TrainViewModel {
     }
 
     public boolean equals(Object o) {
+        if (o==null) return false;
         TrainViewModel that = (TrainViewModel) o;
         return train.equals(((TrainViewModel) o).train);
     }

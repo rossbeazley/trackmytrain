@@ -17,6 +17,7 @@ import uk.co.rossbeazley.trackmytrain.android.mobile.TrackMyTrainApp;
 class ListViewDeparturesView implements DeparturesView {
     private final ListView listView;
     private final Button trackButton;
+    private DeparturesViewModel trains;
 
     public ListViewDeparturesView(FindsView findsView) {
         this((ListView) findsView.findViewById(R.id.departurelist), (TextView) findsView.findViewById(R.id.selectedservice), (Button) findsView.findViewById(R.id.trackbutton));
@@ -31,8 +32,8 @@ class ListViewDeparturesView implements DeparturesView {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 TrainViewModel train = (TrainViewModel) parent.getItemAtPosition(position);
-                selectedService.setText(train.id());
-                moveTrackButtonToView(view);
+                trains.select(train);
+                ((TrainViewModelListAdapter) parent.getAdapter()).notifyDataSetChanged();
             }
         });
 
@@ -56,6 +57,7 @@ class ListViewDeparturesView implements DeparturesView {
 
     @Override
     public void present(final DeparturesViewModel trains) {
+        this.trains = trains;
         Runnable action = new Runnable() {
             @Override
             public void run() {

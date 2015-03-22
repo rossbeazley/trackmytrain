@@ -15,7 +15,7 @@ public class Train {
     }
 
     public String toString() {
-        return scheduledTime + " : " + estimatedTime + " : platform " + platform + System.getProperty("line.separator");
+        return scheduledTime + " : " + estimatedTime + " : platform " + platform  + ":" + id + System.getProperty("line.separator");
     }
 
     @Override

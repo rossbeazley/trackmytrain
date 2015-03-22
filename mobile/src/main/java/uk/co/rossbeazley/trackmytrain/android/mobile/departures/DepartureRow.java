@@ -6,11 +6,14 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import uk.co.rossbeazley.trackmytrain.android.R;
+import uk.co.rossbeazley.trackmytrain.android.TrackMyTrain;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
+import uk.co.rossbeazley.trackmytrain.android.mobile.TrackMyTrainApp;
 
 @TargetApi(21)
 public class DepartureRow extends LinearLayout {
@@ -18,6 +21,7 @@ public class DepartureRow extends LinearLayout {
     private TextView scheduledTime;
     private TextView estimatedTime;
     private TextView platform;
+    private Button trackButton;
 
     public DepartureRow(Context context) {
         super(context);
@@ -44,6 +48,8 @@ public class DepartureRow extends LinearLayout {
         scheduledTime.setText("");
         estimatedTime.setText("");
         platform.setText("");
+        trackButton.setTag(null);
+        trackButton.setVisibility(GONE);
         return this;
     }
 
@@ -59,13 +65,24 @@ public class DepartureRow extends LinearLayout {
         scheduledTime = (TextView) findViewById(R.id.scheduledtime);
         estimatedTime = (TextView) findViewById(R.id.estimatedtime);
         platform = (TextView) findViewById(R.id.platform);
+        trackButton = (Button) findViewById(R.id.trackbutton);
+        trackButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TrackMyTrainApp.instance.watch(((String) v.getTag()));
+            }
+        });
     }
 
 
-    public DepartureRow bind(TrainViewModel trainViewModel) {
+    public DepartureRow bind(TrainViewModel trainViewModel, TrainViewModel selectedTrain) {
         scheduledTime.setText(trainViewModel.scheduledTime());
         estimatedTime.setText(trainViewModel.estimatedTime());
         platform.setText(trainViewModel.platform());
+        trackButton.setTag(trainViewModel.id());
+
+        int vis = trainViewModel.equals(selectedTrain) ? VISIBLE : GONE;
+        trackButton.setVisibility(vis);
         return this;
     }
 }

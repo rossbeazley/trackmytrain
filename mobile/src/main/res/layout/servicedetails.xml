@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#559B91"
-    android:id="@+id/servicedetails">
+    android:id="@+id/servicedetails"
+    >
 
     <include layout="@layout/departure_query_view" />
     <include layout="@layout/departure_query_view_compact" />
@@ -17,6 +18,7 @@
         android:background="@android:color/transparent"
         android:listSelector="#33559B91"
         android:choiceMode="singleChoice"
+        android:drawSelectorOnTop="true"
         />
 
     <RelativeLayout
