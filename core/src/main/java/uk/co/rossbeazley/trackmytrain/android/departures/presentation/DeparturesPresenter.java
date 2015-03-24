@@ -41,9 +41,7 @@ public class DeparturesPresenter {
     }
 
     public void departures(Station at, Direction direction) {
-        for (DeparturesView departuresView : departuresViews) {
-            departuresView.loading();
-        }
+        showLoading();
 
         Success success = new Success() {
             @Override
@@ -52,6 +50,12 @@ public class DeparturesPresenter {
             }
         };
         departureQueryCommand.invoke(at, direction, success);
+    }
+
+    void showLoading() {
+        for (DeparturesView departuresView : departuresViews) {
+            departuresView.loading();
+        }
     }
 
     public void attach(DeparturesQueryView departuresQueryView) {
