@@ -9,10 +9,18 @@ import uk.co.rossbeazley.trackmytrain.android.departures.presentation.Departures
 public class CapturingDeparturesView implements DeparturesView {
 
     public DeparturesViewModel trainList;
+    public boolean isLoading = false;
 
     @Override
     public void present(DeparturesViewModel trains) {
+        isLoading = false;
         trainList = trains;
+    }
+
+    @Override
+    public void loading() {
+        isLoading = true;
+        trainList = null;
     }
 
 }

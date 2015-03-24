@@ -19,6 +19,33 @@ public class DeparturesTest {
 
 
     @Test
+    public void theOneWhereWeRequestDetailsOfAServiceAndWeStartLoading() {
+
+        CapturingDeparturesView departuresView = new CapturingDeparturesView();
+
+        TrackMyTrain tmt;
+
+        final Station fromStation = TestDataBuilder.anyStation();
+        final Station toStation = TestDataBuilder.anyStation();
+        SlowRequestMapNetworkClient networkClient = new SlowRequestMapNetworkClient(new HashMap<NetworkClient.Request, String>() {{
+            put(new DeparturesFromToRequest(fromStation, toStation), TestDataBuilder.anyTrains());
+        }});
+
+        tmt = TestDataBuilder.TMTBuilder()
+                .with(networkClient)
+                .build();
+
+        tmt.attach(departuresView);
+
+        Station at = fromStation;
+        Direction direction = Direction.to(toStation);
+
+        tmt.departures(at, direction);
+
+        assertThat(departuresView.isLoading, is(true));
+    }
+
+    @Test
     public void theOneWhereWeRequestDetailsOfAServiceAndTheResultsAreDisplayed() {
 
         CapturingDeparturesView departuresView = new CapturingDeparturesView();
@@ -60,4 +87,27 @@ public class DeparturesTest {
         assertThat(req.asUrlString(),is(DeparturesFromToRequest.WS_URL_ROOT + "departures/MCO/to/SLD"));
     }
 
+    private class SlowRequestMapNetworkClient implements NetworkClient {
+
+        private final HashMap<Request, String> mapOfRequestToString;
+        private Request request;
+        private Response response;
+
+        public SlowRequestMapNetworkClient(HashMap<Request, String> hashMap) {
+            this.mapOfRequestToString = hashMap;
+        }
+
+        @Override
+        public void requestString(Request request, Response response) {
+            this.request = request;
+            this.response = response;
+
+        }
+
+        public void completeRequest() {
+            if(mapOfRequestToString.containsKey(request)) {
+                response.ok(mapOfRequestToString.get(request));
+            }
+        }
+    }
 }

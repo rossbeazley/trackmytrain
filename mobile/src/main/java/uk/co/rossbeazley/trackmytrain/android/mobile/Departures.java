@@ -15,15 +15,13 @@ public class Departures extends Activity implements FindsView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.servicedetails);
-
-        departuresScreen = new DeparturesScreen(this,(InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE));
-        //trackingScreen = new TrackingScreen(this);
+        final InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        departuresScreen = new DeparturesScreen(this, inputMethodManager);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //trackingScreen.invoke();
         departuresScreen.tearDown();
     }
 

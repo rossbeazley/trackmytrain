@@ -63,4 +63,11 @@ public class TestDataBuilder {
     public static Direction anyDirection() {
         return Direction.to(anyStation());
     }
+
+    public static String anyTrains() {
+        final Train train1, train2;
+        train1 = new Train("aN5S6pak5nKFawy0sXb65Q==", "On time", "21:39", "2");
+        train2 = new Train("EAG/q7qfInIUZyPhCdwQKw==", "On time", "22:38", "2");
+        return jsonForTrains(train1, train2);
+    }
 }

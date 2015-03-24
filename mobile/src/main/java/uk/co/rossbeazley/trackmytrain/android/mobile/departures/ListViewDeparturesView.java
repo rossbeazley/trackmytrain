@@ -48,4 +48,9 @@ class ListViewDeparturesView implements DeparturesView {
         TrackMyTrainApp.finishTrack(System.currentTimeMillis());
     }
 
+    @Override
+    public void loading() {
+
+    }
+
 }
