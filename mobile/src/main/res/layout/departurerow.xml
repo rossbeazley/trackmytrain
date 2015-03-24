@@ -6,7 +6,6 @@
     android:layout_height="60dp"
     android:layout_marginTop="4dp"
     android:layout_marginBottom="4dp"
-    android:background="@color/white"
     >
 
     <View
@@ -47,7 +46,6 @@
         android:gravity="center_vertical"
         tools:text="Platform 2"
         />
-
 
     <Button
         android:id="@+id/trackbutton"
