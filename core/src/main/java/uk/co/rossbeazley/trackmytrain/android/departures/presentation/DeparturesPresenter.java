@@ -41,6 +41,10 @@ public class DeparturesPresenter {
     }
 
     public void departures(Station at, Direction direction) {
+        for (DeparturesView departuresView : departuresViews) {
+            departuresView.loading();
+        }
+
         Success success = new Success() {
             @Override
             public void success(List<Train> expectedList) {
