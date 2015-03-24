@@ -82,11 +82,9 @@ class AndroidDeparturesQueryView implements DeparturesQueryView {
     void dispatchQuery() {
         Station at = departuresQueryViewModel.getAt();
         Direction direction = departuresQueryViewModel.getDirection();
-
-        TrackMyTrainApp.timer = System.currentTimeMillis();
         TrackMyTrainApp.instance.departures(at, direction);
-
     }
+
     @Override
     public void present(final DeparturesQueryViewModel departuresQueryViewModel) {
         this.departuresQueryViewModel = departuresQueryViewModel;
