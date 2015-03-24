@@ -17,7 +17,7 @@ public class StationRepository {
     }
 
     public void storeCurrentDirection(Direction currentDirection) {
-        if(currentDirection!=null) {
+        if (currentDirection != null && currentDirection.station() != null) {
             this.keyValuePersistence.put("direction", currentDirection.station().stationCode());
         }
     }
