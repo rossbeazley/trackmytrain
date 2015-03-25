@@ -17,6 +17,7 @@ public class TestTrackMyTrainApp extends TrackMyTrainApp {
 
     public static Train trackedService;
     public static KeyValuePersistence keyValuePersistence;
+    public static ProgrammableNetworkClient networkClient;
 
     public TestTrackMyTrainApp() {
         instance = getCore();
@@ -31,8 +32,9 @@ public class TestTrackMyTrainApp extends TrackMyTrainApp {
         }};
         final TrackMyTrain trackMyTrain;
 
+        networkClient = new ProgrammableNetworkClient();
         trackMyTrain = new TMTBuilder()
-                .with(new ProgrammableNetworkClient())
+                .with(networkClient)
                 .with(new StubbedNarrowScheduledExecutorService())
                 .with(keyValuePersistence)
                 .build();

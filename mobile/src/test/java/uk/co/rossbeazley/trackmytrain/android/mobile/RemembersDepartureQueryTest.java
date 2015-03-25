@@ -1,6 +1,5 @@
 package uk.co.rossbeazley.trackmytrain.android.mobile;
 
-import android.app.Activity;
 import android.widget.TextView;
 
 import org.junit.Ignore;
@@ -23,7 +22,7 @@ public class RemembersDepartureQueryTest {
 
     @Test @Ignore("WIP, WTF, plan to migrate other DepartureQueryTest into this test where we poke view directly")
     public void theScreenLoadsWithLastQueriedFromStation() {
-        Testing activity = activity();
+        ActivityToHouseTesting activity = ActivityToHouseTesting.create();
         activity.setContentView(R.layout.servicedetails);
 
         TextView viewById = (TextView) activity.findViewById(R.id.at);
@@ -32,20 +31,6 @@ public class RemembersDepartureQueryTest {
 
         String fromText = String.valueOf(viewById.getText());
         assertThat(fromText,is("BON"));
-    }
-
-
-    private Testing activity() {
-        ActivityController<Testing> actCtl = Robolectric.buildActivity(Testing.class);
-        return actCtl.create()
-                .start()
-                .resume()
-                .visible()
-                .get();
-    }
-
-    public static class Testing extends Activity {
-
     }
 
 }

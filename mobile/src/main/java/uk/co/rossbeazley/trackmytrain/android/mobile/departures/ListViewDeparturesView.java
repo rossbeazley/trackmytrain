@@ -13,14 +13,16 @@ import uk.co.rossbeazley.trackmytrain.android.mobile.TrackMyTrainApp;
 
 class ListViewDeparturesView implements DeparturesView {
     private final ListView listView;
+    private final View loading;
     private DeparturesViewModel trains;
 
     public ListViewDeparturesView(FindsView findsView) {
-        this((ListView) findsView.findViewById(R.id.departurelist));
+        this((ListView) findsView.findViewById(R.id.departurelist), findsView.findViewById(R.id.departurelist_loading));
     }
 
-    public ListViewDeparturesView(ListView listView) {
+    public ListViewDeparturesView(ListView listView, View loading) {
         this.listView = listView;
+        this.loading = loading;
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -47,7 +49,7 @@ class ListViewDeparturesView implements DeparturesView {
 
     @Override
     public void loading() {
-
+        loading.setVisibility(View.VISIBLE);
     }
 
 }
