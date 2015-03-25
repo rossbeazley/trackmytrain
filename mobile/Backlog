@@ -1,19 +1,13 @@
-Auto complete at/to fields
 Buzz only if train is late
-Stop tracking from notification
-
-Tracking button design
-Departures query panel design
-
 Stop tracking when train departed
 Buzz only if train "lateness" changes
-
 optional to field
 choose direction to/from
 
-------
+colour train row depending on "on time", "late", "very late"
+show loading spinner
+show failures
+show no results
 
 
-migrate network requests to use station code not toString
-
-make Station factory method flyweight using Stations object to lookup station-for-code
+Fix API so two query operations use same "train times"
