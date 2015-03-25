@@ -11,3 +11,5 @@ show no results
 
 
 Fix API so two query operations use same "train times"
+
+departure results to update when we start tracking so button says stop
