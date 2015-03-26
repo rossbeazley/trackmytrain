@@ -1,5 +1,7 @@
 package uk.co.rossbeazley.trackmytrain.android;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import uk.co.rossbeazley.time.NarrowScheduledExecutorService;
@@ -64,10 +66,19 @@ public class TestDataBuilder {
         return Direction.to(anyStation());
     }
 
-    public static String anyTrains() {
+    public static String anyTrainsJson() {
         final Train train1, train2;
         train1 = new Train("aN5S6pak5nKFawy0sXb65Q==", "On time", "21:39", "2");
         train2 = new Train("EAG/q7qfInIUZyPhCdwQKw==", "On time", "22:38", "2");
         return jsonForTrains(train1, train2);
     }
+
+    public static List<Train> anyTrains() {
+        final Train train1, train2;
+        train1 = new Train("aN5S6pak5nKFawy0sXb65Q==", "On time", "21:39", "2");
+        train2 = new Train("EAG/q7qfInIUZyPhCdwQKw==", "On time", "22:38", "2");
+        return Arrays.asList(train1,train2);
+    }
+
+
 }

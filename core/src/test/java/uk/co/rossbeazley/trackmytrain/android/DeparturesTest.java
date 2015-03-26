@@ -28,7 +28,7 @@ public class DeparturesTest {
         final Station fromStation = TestDataBuilder.anyStation();
         final Station toStation = TestDataBuilder.anyStation();
         SlowRequestMapNetworkClient networkClient = new SlowRequestMapNetworkClient(new HashMap<NetworkClient.Request, String>() {{
-            put(new DeparturesFromToRequest(fromStation, toStation), TestDataBuilder.anyTrains());
+            put(new DeparturesFromToRequest(fromStation, toStation), TestDataBuilder.anyTrainsJson());
         }});
 
         tmt = TestDataBuilder.TMTBuilder()

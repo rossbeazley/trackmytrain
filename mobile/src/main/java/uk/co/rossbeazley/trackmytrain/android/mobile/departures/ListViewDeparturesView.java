@@ -40,6 +40,8 @@ class ListViewDeparturesView implements DeparturesView {
         Runnable action = new Runnable() {
             @Override
             public void run() {
+                loading.setVisibility(View.GONE);
+                listView.setVisibility(View.VISIBLE);
                 listView.setAdapter(new TrainViewModelListAdapter(trains));
             }
         };
@@ -49,8 +51,14 @@ class ListViewDeparturesView implements DeparturesView {
 
     @Override
     public void loading() {
-        loading.setVisibility(View.VISIBLE);
-        listView.setVisibility(View.GONE);
+        loading.post(new Runnable() {
+            @Override
+            public void run() {
+                loading.setVisibility(View.VISIBLE);
+                listView.setVisibility(View.GONE);
+            }
+        });
+
     }
 
 }
