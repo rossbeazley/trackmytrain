@@ -74,4 +74,17 @@ public class RendersDepartureListTest {
         View spinner = activity.findViewById(R.id.departurelist_loading);
         assertThat(spinner.getVisibility(),is(View.GONE));
     }
+    @Test
+    public void showsTheList() {
+        ActivityToHouseTesting activity = activity();
+
+        ListViewDeparturesView resultsView = new ListViewDeparturesView(activity);
+
+        resultsView.loading();
+        final DeparturesViewModel list = TrainViewModel.list(TestDataBuilder.anyTrains());
+        resultsView.present(list);
+
+        View departureList = activity.findViewById(R.id.departurelist);
+        assertThat(departureList.getVisibility(),is(View.VISIBLE));
+    }
 }
