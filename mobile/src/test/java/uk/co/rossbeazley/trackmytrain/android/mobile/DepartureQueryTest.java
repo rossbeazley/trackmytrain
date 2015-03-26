@@ -2,6 +2,7 @@ package uk.co.rossbeazley.trackmytrain.android.mobile;
 
 import android.widget.TextView;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
@@ -21,6 +22,13 @@ import static org.junit.Assert.assertThat;
 @Config(manifest="src/main/AndroidManifest.xml", emulateSdk = 18)
 public class DepartureQueryTest {
 
+
+    @Before
+    public void failingSetup() {
+        try {
+            activity();
+        } catch(Exception e) {}
+    }
 
     @Test
     public void theScreenLoadsWithLastQueriedFromStation() {

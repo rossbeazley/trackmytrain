@@ -3,6 +3,7 @@ package uk.co.rossbeazley.trackmytrain.android.mobile.departures;
 import android.view.View;
 import android.widget.TextView;
 
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,6 +21,16 @@ import static org.junit.Assert.assertThat;
 @Config(manifest="src/main/AndroidManifest.xml", emulateSdk = 18)
 public class RendersDepartureListTest {
 
+    @Before
+    public void failingSetup() {
+        try {
+            ActivityToHouseTesting activity = ActivityToHouseTesting.create();
+        } catch (Exception e) {
+
+        }
+
+    }
+
     @Test
     public void showsTheLoadingSpinner() {
         ActivityToHouseTesting activity = ActivityToHouseTesting.create();
@@ -33,9 +44,17 @@ public class RendersDepartureListTest {
         assertThat(spinner.getVisibility(),is(View.VISIBLE));
     }
 
-    @Test @Ignore("WIP")
+    @Test
     public void hidesTheListWhenLoading() {
+        ActivityToHouseTesting activity = ActivityToHouseTesting.create();
+        activity.setContentView(R.layout.servicedetails);
 
+        ListViewDeparturesView resultsView = new ListViewDeparturesView(activity);
+
+        resultsView.loading();
+
+        View list = activity.findViewById(R.id.departurelist);
+        assertThat(list.getVisibility(),is(View.GONE));
     }
 
 }

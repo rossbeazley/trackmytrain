@@ -50,6 +50,7 @@ class ListViewDeparturesView implements DeparturesView {
     @Override
     public void loading() {
         loading.setVisibility(View.VISIBLE);
+        listView.setVisibility(View.GONE);
     }
 
 }
