@@ -10,6 +10,7 @@ public class CapturingDeparturesView implements DeparturesView {
 
     public DeparturesViewModel trainList;
     public boolean isLoading = false;
+    public String error;
 
     @Override
     public void present(DeparturesViewModel trains) {
@@ -21,6 +22,11 @@ public class CapturingDeparturesView implements DeparturesView {
     public void loading() {
         isLoading = true;
         trainList = null;
+    }
+
+    @Override
+    public void error(String error) {
+        this.error = error;
     }
 
 }

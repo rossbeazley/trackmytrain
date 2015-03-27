@@ -1,10 +1,12 @@
-package uk.co.rossbeazley.trackmytrain.android;
+package uk.co.rossbeazley.trackmytrain.android.trackedService;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import uk.co.rossbeazley.time.NarrowScheduledExecutorService;
+import uk.co.rossbeazley.trackmytrain.android.Train;
+import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
 

@@ -23,6 +23,11 @@ public class DeparturesResponse implements NetworkClient.Response {
         result.result(expectedList);
     }
 
+    @Override
+    public void error(String error) {
+
+    }
+
     private List<Train> parse(String response) {
         List<Train> trains = new ArrayList<Train>();
         try

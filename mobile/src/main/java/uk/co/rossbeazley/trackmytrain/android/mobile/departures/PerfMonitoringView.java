@@ -32,4 +32,9 @@ public class PerfMonitoringView implements DeparturesView {
     public void loading() {
         timer = System.currentTimeMillis();
     }
+
+    @Override
+    public void error(String error) {
+
+    }
 }

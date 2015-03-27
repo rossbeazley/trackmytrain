@@ -27,4 +27,9 @@ class ServiceResponse implements NetworkClient.Response {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void error(String error) {
+
+    }
 }

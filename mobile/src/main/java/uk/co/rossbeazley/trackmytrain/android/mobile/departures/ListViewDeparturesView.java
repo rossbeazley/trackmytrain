@@ -61,4 +61,9 @@ class ListViewDeparturesView implements DeparturesView {
 
     }
 
+    @Override
+    public void error(String error) {
+
+    }
+
 }
