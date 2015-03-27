@@ -4,52 +4,54 @@
     android:id="@+id/departure_query_view_compact"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    tools:showIn="@layout/servicedetails"
-    android:elevation="3dp"
     android:background="#f0f0f0"
-    android:visibility="gone"
+    android:elevation="3dp"
+    android:orientation="horizontal"
     android:padding="4dp"
-    >
+    android:visibility="gone"
+    tools:showIn="@layout/servicedetails">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:src="@drawable/ic_train"/>
+        android:src="@drawable/ic_train" />
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_weight="90">
+        android:layout_weight="90"
+        android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/at_compact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Select station from"
+            android:padding="4dp"
+            android:selectAllOnFocus="true"
+            android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/at_compact"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:selectAllOnFocus="true"
-        android:hint="Select station from"
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
 
-        android:padding="4dp"
-        android:textSize="18sp"
-        />
+        <TextView
+            android:id="@+id/to_compact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Selection train destination"
+            android:padding="4dp"
+            android:selectAllOnFocus="true"
+            android:textSize="18sp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
-        />
-
-    <TextView
-        android:id="@+id/to_compact"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:selectAllOnFocus="true"
-        android:hint="Selection train destination"
-
-        android:padding="4dp"
-        android:textSize="18sp"
-        />
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/departurelist_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        />
+
 </LinearLayout>
