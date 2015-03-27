@@ -3,9 +3,10 @@ Stop tracking when train departed
 Buzz only if train "lateness" changes
 optional to field
 choose direction to/from
+switch to/from
 
 colour train row depending on "on time", "late", "very late"
-show loading spinner
+
 show failures
 show no results
 
