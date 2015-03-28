@@ -10,4 +10,8 @@ public class TMTError {
     public String toString() {
         return error;
     }
+
+    public boolean equals(Object object) {
+        return object.toString().equals(toString());
+    }
 }

@@ -53,7 +53,7 @@ public class DeparturesPresenter {
             @Override
             public void error(TMTError tmtError) {
                 for (DeparturesView departuresView : departuresViews) {
-                    departuresView.error(tmtError.toString());
+                    departuresView.error(tmtError);
                 }
             }
         };

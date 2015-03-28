@@ -4,12 +4,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import uk.co.rossbeazley.trackmytrain.android.TMTError;
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesView;
 import uk.co.rossbeazley.trackmytrain.android.R;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesViewModel;
 import uk.co.rossbeazley.trackmytrain.android.mobile.FindsView;
-import uk.co.rossbeazley.trackmytrain.android.mobile.TrackMyTrainApp;
 
 class ListViewDeparturesView implements DeparturesView {
     private final ListView listView;
@@ -62,7 +62,7 @@ class ListViewDeparturesView implements DeparturesView {
     }
 
     @Override
-    public void error(String error) {
+    public void error(TMTError error) {
 
     }
 

@@ -4,6 +4,7 @@ import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
+import uk.co.rossbeazley.trackmytrain.android.TMTError;
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesView;
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesViewModel;
 import uk.co.rossbeazley.trackmytrain.android.mobile.TrackMyTrainApp;
@@ -34,7 +35,7 @@ public class PerfMonitoringView implements DeparturesView {
     }
 
     @Override
-    public void error(String error) {
+    public void error(TMTError error) {
 
     }
 }

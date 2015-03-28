@@ -10,7 +10,7 @@ public class CapturingDeparturesView implements DeparturesView {
 
     public DeparturesViewModel trainList;
     public boolean isLoading = false;
-    public String error;
+    public TMTError error;
 
     @Override
     public void present(DeparturesViewModel trains) {
@@ -25,7 +25,7 @@ public class CapturingDeparturesView implements DeparturesView {
     }
 
     @Override
-    public void error(String error) {
+    public void error(TMTError error) {
         this.error = error;
     }
 
