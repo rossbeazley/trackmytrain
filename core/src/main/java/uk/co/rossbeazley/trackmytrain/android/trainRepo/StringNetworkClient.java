@@ -6,13 +6,17 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import uk.co.rossbeazley.trackmytrain.android.NetworkClient;
 
 public class StringNetworkClient implements NetworkClient {
 
+    private final ExecutorService executor;
+
     public StringNetworkClient() {
-        //
+        this.executor = Executors.newSingleThreadExecutor();
     }
 
     @Override
@@ -35,10 +39,15 @@ public class StringNetworkClient implements NetworkClient {
                     while ((line = r.readLine()) != null) {
                         total.append(line);
                     }
+
+                    String urlresult = total.toString();
+                    response.ok(urlresult);
+
                 } catch (Throwable e) {
                     e.printStackTrace();
+                    response.error(e.getMessage());
                 } finally {
-
+//TODO try with resources
                     if (r != null) {
                         try {
                             r.close();
@@ -61,16 +70,10 @@ public class StringNetworkClient implements NetworkClient {
 
                 }
 
-                String urlresult = total.toString();
 
-                response.ok(urlresult);
             }
         };
 
-        post(runnable);
-    }
-
-    private void post(Runnable runnable) {
-        new Thread(runnable).start();
+        executor.submit(runnable);
     }
 }
