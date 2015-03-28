@@ -3,6 +3,7 @@ package uk.co.rossbeazley.trackmytrain.android.departures.presentation;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.co.rossbeazley.trackmytrain.android.TMTError;
 import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQuery;
 import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQueryCommand;
 import uk.co.rossbeazley.trackmytrain.android.Train;
@@ -48,6 +49,13 @@ public class DeparturesPresenter {
             public void success(List<Train> expectedList) {
                 departuresFound(expectedList);
             }
+
+            @Override
+            public void error(TMTError tmtError) {
+                for (DeparturesView departuresView : departuresViews) {
+                    departuresView.error(tmtError.toString());
+                }
+            }
         };
         departureQueryCommand.invoke(at, direction, success);
     }
@@ -71,5 +79,7 @@ public class DeparturesPresenter {
 
     public static interface Success {
         public abstract void success(List<Train> expectedList);
+
+        void error(TMTError tmtError);
     }
 }

@@ -3,6 +3,7 @@ package uk.co.rossbeazley.trackmytrain.android.trainRepo;
 import java.util.List;
 
 import uk.co.rossbeazley.trackmytrain.android.NetworkClient;
+import uk.co.rossbeazley.trackmytrain.android.TMTError;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
 import uk.co.rossbeazley.trackmytrain.android.Train;
@@ -31,6 +32,8 @@ public class TrainRepository {
 
     public static interface DeparturesSuccess {
         void result(List<Train> expectedList);
+
+        void error(TMTError tmtError);
     }
 
     public interface ServiceSuccess {

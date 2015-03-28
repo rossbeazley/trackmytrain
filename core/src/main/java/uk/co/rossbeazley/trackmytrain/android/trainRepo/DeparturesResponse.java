@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.rossbeazley.trackmytrain.android.NetworkClient;
+import uk.co.rossbeazley.trackmytrain.android.TMTError;
 import uk.co.rossbeazley.trackmytrain.android.Train;
 
 public class DeparturesResponse implements NetworkClient.Response {
@@ -25,7 +26,7 @@ public class DeparturesResponse implements NetworkClient.Response {
 
     @Override
     public void error(String error) {
-
+        result.error(new TMTError(error));
     }
 
     private List<Train> parse(String response) {

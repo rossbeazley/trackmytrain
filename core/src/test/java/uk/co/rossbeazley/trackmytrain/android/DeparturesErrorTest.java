@@ -19,8 +19,8 @@ public class DeparturesErrorTest {
 
 
 
-    @Test @Ignore("WIP")
-    public void theOneWhereWeRequestDetailsOfAServiceAndWeStartLoading() {
+    @Test
+    public void networkErrorWhenRequestingServiceDetails() {
 
         CapturingDeparturesView departuresView = new CapturingDeparturesView();
 
@@ -40,7 +40,6 @@ public class DeparturesErrorTest {
 
         Station at = fromStation;
         Direction direction = Direction.to(toStation);
-
         tmt.departures(at, direction);
 
         assertThat(departuresView.error, is("404"));

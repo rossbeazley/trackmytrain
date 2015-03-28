@@ -2,13 +2,11 @@ package uk.co.rossbeazley.trackmytrain.android.departures;
 
 import java.util.List;
 
+import uk.co.rossbeazley.trackmytrain.android.TMTError;
 import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesPresenter;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
 
-/**
- * Created by beazlr02 on 13/03/2015.
- */
 public class DepartureQueryCommand {
 
     private final TrainRepository trainRepository;
@@ -27,6 +25,11 @@ public class DepartureQueryCommand {
                 @Override
                 public void result(List<Train> expectedList) {
                     success.success(expectedList);
+                }
+
+                @Override
+                public void error(TMTError tmtError) {
+                    success.error(tmtError);
                 }
             });
         }
