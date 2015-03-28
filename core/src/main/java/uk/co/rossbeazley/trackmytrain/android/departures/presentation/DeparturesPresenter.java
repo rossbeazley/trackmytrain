@@ -17,12 +17,24 @@ public class DeparturesPresenter {
 
     private final ArrayList<DeparturesQueryView> departuresQueryViews;
     public DepartureQueryCommand departureQueryCommand;
+    private final Success trainRepoResultCallback;
 
     public DeparturesPresenter(DepartureQueryCommand queryCommand) {
 
         this.departuresViews = new ArrayList<>(2);
         this.departuresQueryViews = new ArrayList<>();
         departureQueryCommand = queryCommand;
+        trainRepoResultCallback = new Success() {
+            @Override
+            public void success(List<Train> expectedList) {
+                departuresFound(expectedList);
+            }
+
+            @Override
+            public void error(TMTError tmtError) {
+                departuresError(tmtError);
+            }
+        };
     }
 
     public void attach(DeparturesView departureView) {
@@ -43,21 +55,13 @@ public class DeparturesPresenter {
 
     public void departures(Station at, Direction direction) {
         showLoading();
+        departureQueryCommand.invoke(at, direction, trainRepoResultCallback);
+    }
 
-        Success success = new Success() {
-            @Override
-            public void success(List<Train> expectedList) {
-                departuresFound(expectedList);
-            }
-
-            @Override
-            public void error(TMTError tmtError) {
-                for (DeparturesView departuresView : departuresViews) {
-                    departuresView.error(tmtError);
-                }
-            }
-        };
-        departureQueryCommand.invoke(at, direction, success);
+    void departuresError(TMTError tmtError) {
+        for (DeparturesView departuresView : departuresViews) {
+            departuresView.error(tmtError);
+        }
     }
 
     void showLoading() {

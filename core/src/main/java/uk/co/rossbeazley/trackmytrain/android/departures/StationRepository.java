@@ -32,4 +32,10 @@ public class StationRepository {
             this.keyValuePersistence.put("at", currentAt.stationCode());
         }
     }
+
+    public DepartureQuery lastDepartureQuery() {
+        final Station currentAt = loadCurrentAt();
+        final Direction currentDirection = loadCurrentDirection();
+        return new DepartureQuery(currentAt, currentDirection);
+    }
 }

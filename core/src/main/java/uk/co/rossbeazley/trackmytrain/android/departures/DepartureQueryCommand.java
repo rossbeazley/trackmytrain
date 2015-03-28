@@ -36,7 +36,7 @@ public class DepartureQueryCommand {
     }
 
     public DepartureQuery lastQuery() {
-        return new DepartureQuery(stationRepository.loadCurrentAt(), stationRepository.loadCurrentDirection());
+        return stationRepository.lastDepartureQuery();
     }
 
 }
