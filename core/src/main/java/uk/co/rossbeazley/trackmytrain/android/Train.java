@@ -44,4 +44,8 @@ public class Train {
         result = 31 * result + (platform != null ? platform.hashCode() : 0);
         return result;
     }
+
+    public boolean isLate() {
+        return !estimatedTime.equals("On Time");
+    }
 }

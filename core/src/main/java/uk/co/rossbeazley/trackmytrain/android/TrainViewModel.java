@@ -54,4 +54,8 @@ public class TrainViewModel {
     public String id() {
         return train.id;
     }
+
+    public boolean isLate() {
+        return train.isLate();
+    }
 }
