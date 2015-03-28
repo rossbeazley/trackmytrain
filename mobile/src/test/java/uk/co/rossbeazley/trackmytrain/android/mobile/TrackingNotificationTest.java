@@ -25,7 +25,7 @@ import static org.junit.Assert.assertThat;
 import static org.robolectric.Robolectric.shadowOf;
 
 @RunWith(RobolectricTestRunner.class)
-@Config(manifest="src/main/AndroidManifest.xml", emulateSdk = 18)
+@Config(manifest="src/main/AndroidManifest.xml", reportSdk = 19, emulateSdk = 18)
 public class TrackingNotificationTest {
 
 

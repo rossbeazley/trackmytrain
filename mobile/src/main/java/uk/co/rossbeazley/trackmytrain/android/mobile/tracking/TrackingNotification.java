@@ -1,7 +1,9 @@
 package uk.co.rossbeazley.trackmytrain.android.mobile.tracking;
 
+import android.annotation.TargetApi;
 import android.app.Notification;
 import android.content.Context;
+import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 
@@ -22,23 +24,30 @@ public class TrackingNotification implements ServiceView {
 
     @Override
     public void present(TrainViewModel train) {
-        Notification not;
 
-        not = new Notification.Builder(service)
+        final Notification.Builder builder = new Notification.Builder(service)
                 .setContentTitle(train.platform())
                 .setContentText(train.scheduledTime() + " exp " + train.estimatedTime())
                 .setSmallIcon(R.drawable.n_train)
-                .setVibrate(new long[]{10, 50, 100, 50})
-              //.extend( replaceSmallIconWithLargeInlineIcon() )
-                .addAction(R.drawable.ic_stop_tracking,"Stop Tracking", TrackingService.stopTrackingPendingIntent(service))
-                .build();
+                .addAction(R.drawable.ic_stop_tracking, "Stop Tracking", TrackingService.stopTrackingPendingIntent(service))
+                .setOngoing(true)
+                ;
 
-        NotificationManagerCompat.from(service).notify(ID, not);
+        if(Build.VERSION.SDK_INT>Build.VERSION_CODES.KITKAT) {
+            builder.extend(replaceSmallIconWithLargeInlineIcon());
+        }
+
+        if(train.isLate()) {
+            builder.setVibrate(new long[]{87, 78, 87, 78, 87, 78, 87, 78});
+        }
+
+        NotificationManagerCompat.from(service).notify(ID, builder.build());
     }
 
-    private NotificationCompat.WearableExtender replaceSmallIconWithLargeInlineIcon() {
-        NotificationCompat.WearableExtender ext;
-        ext = new NotificationCompat.WearableExtender()
+    @TargetApi(20)
+    private Notification.WearableExtender replaceSmallIconWithLargeInlineIcon() {
+        Notification.WearableExtender ext;
+        ext = new Notification.WearableExtender()
                 .setContentIcon(R.mipmap.ic_launcher)
                 .setHintHideIcon(true);
         return ext;

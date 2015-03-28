@@ -46,6 +46,6 @@ public class Train {
     }
 
     public boolean isLate() {
-        return !estimatedTime.equals("On Time");
+        return !estimatedTime.equalsIgnoreCase("On Time");
     }
 }
