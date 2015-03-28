@@ -1,15 +1,19 @@
 Buzz only if train is late
-Stop tracking when train departed
 Buzz only if train "lateness" changes
-optional to field
-choose direction to/from
 switch to/from
+colour train row yellow if not on time
 
-colour train row depending on "on time", "late", "very late"
 
-show failures (log errors)
+
+colour train row if "very late"
+
+Stop tracking when train departed
+
+optional to field
+
+choose direction to/from
+
 show no results
-
 
 Fix API so two query operations use same "train times"
 
