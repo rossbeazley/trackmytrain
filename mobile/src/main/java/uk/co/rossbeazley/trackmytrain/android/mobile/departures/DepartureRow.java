@@ -2,6 +2,7 @@ package uk.co.rossbeazley.trackmytrain.android.mobile.departures;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.Resources;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,7 +51,14 @@ public class DepartureRow extends LinearLayout {
         platform.setText("");
         trackButton.setTag(null);
         trackButton.setVisibility(GONE);
+        final int color = loadColourInt(R.color.dark_green);
+        onTimeIndicator.setBackgroundColor(color);
         return this;
+    }
+
+    private int loadColourInt(int id) {
+        final Resources resources = onTimeIndicator.getContext().getResources();
+        return resources.getColor(id);
     }
 
     static public DepartureRow createDepartureRow(ViewGroup parent) {
@@ -80,7 +88,8 @@ public class DepartureRow extends LinearLayout {
         estimatedTime.setText(trainViewModel.estimatedTime());
         platform.setText(trainViewModel.platform());
         trackButton.setTag(trainViewModel.id());
-
+        final int color = loadColourInt(trainViewModel.isLate() ? R.color.dark_yellow : R.color.dark_green );
+        onTimeIndicator.setBackgroundColor(color);
         int vis = trainViewModel.equals(selectedTrain) ? VISIBLE : GONE;
         trackButton.setVisibility(vis);
         return this;
