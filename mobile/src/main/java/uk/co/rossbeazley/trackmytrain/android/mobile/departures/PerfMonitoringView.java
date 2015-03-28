@@ -36,6 +36,9 @@ public class PerfMonitoringView implements DeparturesView {
 
     @Override
     public void error(TMTError error) {
-
+        tracker.send(new HitBuilders.EventBuilder()
+                .setCategory("DeparturesQuery")
+                .setLabel("DeparturesQuery.error")
+                .build());
     }
 }
