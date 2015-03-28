@@ -7,7 +7,7 @@ switch to/from
 
 colour train row depending on "on time", "late", "very late"
 
-show failures
+show failures (log errors)
 show no results
 
 
