@@ -41,7 +41,7 @@ public class DepartureListErrorsTest {
         return activity;
     }
 
-    @Test @Ignore("wip")
+    @Test
     public void hidesTheLoadingSpinner() {
         ActivityToHouseTesting activity = activity();
 
@@ -55,7 +55,7 @@ public class DepartureListErrorsTest {
         assertThat(spinner.getVisibility(),is(View.GONE));
     }
 
-    @Test @Ignore("wip")
+    @Test
     public void toastsTheError() {
         ActivityToHouseTesting activity = activity();
 

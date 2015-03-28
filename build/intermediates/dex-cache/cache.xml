@@ -2,11 +2,11 @@
 <items version="2" >
 
     <item
-        jar="/Users/beazlr02/workspace/projects/home/trackmytrain/core/build/libs/core.jar"
+        jar="/home/rdlb/programing/android/trackmytrain/core/build/libs/core.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="ffbfec3c2534ad657a3d40d771d885f57db70033">
-        <dex dex="/Users/beazlr02/workspace/projects/home/trackmytrain/mobile/build/intermediates/pre-dexed/debug/core-97a1218a82a728217aa3238315699f4c14ee6cde.jar" />
+        sha1="09bbb30a83267a7d98725cccafa58ada8081c395">
+        <dex dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/core-99ebd5d5f95f7d4ffed24ddc73a3d33976688506.jar" />
     </item>
 
 </items>

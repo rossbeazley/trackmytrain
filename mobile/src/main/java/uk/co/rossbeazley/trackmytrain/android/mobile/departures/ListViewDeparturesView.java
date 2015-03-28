@@ -3,6 +3,7 @@ package uk.co.rossbeazley.trackmytrain.android.mobile.departures;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import uk.co.rossbeazley.trackmytrain.android.TMTError;
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesView;
@@ -62,7 +63,15 @@ class ListViewDeparturesView implements DeparturesView {
     }
 
     @Override
-    public void error(TMTError error) {
+    public void error(final TMTError error) {
+        loading.post(new Runnable() {
+            @Override
+            public void run() {
+                loading.setVisibility(View.GONE);
+                Toast.makeText(loading.getContext(),error.toString(),Toast.LENGTH_LONG).show();
+            }
+        });
+
 
     }
 
