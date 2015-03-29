@@ -30,7 +30,6 @@ public class TrackingNotification implements ServiceView {
                 .setContentText(train.scheduledTime() + " exp " + train.estimatedTime())
                 .setSmallIcon(R.drawable.n_train)
                 .addAction(R.drawable.ic_stop_tracking, "Stop Tracking", TrackingService.stopTrackingPendingIntent(service))
-                .setOngoing(true)
                 ;
 
         if(Build.VERSION.SDK_INT>Build.VERSION_CODES.KITKAT) {

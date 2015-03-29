@@ -32,6 +32,7 @@ public class Tracking {
     }
 
     void startTimer() {
+        cancelable.cancel();
         cancelable = executorService.scheduleAtFixedRate(new Runnable() {
             @Override
             public void run() {
@@ -46,9 +47,9 @@ public class Tracking {
     }
 
     void cancelTracking() {
+        this.trackedService = null;
         cancelable.cancel();
         cancelable = NarrowScheduledExecutorService.Cancelable.NULL;
-        this.trackedService = null;
     }
 
     void tick() {
