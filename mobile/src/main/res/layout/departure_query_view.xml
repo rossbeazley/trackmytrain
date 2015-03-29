@@ -23,7 +23,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
+        android:background="@color/darker_gray"
         />
 
     <TextView
@@ -37,7 +37,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
+        android:background="@color/darker_gray"
         android:focusable="true"
         android:focusableInTouchMode="true"
         >
@@ -72,8 +72,8 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp"
         android:completionThreshold="2"
-
         />
+
 
     <Button
         android:id="@+id/getdepartures"

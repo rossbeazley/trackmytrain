@@ -1,10 +1,11 @@
 Buzz only if train "lateness" changes
 switch to/from
 
-
+TrainViewModel to encode lateness colour
 Tracking rum
 Tracking error
 
+Re-implement rum stuff, pull "rum controller" within boundary. extract rum client interface
 
 colour train row if "very late"
 
@@ -19,3 +20,9 @@ show no results
 Fix API so two query operations use same "train times"
 
 departure results to update when we start tracking so button says stop
+
+query multiple stations
+
+view stopping points of a train
+
+search by three letter station code
