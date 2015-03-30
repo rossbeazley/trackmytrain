@@ -44,36 +44,49 @@
         <requestFocus />
         </View>
 
-    <AutoCompleteTextView
-        android:id="@+id/at"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:inputType="textCapCharacters"
-        android:selectAllOnFocus="true"
-        android:hint="Select station from"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="4dp"
-        android:completionThreshold="2"
-        />
+        android:layout_height="wrap_content">
 
-    <AutoCompleteTextView
-        android:id="@+id/to"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:inputType="textCapCharacters"
-        android:selectAllOnFocus="true"
-        android:hint="Selection train destination"
-        android:layout_marginTop="4dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="8dp"
-        android:completionThreshold="2"
-        />
+        <AutoCompleteTextView
+            android:id="@+id/at"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapCharacters"
+            android:selectAllOnFocus="true"
+            android:hint="Select station from"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="4dp"
+            android:completionThreshold="2"
+            android:layout_alignParentLeft="true"
+            />
 
+        <AutoCompleteTextView
+            android:id="@+id/to"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapCharacters"
+            android:selectAllOnFocus="true"
+            android:hint="Selection train destination"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="8dp"
+            android:completionThreshold="2"
+            android:layout_alignParentLeft="true"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/at"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/b_swap_stations"
+            />
+
+    </RelativeLayout>
 
     <Button
         android:id="@+id/getdepartures"
