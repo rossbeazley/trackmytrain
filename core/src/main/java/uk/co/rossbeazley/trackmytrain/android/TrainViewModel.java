@@ -1,6 +1,5 @@
 package uk.co.rossbeazley.trackmytrain.android;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesViewModel;

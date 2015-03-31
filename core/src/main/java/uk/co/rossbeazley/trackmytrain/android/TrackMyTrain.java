@@ -1,6 +1,7 @@
 package uk.co.rossbeazley.trackmytrain.android;
 
 import uk.co.rossbeazley.time.NarrowScheduledExecutorService;
+import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQuery;
 import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQueryCommand;
 import uk.co.rossbeazley.trackmytrain.android.departures.StationRepository;
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesPresenter;
@@ -30,6 +31,10 @@ public class TrackMyTrain {
 
     public void departures(Station at, Direction direction) {
         departures.departures(at, direction);
+    }
+
+    public void departures(DepartureQuery query) {
+        departures(query.at(), query.direction());
     }
 
     public void attach(DeparturesView departureView) {

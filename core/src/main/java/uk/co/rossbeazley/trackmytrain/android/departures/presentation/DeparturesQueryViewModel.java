@@ -24,7 +24,7 @@ public class DeparturesQueryViewModel {
     }
 
     public DeparturesQueryViewModel(DepartureQuery departureQuery) {
-        this(departureQuery.at(),departureQuery.direction());
+        this(departureQuery.at(), departureQuery.direction());
     }
 
 
@@ -46,5 +46,15 @@ public class DeparturesQueryViewModel {
 
     public void setDirection(Direction direction) {
         this.direction = direction;
+    }
+
+    public DepartureQuery departuresQuery() {
+        return new DepartureQuery(at, direction);
+    }
+
+    public void swapStations() {
+        Station oldat = at;
+        at = direction != null ? direction.station() : null;
+        direction = Direction.to(oldat);
     }
 }

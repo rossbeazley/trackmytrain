@@ -3,6 +3,7 @@ package uk.co.rossbeazley.trackmytrain.android;
 import org.junit.Before;
 import org.junit.Test;
 
+import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQuery;
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesQueryView;
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesQueryViewModel;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
@@ -77,13 +78,38 @@ public class RemembersDeparturesQuery {
         assertThat(departuresQueryView.at, is(expectedStation));
     }
 
+    @Test
+    public void generatesADepartureQueryFromTheViewModel() {
+        CapturingDeparturesQueryView departuresQueryView = new CapturingDeparturesQueryView();
+        tmt.attach(departuresQueryView);
+
+        DepartureQuery expectedQuery = new DepartureQuery(expectedStation,expectedDirection);
+        assertThat(departuresQueryView.departuresQueryViewModel.departuresQuery(), is(expectedQuery));
+    }
+
+    @Test
+    public void swapsStationsInQuery() {
+        CapturingDeparturesQueryView departuresQueryView = new CapturingDeparturesQueryView();
+        tmt.attach(departuresQueryView);
+
+        departuresQueryView.departuresQueryViewModel.swapStations();
+
+        Station swappedStation = expectedDirection.station();
+        Direction swappedDirection = Direction.to(expectedStation);
+
+        DepartureQuery expectedQuery = new DepartureQuery(swappedStation,swappedDirection);
+        assertThat(departuresQueryView.departuresQueryViewModel.departuresQuery(), is(expectedQuery));
+    }
+
 
     private static class CapturingDeparturesQueryView implements DeparturesQueryView {
         public Station at;
         public Direction direction;
+        public DeparturesQueryViewModel departuresQueryViewModel;
 
         @Override
         public void present(DeparturesQueryViewModel departuresQueryViewModel) {
+            this.departuresQueryViewModel = departuresQueryViewModel;
             this.at = departuresQueryViewModel.getAt();
             this.direction = departuresQueryViewModel.getDirection();
         }

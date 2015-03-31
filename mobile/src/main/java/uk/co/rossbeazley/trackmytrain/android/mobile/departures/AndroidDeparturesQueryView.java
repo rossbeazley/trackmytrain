@@ -45,17 +45,8 @@ class AndroidDeparturesQueryView implements DeparturesQueryView {
         swapStations.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Station at = departuresQueryViewModel.getAt();
-                Direction direction = departuresQueryViewModel.getDirection();
-                if (direction != null) {
-                    Station station = direction.station();
-                    departuresQueryViewModel.setAt(station);
-                } else {
-                    departuresQueryViewModel.setAt(null);
-                }
-                departuresQueryViewModel.setDirection(Direction.to(at));
+                departuresQueryViewModel.swapStations();
                 presentStationNames(departuresQueryViewModel);
-                swapStations.requestFocus();
             }
         });
 
@@ -98,9 +89,7 @@ class AndroidDeparturesQueryView implements DeparturesQueryView {
     }
 
     void dispatchQuery() {
-        Station at = departuresQueryViewModel.getAt();
-        Direction direction = departuresQueryViewModel.getDirection();
-        TrackMyTrainApp.instance.departures(at, direction);
+        TrackMyTrainApp.instance.departures(departuresQueryViewModel.departuresQuery());
     }
 
     @Override
