@@ -41,6 +41,24 @@ class AndroidDeparturesQueryView implements DeparturesQueryView {
 
         servicedetailsRoot = (ViewGroup) findsView.findViewById(R.id.servicedetails);
 
+        final View swapStations = findsView.findViewById(R.id.swapstations);
+        swapStations.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Station at = departuresQueryViewModel.getAt();
+                Direction direction = departuresQueryViewModel.getDirection();
+                if (direction != null) {
+                    Station station = direction.station();
+                    departuresQueryViewModel.setAt(station);
+                } else {
+                    departuresQueryViewModel.setAt(null);
+                }
+                departuresQueryViewModel.setDirection(Direction.to(at));
+                presentStationNames(departuresQueryViewModel);
+                swapStations.requestFocus();
+            }
+        });
+
         findsView.findViewById(R.id.getdepartures).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
