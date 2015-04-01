@@ -22,6 +22,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 import static org.robolectric.Robolectric.shadowOf;
 
 @RunWith(RobolectricTestRunner.class)
@@ -101,6 +102,11 @@ public class AndroidBackgroundServiceTest {
         trackingService.onStartCommand(intent,TrackingService.STOP_TRACKING_ID,0);
 
         assertThat(serviceView.STATE, is(CapturingServiceView.STATE_HIDDEN));
+    }
+
+    @Test
+    public void thisIsWhatToWorkOnNext() {
+        fail("refactor the tracking service so its a view onto the system rather than explicitly creating a tracking notification");
     }
 
     private static class CapturingServiceView implements ServiceView {

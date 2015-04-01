@@ -61,7 +61,6 @@ public class TrackingService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        //super.onStartCommand(intent, flags, startId);
         String action = intent.getAction();
         if (STOP_TRACKING_ACTION.equals(action)) {
             TrackMyTrainApp.instance.unwatch();
