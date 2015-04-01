@@ -70,7 +70,7 @@ public class Tracking {
     }
 
     void unpresentTrackedTrain() {
-        for (ServiceView serviceView : serviceViews) {
+        for (ServiceView serviceView : new ArrayList<ServiceView>(serviceViews)) {
             serviceView.hide();
         }
     }

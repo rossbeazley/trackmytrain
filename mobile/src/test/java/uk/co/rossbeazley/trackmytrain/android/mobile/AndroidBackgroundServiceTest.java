@@ -52,7 +52,9 @@ public class AndroidBackgroundServiceTest {
 
 
     @Test
-    public void startingServiceCreatesNotification() {
+    public void startingServiceCreatesNotificationIfWeAreTrackingATrain() {
+        TestTrackMyTrainApp.instance.watch("2");
+
         NotificationManager notificationManager = (NotificationManager) Robolectric.application.getSystemService(Context.NOTIFICATION_SERVICE);
 
         TrackingService trackingService = createTrackingService();
@@ -76,6 +78,8 @@ public class AndroidBackgroundServiceTest {
 
     @Test
     public void serviceStopsNotificationRemoved() {
+        TestTrackMyTrainApp.instance.watch("2");
+
         NotificationManager notificationManager = (NotificationManager) Robolectric.application.getSystemService(Context.NOTIFICATION_SERVICE);
 
         TrackingService trackingService = createTrackingService();
@@ -90,7 +94,7 @@ public class AndroidBackgroundServiceTest {
 
     @Test
     public void intentWithActionStopStopsTracking() {
-        NotificationManager notificationManager = (NotificationManager) Robolectric.application.getSystemService(Context.NOTIFICATION_SERVICE);
+        TestTrackMyTrainApp.instance.watch("2");
 
         TrackingService trackingService = createTrackingService();
 
@@ -102,11 +106,6 @@ public class AndroidBackgroundServiceTest {
         trackingService.onStartCommand(intent,TrackingService.STOP_TRACKING_ID,0);
 
         assertThat(serviceView.STATE, is(CapturingServiceView.STATE_HIDDEN));
-    }
-
-    @Test
-    public void thisIsWhatToWorkOnNext() {
-        fail("refactor the tracking service so its a view onto the system rather than explicitly creating a tracking notification");
     }
 
     private static class CapturingServiceView implements ServiceView {

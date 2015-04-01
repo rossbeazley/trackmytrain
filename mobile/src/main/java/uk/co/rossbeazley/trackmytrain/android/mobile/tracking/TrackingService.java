@@ -8,7 +8,9 @@ import android.content.Intent;
 import android.os.IBinder;
 
 import uk.co.rossbeazley.trackmytrain.android.R;
+import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.mobile.TrackMyTrainApp;
+import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
 
 public class TrackingService extends Service {
 
@@ -26,12 +28,7 @@ public class TrackingService extends Service {
         return intent;
     }
 
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
-    }
-
-    static public void startTrackingService(Context context) {
+    public static void startTrackingService(Context context) {
         Intent intent = new Intent(context, TrackingService.class);
         context.startService(intent);
     }
@@ -45,18 +42,31 @@ public class TrackingService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        Notification not;
 
-        not = new Notification.Builder(this)
-                .setContentTitle("Track My Train")
-                .setContentText("...is currently tracking")
-                .setSmallIcon(R.drawable.n_train)
-                .addAction(R.drawable.ic_stop_tracking,"Stop Tracking", TrackingService.stopTrackingPendingIntent(this))
-                .setPriority(Notification.PRIORITY_MIN)
-                .setOngoing(true)
-                .build();
-        startForeground(ID,not);
+        TrackMyTrainApp.instance.attach(new ServiceView() {
+            @Override
+            public void present(TrainViewModel train) {
+                Notification not;
 
+                not = new Notification.Builder(TrackingService.this)
+                        .setContentTitle("Track My Train")
+                        .setContentText("...is currently tracking")
+                        .setSmallIcon(R.drawable.n_train)
+                        .addAction(R.drawable.ic_stop_tracking,"Stop Tracking", TrackingService.stopTrackingPendingIntent(TrackingService.this))
+                        .setPriority(Notification.PRIORITY_MIN)
+                        .setOngoing(true)
+                        .build();
+
+                startForeground(ID,not);
+
+            }
+
+            @Override
+            public void hide() {
+                stopForeground(true);
+                TrackMyTrainApp.instance.detach(this);
+            }
+        });
     }
 
     @Override
@@ -69,8 +79,8 @@ public class TrackingService extends Service {
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        stopForeground(true);
+    public IBinder onBind(Intent intent) {
+        return null;
     }
+
 }
