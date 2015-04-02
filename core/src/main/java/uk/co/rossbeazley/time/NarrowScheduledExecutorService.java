@@ -11,7 +11,7 @@ public interface NarrowScheduledExecutorService {
             public void cancel() {
 
             }
-        };;
+        };
 
         void cancel();
     }

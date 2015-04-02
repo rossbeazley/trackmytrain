@@ -7,7 +7,6 @@ import java.util.concurrent.TimeUnit;
 import uk.co.rossbeazley.time.NarrowScheduledExecutorService;
 import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
-import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
 
 public class Tracking {
@@ -27,7 +26,7 @@ public class Tracking {
 
     public void watch(String serviceId) {
         this.trackedService = serviceId;
-        tick();
+        refreshTrackedService();
         startTimer();
     }
 
@@ -36,7 +35,7 @@ public class Tracking {
         cancelable = executorService.scheduleAtFixedRate(new Runnable() {
             @Override
             public void run() {
-                tick();
+                refreshTrackedService();
             }
         }, 30, TimeUnit.SECONDS);
     }
@@ -52,7 +51,7 @@ public class Tracking {
         cancelable = NarrowScheduledExecutorService.Cancelable.NULL;
     }
 
-    void tick() {
+    void refreshTrackedService() {
         if (this.trackedService != null) {
             this.trainRepository.service(this.trackedService, new TrainRepository.ServiceSuccess() {
                 @Override
@@ -77,7 +76,7 @@ public class Tracking {
 
     public void attach(ServiceView serviceView) {
         this.serviceViews.add(serviceView);
-        tick();
+        refreshTrackedService();
     }
 
     public void detach(ServiceView serviceView) {
