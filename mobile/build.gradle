@@ -8,8 +8,8 @@ android {
         applicationId "uk.co.rossbeazley.trackmytrain.android"
         minSdkVersion 19
         targetSdkVersion 21
-        versionCode 9
-        versionName "1.8"
+        versionCode 10
+        versionName "1.9"
     }
     buildTypes {
         release {
@@ -29,7 +29,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    wearApp project(':wear')
+    //wearApp project(':wear')
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile 'com.google.android.gms:play-services:6.5.87'
     compile project(':core')
