@@ -65,7 +65,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginRight="0dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginBottom="8dp"
             android:completionThreshold="2"
             android:layout_alignParentLeft="true"
             android:layout_weight="1"
@@ -75,10 +75,12 @@
             android:id="@+id/swapstations"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
             android:src="@drawable/ic_action_swap_vert_circle"
             android:layout_gravity="center_vertical"
-            />
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="0dp" />
 
     </LinearLayout>
         <AutoCompleteTextView
@@ -88,7 +90,7 @@
             android:inputType="textCapCharacters"
             android:selectAllOnFocus="true"
             android:hint="Selection train destination"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="0dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="8dp"
