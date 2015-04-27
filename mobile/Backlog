@@ -1,11 +1,12 @@
-Buzz only if train "lateness" changes
 switch to/from
-
-TrainViewModel to encode lateness colour
+Re-implement rum stuff, pull "rum controller" within boundary. extract rum client interface
 Tracking rum
 Tracking error
 
-Re-implement rum stuff, pull "rum controller" within boundary. extract rum client interface
+
+Buzz only if train "lateness" changes
+TrainViewModel to encode lateness colour
+
 
 colour train row if "very late"
 
