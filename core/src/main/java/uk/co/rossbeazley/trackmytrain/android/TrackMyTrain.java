@@ -13,7 +13,7 @@ import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
 import uk.co.rossbeazley.trackmytrain.android.trackedService.Tracking;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
 
-public class TrackMyTrain {
+public class TrackMyTrain implements CanTrackTrains {
 
     private final Tracking tracking;
     private DeparturesPresenter departures;
@@ -56,18 +56,22 @@ public class TrackMyTrain {
 
 
 
+    @Override
     public void watch(String serviceId) {
         tracking.watch(serviceId);
     }
 
+    @Override
     public void unwatch() {
         tracking.unwatch();
     }
 
+    @Override
     public void attach(ServiceView serviceView) {
         tracking.attach(serviceView);
     }
 
+    @Override
     public void detach(ServiceView serviceView) {
         tracking.detach(serviceView);
     }
