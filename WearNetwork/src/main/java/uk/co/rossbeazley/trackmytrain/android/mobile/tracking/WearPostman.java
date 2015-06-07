@@ -2,6 +2,7 @@ package uk.co.rossbeazley.trackmytrain.android.mobile.tracking;
 
 import android.util.Log;
 
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.NodeApi;
@@ -9,10 +10,10 @@ import com.google.android.gms.wearable.Wearable;
 
 import java.util.List;
 
-/**
- * Created by beazlr02 on 05/06/2015.
- */
-public class WearPostman {
+import static uk.co.rossbeazley.trackmytrain.android.mobile.tracking.WearNetwork.*;
+
+
+public class WearPostman implements Postman {
 
     private final WearNetwork network;
 
@@ -21,13 +22,14 @@ public class WearPostman {
     }
 
 
+    @Override
     public void broadcast(final String messagePathString) {
 
         Log.d("TMT-mobile", "-=-=-=-=-=-= sending =-=-=-=-=-=-");
         Log.d("TMT-mobile", messagePathString);
-        Runnable runnable = new Runnable() {
-            public void run() {
-                PendingResult<NodeApi.GetConnectedNodesResult> connectedNodes = Wearable.NodeApi.getConnectedNodes(network.gac);
+        WearNetworkTask runnable = new WearNetworkTask() {
+            public void run(GoogleApiClient gac) {
+                PendingResult<NodeApi.GetConnectedNodesResult> connectedNodes = Wearable.NodeApi.getConnectedNodes(gac);
                 NodeApi.GetConnectedNodesResult await = connectedNodes.await();
                 List<Node> nodes = await.getNodes();
 
@@ -40,10 +42,11 @@ public class WearPostman {
         network.execute(runnable);
     }
 
+    @Override
     public void post(final String nodeId, final String message) {
-        Runnable runnable = new Runnable() {
-            public void run() {
-                Wearable.MessageApi.sendMessage(network.gac, nodeId, message, new byte[0]);
+        WearNetworkTask runnable = new WearNetworkTask() {
+            public void run(GoogleApiClient gac) {
+                Wearable.MessageApi.sendMessage(gac, nodeId, message, new byte[0]);
             }
         };
         network.execute(runnable);

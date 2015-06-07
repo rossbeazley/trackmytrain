@@ -7,9 +7,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.PendingResult;
-import com.google.android.gms.wearable.Node;
-import com.google.android.gms.wearable.NodeApi;
 import com.google.android.gms.wearable.Wearable;
 
 import java.util.List;
@@ -20,34 +17,34 @@ import java.util.concurrent.Executors;
 /**
  * Created by beazlr02 on 05/06/2015.
  */
-public class WearNetwork {
+public class WearNetwork implements Network {
 
-    public void execute(Runnable runnable) {
+    public interface WearNetworkTask {
+        void run(GoogleApiClient gac);
+    }
+
+    public void execute(WearNetworkTask runnable) {
         state.execute(runnable);
     }
 
     interface ConnectionState {
         void informConnectedState(Connection connection);
 
-        void execute(Runnable runnable);
+        void execute(WearNetworkTask runnable);
     }
 
     private ConnectionState state;
 
 
-    public interface Connection {
-        void connected();
-
-        void disconnected();
-    }
-
     List<Connection> connectionListeners = new CopyOnWriteArrayList<>();
 
+    @Override
     public void register(Connection listener) {
         state.informConnectedState(listener);
         connectionListeners.add(listener);
     }
 
+    @Override
     public void deregister(Connection listener) {
         state.informConnectedState(listener);
         connectionListeners.remove(listener);
@@ -122,8 +119,13 @@ public class WearNetwork {
         }
 
         @Override
-        public void execute(Runnable runnable) {
-            executor.execute(runnable);
+        public void execute(final WearNetworkTask runnable) {
+            executor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    runnable.run(gac);
+                }
+            });
         }
     }
 
@@ -141,8 +143,8 @@ public class WearNetwork {
         }
 
         @Override
-        public void execute(Runnable runnable) {
-            //NO-OP
+        public void execute(WearNetworkTask runnable) {
+
         }
     }
 }
