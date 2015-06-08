@@ -22,7 +22,12 @@ public class WearPostman implements Postman {
     }
 
 
+
     @Override
+    public void broadcast(BroadcastMessage message) {
+        broadcast(message.messageAsString());
+    }
+
     public void broadcast(final String messagePathString) {
 
         Log.d("TMT-mobile", "-=-=-=-=-=-= sending =-=-=-=-=-=-");
@@ -42,7 +47,13 @@ public class WearPostman implements Postman {
         network.execute(runnable);
     }
 
+
+
     @Override
+    public void post(Message message) {
+        post(message.nodeIdAsString(), message.messageAsString());
+    }
+
     public void post(final String nodeId, final String message) {
         WearNetworkTask runnable = new WearNetworkTask() {
             public void run(GoogleApiClient gac) {
@@ -51,4 +62,6 @@ public class WearPostman implements Postman {
         };
         network.execute(runnable);
     }
+
+
 }
