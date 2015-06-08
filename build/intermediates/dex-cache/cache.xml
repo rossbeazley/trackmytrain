@@ -2,109 +2,11 @@
 <items version="2" >
 
     <item
-        jar="/Users/beazlr02/workspace/projects/home/trackmytrain/mobile/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/jars/classes.jar"
+        jar="/home/rdlb/programing/android/trackmytrain/core/build/libs/core.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="/Users/beazlr02/workspace/projects/home/trackmytrain/mobile/build/intermediates/pre-dexed/debug/classes-bd56f000cd8ebc5e03ca49e289743cbf89275d50.jar" />
-    </item>
-    <item
-        jar="/Users/beazlr02/workspace/adt-bundle-mac-x86_64/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="/Users/beazlr02/workspace/projects/home/trackmytrain/mobile/build/intermediates/pre-dexed/release/support-annotations-21.0.3-0cb9d7dca46e6569ceef10fd059c68b81a58c3b1.jar" />
-    </item>
-    <item
-        jar="/Users/beazlr02/workspace/projects/home/trackmytrain/wear/build/intermediates/exploded-aar/com.google.android.support/wearable/1.0.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="6804efbb78d7facc2e1aa107c7342bee83afae45">
-        <dex dex="/Users/beazlr02/workspace/projects/home/trackmytrain/wear/build/intermediates/pre-dexed/debug/classes-94d3e9097f4603692a3a73207ebde4ba87107ede.jar" />
-    </item>
-    <item
-        jar="/Users/beazlr02/workspace/projects/home/trackmytrain/mobile/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/jars/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="/Users/beazlr02/workspace/projects/home/trackmytrain/mobile/build/intermediates/pre-dexed/debug/classes-9f37ea39632cdc6cfe2df70d6f7aa6e4aba018ae.jar" />
-    </item>
-    <item
-        jar="/Users/beazlr02/workspace/projects/home/trackmytrain/wear/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="686344a780033e4ba22b926cd225f8d4941247e6">
-        <dex dex="/Users/beazlr02/workspace/projects/home/trackmytrain/wear/build/intermediates/pre-dexed/debug/classes-4cbca2d38a25a5f94f1349dbe430734811718a5b.jar" />
-    </item>
-    <item
-        jar="/Users/beazlr02/workspace/projects/home/trackmytrain/wear/build/intermediates/exploded-aar/com.android.support/support-v13/20.0.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="e128103d5281ddd26195a7f980b36d0d005a4e56">
-        <dex dex="/Users/beazlr02/workspace/projects/home/trackmytrain/wear/build/intermediates/pre-dexed/debug/classes-db077f3e0e3ef6e5de5e7017f24b9b9133bb8ee0.jar" />
-    </item>
-    <item
-        jar="/Users/beazlr02/workspace/projects/home/trackmytrain/wear/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.0/jars/libs/internal_impl-21.0.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="1609e6d42d0480b0f4188e2c29f75388fa12a8f0">
-        <dex dex="/Users/beazlr02/workspace/projects/home/trackmytrain/wear/build/intermediates/pre-dexed/debug/internal_impl-21.0.0-f6b5b6c73a171f468316c3a5f35ffc45abfdc60e.jar" />
-    </item>
-    <item
-        jar="/Users/beazlr02/workspace/projects/home/trackmytrain/mobile/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/jars/libs/internal_impl-21.0.3.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="/Users/beazlr02/workspace/projects/home/trackmytrain/mobile/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-80a6c8f182a16a3d1dbdd243443ee3df81edb21f.jar" />
-    </item>
-    <item
-        jar="/Users/beazlr02/workspace/adt-bundle-mac-x86_64/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.0/support-annotations-21.0.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="1a578b9607b36266c63d43a4fa0ab5664dbe911e">
-        <dex dex="/Users/beazlr02/workspace/projects/home/trackmytrain/wear/build/intermediates/pre-dexed/debug/support-annotations-21.0.0-a8bc1d2ece2dea4275a534435bc474c4762a673d.jar" />
-    </item>
-    <item
-        jar="/Users/beazlr02/workspace/projects/home/trackmytrain/core/build/libs/core.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="7589b7b80f215c8ea76d8a91769ca5ac9315b1af">
-        <dex dex="/Users/beazlr02/workspace/projects/home/trackmytrain/mobile/build/intermediates/pre-dexed/debug/core-97a1218a82a728217aa3238315699f4c14ee6cde.jar" />
-    </item>
-    <item
-        jar="/Users/beazlr02/workspace/projects/home/trackmytrain/wear/build/intermediates/exploded-aar/com.android.support/support-v13/20.0.0/jars/libs/internal_impl-20.0.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="27bbd3982cdfe4468a9bf99c8c773734a9049e33">
-        <dex dex="/Users/beazlr02/workspace/projects/home/trackmytrain/wear/build/intermediates/pre-dexed/debug/internal_impl-20.0.0-a614b28006d308e616186eaa672c5c31d281f75a.jar" />
-    </item>
-    <item
-        jar="/Users/beazlr02/workspace/projects/home/trackmytrain/wear/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/6.5.87/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="6384c6cd674a22610b932d9464aa6938d067f285">
-        <dex dex="/Users/beazlr02/workspace/projects/home/trackmytrain/wear/build/intermediates/pre-dexed/debug/classes-39239f9ac0872362dd64b6401760b2ee7b9712a2.jar" />
-    </item>
-    <item
-        jar="/Users/beazlr02/workspace/projects/home/trackmytrain/wear/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/6.5.87/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="95482e7c792a7c0d5a9d5461e97726bd54fe9549">
-        <dex dex="/Users/beazlr02/workspace/projects/home/trackmytrain/wear/build/intermediates/pre-dexed/debug/classes-6757f1856bdd65fe2ac280bfb12d31991b087369.jar" />
-    </item>
-    <item
-        jar="/Users/beazlr02/workspace/adt-bundle-mac-x86_64/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.0/support-annotations-21.0.0.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="1a578b9607b36266c63d43a4fa0ab5664dbe911e">
-        <dex dex="/Users/beazlr02/workspace/projects/home/trackmytrain/wear/build/intermediates/pre-dexed/debug/support-annotations-21.0.0-a8bc1d2ece2dea4275a534435bc474c4762a673d.jar" />
-    </item>
-    <item
-        jar="/Users/beazlr02/workspace/projects/home/trackmytrain/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/jars/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="dd9247ea0fabe8ee479638c4b4a23e93752be256">
-        <dex dex="/Users/beazlr02/workspace/projects/home/trackmytrain/mobile/build/intermediates/pre-dexed/debug/classes-cc9588a4889a5ab14ad77e0a4f61b4cb7417f7f0.jar" />
+        sha1="6ffe77af05196bdcb88752ee943a20847a1226e3">
+        <dex dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/core-99ebd5d5f95f7d4ffed24ddc73a3d33976688506.jar" />
     </item>
 
 </items>

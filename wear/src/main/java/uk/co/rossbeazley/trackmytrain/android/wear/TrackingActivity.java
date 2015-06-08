@@ -6,8 +6,12 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.wearable.DataApi;
+import com.google.android.gms.wearable.NodeApi;
 import com.google.android.gms.wearable.Wearable;
+
+import java.util.concurrent.Callable;
 
 import uk.co.rossbeazley.trackmytrain.android.R;
 
@@ -50,7 +54,18 @@ public class TrackingActivity extends Activity implements GoogleApiClient.Connec
 
     @Override
     public void onConnected(Bundle bundle) {
+        localNodeId();
         Wearable.DataApi.addListener(mGoogleApiClient, trackedServicePresenter);
+    }
+
+    void localNodeId() {
+        Wearable.NodeApi.getLocalNode(mGoogleApiClient)
+                .setResultCallback(new ResultCallback<NodeApi.GetLocalNodeResult>() {
+                    @Override
+                    public void onResult(NodeApi.GetLocalNodeResult getLocalNodeResult) {
+                        String nodeId = getLocalNodeResult.getNode().getId();
+                    }
+                });
     }
 
     @Override
