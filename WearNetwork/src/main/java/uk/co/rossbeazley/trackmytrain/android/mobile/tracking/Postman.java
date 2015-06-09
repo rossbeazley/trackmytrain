@@ -17,6 +17,7 @@ public interface Postman {
         public String messageAsString() {
             return messagePath;
         }
+
     }
 
     class Message {
@@ -36,6 +37,7 @@ public interface Postman {
         public String messageAsString() {
             return messagePath;
         }
+
     }
 
     class NodeId {

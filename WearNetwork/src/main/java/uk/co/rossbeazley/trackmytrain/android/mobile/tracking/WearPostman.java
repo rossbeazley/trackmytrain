@@ -28,7 +28,7 @@ public class WearPostman implements Postman {
         broadcast(message.messageAsString());
     }
 
-    public void broadcast(final String messagePathString) {
+    private void broadcast(final String messagePathString) {
 
         Log.d("TMT-mobile", "-=-=-=-=-=-= sending =-=-=-=-=-=-");
         Log.d("TMT-mobile", messagePathString);
@@ -54,7 +54,7 @@ public class WearPostman implements Postman {
         post(message.nodeIdAsString(), message.messageAsString());
     }
 
-    public void post(final String nodeId, final String message) {
+    private void post(final String nodeId, final String message) {
         WearNetworkTask runnable = new WearNetworkTask() {
             public void run(GoogleApiClient gac) {
                 Wearable.MessageApi.sendMessage(gac, nodeId, message, new byte[0]);
