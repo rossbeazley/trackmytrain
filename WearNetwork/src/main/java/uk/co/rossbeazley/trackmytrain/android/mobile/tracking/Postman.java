@@ -10,7 +10,7 @@ public interface Postman {
 
         private final String messagePath;
 
-        public BroadcastMessage(String messagePath) {
+        protected BroadcastMessage(String messagePath) {
             this.messagePath = messagePath;
         }
 
@@ -25,7 +25,7 @@ public interface Postman {
         private final WearPostman.NodeId id;
         private final String messagePath;
 
-        public Message(WearPostman.NodeId id, String messagePath) {
+        protected Message(WearPostman.NodeId id, String messagePath) {
             this.id = id;
             this.messagePath = messagePath;
         }

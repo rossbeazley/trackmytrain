@@ -1,7 +1,5 @@
 package uk.co.rossbeazley.trackmytrain.android.mobile.tracking;
 
-import android.content.Context;
-
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
 
@@ -11,22 +9,23 @@ import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
 public class WearableTrackingNavigationController implements ServiceView {
 
 
-    private final WearNetwork wearableNetwork;
-    public final WearPostman wearPostman;
+    private final Postman postman;
 
-    public WearableTrackingNavigationController(Context context) {
-        wearableNetwork = new WearNetwork(context);
-        wearPostman = new WearPostman(wearableNetwork);
+    public WearableTrackingNavigationController(Postman postman) {
+
+        this.postman = postman;
     }
 
     @Override
     public void present(TrainViewModel train) {
-        wearPostman.broadcast("/tracking/start");
+
+        postman.broadcast(TrackingStartedBroadcastMessage.createTrackingStartedBroadcastMessage());
+        //wearPostman.broadcast("/tracking/start");
     }
 
     @Override
     public void hide() {
-        wearPostman.broadcast("/tracking/stop");
+        //wearPostman.broadcast("/tracking/stop");
     }
 
 
