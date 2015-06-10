@@ -2,7 +2,7 @@ package uk.co.rossbeazley.trackmytrain.android.mobile.tracking;
 
 import java.util.ArrayList;
 
-public class PostOffice implements Postman {
+class PostOffice implements Postman {
     private final Postman postman;
     private final Network network;
     private boolean connected;

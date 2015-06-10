@@ -13,7 +13,7 @@ import java.util.List;
 import static uk.co.rossbeazley.trackmytrain.android.mobile.tracking.WearNetwork.*;
 
 
-public class WearPostman implements Postman {
+class WearPostman implements Postman {
 
     private final WearNetwork network;
 

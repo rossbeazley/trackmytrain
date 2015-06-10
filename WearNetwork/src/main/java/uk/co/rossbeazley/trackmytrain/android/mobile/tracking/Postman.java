@@ -1,5 +1,7 @@
 package uk.co.rossbeazley.trackmytrain.android.mobile.tracking;
 
+import android.content.Context;
+
 public interface Postman {
 
     void post(Message message);
@@ -50,6 +52,16 @@ public interface Postman {
         @Override
         public String toString() {
             return id;
+        }
+    }
+
+
+    class Builder {
+
+        static public Postman build(Context context) {
+            WearNetwork network = new WearNetwork(context);
+            WearPostman postman = new WearPostman(network);
+            return new PostOffice(postman,network);
         }
     }
 }

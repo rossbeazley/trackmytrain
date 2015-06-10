@@ -14,10 +14,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-/**
- * Created by beazlr02 on 05/06/2015.
- */
-public class WearNetwork implements Network {
+class WearNetwork implements Network {
 
     public interface WearNetworkTask {
         void run(GoogleApiClient gac);
