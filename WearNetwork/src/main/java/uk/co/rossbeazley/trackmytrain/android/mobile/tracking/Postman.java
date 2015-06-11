@@ -2,6 +2,8 @@ package uk.co.rossbeazley.trackmytrain.android.mobile.tracking;
 
 import android.content.Context;
 
+import java.util.Objects;
+
 public interface Postman {
 
     void post(Message message);
@@ -27,7 +29,7 @@ public interface Postman {
         private final WearPostman.NodeId id;
         private final String messagePath;
 
-        protected Message(WearPostman.NodeId id, String messagePath) {
+        public Message(NodeId id, String messagePath) {
             this.id = id;
             this.messagePath = messagePath;
         }
@@ -40,6 +42,20 @@ public interface Postman {
             return messagePath;
         }
 
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Message message = (Message) o;
+            return Objects.equals(id, message.id) &&
+                    Objects.equals(messagePath, message.messagePath);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(id, messagePath);
+        }
     }
 
     class NodeId {
