@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/WearNetwork/WearNetwork.iml" filepath="$PROJECT_DIR$/WearNetwork/WearNetwork.iml" />
-      <module fileurl="file://$PROJECT_DIR$/WearNetwork/WearNetwork.iml" filepath="$PROJECT_DIR$/WearNetwork/WearNetwork.iml" />
       <module fileurl="file://$PROJECT_DIR$/core/core.iml" filepath="$PROJECT_DIR$/core/core.iml" />
       <module fileurl="file://$PROJECT_DIR$/mobile/mobile.iml" filepath="$PROJECT_DIR$/mobile/mobile.iml" />
       <module fileurl="file://$PROJECT_DIR$/trackmytrain.iml" filepath="$PROJECT_DIR$/trackmytrain.iml" />

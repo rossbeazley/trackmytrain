@@ -20,8 +20,8 @@ public class A_TrackedServiceProxy {
         final Postman.NodeId anyNodeId = new Postman.NodeId("anyNodeId");
         HostNode hostNode = new HostNode(){
             @Override
-            public Postman.NodeId id() {
-                return anyNodeId;
+            public void id(Result result) {
+                result.id(anyNodeId);
             }
         };
 
@@ -70,8 +70,13 @@ public class A_TrackedServiceProxy {
 
         @Override
         public void attach(ServiceView serviceView) {
-            Postman.NodeId anyNodeId=hostNode.id();
-            postman.post(WatchServiceMessage.createWatchServiceMessage(anyNodeId));
+            hostNode.id(new HostNode.Result() {
+                @Override
+                public void id(Postman.NodeId id) {
+                    postman.post(WatchServiceMessage.createWatchServiceMessage(id));
+                }
+            });
+
         }
 
         @Override
@@ -88,6 +93,10 @@ public class A_TrackedServiceProxy {
     }
 
     interface HostNode {
-        Postman.NodeId id();
+        void id(Result result);
+
+        interface Result {
+            void id(Postman.NodeId id);
+        }
     }
 }
