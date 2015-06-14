@@ -92,11 +92,4 @@ public class A_TrackedServiceProxy {
         }
     }
 
-    interface HostNode {
-        void id(Result result);
-
-        interface Result {
-            void id(Postman.NodeId id);
-        }
-    }
 }
