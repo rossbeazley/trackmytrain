@@ -6,6 +6,7 @@ import uk.co.rossbeazley.trackmytrain.android.CanTrackTrains;
 import uk.co.rossbeazley.trackmytrain.android.ServiceTest;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
+import uk.co.rossbeazley.trackmytrain.android.wearnetwork.HostNode;
 
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
