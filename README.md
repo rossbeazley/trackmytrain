@@ -19,3 +19,7 @@ Wearable can send a detach service tracking ui message.
 
 Mobile can send serialised train view models
 
+Mobile can send a tracking started broadcast.
+Wearable will show UI in response to tracking started.
+Wearable will hide UI in response to tracking finished.
+
