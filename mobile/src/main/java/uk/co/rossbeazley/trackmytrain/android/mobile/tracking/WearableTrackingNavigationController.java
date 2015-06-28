@@ -19,7 +19,9 @@ public class WearableTrackingNavigationController implements ServiceView {
     @Override
     public void present(TrainViewModel train) {
 
-        postman.broadcast(TrackingStartedBroadcastMessage.createTrackingStartedBroadcastMessage());
+        final Postman.BroadcastMessage trackingStartedBroadcastMessage;
+        trackingStartedBroadcastMessage = TrackingStartedBroadcastMessage.createTrackingStartedBroadcastMessage();
+        postman.broadcast(trackingStartedBroadcastMessage);
         //wearPostman.broadcast("/tracking/start");
     }
 

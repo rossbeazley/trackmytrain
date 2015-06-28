@@ -11,6 +11,7 @@ import com.google.android.gms.wearable.WearableListenerService;
  */
 public class StartsActivity extends WearableListenerService {
 
+
     @Override
     public void onMessageReceived(MessageEvent messageEvent) {
         // do my stuff

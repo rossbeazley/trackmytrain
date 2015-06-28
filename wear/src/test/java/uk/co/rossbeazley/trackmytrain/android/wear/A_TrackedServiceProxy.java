@@ -2,7 +2,6 @@ package uk.co.rossbeazley.trackmytrain.android.wear;
 
 import org.junit.Test;
 
-import uk.co.rossbeazley.trackmytrain.android.CanTrackTrains;
 import uk.co.rossbeazley.trackmytrain.android.ServiceTest;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
@@ -23,6 +22,11 @@ public class A_TrackedServiceProxy {
             @Override
             public void id(Result result) {
                 result.id(anyNodeId);
+            }
+
+            @Override
+            public void register(Postman.NodeId nodeId) {
+
             }
         };
 
@@ -46,50 +50,6 @@ public class A_TrackedServiceProxy {
         @Override
         public void broadcast(BroadcastMessage message) {
 
-        }
-    }
-
-    private class TrackedServiceProxy implements CanTrackTrains{
-        private final Postman postman;
-        private final HostNode hostNode;
-
-        public TrackedServiceProxy(Postman postman, HostNode hostNode) {
-
-            this.postman = postman;
-            this.hostNode = hostNode;
-        }
-
-        @Override
-        public void watch(String serviceId) {
-
-        }
-
-        @Override
-        public void unwatch() {
-
-        }
-
-        @Override
-        public void attach(ServiceView serviceView) {
-            hostNode.id(new HostNode.Result() {
-                @Override
-                public void id(Postman.NodeId id) {
-                    postman.post(WatchServiceMessage.createWatchServiceMessage(id));
-                }
-            });
-
-        }
-
-        @Override
-        public void detach(ServiceView serviceView) {
-
-        }
-    }
-
-    private static class WatchServiceMessage {
-
-        public static Postman.Message createWatchServiceMessage(Postman.NodeId nodeId) {
-            return new Postman.Message(nodeId,"");
         }
     }
 
