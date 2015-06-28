@@ -3,7 +3,8 @@ package uk.co.rossbeazley.trackmytrain.android.wear;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 
 class HostNode {
-    private Postman.NodeId registeredId = null;
+    private
+    Postman.NodeId registeredId = null;
 
     public void id(Result result) {
         if(registeredId==null) throw new RuntimeException("NO HOST REGISTERED");

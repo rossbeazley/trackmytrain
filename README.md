@@ -40,6 +40,8 @@ wear activity is always on
 
 
 
+
+
 Second deliverable:
 activity will deregister observer when closed
 activity will auto start when tracking starts

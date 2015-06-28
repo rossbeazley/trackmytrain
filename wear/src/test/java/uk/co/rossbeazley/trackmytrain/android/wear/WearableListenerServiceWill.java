@@ -45,8 +45,8 @@ public class WearableListenerServiceWill {
         @Override
         public void onMessageReceived(MessageEvent messageEvent) {
 
-            Postman.Message message = new PostmanMessageFactory().toMessage(messageEvent);
-            new WearApp(null).message(message);
+            //Postman.Message message = new PostmanMessageFactory().toMessage(messageEvent);
+            //new WearApp(null).message(message);
 
         }
     }
@@ -69,22 +69,5 @@ public class WearableListenerServiceWill {
         }
     }
 
-    private class PostmanMessageFactory {
-        public Postman.Message toMessage(MessageEvent messageEvent) {
-            return null;
-        }
-    }
 
-    private class IAmBaseMessage extends Postman.BroadcastMessage {
-        private final Postman.NodeId hostNodeId;
-
-        public IAmBaseMessage(Postman.NodeId hostNodeId) {
-            super("/I/AM/BASE");
-            this.hostNodeId = hostNodeId;
-        }
-
-        public Postman.NodeId hostNodeId() {
-            return hostNodeId;
-        }
-    }
 }

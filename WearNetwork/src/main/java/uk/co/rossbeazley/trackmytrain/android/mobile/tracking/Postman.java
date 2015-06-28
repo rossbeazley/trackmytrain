@@ -22,6 +22,28 @@ public interface Postman {
             return messagePath;
         }
 
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            BroadcastMessage that = (BroadcastMessage) o;
+
+            return !(messagePath != null ? !messagePath.equals(that.messagePath) : that.messagePath != null);
+
+        }
+
+        @Override
+        public int hashCode() {
+            return messagePath != null ? messagePath.hashCode() : 0;
+        }
+
+        @Override
+        public String toString() {
+            return "BroadcastMessage{" +
+                    "messagePath='" + messagePath + '\'' +
+                    '}';
+        }
     }
 
     class Message {
@@ -68,6 +90,11 @@ public interface Postman {
         @Override
         public String toString() {
             return id;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            return ((NodeId)obj).id.equals(id);
         }
     }
 
