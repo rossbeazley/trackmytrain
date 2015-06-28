@@ -6,9 +6,9 @@ import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
 
 class TrackedServiceProxy implements CanTrackTrains {
     private final Postman postman;
-    private final HostNode hostNode;
+    private final SyncHostNode hostNode;
 
-    public TrackedServiceProxy(Postman postman, HostNode hostNode) {
+    public TrackedServiceProxy(Postman postman, SyncHostNode hostNode) {
 
         this.postman = postman;
         this.hostNode = hostNode;
@@ -27,7 +27,7 @@ class TrackedServiceProxy implements CanTrackTrains {
     @Override
     public void attach(ServiceView serviceView) {
         // keep a ref to the ServiceView as it needs to receive messages back
-        hostNode.id(new HostNode.Result() {
+        hostNode.id(new SyncHostNode.Result() {
             @Override
             public void id(Postman.NodeId id) {
                 postman.post(WatchServiceMessage.createWatchServiceMessage(id));

@@ -40,9 +40,9 @@ public class WearableListenerServiceWill {
     }
 
     private class WearApp {
-        private final HostNode hostNode;
+        private final SyncHostNode hostNode;
 
-        public WearApp(HostNode hostNode) {
+        public WearApp(SyncHostNode hostNode) {
             this.hostNode = hostNode;
         }
 
