@@ -16,7 +16,7 @@ public class WearableListenerServiceWill {
     registerHostNodeIDWhenHostBroadcastsSelf() {
         Postman.NodeId expectedId = new Postman.NodeId("any id");
 
-        SyncHostNode hostNode  = new SyncHostNode();
+        HostNode hostNode  = new HostNode();
         WearApp wearApp = new WearApp(hostNode);
 
         Postman.BroadcastMessage iAmBaseMessage= new IAmBaseMessage(expectedId);
@@ -40,9 +40,9 @@ public class WearableListenerServiceWill {
     }
 
     private class WearApp {
-        private final SyncHostNode hostNode;
+        private final HostNode hostNode;
 
-        public WearApp(SyncHostNode hostNode) {
+        public WearApp(HostNode hostNode) {
             this.hostNode = hostNode;
         }
 

@@ -2,7 +2,7 @@ package uk.co.rossbeazley.trackmytrain.android.wear;
 
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 
-class SyncHostNode {
+class HostNode {
     public Postman.NodeId registeredId;
 
     public void id(Result result) {

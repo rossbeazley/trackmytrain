@@ -17,7 +17,7 @@ public class A_TrackedServiceProxy {
     willDispatchMessageWhenServiceWatched() {
         CapturingPostman postman = new CapturingPostman();
         final Postman.NodeId anyNodeId = new Postman.NodeId("anyNodeId");
-        SyncHostNode hostNode = new SyncHostNode();
+        HostNode hostNode = new HostNode();
         hostNode.register(anyNodeId);
 
         TrackedServiceProxy trackedServiceProxy = new TrackedServiceProxy(postman,hostNode);
