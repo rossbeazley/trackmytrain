@@ -23,3 +23,24 @@ Mobile can send a tracking started broadcast.
 Wearable will show UI in response to tracking started.
 Wearable will hide UI in response to tracking finished.
 
+
+
+First deliverable:
+host will need to broadcast id -- I_AM_BASE_MESSAGE
+host can broadcast this when tracking starts
+
+manually start activity, it will attach view to app
+attached presenter sends message to host -- ATTACH_SERVICE_TRACKING
+host will need to register node
+
+
+host will need to send presentation messages to registered node -- SERVICE_VIEW_PRESENT
+wear activity is always on
+
+
+
+
+Second deliverable:
+activity will deregister observer when closed
+activity will auto start when tracking starts
+activity will close when tracking stops

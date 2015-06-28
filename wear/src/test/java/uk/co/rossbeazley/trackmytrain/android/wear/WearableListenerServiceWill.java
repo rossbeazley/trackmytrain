@@ -22,7 +22,19 @@ public class WearableListenerServiceWill {
         Postman.BroadcastMessage iAmBaseMessage= new IAmBaseMessage(expectedId);
         wearApp.message(iAmBaseMessage);
 
-        assertThat(hostNode.registeredId, is(expectedId));
+        final MyResult result = new MyResult();
+        hostNode.id(result);
+
+        assertThat(result.actualId, is(expectedId));
+    }
+
+    private static class MyResult implements HostNode.Result {
+        private Postman.NodeId actualId;
+
+        @Override
+        public void id(Postman.NodeId id) {
+            actualId = id;
+        }
     }
 
 
