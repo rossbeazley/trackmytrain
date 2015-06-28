@@ -3,7 +3,6 @@ package uk.co.rossbeazley.trackmytrain.android.wear;
 import uk.co.rossbeazley.trackmytrain.android.CanTrackTrains;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
-import uk.co.rossbeazley.trackmytrain.android.wearnetwork.HostNode;
 
 class TrackedServiceProxy implements CanTrackTrains {
     private final Postman postman;

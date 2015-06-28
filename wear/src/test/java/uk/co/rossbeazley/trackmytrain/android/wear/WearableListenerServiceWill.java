@@ -6,7 +6,6 @@ import com.google.android.gms.wearable.WearableListenerService;
 import org.junit.Test;
 
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
-import uk.co.rossbeazley.trackmytrain.android.wearnetwork.HostNode;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -26,20 +25,6 @@ public class WearableListenerServiceWill {
         assertThat(hostNode.registeredId, is(expectedId));
     }
 
-
-    private static class SyncHostNode implements HostNode {
-        public Postman.NodeId registeredId;
-
-        @Override
-        public void id(Result result) {
-            result.id(registeredId);
-        }
-
-        @Override
-        public void register(Postman.NodeId nodeId) {
-            registeredId=nodeId;
-        }
-    }
 
     public class TrackMyTrainMessageService extends WearableListenerService {
 

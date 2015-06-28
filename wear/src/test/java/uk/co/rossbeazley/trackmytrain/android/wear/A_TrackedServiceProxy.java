@@ -5,7 +5,6 @@ import org.junit.Test;
 import uk.co.rossbeazley.trackmytrain.android.ServiceTest;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
-import uk.co.rossbeazley.trackmytrain.android.wearnetwork.HostNode;
 
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
@@ -18,17 +17,8 @@ public class A_TrackedServiceProxy {
     willDispatchMessageWhenServiceWatched() {
         CapturingPostman postman = new CapturingPostman();
         final Postman.NodeId anyNodeId = new Postman.NodeId("anyNodeId");
-        HostNode hostNode = new HostNode(){
-            @Override
-            public void id(Result result) {
-                result.id(anyNodeId);
-            }
-
-            @Override
-            public void register(Postman.NodeId nodeId) {
-
-            }
-        };
+        SyncHostNode hostNode = new SyncHostNode();
+        hostNode.register(anyNodeId);
 
         TrackedServiceProxy trackedServiceProxy = new TrackedServiceProxy(postman,hostNode);
 
