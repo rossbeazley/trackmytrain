@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 class CapturingPostman implements Postman, Network {
     public Message messagePosted;
-    public BroadcastMessage messageBroadcast;
+    public Message messageBroadcast;
     private ArrayList<Connection> connectionListeners = new ArrayList<>();
 
     @Override
@@ -13,7 +13,7 @@ class CapturingPostman implements Postman, Network {
     }
 
     @Override
-    public void broadcast(BroadcastMessage message) {
+    public void broadcast(Message message) {
         messageBroadcast=message;
     }
 

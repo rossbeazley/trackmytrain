@@ -24,7 +24,7 @@ class WearPostman implements Postman {
 
 
     @Override
-    public void broadcast(BroadcastMessage message) {
+    public void broadcast(Message message) {
         broadcast(message.messageAsString());
     }
 

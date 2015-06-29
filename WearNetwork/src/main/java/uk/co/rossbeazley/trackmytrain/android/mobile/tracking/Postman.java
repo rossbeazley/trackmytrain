@@ -8,13 +8,14 @@ public interface Postman {
 
     void post(Message message);
 
-    void broadcast(BroadcastMessage message);
+    void broadcast(Message message);
 
-    class BroadcastMessage {
+    class BroadcastMessage extends Message {
 
         private final String messagePath;
 
         protected BroadcastMessage(String messagePath) {
+            super(null, messagePath);
             this.messagePath = messagePath;
         }
 

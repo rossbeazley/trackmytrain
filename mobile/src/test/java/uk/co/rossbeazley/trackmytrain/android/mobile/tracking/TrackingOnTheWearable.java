@@ -29,7 +29,7 @@ public class TrackingOnTheWearable {
         }
 
         @Override
-        public void broadcast(BroadcastMessage message) {
+        public void broadcast(Message message) {
             messageBroadcast=message;
         }
 

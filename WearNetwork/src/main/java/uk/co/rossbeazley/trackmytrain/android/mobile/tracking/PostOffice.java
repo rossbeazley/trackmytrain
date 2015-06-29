@@ -7,7 +7,7 @@ class PostOffice implements Postman {
     private final Network network;
     private boolean connected;
     private ArrayList<Message> messages = new ArrayList<>();
-    private ArrayList<BroadcastMessage> broadcasts = new ArrayList<>();
+    private ArrayList<Message> broadcasts = new ArrayList<>();
 
     public PostOffice(final Postman postman, Network network) {
         this.postman = postman;
@@ -19,7 +19,7 @@ class PostOffice implements Postman {
                 for (Message message : messages) {
                     postman.post(message);
                 }
-                for (BroadcastMessage broadcast : broadcasts) {
+                for (Message broadcast : broadcasts) {
                     postman.broadcast(broadcast);
                 }
 
@@ -46,7 +46,7 @@ class PostOffice implements Postman {
     }
 
     @Override
-    public void broadcast(BroadcastMessage message) {
+    public void broadcast(Message message) {
         if(connected) postman.broadcast(message);
         else {
             this.broadcasts.add(message);

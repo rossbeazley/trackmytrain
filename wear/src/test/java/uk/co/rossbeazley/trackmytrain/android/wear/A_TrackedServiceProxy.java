@@ -38,7 +38,7 @@ public class A_TrackedServiceProxy {
         }
 
         @Override
-        public void broadcast(BroadcastMessage message) {
+        public void broadcast(Message message) {
 
         }
     }

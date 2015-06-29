@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="mockable-android-21">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/WearNetwork/build/intermediates/mockable-android-21.jar!/" />
+      <root url="jar://$PROJECT_DIR$/mobile/build/intermediates/mockable-android-21.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
