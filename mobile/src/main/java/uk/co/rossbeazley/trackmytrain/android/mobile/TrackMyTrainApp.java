@@ -9,8 +9,6 @@ import uk.co.rossbeazley.trackmytrain.android.TrackMyTrain;
 import uk.co.rossbeazley.trackmytrain.android.mobile.departures.PerfMonitoringView;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.ServiceTrackingNavigationController;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.TrackingNotification;
-import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.WearableTrackingDataReplication;
-import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.WearableTrackingNavigationController;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.DeparturesFromToRequest;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.ServiceDetailsRequest;
 
@@ -53,8 +51,6 @@ public class TrackMyTrainApp extends Application{
         instance.attach(new ServiceTrackingNavigationController(this));
         instance.attach(new TrackingNotification(this));
         instance.attach(new PerfMonitoringView(this));
-//        instance.attach(new WearableTrackingNavigationController(this));
-//        new WearableTrackingDataReplication(this,instance);
     }
 
 }

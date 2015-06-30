@@ -26,7 +26,6 @@ Wearable will hide UI in response to tracking finished.
 
 
 First deliverable:
-REMOVE BROADCAST MESSAGE TYPE
 host will need to broadcast id -- I_AM_BASE_MESSAGE
 host can broadcast this when tracking starts
 
