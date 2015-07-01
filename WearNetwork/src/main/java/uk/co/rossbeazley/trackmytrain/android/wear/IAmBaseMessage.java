@@ -1,5 +1,7 @@
 package uk.co.rossbeazley.trackmytrain.android.wear;
 
+import com.google.android.gms.wearable.MessageEvent;
+
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 
 class IAmBaseMessage extends Postman.BroadcastMessage {
@@ -39,5 +41,13 @@ class IAmBaseMessage extends Postman.BroadcastMessage {
         return super.toString() + "IAmBaseMessage{" +
                 "hostNodeId=" + hostNodeId +
                 '}';
+    }
+
+    static class Factory implements PostmanMessageFactory.MessageFactory {
+        @Override
+        public Postman.Message create(MessageEvent messageEvent) {
+            Postman.NodeId nodeId = new Postman.NodeId(messageEvent.getSourceNodeId());
+            return new IAmBaseMessage(nodeId);
+        }
     }
 }
