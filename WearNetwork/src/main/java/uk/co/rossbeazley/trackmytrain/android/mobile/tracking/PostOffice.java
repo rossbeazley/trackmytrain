@@ -17,7 +17,7 @@ class PostOffice implements Postman {
             public void connected() {
                 connected=true;
                 for (Message message : messages) {
-                    postman.post(message);
+                    postman.post(message, null);
                 }
                 for (Message broadcast : broadcasts) {
                     postman.broadcast(broadcast);
@@ -33,8 +33,8 @@ class PostOffice implements Postman {
     }
 
     @Override
-    public void post(Message message) {
-        if(connected) postman.post(message);
+    public void post(Message message, NodeId deliveryAddress) {
+        if(connected) postman.post(message, null);
         else {
             enqueue(message);
         }

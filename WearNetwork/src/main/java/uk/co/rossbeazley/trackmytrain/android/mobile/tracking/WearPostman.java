@@ -50,7 +50,7 @@ class WearPostman implements Postman {
 
 
     @Override
-    public void post(Message message) {
+    public void post(Message message, NodeId deliveryAddress) {
         post(message.nodeIdAsString(), message.messageAsString());
     }
 

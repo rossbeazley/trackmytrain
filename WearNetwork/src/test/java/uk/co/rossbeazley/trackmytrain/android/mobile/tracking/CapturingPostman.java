@@ -8,7 +8,7 @@ class CapturingPostman implements Postman, Network {
     private ArrayList<Connection> connectionListeners = new ArrayList<>();
 
     @Override
-    public void post(Message message) {
+    public void post(Message message, NodeId deliveryAddress) {
         messagePosted = message;
     }
 

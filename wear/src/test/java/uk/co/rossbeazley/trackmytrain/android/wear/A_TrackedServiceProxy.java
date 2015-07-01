@@ -33,7 +33,7 @@ public class A_TrackedServiceProxy {
         public Message messageDelivered;
 
         @Override
-        public void post(Message message) {
+        public void post(Message message, NodeId deliveryAddress) {
             messageDelivered = message;
         }
 

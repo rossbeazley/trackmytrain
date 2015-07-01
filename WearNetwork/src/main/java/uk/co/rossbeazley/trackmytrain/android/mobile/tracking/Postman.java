@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public interface Postman {
 
-    void post(Message message);
+    void post(Message message, NodeId deliveryAddress);
 
     void broadcast(Message message);
 

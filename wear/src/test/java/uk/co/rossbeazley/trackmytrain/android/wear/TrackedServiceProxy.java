@@ -30,7 +30,7 @@ class TrackedServiceProxy implements CanTrackTrains {
         hostNode.id(new HostNode.Result() {
             @Override
             public void id(Postman.NodeId id) {
-                postman.post(WatchServiceMessage.createWatchServiceMessage(id));
+                postman.post(WatchServiceMessage.createWatchServiceMessage(id), null);
             }
         });
 

@@ -20,7 +20,7 @@ public class APostOffice {
 
         capturingPostman.connect();
 
-        postOffice.post(expectedMessage);
+        postOffice.post(expectedMessage, null);
 
         assertThat(capturingPostman.messagePosted, is(expectedMessage));
     }
@@ -54,7 +54,7 @@ public class APostOffice {
         final String messagePath = "/any/message";
         Message expectedMessage = new Message(anyNode, messagePath);
 
-        postOffice.post(expectedMessage);
+        postOffice.post(expectedMessage, null);
         capturingPostman.connect();
 
         assertThat(capturingPostman.messagePosted, is(expectedMessage));
