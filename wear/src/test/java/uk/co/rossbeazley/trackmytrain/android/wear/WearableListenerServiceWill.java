@@ -1,8 +1,5 @@
 package uk.co.rossbeazley.trackmytrain.android.wear;
 
-import com.google.android.gms.wearable.MessageEvent;
-import com.google.android.gms.wearable.WearableListenerService;
-
 import org.junit.Test;
 
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
@@ -34,38 +31,6 @@ public class WearableListenerServiceWill {
         @Override
         public void id(Postman.NodeId id) {
             actualId = id;
-        }
-    }
-
-
-    public class TrackMyTrainMessageService extends WearableListenerService {
-
-        // just forwards calls to the WearApp instance
-
-        @Override
-        public void onMessageReceived(MessageEvent messageEvent) {
-
-            //Postman.Message message = new PostmanMessageFactory().toMessage(messageEvent);
-            //new WearApp(null).message(message);
-
-        }
-    }
-
-    private class WearApp {
-        private final HostNode hostNode;
-
-        public WearApp(HostNode hostNode) {
-            this.hostNode = hostNode;
-        }
-
-
-        public void message(Postman.Message message) {
-
-        }
-
-        public void message(Postman.BroadcastMessage message) {
-            IAmBaseMessage iAmBaseMessage = (IAmBaseMessage) message;
-            hostNode.register(iAmBaseMessage.hostNodeId());
         }
     }
 
