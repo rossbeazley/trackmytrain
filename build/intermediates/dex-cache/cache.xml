@@ -2,11 +2,11 @@
 <items version="2" >
 
     <item
-        jar="/Users/beazlr02/workspace/projects/home/trackmytrain/wear/build/intermediates/exploded-aar/trackmytrain/WearNetwork/unspecified/jars/classes.jar"
+        jar="/home/rdlb/programing/android/trackmytrain/wear/build/intermediates/exploded-aar/trackmytrain/WearNetwork/unspecified/jars/classes.jar"
         jumboMode="false"
-        revision="22.0.1"
-        sha1="5dfcf5b5593be3d25c4ba8013efeb441b6c453fb">
-        <dex dex="/Users/beazlr02/workspace/projects/home/trackmytrain/wear/build/intermediates/pre-dexed/debug/classes-6504430943d2f7214ab27fd9bdf16f94b2069d16.jar" />
+        revision="22.0.1" sha1="ca5222332954217eaaf642c4186f3a9b271644b4">
+        <dex
+            dex="/home/rdlb/programing/android/trackmytrain/wear/build/intermediates/pre-dexed/debug/classes-d640b1ca9b82ac9bcf5a277c209baf95e5c71ce0.jar" />
     </item>
 
 </items>

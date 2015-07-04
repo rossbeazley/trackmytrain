@@ -12,9 +12,8 @@ public class WearApp {
         this.hostNode = hostNode;
     }
 
-
-    public void message(Postman.Message message) {
-        IAmBaseMessage iAmBaseMessage = (IAmBaseMessage) message;
-        hostNode.register(iAmBaseMessage.hostNodeId());
+    public void message(MessageEnvelope messageEnvelope) {
+        IAmBaseMessage iAmBaseMessage = (IAmBaseMessage) messageEnvelope.message();
+        hostNode.register(messageEnvelope.fromId());
     }
 }

@@ -13,15 +13,29 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class PostmanMessageFactoryWill {
 
     @Test public void
+    putMessageInEnvolopeWithReturnAddress() {
+
+
+        final String anyId = "anyId";
+        Postman.Message expectedMessage = new IAmBaseMessage();
+        MessageEvent msg = new WearMessageEvent(expectedMessage.messageAsString(), anyId);
+
+        MessageEnvelope convertedMessage = new PostmanMessageFactory().toMessage(msg);
+        Postman.NodeId expectedId = new Postman.NodeId(anyId);
+        assertThat(convertedMessage.fromId(), is(equalTo(expectedId)));
+    }
+
+    @Test
+    public void
     convertMessageEventToIAMBASEMessage() {
 
 
         final String anyId = "anyId";
-        Postman.Message expectedMessage = new IAmBaseMessage(new Postman.NodeId(anyId));
+        Postman.Message expectedMessage = new IAmBaseMessage();
         MessageEvent msg = new WearMessageEvent(expectedMessage.messageAsString(), anyId);
 
-        Postman.Message convertedMessage = new PostmanMessageFactory().toMessage(msg);
-        assertThat(convertedMessage, is(equalTo(expectedMessage)));
+        MessageEnvelope convertedMessage = new PostmanMessageFactory().toMessage(msg);
+        assertThat(convertedMessage.message(), is(equalTo(expectedMessage)));
     }
 
 

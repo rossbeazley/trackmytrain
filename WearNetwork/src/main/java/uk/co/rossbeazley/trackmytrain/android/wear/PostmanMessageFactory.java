@@ -16,9 +16,10 @@ class PostmanMessageFactory {
         factoriesFromPath.put(IAmBaseMessage.MESSAGE_PATH, new IAmBaseMessage.Factory());
     }
 
-    public Postman.Message toMessage(MessageEvent messageEvent) {
+    public MessageEnvelope toMessage(MessageEvent messageEvent) {
         final MessageFactory messageFactory = factoriesFromPath.get(messageEvent.getPath());
-        return messageFactory.create(messageEvent);
+        Postman.NodeId nodeId = new Postman.NodeId(messageEvent.getSourceNodeId());
+        return new MessageEnvelope(nodeId, messageFactory.create(messageEvent));
     }
 
 
