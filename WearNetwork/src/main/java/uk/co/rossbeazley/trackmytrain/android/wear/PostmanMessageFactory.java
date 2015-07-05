@@ -13,7 +13,7 @@ class PostmanMessageFactory {
 
     public PostmanMessageFactory() {
         factoriesFromPath = new HashMap<>();
-        factoriesFromPath.put(IAmBaseMessage.MESSAGE_PATH, new IAmBaseMessage.Factory());
+        factoriesFromPath.put(StartedTrackingMessage.MESSAGE_PATH, new StartedTrackingMessage.Factory());
     }
 
     public MessageEnvelope toMessage(MessageEvent messageEvent) {

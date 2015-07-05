@@ -4,10 +4,10 @@ import com.google.android.gms.wearable.MessageEvent;
 
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 
-public class IAmBaseMessage extends Postman.BroadcastMessage {
+public class StartedTrackingMessage extends Postman.BroadcastMessage {
     public static final String MESSAGE_PATH = "/I/AM/BASE";
 
-    public IAmBaseMessage() {
+    public StartedTrackingMessage() {
         super(MESSAGE_PATH);
     }
 
@@ -19,7 +19,7 @@ public class IAmBaseMessage extends Postman.BroadcastMessage {
     static class Factory implements PostmanMessageFactory.MessageFactory {
         @Override
         public Postman.Message create(MessageEvent messageEvent) {
-            return new IAmBaseMessage();
+            return new StartedTrackingMessage();
         }
     }
 }

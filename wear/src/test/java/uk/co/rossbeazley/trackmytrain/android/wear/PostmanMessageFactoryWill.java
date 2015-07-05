@@ -17,7 +17,7 @@ public class PostmanMessageFactoryWill {
 
 
         final String anyId = "anyId";
-        Postman.Message expectedMessage = new IAmBaseMessage();
+        Postman.Message expectedMessage = new StartedTrackingMessage();
         MessageEvent msg = new WearMessageEvent(expectedMessage.messageAsString(), anyId);
 
         MessageEnvelope convertedMessage = new PostmanMessageFactory().toMessage(msg);
@@ -31,7 +31,7 @@ public class PostmanMessageFactoryWill {
 
 
         final String anyId = "anyId";
-        Postman.Message expectedMessage = new IAmBaseMessage();
+        Postman.Message expectedMessage = new StartedTrackingMessage();
         MessageEvent msg = new WearMessageEvent(expectedMessage.messageAsString(), anyId);
 
         MessageEnvelope convertedMessage = new PostmanMessageFactory().toMessage(msg);
