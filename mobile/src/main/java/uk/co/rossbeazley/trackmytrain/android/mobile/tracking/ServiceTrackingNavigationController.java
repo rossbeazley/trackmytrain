@@ -22,4 +22,9 @@ public class ServiceTrackingNavigationController implements ServiceView {
     public void hide() {
         TrackingService.stopTrackingService(context);
     }
+
+    @Override
+    public void trackingStarted() {
+
+    }
 }

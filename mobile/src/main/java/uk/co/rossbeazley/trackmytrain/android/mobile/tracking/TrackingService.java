@@ -66,6 +66,11 @@ public class TrackingService extends Service {
                 stopForeground(true);
                 TrackMyTrainApp.instance.detach(this);
             }
+
+            @Override
+            public void trackingStarted() {
+
+            }
         });
     }
 

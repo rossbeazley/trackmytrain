@@ -10,4 +10,6 @@ public interface ServiceView {
     void present(TrainViewModel train);
 
     void hide();
+
+    void trackingStarted();
 }

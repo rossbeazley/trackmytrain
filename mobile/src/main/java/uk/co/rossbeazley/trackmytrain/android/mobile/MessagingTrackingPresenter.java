@@ -22,6 +22,11 @@ class MessagingTrackingPresenter implements ServiceView {
         action = announceTracking;
     }
 
+    @Override
+    public void trackingStarted() {
+
+    }
+
     private Runnable announceTracking = new Runnable() {
         @Override
         public void run() {

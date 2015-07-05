@@ -55,5 +55,10 @@ public class WearAppSingleton extends Application {
         public void hide() {
             tracking = false;
         }
+
+        @Override
+        public void trackingStarted() {
+
+        }
     }
 }

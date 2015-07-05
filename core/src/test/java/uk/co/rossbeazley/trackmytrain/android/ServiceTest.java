@@ -136,6 +136,11 @@ public class ServiceTest {
             serviceDisplayed = null;
             visibility = HIDDEN;
         }
+
+        @Override
+        public void trackingStarted() {
+
+        }
     }
 
     public static class ControllableExecutorService implements NarrowScheduledExecutorService {
