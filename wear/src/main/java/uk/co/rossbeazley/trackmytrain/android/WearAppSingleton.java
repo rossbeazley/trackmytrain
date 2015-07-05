@@ -31,7 +31,6 @@ public class WearAppSingleton extends Application {
     private class StartsTrackingActivity implements ServiceView {
 
         private final WearAppSingleton context;
-        private boolean tracking;
 
         public StartsTrackingActivity(WearAppSingleton context) {
             this.context = context;
@@ -39,26 +38,24 @@ public class WearAppSingleton extends Application {
 
         @Override
         public void present(TrainViewModel train) {
-            if (!tracking) {
-                launchActivity();
-                tracking = true;
-            }
+
         }
+
+        @Override
+        public void hide() {
+
+        }
+
+        @Override
+        public void trackingStarted() {
+            launchActivity();
+        }
+
 
         void launchActivity() {
             Intent intent = new Intent(context, TrackingActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             context.startActivity(intent);
-        }
-
-        @Override
-        public void hide() {
-            tracking = false;
-        }
-
-        @Override
-        public void trackingStarted() {
-
         }
     }
 }

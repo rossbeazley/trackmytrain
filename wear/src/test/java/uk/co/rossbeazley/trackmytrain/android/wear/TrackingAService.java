@@ -26,7 +26,7 @@ public class TrackingAService {
         MessageEnvelope message = new MessageEnvelope(anyId, new StartedTrackingMessage());
         wearApp.message(message);
 
-        assertThat(serviceView.visibility, is(ServiceTest.CapturingServiceView.VISIBLE));
+        assertThat(serviceView.trackingIs, is(ServiceTest.CapturingServiceView.STARTED));
 
     }
 }
