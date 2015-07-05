@@ -64,6 +64,12 @@ public class ServiceTest {
     }
 
     @Test
+    public void theOneWhereAnnounceTrackingStarted() {
+        tmt.watch(serviceId);
+        assertThat(serviceView.trackingIs, is(CapturingServiceView.STARTED));
+    }
+
+    @Test
     public void serviceDetailsRequestRendersToString() {
         final String serviceUrl = "http://tmt.rossbeazley.co.uk/trackmytrain/rest/api/service?id=123456";
         assertThat(new ServiceDetailsRequest("123456").asUrlString(),is(serviceUrl));
@@ -85,6 +91,21 @@ public class ServiceTest {
         ness.scheduledCommand.run();
 
         assertThat(serviceView.serviceDisplayed, is(expectedTrain));
+    }
+
+    @Test
+    public void continuedWatchingOfServiceDosntAnnounceTrackingStarted() {
+        tmt.watch(serviceId);
+        serviceView.serviceDisplayed = null;
+        final Train train = new Train(serviceId, "20:52", scheduledTime, platform);
+        final TrainViewModel expectedTrain = new TrainViewModel(train);
+        map.put(serviceDetailsRequest, TestDataBuilder.jsonForTrain(train));
+        ness.scheduledCommand.run();
+
+        final String notReannounced = "NOT REANNOUNCED";
+        serviceView.trackingIs = notReannounced;
+
+        assertThat(serviceView.trackingIs, is(notReannounced));
     }
 
     @Test
@@ -125,6 +146,9 @@ public class ServiceTest {
         public String visibility = "UNKNOWN";
         public TrainViewModel serviceDisplayed;
 
+        public static final String STARTED = "Started";
+        public String trackingIs = "UNKNOWN";
+
         @Override
         public void present(TrainViewModel train) {
             visibility = VISIBLE;
@@ -135,11 +159,12 @@ public class ServiceTest {
         public void hide() {
             serviceDisplayed = null;
             visibility = HIDDEN;
+            trackingIs = HIDDEN;
         }
 
         @Override
         public void trackingStarted() {
-
+            trackingIs = STARTED;
         }
     }
 
