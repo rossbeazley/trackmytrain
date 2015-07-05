@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <items version="2" >
 
+    <item jar="/home/rdlb/programing/android/trackmytrain/core/build/libs/core.jar"
+        jumboMode="false" revision="21.1.2" sha1="2025fff2d6368069e83d2f2edc558f387eea5ddf">
+        <dex
+            dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/core-99ebd5d5f95f7d4ffed24ddc73a3d33976688506.jar" />
+    </item>
     <item
         jar="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/exploded-aar/trackmytrain/WearNetwork/unspecified/jars/classes.jar"
-        jumboMode="false" revision="21.1.2" sha1="9eea43418c3a79f07cd27673ff1a3d3426e0df4b">
+        jumboMode="false" revision="21.1.2" sha1="56db881dd03925ab6024d98904cbf0df12b4014c">
         <dex
             dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/classes-d34ffb0e2eaf06adfeb638f60cf96d1402999ff1.jar" />
     </item>

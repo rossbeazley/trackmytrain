@@ -3,16 +3,14 @@ package uk.co.rossbeazley.trackmytrain.android.mobile;
 import android.app.Application;
 import android.os.Build;
 
-import uk.co.rossbeazley.trackmytrain.android.NetworkClient;
 import uk.co.rossbeazley.trackmytrain.android.TMTBuilder;
 import uk.co.rossbeazley.trackmytrain.android.TrackMyTrain;
 import uk.co.rossbeazley.trackmytrain.android.mobile.departures.PerfMonitoringView;
+import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.MessagingTrackingPresenter;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.ServiceTrackingNavigationController;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.TrackingNotification;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.WearNetworkBuilder;
-import uk.co.rossbeazley.trackmytrain.android.trainRepo.DeparturesFromToRequest;
-import uk.co.rossbeazley.trackmytrain.android.trainRepo.ServiceDetailsRequest;
 
 public class TrackMyTrainApp extends Application{
 

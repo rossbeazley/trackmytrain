@@ -2,6 +2,7 @@ package uk.co.rossbeazley.trackmytrain.android.mobile;
 
 import org.junit.Test;
 
+import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.MessagingTrackingPresenter;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 import uk.co.rossbeazley.trackmytrain.android.wear.StartedTrackingMessage;
 
