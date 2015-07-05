@@ -3,10 +3,15 @@
 
     <item
         jar="/home/rdlb/programing/android/trackmytrain/wear/build/intermediates/exploded-aar/trackmytrain/WearNetwork/unspecified/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1" sha1="ca5222332954217eaaf642c4186f3a9b271644b4">
+        jumboMode="false" revision="22.0.1" sha1="ca5222332954217eaaf642c4186f3a9b271644b4">
         <dex
             dex="/home/rdlb/programing/android/trackmytrain/wear/build/intermediates/pre-dexed/debug/classes-d640b1ca9b82ac9bcf5a277c209baf95e5c71ce0.jar" />
+    </item>
+    <item
+        jar="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/exploded-aar/trackmytrain/WearNetwork/unspecified/jars/classes.jar"
+        jumboMode="false" revision="21.1.2" sha1="9eea43418c3a79f07cd27673ff1a3d3426e0df4b">
+        <dex
+            dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/classes-d34ffb0e2eaf06adfeb638f60cf96d1402999ff1.jar" />
     </item>
 
 </items>

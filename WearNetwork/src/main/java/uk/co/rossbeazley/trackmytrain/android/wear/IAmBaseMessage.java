@@ -4,7 +4,7 @@ import com.google.android.gms.wearable.MessageEvent;
 
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 
-class IAmBaseMessage extends Postman.BroadcastMessage {
+public class IAmBaseMessage extends Postman.BroadcastMessage {
     public static final String MESSAGE_PATH = "/I/AM/BASE";
 
     public IAmBaseMessage() {
