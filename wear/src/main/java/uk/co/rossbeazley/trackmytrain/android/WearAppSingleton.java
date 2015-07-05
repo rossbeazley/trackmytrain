@@ -23,15 +23,29 @@ public class WearAppSingleton extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        instance.attach(new StartsTrackingActivity());
+        instance.attach(new StartsTrackingActivity(this));
     }
 
 
     //TODO write a connected test for this
     private class StartsTrackingActivity implements ServiceView {
+
+        private final WearAppSingleton context;
+        private boolean tracking;
+
+        public StartsTrackingActivity(WearAppSingleton context) {
+            this.context = context;
+        }
+
         @Override
         public void present(TrainViewModel train) {
-            final WearAppSingleton context = WearAppSingleton.this;
+            if (!tracking) {
+                launchActivity();
+                tracking = true;
+            }
+        }
+
+        void launchActivity() {
             Intent intent = new Intent(context, TrackingActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             context.startActivity(intent);
@@ -39,7 +53,7 @@ public class WearAppSingleton extends Application {
 
         @Override
         public void hide() {
-
+            tracking = false;
         }
     }
 }
