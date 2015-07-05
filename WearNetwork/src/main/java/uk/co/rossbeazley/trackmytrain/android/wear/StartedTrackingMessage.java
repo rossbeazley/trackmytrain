@@ -5,15 +5,10 @@ import com.google.android.gms.wearable.MessageEvent;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 
 public class StartedTrackingMessage extends Postman.BroadcastMessage {
-    public static final String MESSAGE_PATH = "/I/AM/BASE";
+    public static final String MESSAGE_PATH = "/TRACKING/STARTED";
 
     public StartedTrackingMessage() {
         super(MESSAGE_PATH);
-    }
-
-    @Override
-    public String toString() {
-        return super.toString() + "IAmBaseMessage{}";
     }
 
     static class Factory implements PostmanMessageFactory.MessageFactory {
