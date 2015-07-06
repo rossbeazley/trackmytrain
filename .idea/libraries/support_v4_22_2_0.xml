@@ -9,8 +9,6 @@
       <root url="file://$PROJECT_DIR$/WearNetwork/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/res" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES>
-      <root url="jar:///opt/google/android-sdk-linux_x86/extras/android/m2repository/com/android/support/support-v4/22.2.0/support-v4-22.2.0-sources.jar!/" />
-    </SOURCES>
+    <SOURCES />
   </library>
 </component>

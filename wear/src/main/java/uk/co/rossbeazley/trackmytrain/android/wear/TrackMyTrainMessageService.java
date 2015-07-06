@@ -14,7 +14,7 @@ public class TrackMyTrainMessageService extends WearableListenerService {
     @Override
     public void onMessageReceived(MessageEvent messageEvent) {
 
-        Postman.Message message = new PostmanMessageFactory().toMessage(messageEvent);
+        MessageEnvelope message = new PostmanMessageFactory().toMessage(messageEvent);
         WearAppSingleton.instance.message(message);
 
     }

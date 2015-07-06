@@ -26,8 +26,15 @@ public class Tracking {
 
     public void watch(String serviceId) {
         this.trackedService = serviceId;
+        announceTrackingStarted();
         refreshTrackedService();
         startTimer();
+    }
+
+    void announceTrackingStarted() {
+        for (ServiceView serviceView : serviceViews) {
+            serviceView.trackingStarted();
+        }
     }
 
     void startTimer() {

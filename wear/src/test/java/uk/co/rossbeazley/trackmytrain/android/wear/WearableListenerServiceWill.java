@@ -10,14 +10,15 @@ import static org.junit.Assert.assertThat;
 public class WearableListenerServiceWill {
 
     @Test public void
-    registerHostNodeIDWhenHostBroadcastsSelf() {
+    registerHostNodeIDWhenHostSendsMessage() {
         Postman.NodeId expectedId = new Postman.NodeId("any id");
 
         HostNode hostNode  = new HostNode();
         WearApp wearApp = new WearApp(hostNode);
 
-        Postman.BroadcastMessage iAmBaseMessage= new IAmBaseMessage(expectedId);
-        wearApp.message(iAmBaseMessage);
+        Postman.Message iAmBaseMessage = new Postman.Message(null, null);
+        final MessageEnvelope messageEnvelope = new MessageEnvelope(expectedId, iAmBaseMessage);
+        wearApp.message(messageEnvelope);
 
         final MyResult result = new MyResult();
         hostNode.id(result);

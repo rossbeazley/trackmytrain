@@ -128,5 +128,10 @@ public class AndroidBackgroundServiceTest {
         public void hide() {
             STATE = STATE_HIDDEN;
         }
+
+        @Override
+        public void trackingStarted() {
+
+        }
     }
 }

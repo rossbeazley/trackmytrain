@@ -18,6 +18,7 @@ public class TestTrackMyTrainApp extends TrackMyTrainApp {
     public static Train trackedService;
     public static KeyValuePersistence keyValuePersistence;
     public static ProgrammableNetworkClient networkClient;
+    public static ControllableNarrowScheduledExecutorService executorService;
 
     public TestTrackMyTrainApp() {
         instance = getCore();
@@ -33,9 +34,10 @@ public class TestTrackMyTrainApp extends TrackMyTrainApp {
         final TrackMyTrain trackMyTrain;
 
         networkClient = new ProgrammableNetworkClient();
+        executorService = new ControllableNarrowScheduledExecutorService();
         trackMyTrain = new TMTBuilder()
                 .with(networkClient)
-                .with(new StubbedNarrowScheduledExecutorService())
+                .with(executorService)
                 .with(keyValuePersistence)
                 .build();
 
@@ -54,10 +56,18 @@ public class TestTrackMyTrainApp extends TrackMyTrainApp {
         }
     }
 
-    private static class StubbedNarrowScheduledExecutorService implements NarrowScheduledExecutorService {
+    public static class ControllableNarrowScheduledExecutorService implements NarrowScheduledExecutorService {
+        public Runnable command;
+
         @Override
-        public Cancelable scheduleAtFixedRate(Runnable command, long period, TimeUnit unit) {
-            return Cancelable.NULL;
+        public Cancelable scheduleAtFixedRate(final Runnable command, long period, TimeUnit unit) {
+            this.command = command;
+            return new Cancelable() {
+                @Override
+                public void cancel() {
+                    ControllableNarrowScheduledExecutorService.this.command = null;
+                }
+            };
         }
     }
 }

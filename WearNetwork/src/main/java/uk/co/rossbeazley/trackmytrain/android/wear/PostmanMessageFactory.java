@@ -13,12 +13,13 @@ class PostmanMessageFactory {
 
     public PostmanMessageFactory() {
         factoriesFromPath = new HashMap<>();
-        factoriesFromPath.put(IAmBaseMessage.MESSAGE_PATH, new IAmBaseMessage.Factory());
+        factoriesFromPath.put(StartedTrackingMessage.MESSAGE_PATH, new StartedTrackingMessage.Factory());
     }
 
-    public Postman.Message toMessage(MessageEvent messageEvent) {
+    public MessageEnvelope toMessage(MessageEvent messageEvent) {
         final MessageFactory messageFactory = factoriesFromPath.get(messageEvent.getPath());
-        return messageFactory.create(messageEvent);
+        Postman.NodeId nodeId = new Postman.NodeId(messageEvent.getSourceNodeId());
+        return new MessageEnvelope(nodeId, messageFactory.create(messageEvent));
     }
 
 

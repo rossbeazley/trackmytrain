@@ -3,14 +3,14 @@ package uk.co.rossbeazley.trackmytrain.android.mobile;
 import android.app.Application;
 import android.os.Build;
 
-import uk.co.rossbeazley.trackmytrain.android.NetworkClient;
 import uk.co.rossbeazley.trackmytrain.android.TMTBuilder;
 import uk.co.rossbeazley.trackmytrain.android.TrackMyTrain;
 import uk.co.rossbeazley.trackmytrain.android.mobile.departures.PerfMonitoringView;
+import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.MessagingTrackingPresenter;
+import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.ServiceTrackingNavigationController;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.TrackingNotification;
-import uk.co.rossbeazley.trackmytrain.android.trainRepo.DeparturesFromToRequest;
-import uk.co.rossbeazley.trackmytrain.android.trainRepo.ServiceDetailsRequest;
+import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.WearNetworkBuilder;
 
 public class TrackMyTrainApp extends Application{
 
@@ -51,6 +51,8 @@ public class TrackMyTrainApp extends Application{
         instance.attach(new ServiceTrackingNavigationController(this));
         instance.attach(new TrackingNotification(this));
         instance.attach(new PerfMonitoringView(this));
+        Postman postman = WearNetworkBuilder.fromContext(this);
+        instance.attach(new MessagingTrackingPresenter(postman));
     }
 
 }

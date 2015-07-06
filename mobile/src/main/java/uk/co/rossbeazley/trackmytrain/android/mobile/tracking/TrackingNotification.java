@@ -56,4 +56,9 @@ public class TrackingNotification implements ServiceView {
     public void hide() {
         NotificationManagerCompat.from(service).cancel(ID);
     }
+
+    @Override
+    public void trackingStarted() {
+
+    }
 }

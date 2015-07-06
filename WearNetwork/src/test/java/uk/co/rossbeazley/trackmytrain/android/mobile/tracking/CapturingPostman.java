@@ -2,7 +2,7 @@ package uk.co.rossbeazley.trackmytrain.android.mobile.tracking;
 
 import java.util.ArrayList;
 
-class CapturingPostman implements Postman, Network {
+public class CapturingPostman implements Postman, Network {
     public Message messagePosted;
     public Message messageBroadcast;
     private ArrayList<Connection> connectionListeners = new ArrayList<>();

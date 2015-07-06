@@ -74,6 +74,11 @@ public class LateObservationOfServiceTest {
             public void hide() {
 
             }
+
+            @Override
+            public void trackingStarted() {
+
+            }
         });
 
         assertThat(presentedTrain,is(expectedTrain));
