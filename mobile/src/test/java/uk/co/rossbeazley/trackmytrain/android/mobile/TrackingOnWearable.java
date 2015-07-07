@@ -5,6 +5,7 @@ import org.junit.Test;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.MessagingTrackingPresenter;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 import uk.co.rossbeazley.trackmytrain.android.wear.StartedTrackingMessage;
+import uk.co.rossbeazley.trackmytrain.android.wear.StoppedTrackingMessage;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
@@ -61,6 +62,25 @@ public class TrackingOnWearable {
         TrackMyTrainApp.instance.watch("2");
 
         Postman.Message expectedMessage = new StartedTrackingMessage();
+        Postman.Message messageDelivered = postman.messageBroadcast;
+        assertThat(messageDelivered, is(expectedMessage));
+    }
+
+
+    @Test
+    public void
+    sendsMessageWhenTrackingStops() {
+
+        new TestTrackMyTrainApp();
+        CapturePostman postman = new CapturePostman();
+        final MessagingTrackingPresenter messagingTrackingPresenter = new MessagingTrackingPresenter(postman);
+        TestTrackMyTrainApp.instance.attach(messagingTrackingPresenter);
+
+        TrackMyTrainApp.instance.watch("2");
+        postman.messageBroadcast = null;
+        TrackMyTrainApp.instance.unwatch();
+
+        Postman.Message expectedMessage = new StoppedTrackingMessage();
         Postman.Message messageDelivered = postman.messageBroadcast;
         assertThat(messageDelivered, is(expectedMessage));
     }
