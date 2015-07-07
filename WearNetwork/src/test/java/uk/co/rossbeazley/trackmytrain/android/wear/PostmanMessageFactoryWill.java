@@ -29,13 +29,24 @@ public class PostmanMessageFactoryWill {
     public void
     convertMessageEventToIAMBASEMessage() {
 
-
         final String anyId = "anyId";
         Postman.Message expectedMessage = new StartedTrackingMessage();
         MessageEvent msg = new WearMessageEvent(expectedMessage.messageAsString(), anyId);
 
         MessageEnvelope convertedMessage = new PostmanMessageFactory().toMessage(msg);
         assertThat(convertedMessage.message(), is(equalTo(expectedMessage)));
+    }
+
+    @Test
+    public void
+    convertMessageEventToTrackingStoppedMessage() {
+        final String anyId = "anyId";
+        Postman.Message expectedMessage = new StoppedTrackingMessage();
+        MessageEvent msg = new WearMessageEvent(expectedMessage.messageAsString(), anyId);
+
+        MessageEnvelope convertedMessage = new PostmanMessageFactory().toMessage(msg);
+        assertThat(convertedMessage.message(), is(equalTo(expectedMessage)));
+
     }
 
 

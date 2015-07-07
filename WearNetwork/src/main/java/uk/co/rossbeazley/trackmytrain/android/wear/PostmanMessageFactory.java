@@ -14,6 +14,7 @@ class PostmanMessageFactory {
     public PostmanMessageFactory() {
         factoriesFromPath = new HashMap<>();
         factoriesFromPath.put(StartedTrackingMessage.MESSAGE_PATH, new StartedTrackingMessage.Factory());
+        factoriesFromPath.put(StoppedTrackingMessage.MESSAGE_PATH, new StoppedTrackingMessage.Factory());
     }
 
     public MessageEnvelope toMessage(MessageEvent messageEvent) {
@@ -26,4 +27,5 @@ class PostmanMessageFactory {
     public static interface MessageFactory {
         Postman.Message create(MessageEvent messageEvent);
     }
+
 }

@@ -28,6 +28,7 @@ public class TrackingActivity extends WearableActivity implements CanFinishWearA
 
         //attach "view" that will finish activity when tracking stops
 
+        WearAppSingleton.instance.attach(new ExitWearApp(this));
     }
 
     @Override
