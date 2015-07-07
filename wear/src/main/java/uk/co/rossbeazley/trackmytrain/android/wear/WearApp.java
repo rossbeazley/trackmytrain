@@ -26,11 +26,21 @@ public class WearApp implements CanTrackTrains {
         if (messageEnvelope.message() instanceof StartedTrackingMessage) {
             announceServiceTracking();
         }
+
+        if (messageEnvelope.message() instanceof StoppedTrackingMessage) {
+            announceServiceTrackingStopped();
+        }
+    }
+
+    void announceServiceTrackingStopped() {
+        for (ServiceView serviceView : serviceViews) {
+            serviceView.hide();
+        }
     }
 
     private void announceServiceTracking() {
         for (ServiceView serviceView : serviceViews) {
-            serviceView.present(null);
+            serviceView.trackingStarted();
         }
 
     }

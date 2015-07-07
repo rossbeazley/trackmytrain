@@ -1,11 +1,8 @@
 package uk.co.rossbeazley.trackmytrain.android;
 
 import android.app.Application;
-import android.content.Intent;
 
-import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
 import uk.co.rossbeazley.trackmytrain.android.wear.HostNode;
-import uk.co.rossbeazley.trackmytrain.android.wear.TrackingActivity;
 import uk.co.rossbeazley.trackmytrain.android.wear.WearApp;
 
 /**
@@ -27,35 +24,4 @@ public class WearAppSingleton extends Application {
     }
 
 
-    //TODO write a connected test for this
-    private class StartsTrackingActivity implements ServiceView {
-
-        private final WearAppSingleton context;
-
-        public StartsTrackingActivity(WearAppSingleton context) {
-            this.context = context;
-        }
-
-        @Override
-        public void present(TrainViewModel train) {
-
-        }
-
-        @Override
-        public void hide() {
-
-        }
-
-        @Override
-        public void trackingStarted() {
-            launchActivity();
-        }
-
-
-        void launchActivity() {
-            Intent intent = new Intent(context, TrackingActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            context.startActivity(intent);
-        }
-    }
 }

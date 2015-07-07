@@ -1,5 +1,7 @@
 package uk.co.rossbeazley.trackmytrain.android.wear;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.wearable.activity.WearableActivity;
 import android.support.wearable.view.BoxInsetLayout;
@@ -11,15 +13,9 @@ import java.util.Date;
 import java.util.Locale;
 
 import uk.co.rossbeazley.trackmytrain.android.R;
+import uk.co.rossbeazley.trackmytrain.android.WearAppSingleton;
 
-public class TrackingActivity extends WearableActivity {
-
-    private static final SimpleDateFormat AMBIENT_DATE_FORMAT =
-            new SimpleDateFormat("HH:mm", Locale.US);
-
-    private BoxInsetLayout mContainerView;
-    private TextView mTextView;
-    private TextView mClockView;
+public class TrackingActivity extends WearableActivity implements CanFinishWearApp {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,40 +23,37 @@ public class TrackingActivity extends WearableActivity {
         setContentView(R.layout.activity_tracking);
         setAmbientEnabled();
 
-        mContainerView = (BoxInsetLayout) findViewById(R.id.container);
-        mTextView = (TextView) findViewById(R.id.text);
-        mClockView = (TextView) findViewById(R.id.clock);
+        //inflate tracking view
+        //attach to app core
+
+        //attach "view" that will finish activity when tracking stops
+
     }
 
     @Override
     public void onEnterAmbient(Bundle ambientDetails) {
         super.onEnterAmbient(ambientDetails);
-        updateDisplay();
     }
 
     @Override
     public void onUpdateAmbient() {
         super.onUpdateAmbient();
-        updateDisplay();
     }
 
     @Override
     public void onExitAmbient() {
-        updateDisplay();
         super.onExitAmbient();
     }
 
-    private void updateDisplay() {
-        if (isAmbient()) {
-            mContainerView.setBackgroundColor(getResources().getColor(android.R.color.black));
-            mTextView.setTextColor(getResources().getColor(android.R.color.white));
-            mClockView.setVisibility(View.VISIBLE);
 
-            mClockView.setText(AMBIENT_DATE_FORMAT.format(new Date()));
-        } else {
-            mContainerView.setBackground(null);
-            mTextView.setTextColor(getResources().getColor(android.R.color.black));
-            mClockView.setVisibility(View.GONE);
-        }
+    @Override
+    public void finish() {
+        super.finish();
+    }
+
+    public static void launch(Context context) {
+        Intent intent = new Intent(context, TrackingActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
     }
 }
