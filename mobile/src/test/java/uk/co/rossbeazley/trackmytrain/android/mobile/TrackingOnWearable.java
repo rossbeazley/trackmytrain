@@ -2,12 +2,17 @@ package uk.co.rossbeazley.trackmytrain.android.mobile;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.MessagingTrackingPresenter;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 import uk.co.rossbeazley.trackmytrain.android.wear.StartedTrackingMessage;
 import uk.co.rossbeazley.trackmytrain.android.wear.StoppedTrackingMessage;
 
+import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -25,8 +30,8 @@ public class TrackingOnWearable {
         TrackMyTrainApp.instance.watch("2");
 
         Postman.Message expectedMessage = new StartedTrackingMessage();
-        Postman.Message messageDelivered = postman.messageBroadcast;
-        assertThat(messageDelivered, is(expectedMessage));
+
+        assertThat(postman.broadcasts, hasItem(expectedMessage));
     }
 
     @Test
@@ -39,11 +44,11 @@ public class TrackingOnWearable {
         TestTrackMyTrainApp.instance.attach(messagingTrackingPresenter);
 
         TrackMyTrainApp.instance.watch("2");
-        postman.messageBroadcast = null;
+        postman.clearBroadcasts();
         TestTrackMyTrainApp.executorService.command.run();
 
-        Postman.Message messageDelivered = postman.messageBroadcast;
-        assertThat(messageDelivered, is(nullValue()));
+
+        assertThat(postman.broadcasts, not(hasItem(new StartedTrackingMessage())));
     }
 
 
@@ -57,13 +62,13 @@ public class TrackingOnWearable {
         TestTrackMyTrainApp.instance.attach(messagingTrackingPresenter);
 
         TrackMyTrainApp.instance.watch("2");
-        postman.messageBroadcast = null;
+        postman.clearBroadcasts();
         TrackMyTrainApp.instance.unwatch();
         TrackMyTrainApp.instance.watch("2");
 
         Postman.Message expectedMessage = new StartedTrackingMessage();
-        Postman.Message messageDelivered = postman.messageBroadcast;
-        assertThat(messageDelivered, is(expectedMessage));
+
+        assertThat(postman.broadcasts, hasItem(expectedMessage));
     }
 
 
@@ -77,29 +82,46 @@ public class TrackingOnWearable {
         TestTrackMyTrainApp.instance.attach(messagingTrackingPresenter);
 
         TrackMyTrainApp.instance.watch("2");
-        postman.messageBroadcast = null;
+        postman.clearBroadcasts();
         TrackMyTrainApp.instance.unwatch();
 
         Postman.Message expectedMessage = new StoppedTrackingMessage();
-        Postman.Message messageDelivered = postman.messageBroadcast;
-        assertThat(messageDelivered, is(expectedMessage));
+
+        assertThat(postman.broadcasts, hasItem(expectedMessage));
+    }
+
+    @Test
+    public void
+    sendsDetailsOfTrackedService() {
+
+        new TestTrackMyTrainApp();
+        CapturePostman postman = new CapturePostman();
+
+        final MessagingTrackingPresenter messagingTrackingPresenter = new MessagingTrackingPresenter(postman);
+        TestTrackMyTrainApp.instance.attach(messagingTrackingPresenter);
+
+        TrackMyTrainApp.instance.watch("2");
+        Postman.Message expectedMessage = new TrackedService();
+        assertThat(postman.broadcasts, hasItem(expectedMessage));
     }
 
 
     private class CapturePostman implements Postman {
-        public Message messageBroadcast;
-        private Message messagePosted;
-        private NodeId messagePostedTo;
+
+        private List<Message> broadcasts = new ArrayList<>();
 
         @Override
         public void post(Message message, NodeId deliveryAddress) {
-            this.messagePosted = message;
-            this.messagePostedTo = deliveryAddress;
         }
 
         @Override
         public void broadcast(Message message) {
-            this.messageBroadcast = message;
+            this.broadcasts.add(message);
+        }
+
+        public void clearBroadcasts() {
+            broadcasts.clear();
         }
     }
+
 }

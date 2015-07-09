@@ -13,9 +13,11 @@ import java.util.Date;
 import java.util.Locale;
 
 import uk.co.rossbeazley.trackmytrain.android.R;
+import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.WearAppSingleton;
+import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
 
-public class TrackingActivity extends WearableActivity implements CanFinishWearApp {
+public class TrackingActivity extends WearableActivity implements CanFinishWearApp, FindsView {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,7 @@ public class TrackingActivity extends WearableActivity implements CanFinishWearA
 
         //attach "view" that will finish activity when tracking stops
 
+        WearAppSingleton.instance.attach(new TrackingView(this));
         WearAppSingleton.instance.attach(new ExitWearApp(this));
     }
 
@@ -56,5 +59,40 @@ public class TrackingActivity extends WearableActivity implements CanFinishWearA
         Intent intent = new Intent(context, TrackingActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
+    }
+
+    private static class TrackingView implements ServiceView {
+
+
+        private final FindsView findsView;
+        private final TextView textView;
+
+        public TrackingView(FindsView findsView) {
+
+            this.findsView = findsView;
+            textView = (TextView) findsView.findViewById(R.id.text);
+        }
+
+        @Override
+        public void present(final TrainViewModel train) {
+
+            //TODO, create actual fields for this viewmodel
+            textView.post(new Runnable() {
+                @Override
+                public void run() {
+                    textView.setText(train.toString());
+                }
+            });
+        }
+
+        @Override
+        public void hide() {
+
+        }
+
+        @Override
+        public void trackingStarted() {
+
+        }
     }
 }
