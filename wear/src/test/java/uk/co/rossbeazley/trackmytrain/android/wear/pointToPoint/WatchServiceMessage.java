@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.trackmytrain.android.wear;
+package uk.co.rossbeazley.trackmytrain.android.wear.pointToPoint;
 
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 
