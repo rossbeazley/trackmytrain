@@ -4,7 +4,7 @@ import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 
 public class WatchServiceMessage {
 
-    public static Postman.Message createWatchServiceMessage(Postman.NodeId nodeId) {
-        return new Postman.Message(nodeId,"");
+    public static Postman.Message createWatchServiceMessage() {
+        return new Postman.Message("");
     }
 }

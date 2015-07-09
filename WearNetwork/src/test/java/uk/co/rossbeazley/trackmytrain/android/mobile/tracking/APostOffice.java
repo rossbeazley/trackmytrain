@@ -16,13 +16,31 @@ public class APostOffice {
 
         final NodeId anyNode = new NodeId("anyNode");
         final String messagePath = "/any/message";
-        Message expectedMessage = new Message(anyNode, messagePath);
+        Message expectedMessage = new Message(messagePath);
 
         capturingPostman.connect();
 
-        postOffice.post(expectedMessage, null);
+        postOffice.post(expectedMessage, anyNode);
 
         assertThat(capturingPostman.messagePosted, is(expectedMessage));
+    }
+
+
+    @Test
+    public void
+    willGiveMessagesStraightToThePostmanWhenConnectedForANodeId() {
+        final CapturingPostman capturingPostman = new CapturingPostman();
+        final PostOffice postOffice = new PostOffice(capturingPostman, capturingPostman);
+
+        final NodeId anyNode = new NodeId("anyNode");
+        final String messagePath = "/any/message";
+        Message expectedMessage = new Message(messagePath);
+
+        capturingPostman.connect();
+
+        postOffice.post(expectedMessage, anyNode);
+
+        assertThat(capturingPostman.deliveryAddress, is(anyNode));
     }
 
 
@@ -52,12 +70,28 @@ public class APostOffice {
 
         final NodeId anyNode = new NodeId("anyNode");
         final String messagePath = "/any/message";
-        Message expectedMessage = new Message(anyNode, messagePath);
+        Message expectedMessage = new Message(messagePath);
 
         postOffice.post(expectedMessage, null);
         capturingPostman.connect();
 
         assertThat(capturingPostman.messagePosted, is(expectedMessage));
+    }
+
+    @Test
+    public void
+    willAMessageForTheRecipientToThePostmanWhenBecomingConnected() {
+        final CapturingPostman capturingPostman = new CapturingPostman();
+        final PostOffice postOffice = new PostOffice(capturingPostman, capturingPostman);
+
+        final NodeId anyNode = new NodeId("anyNode");
+        final String messagePath = "/any/message";
+        Message expectedMessage = new Message(messagePath);
+
+        postOffice.post(expectedMessage, anyNode);
+        capturingPostman.connect();
+
+        assertThat(capturingPostman.deliveryAddress, is(anyNode));
     }
 
     @Test

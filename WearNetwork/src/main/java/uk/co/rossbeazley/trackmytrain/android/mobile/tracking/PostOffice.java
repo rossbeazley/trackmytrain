@@ -1,6 +1,7 @@
 package uk.co.rossbeazley.trackmytrain.android.mobile.tracking;
 
 import java.util.ArrayList;
+import java.util.List;
 
 class PostOffice implements Postman {
     private final Postman postman;
@@ -8,6 +9,7 @@ class PostOffice implements Postman {
     private boolean connected;
     private ArrayList<Message> messages = new ArrayList<>();
     private ArrayList<Message> broadcasts = new ArrayList<>();
+    private List<NodeId> deliveryAddresss = new ArrayList<>();
 
     public PostOffice(final Postman postman, Network network) {
         this.postman = postman;
@@ -17,7 +19,7 @@ class PostOffice implements Postman {
             public void connected() {
                 connected=true;
                 for (Message message : messages) {
-                    postman.post(message, null);
+                    postman.post(message, deliveryAddresss.get(messages.indexOf(message)));
                 }
                 for (Message broadcast : broadcasts) {
                     postman.broadcast(broadcast);
@@ -34,15 +36,16 @@ class PostOffice implements Postman {
 
     @Override
     public void post(Message message, NodeId deliveryAddress) {
-        if(connected) postman.post(message, null);
+        if (connected) postman.post(message, deliveryAddress);
         else {
-            enqueue(message);
+            enqueue(message, deliveryAddress);
         }
 
     }
 
-    private void enqueue(Message message) {
+    private void enqueue(Message message, NodeId deliveryAddress) {
         this.messages.add(message);
+        this.deliveryAddresss.add(deliveryAddress);
     }
 
     @Override

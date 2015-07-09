@@ -9,7 +9,7 @@ public class StoppedTrackingMessage extends Postman.Message {
     public static final String MESSAGE_PATH = "/TRACKING/STOPPED";
 
     public StoppedTrackingMessage() {
-        super(null, MESSAGE_PATH);
+        super(MESSAGE_PATH);
     }
 
     static class Factory implements PostmanMessageFactory.MessageFactory {
