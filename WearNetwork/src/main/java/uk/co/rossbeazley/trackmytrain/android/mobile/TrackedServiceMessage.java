@@ -5,10 +5,10 @@ import java.util.Objects;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 
-public class TrackedService extends Postman.BroadcastMessage {
+public class TrackedServiceMessage extends Postman.BroadcastMessage {
     private final TrainViewModel trainViewModel;
 
-    public TrackedService(TrainViewModel trainViewModel) {
+    public TrackedServiceMessage(TrainViewModel trainViewModel) {
         super("/TRACKED/SERVICE");
         this.trainViewModel = trainViewModel;
     }
@@ -18,7 +18,7 @@ public class TrackedService extends Postman.BroadcastMessage {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        TrackedService that = (TrackedService) o;
+        TrackedServiceMessage that = (TrackedServiceMessage) o;
         return Objects.equals(trainViewModel, that.trainViewModel);
     }
 
