@@ -5,9 +5,10 @@ import com.google.android.gms.wearable.MessageEvent;
 import java.util.HashMap;
 import java.util.Map;
 
+import uk.co.rossbeazley.trackmytrain.android.mobile.TrackedServiceMessage;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 
-class PostmanMessageFactory {
+public class PostmanMessageFactory {
 
     private Map<String, MessageFactory> factoriesFromPath;
 
@@ -15,6 +16,7 @@ class PostmanMessageFactory {
         factoriesFromPath = new HashMap<>();
         factoriesFromPath.put(StartedTrackingMessage.MESSAGE_PATH, new StartedTrackingMessage.Factory());
         factoriesFromPath.put(StoppedTrackingMessage.MESSAGE_PATH, new StoppedTrackingMessage.Factory());
+        factoriesFromPath.put(TrackedServiceMessage.MESSAGE_PATH, new TrackedServiceMessage.Factory());
     }
 
     public MessageEnvelope toMessage(MessageEvent messageEvent) {

@@ -1,15 +1,19 @@
 package uk.co.rossbeazley.trackmytrain.android.mobile;
 
+import com.google.android.gms.wearable.MessageEvent;
+
 import java.util.Objects;
 
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
+import uk.co.rossbeazley.trackmytrain.android.wear.PostmanMessageFactory;
 
 public class TrackedServiceMessage extends Postman.BroadcastMessage {
+    public static final String MESSAGE_PATH = "/TRACKED/SERVICE";
     private final TrainViewModel trainViewModel;
 
     public TrackedServiceMessage(TrainViewModel trainViewModel) {
-        super("/TRACKED/SERVICE");
+        super(MESSAGE_PATH);
         this.trainViewModel = trainViewModel;
     }
 
@@ -32,5 +36,16 @@ public class TrackedServiceMessage extends Postman.BroadcastMessage {
         return super.toString() + " {" +
                 "trainViewModel=" + trainViewModel +
                 '}';
+    }
+
+    public static class Factory implements PostmanMessageFactory.MessageFactory {
+        @Override
+        public Postman.Message create(MessageEvent messageEvent) {
+            //messageEvent.getPath()
+            // remove start path
+            // split into pairs
+            // deserialize
+            return new TrackedServiceMessage(null);
+        }
     }
 }
