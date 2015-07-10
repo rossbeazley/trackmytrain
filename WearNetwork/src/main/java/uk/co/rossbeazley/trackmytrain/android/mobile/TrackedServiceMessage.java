@@ -4,6 +4,7 @@ import com.google.android.gms.wearable.MessageEvent;
 
 import java.util.Objects;
 
+import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 import uk.co.rossbeazley.trackmytrain.android.wear.PostmanMessageFactory;
@@ -45,7 +46,7 @@ public class TrackedServiceMessage extends Postman.BroadcastMessage {
             // remove start path
             // split into pairs
             // deserialize
-            return new TrackedServiceMessage(null);
+            return new TrackedServiceMessage(new TrainViewModel(new Train("2", "10:00", "09:00", "1")));
         }
     }
 }
