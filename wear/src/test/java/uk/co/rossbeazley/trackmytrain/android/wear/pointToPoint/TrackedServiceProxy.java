@@ -1,8 +1,9 @@
-package uk.co.rossbeazley.trackmytrain.android.wear;
+package uk.co.rossbeazley.trackmytrain.android.wear.pointToPoint;
 
 import uk.co.rossbeazley.trackmytrain.android.CanTrackTrains;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
+import uk.co.rossbeazley.trackmytrain.android.wear.HostNode;
 
 class TrackedServiceProxy implements CanTrackTrains {
     private final Postman postman;
@@ -30,7 +31,7 @@ class TrackedServiceProxy implements CanTrackTrains {
         hostNode.id(new HostNode.Result() {
             @Override
             public void id(Postman.NodeId id) {
-                postman.post(WatchServiceMessage.createWatchServiceMessage(id), null);
+                postman.post(WatchServiceMessage.createWatchServiceMessage(), id);
             }
         });
 
