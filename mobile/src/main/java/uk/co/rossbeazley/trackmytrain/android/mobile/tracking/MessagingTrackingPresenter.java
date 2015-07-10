@@ -1,5 +1,6 @@
 package uk.co.rossbeazley.trackmytrain.android.mobile.tracking;
 
+import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.mobile.TrackedService;
 import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
@@ -15,7 +16,7 @@ public class MessagingTrackingPresenter implements ServiceView {
 
     @Override
     public void present(TrainViewModel train) {
-        postman.broadcast(new TrackedService());
+        postman.broadcast(new TrackedService(train));
     }
 
     @Override

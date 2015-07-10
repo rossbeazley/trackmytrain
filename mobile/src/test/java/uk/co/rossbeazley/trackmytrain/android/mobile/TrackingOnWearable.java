@@ -5,6 +5,9 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.co.rossbeazley.trackmytrain.android.TestDataBuilder;
+import uk.co.rossbeazley.trackmytrain.android.Train;
+import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.MessagingTrackingPresenter;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 import uk.co.rossbeazley.trackmytrain.android.wear.StartedTrackingMessage;
@@ -101,7 +104,7 @@ public class TrackingOnWearable {
         TestTrackMyTrainApp.instance.attach(messagingTrackingPresenter);
 
         TrackMyTrainApp.instance.watch("2");
-        Postman.Message expectedMessage = new TrackedService();
+        Postman.Message expectedMessage = new TrackedService(new TrainViewModel(new Train("2", "10:00", "09:00", "1")));
         assertThat(postman.broadcasts, hasItem(expectedMessage));
     }
 

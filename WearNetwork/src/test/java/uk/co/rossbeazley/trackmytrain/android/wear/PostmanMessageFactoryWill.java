@@ -49,6 +49,11 @@ public class PostmanMessageFactoryWill {
 
     }
 
+    @Test
+    public void
+    convertMessageEventToTrackedServiceMessage() {
+
+    }
 
     private static class WearMessageEvent implements MessageEvent {
 
