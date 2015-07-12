@@ -8,19 +8,44 @@
     tools:context="uk.co.rossbeazley.trackmytrain.android.wear.TrackingActivity"
     tools:deviceIds="wear">
 
-    <TextView
-        android:id="@+id/text"
-        app:layout_box="all"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        android:layout_height="match_parent">
 
-    <TextClock
-        android:id="@+id/clock"
-        app:layout_box="all"
-        android:layout_gravity="bottom|start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/white" />
+        <TextView
+            android:id="@+id/scheduledtime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:gravity="center_horizontal"
+            tools:text="09:00" />
+
+        <TextView
+            android:id="@+id/estimatedtime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:gravity="center_horizontal"
+            tools:text="On Time" />
+
+
+        <TextView
+            android:id="@+id/platform"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:gravity="center_horizontal"
+            tools:text="Platform 2" />
+
+
+        <TextClock
+            android:id="@+id/clock"
+            app:layout_box="all"
+            android:layout_gravity="bottom|start"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
 
 </android.support.wearable.view.BoxInsetLayout>

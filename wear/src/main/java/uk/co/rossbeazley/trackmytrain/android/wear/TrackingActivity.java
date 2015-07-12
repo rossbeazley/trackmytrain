@@ -65,22 +65,30 @@ public class TrackingActivity extends WearableActivity implements CanFinishWearA
 
 
         private final FindsView findsView;
-        private final TextView textView;
+        private final TextView scheduledtime;
+        private final TextView estimatedtime;
+        private final TextView platform;
 
         public TrackingView(FindsView findsView) {
 
             this.findsView = findsView;
-            textView = (TextView) findsView.findViewById(R.id.text);
+            scheduledtime = (TextView) findsView.findViewById(R.id.scheduledtime);
+            estimatedtime = (TextView) findsView.findViewById(R.id.estimatedtime);
+            platform = (TextView) findsView.findViewById(R.id.platform);
+
+
         }
 
         @Override
         public void present(final TrainViewModel train) {
 
-            //TODO, create actual fields for this viewmodel
-            textView.post(new Runnable() {
+            scheduledtime.post(new Runnable() {
                 @Override
                 public void run() {
-                    textView.setText(train.toString());
+                    scheduledtime.setText(train.scheduledTime());
+                    estimatedtime.setText(train.estimatedTime());
+                    platform.setText(train.platform());
+
                 }
             });
         }
