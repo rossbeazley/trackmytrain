@@ -14,9 +14,10 @@ public class TrackedServiceMessage extends Postman.BroadcastMessage {
     private final TrainViewModel trainViewModel;
 
     public TrackedServiceMessage(TrainViewModel trainViewModel) {
-        super(MESSAGE_PATH);
+        super(MESSAGE_PATH + "/" + trainViewModel.id() + "/" + trainViewModel.estimatedTime() + "/" + trainViewModel.scheduledTime() + "/" + trainViewModel.platform().replace("Platform ", ""));
         this.trainViewModel = trainViewModel;
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -46,7 +47,17 @@ public class TrackedServiceMessage extends Postman.BroadcastMessage {
             // remove start path
             // split into pairs
             // deserialize
-            return new TrackedServiceMessage(new TrainViewModel(new Train("2", "10:00", "09:00", "1")));
+            /**
+             * String id, String estimatedTime, String scheduledTime, String platform
+             */
+            String path = messageEvent.getPath().replace(MESSAGE_PATH, "");
+            String[] parts = path.split("\\/");
+            final String id = parts[1];
+            final String estimatedTime = parts[2];
+            final String scheduledTime = parts[3];
+            final String platform = parts[4];
+            TrainViewModel tvm = new TrainViewModel(id, estimatedTime, scheduledTime, platform);
+            return new TrackedServiceMessage(tvm);
         }
     }
 }

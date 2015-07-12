@@ -49,16 +49,10 @@ public interface Postman {
 
     class Message {
 
-        private final WearPostman.NodeId id;
         private final String messagePath;
 
         public Message(String messagePath) {
-            this.id = null;
             this.messagePath = messagePath;
-        }
-
-        public String nodeIdAsString() {
-            return id.toString();
         }
 
         public String messageAsString() {
@@ -71,13 +65,16 @@ public interface Postman {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
             Message message = (Message) o;
-            return Objects.equals(id, message.id) &&
-                    Objects.equals(messagePath, message.messagePath);
+            return Objects.equals(messagePath, message.messagePath);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(id, messagePath);
+            return Objects.hash(messagePath);
+        }
+
+        public byte[] messageBytes() {
+            return new byte[0];
         }
     }
 
