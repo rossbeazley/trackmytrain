@@ -3,6 +3,9 @@ package uk.co.rossbeazley.trackmytrain.android.wear;
 import org.junit.Test;
 
 import uk.co.rossbeazley.trackmytrain.android.ServiceTest;
+import uk.co.rossbeazley.trackmytrain.android.Train;
+import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
+import uk.co.rossbeazley.trackmytrain.android.mobile.TrackedServiceMessage;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -46,6 +49,21 @@ public class TrackingAService {
 
         assertThat(capturingCanFinishWearApp.state, is(CapturingCanFinishWearApp.FINISHED));
 
+    }
+
+    @Test
+    public void
+    updatesViewWithTrackedServiceViewModel() {
+
+        HostNode hostNode = new HostNode();
+        WearApp wearApp = new WearApp(hostNode);
+        ServiceTest.CapturingServiceView serviceView = new ServiceTest.CapturingServiceView();
+        wearApp.attach(serviceView);
+
+        TrainViewModel expectedService = new TrainViewModel(new Train("2", "10:00", "09:00", "1"));
+        wearApp.message(new MessageEnvelope(new Postman.NodeId("anyId"), new TrackedServiceMessage(expectedService)));
+
+        assertThat(serviceView.serviceDisplayed, is(expectedService));
     }
 
     private static class CapturingCanFinishWearApp implements CanFinishWearApp {

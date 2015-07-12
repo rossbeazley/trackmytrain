@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import uk.co.rossbeazley.trackmytrain.android.CanTrackTrains;
+import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
+import uk.co.rossbeazley.trackmytrain.android.mobile.TrackedServiceMessage;
+import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
 
 /**
@@ -23,13 +26,27 @@ public class WearApp implements CanTrackTrains {
     public void message(MessageEnvelope messageEnvelope) {
         hostNode.register(messageEnvelope.fromId());
 
-        if (messageEnvelope.message() instanceof StartedTrackingMessage) {
+        final Postman.Message message = messageEnvelope.message();
+
+        if (message instanceof StartedTrackingMessage) {
             announceServiceTracking();
         }
 
-        if (messageEnvelope.message() instanceof StoppedTrackingMessage) {
+        if (message instanceof StoppedTrackingMessage) {
             announceServiceTrackingStopped();
         }
+
+        if (message instanceof TrackedServiceMessage) {
+            TrackedServiceMessage msg = (TrackedServiceMessage) message;
+            announceServiceTracking(msg.trainViewModel());
+        }
+    }
+
+    private void announceServiceTracking(TrainViewModel trainViewModel) {
+        for (ServiceView serviceView : serviceViews) {
+            serviceView.present(trainViewModel);
+        }
+
     }
 
     void announceServiceTrackingStopped() {

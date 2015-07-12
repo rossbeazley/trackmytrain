@@ -18,6 +18,9 @@ public class TrackedServiceMessage extends Postman.BroadcastMessage {
         this.trainViewModel = trainViewModel;
     }
 
+    public TrainViewModel trainViewModel() {
+        return trainViewModel;
+    }
 
     @Override
     public boolean equals(Object o) {
