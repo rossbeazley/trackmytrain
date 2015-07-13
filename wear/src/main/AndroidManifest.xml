@@ -31,12 +31,13 @@
             android:name=".wear.TrackingActivity"
             android:label="@string/title_activity_tracking"
             android:launchMode="singleInstance"
+            android:allowEmbedded="true"
             android:theme="@android:style/Theme.DeviceDefault.Light">
-            <!--<intent-filter>-->
-            <!--<action android:name="android.intent.action.MAIN" />-->
+            <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-            <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+            <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
