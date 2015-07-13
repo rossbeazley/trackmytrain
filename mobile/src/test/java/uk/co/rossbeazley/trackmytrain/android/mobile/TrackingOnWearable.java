@@ -8,6 +8,7 @@ import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.MessagingTrackingP
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 import uk.co.rossbeazley.trackmytrain.android.wear.StartedTrackingMessage;
 import uk.co.rossbeazley.trackmytrain.android.wear.StoppedTrackingMessage;
+import uk.co.rossbeazley.trackmytrain.android.wear.TrackedServiceMessage;
 
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;

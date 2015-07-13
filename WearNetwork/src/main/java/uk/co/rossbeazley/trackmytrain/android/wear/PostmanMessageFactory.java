@@ -5,7 +5,6 @@ import com.google.android.gms.wearable.MessageEvent;
 import java.util.HashMap;
 import java.util.Map;
 
-import uk.co.rossbeazley.trackmytrain.android.mobile.TrackedServiceMessage;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 
 public class PostmanMessageFactory {
