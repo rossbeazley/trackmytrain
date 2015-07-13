@@ -20,10 +20,10 @@ public class GoogleAnalytics implements Analytics {
     }
 
     @Override
-    public void event(String category, String label) {
+    public void event(EventTrack eventTrack) {
         tracker.send(new HitBuilders.EventBuilder()
-                .setCategory(category)
-                .setLabel(label)
+                .setCategory(eventTrack.category)
+                .setLabel(eventTrack.label)
                 .build());
     }
 

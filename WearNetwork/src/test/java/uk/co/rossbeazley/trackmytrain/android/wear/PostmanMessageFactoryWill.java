@@ -65,6 +65,19 @@ public class PostmanMessageFactoryWill {
         assertThat(convertMessage.message(), is(equalTo(expectedMessage)));
     }
 
+    @Test
+    public void
+    convertAnalyticsEventMessage() {
+
+        String anyId = "anyId";
+        Postman.Message expectedMessage = new AnalyticsEventMessage();
+        MessageEvent msg = new WearMessageEvent(expectedMessage.messageAsString(), anyId);
+
+        MessageEnvelope convertMessage = new PostmanMessageFactory().toMessage(msg);
+
+        assertThat(convertMessage.message(), is(equalTo(expectedMessage)));
+    }
+
     private static class WearMessageEvent implements MessageEvent {
 
         private String path;

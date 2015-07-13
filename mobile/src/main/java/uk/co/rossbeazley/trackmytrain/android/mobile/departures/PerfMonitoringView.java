@@ -32,7 +32,7 @@ public class PerfMonitoringView implements DeparturesView {
     public void error(TMTError error) {
         final String category = "DeparturesQuery";
         final String label = "DeparturesQuery.error";
-        tracker.event(category, label);
+        tracker.event(new Analytics.EventTrack(category, label));
     }
 
 }
