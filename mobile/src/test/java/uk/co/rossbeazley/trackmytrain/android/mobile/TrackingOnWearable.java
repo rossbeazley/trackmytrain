@@ -2,9 +2,6 @@ package uk.co.rossbeazley.trackmytrain.android.mobile;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.MessagingTrackingPresenter;
@@ -25,7 +22,7 @@ public class TrackingOnWearable {
     sendsMessageWhenTrackingStarts() {
 
         new TestTrackMyTrainApp();
-        CapturePostman postman = new CapturePostman();
+        CapturingPostman postman = new CapturingPostman();
         final MessagingTrackingPresenter messagingTrackingPresenter = new MessagingTrackingPresenter(postman);
         TestTrackMyTrainApp.instance.attach(messagingTrackingPresenter);
 
@@ -41,7 +38,7 @@ public class TrackingOnWearable {
     dosntSendsMessageWhenTrackingUpdated() {
 
         new TestTrackMyTrainApp();
-        CapturePostman postman = new CapturePostman();
+        CapturingPostman postman = new CapturingPostman();
         final MessagingTrackingPresenter messagingTrackingPresenter = new MessagingTrackingPresenter(postman);
         TestTrackMyTrainApp.instance.attach(messagingTrackingPresenter);
 
@@ -59,7 +56,7 @@ public class TrackingOnWearable {
     sendsMessageWhenTrackingANewService() {
 
         new TestTrackMyTrainApp();
-        CapturePostman postman = new CapturePostman();
+        CapturingPostman postman = new CapturingPostman();
         final MessagingTrackingPresenter messagingTrackingPresenter = new MessagingTrackingPresenter(postman);
         TestTrackMyTrainApp.instance.attach(messagingTrackingPresenter);
 
@@ -79,7 +76,7 @@ public class TrackingOnWearable {
     sendsMessageWhenTrackingStops() {
 
         new TestTrackMyTrainApp();
-        CapturePostman postman = new CapturePostman();
+        CapturingPostman postman = new CapturingPostman();
         final MessagingTrackingPresenter messagingTrackingPresenter = new MessagingTrackingPresenter(postman);
         TestTrackMyTrainApp.instance.attach(messagingTrackingPresenter);
 
@@ -97,7 +94,7 @@ public class TrackingOnWearable {
     sendsDetailsOfTrackedService() {
 
         new TestTrackMyTrainApp();
-        CapturePostman postman = new CapturePostman();
+        CapturingPostman postman = new CapturingPostman();
 
         final MessagingTrackingPresenter messagingTrackingPresenter = new MessagingTrackingPresenter(postman);
         TestTrackMyTrainApp.instance.attach(messagingTrackingPresenter);
@@ -107,23 +104,5 @@ public class TrackingOnWearable {
         assertThat(postman.broadcasts, hasItem(expectedMessage));
     }
 
-
-    private class CapturePostman implements Postman {
-
-        private List<Message> broadcasts = new ArrayList<>();
-
-        @Override
-        public void post(Message message, NodeId deliveryAddress) {
-        }
-
-        @Override
-        public void broadcast(Message message) {
-            this.broadcasts.add(message);
-        }
-
-        public void clearBroadcasts() {
-            broadcasts.clear();
-        }
-    }
 
 }

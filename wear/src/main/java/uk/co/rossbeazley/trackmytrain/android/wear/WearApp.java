@@ -17,10 +17,12 @@ public class WearApp implements CanTrackTrains {
     private final HostNode hostNode;
     private List<ServiceView> serviceViews;
 
-    public WearApp(HostNode hostNode) {
+    public WearApp(HostNode hostNode, Postman postman) {
         serviceViews = new CopyOnWriteArrayList<>();
 
         this.hostNode = hostNode;
+
+        postman.broadcast(new AnalyticsEventMessage());
     }
 
     public void message(MessageEnvelope messageEnvelope) {

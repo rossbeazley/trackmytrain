@@ -41,3 +41,6 @@ Second deliverale:
 
 when wear app starts it sends broadcast analytics message
 mobile can listen to message and track event
+
+
+GET RID OF BROADCAST MESSAGES

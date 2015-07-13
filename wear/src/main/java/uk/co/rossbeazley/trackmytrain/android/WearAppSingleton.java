@@ -2,6 +2,7 @@ package uk.co.rossbeazley.trackmytrain.android;
 
 import android.app.Application;
 
+import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.WearNetworkBuilder;
 import uk.co.rossbeazley.trackmytrain.android.wear.HostNode;
 import uk.co.rossbeazley.trackmytrain.android.wear.WearApp;
 
@@ -14,7 +15,7 @@ public class WearAppSingleton extends Application {
 
     public WearAppSingleton() {
         HostNode hostnode = new HostNode();
-        instance = new WearApp(hostnode);
+        instance = new WearApp(hostnode, WearNetworkBuilder.fromContext(this));
     }
 
     @Override
