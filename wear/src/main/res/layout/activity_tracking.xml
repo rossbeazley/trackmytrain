@@ -23,26 +23,13 @@
             android:background="@android:color/white"
             android:layout_marginBottom="10dp"/>
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:gravity="center_horizontal|center_vertical"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
-                android:paddingLeft="32dp"
-                android:paddingRight="32dp"
-                android:elevation="6dp"
 
-                >
 
                 <TextView
                     android:id="@+id/platform"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#555"
+                    android:textColor="#ddd"
                     android:gravity="bottom"
                     android:textSize="18sp"
                     tools:text="Platform 4"
@@ -55,7 +42,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="28sp"
-                    android:textColor="#555"
+                    android:textColor="#ddd"
                     tools:text="12:01"
 
                     android:fontFamily="sans-serif-thin"/>
@@ -65,11 +52,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="28sp"
-                    android:textColor="#555"
+                    android:textColor="#ddd"
                     tools:text="On Time"
 
                     android:fontFamily="sans-serif-thin"/>
-            </LinearLayout>
+
 
         <View
 
