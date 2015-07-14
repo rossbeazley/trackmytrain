@@ -20,9 +20,9 @@
         android:layout_height="wrap_content"
         android:textColor="#ff0000"
         android:fontFamily="sans-serif-thin"
-        android:format12Hour="hh"
-        android:format24Hour="hh"
-        android:textSize="40sp" />
+        android:format12Hour="HH"
+        android:format24Hour="HH"
+        android:textSize="32sp" />
 
     <TextClock
         android:id="@+id/clock2"
@@ -30,7 +30,7 @@
         android:layout_gravity="left|bottom"
         android:gravity="left|bottom"
         android:layout_width="0dp"
-        android:textSize="40sp"
+        android:textSize="32sp"
         android:layout_weight="50"
         android:layout_height="wrap_content"
         android:textColor="#aaaaaa"
