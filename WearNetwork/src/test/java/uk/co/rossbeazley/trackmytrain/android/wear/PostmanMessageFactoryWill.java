@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
-import uk.co.rossbeazley.trackmytrain.android.mobile.TrackedServiceMessage;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -62,6 +61,19 @@ public class PostmanMessageFactoryWill {
         MessageEvent msg = new WearMessageEvent(expectedMessage.messageAsString(), anyId);
 
         MessageEnvelope convertMessage=new PostmanMessageFactory().toMessage(msg);
+
+        assertThat(convertMessage.message(), is(equalTo(expectedMessage)));
+    }
+
+    @Test
+    public void
+    convertAnalyticsEventMessage() {
+
+        String anyId = "anyId";
+        Postman.Message expectedMessage = new AnalyticsEventMessage();
+        MessageEvent msg = new WearMessageEvent(expectedMessage.messageAsString(), anyId);
+
+        MessageEnvelope convertMessage = new PostmanMessageFactory().toMessage(msg);
 
         assertThat(convertMessage.message(), is(equalTo(expectedMessage)));
     }

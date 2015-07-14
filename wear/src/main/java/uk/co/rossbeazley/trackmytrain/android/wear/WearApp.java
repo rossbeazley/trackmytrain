@@ -1,12 +1,10 @@
 package uk.co.rossbeazley.trackmytrain.android.wear;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import uk.co.rossbeazley.trackmytrain.android.CanTrackTrains;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
-import uk.co.rossbeazley.trackmytrain.android.mobile.TrackedServiceMessage;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
 
@@ -17,10 +15,12 @@ public class WearApp implements CanTrackTrains {
     private final HostNode hostNode;
     private List<ServiceView> serviceViews;
 
-    public WearApp(HostNode hostNode) {
+    public WearApp(HostNode hostNode, Postman postman) {
         serviceViews = new CopyOnWriteArrayList<>();
 
         this.hostNode = hostNode;
+
+        postman.broadcast(new AnalyticsEventMessage());
     }
 
     public void message(MessageEnvelope messageEnvelope) {

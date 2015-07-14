@@ -1,13 +1,11 @@
-package uk.co.rossbeazley.trackmytrain.android.mobile;
+package uk.co.rossbeazley.trackmytrain.android.wear;
 
 import com.google.android.gms.wearable.MessageEvent;
 
 import java.util.Objects;
 
-import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
-import uk.co.rossbeazley.trackmytrain.android.wear.PostmanMessageFactory;
 
 public class TrackedServiceMessage extends Postman.BroadcastMessage {
     public static final String MESSAGE_PATH = "/TRACKED/SERVICE";

@@ -5,7 +5,6 @@ import org.junit.Test;
 import uk.co.rossbeazley.trackmytrain.android.ServiceTest;
 import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
-import uk.co.rossbeazley.trackmytrain.android.mobile.TrackedServiceMessage;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -19,7 +18,7 @@ public class TrackingAService {
 
 
         HostNode hostNode = new HostNode();
-        WearApp wearApp = new WearApp(hostNode);
+        WearApp wearApp = new WearApp(hostNode, new CapturingPostman());
 
         final ServiceTest.CapturingServiceView serviceView = new ServiceTest.CapturingServiceView();
         wearApp.attach(serviceView);
@@ -38,7 +37,7 @@ public class TrackingAService {
     finishesWearAppWhenTrackingEnds() {
 
         HostNode hostNode = new HostNode();
-        WearApp wearApp = new WearApp(hostNode);
+        WearApp wearApp = new WearApp(hostNode, new CapturingPostman());
 
         final CapturingCanFinishWearApp capturingCanFinishWearApp = new CapturingCanFinishWearApp();
         wearApp.attach(new ExitWearApp(capturingCanFinishWearApp));
@@ -56,7 +55,7 @@ public class TrackingAService {
     updatesViewWithTrackedServiceViewModel() {
 
         HostNode hostNode = new HostNode();
-        WearApp wearApp = new WearApp(hostNode);
+        WearApp wearApp = new WearApp(hostNode, new CapturingPostman());
         ServiceTest.CapturingServiceView serviceView = new ServiceTest.CapturingServiceView();
         wearApp.attach(serviceView);
 

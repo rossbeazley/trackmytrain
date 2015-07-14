@@ -1,32 +1,26 @@
 package uk.co.rossbeazley.trackmytrain.android.mobile.departures;
 
-import com.google.android.gms.analytics.GoogleAnalytics;
-import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
 
 import uk.co.rossbeazley.trackmytrain.android.TMTError;
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesView;
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesViewModel;
-import uk.co.rossbeazley.trackmytrain.android.mobile.TrackMyTrainApp;
+import uk.co.rossbeazley.trackmytrain.android.mobile.Analytics;
 
 public class PerfMonitoringView implements DeparturesView {
 
     private long timer;
-    private Tracker tracker;
+    private Analytics tracker;
 
-    public PerfMonitoringView(TrackMyTrainApp trackMyTrainApp) {
-        GoogleAnalytics analytics = GoogleAnalytics.getInstance(trackMyTrainApp);
-        tracker = analytics.newTracker("UA-8505275-4");
+    public PerfMonitoringView(Analytics tracker) {
+        this.tracker = tracker;
     }
 
     @Override
     public void present(DeparturesViewModel trains) {
         long millis = System.currentTimeMillis() - timer;
-        tracker.send(new HitBuilders.TimingBuilder()
-                .setCategory("DeparturesQuery")
-                .setValue(millis)
-                .setVariable("DeparturesQuery.load")
-                .build());
+        final String category = "DeparturesQuery";
+        final String variable = "DeparturesQuery.load";
+        tracker.timing(millis, category, variable);
     }
 
     @Override
@@ -36,9 +30,9 @@ public class PerfMonitoringView implements DeparturesView {
 
     @Override
     public void error(TMTError error) {
-        tracker.send(new HitBuilders.EventBuilder()
-                .setCategory("DeparturesQuery")
-                .setLabel("DeparturesQuery.error")
-                .build());
+        final String category = "DeparturesQuery";
+        final String label = "DeparturesQuery.error";
+        tracker.event(new Analytics.EventTrack(category, label));
     }
+
 }

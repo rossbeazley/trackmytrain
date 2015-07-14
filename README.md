@@ -17,21 +17,30 @@ Todo list:
 2nd deliverable Mobile will store the node id of the wearable that has attached ui
 2nd deliverable Wearable can send a detach service tracking ui message.
 
-Mobile can send serialised train view models
++ Mobile can send serialised train view models
 
 + Mobile can send a tracking started broadcast.
 + Wearable will show UI in response to tracking started.
 + Wearable will hide UI in response to tracking finished.
 
-Very next task is the update view in response to service details update
++ Very next task is the update view in response to service details update
 
 
 First deliverable:
 
-host will need to send presentation messages as broadcast -- SERVICE_VIEW_PRESENT
-wear activity is always on
-activity finishes self when tracking stops
++ host will need to send presentation messages as broadcast -- SERVICE_VIEW_PRESENT
++ wear activity is always on
++ activity finishes self when tracking stops
 
 
-Second deliverable:
+After first deliverable:
 point to point comms
+
+
+Second deliverale:
+
+when wear app starts it sends broadcast analytics message
+mobile can listen to message and track event
+
+
+GET RID OF BROADCAST MESSAGES
