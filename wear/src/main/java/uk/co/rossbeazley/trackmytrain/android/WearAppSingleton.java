@@ -14,13 +14,14 @@ public class WearAppSingleton extends Application {
     public static WearApp instance;
 
     public WearAppSingleton() {
-        HostNode hostnode = new HostNode();
-        instance = new WearApp(hostnode, WearNetworkBuilder.fromContext(this));
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
+        HostNode hostnode = new HostNode();
+        instance = new WearApp(hostnode, WearNetworkBuilder.fromContext(this));
+
         instance.attach(new StartsTrackingActivity(this));
     }
 
