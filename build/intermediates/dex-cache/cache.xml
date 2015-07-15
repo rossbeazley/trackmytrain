@@ -2,18 +2,11 @@
 <items version="2" >
 
     <item
-        jar="/Users/beazlr02/workspace/projects/home/trackmytrain/mobile/build/intermediates/exploded-aar/trackmytrain/WearNetwork/unspecified/jars/classes.jar"
+        jar="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/exploded-aar/trackmytrain/WearNetwork/unspecified/jars/classes.jar"
         jumboMode="false"
-        revision="22.0.1"
-        sha1="1fc1bc85f4cbbe5b02ddcdac01f6201a670ae438">
-        <dex dex="/Users/beazlr02/workspace/projects/home/trackmytrain/mobile/build/intermediates/pre-dexed/debug/classes-03d5da6d9894eaf93be8800e8b3e001bbc154c0b.jar" />
-    </item>
-    <item
-        jar="/Users/beazlr02/workspace/projects/home/trackmytrain/wear/build/intermediates/exploded-aar/trackmytrain/WearNetwork/unspecified/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="1fc1bc85f4cbbe5b02ddcdac01f6201a670ae438">
-        <dex dex="/Users/beazlr02/workspace/projects/home/trackmytrain/wear/build/intermediates/pre-dexed/debug/classes-6504430943d2f7214ab27fd9bdf16f94b2069d16.jar" />
+        revision="22.0.1" sha1="e7ddf6c69638a79e4ab50bb1ec3b219b6bdf762f">
+        <dex
+            dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/classes-d34ffb0e2eaf06adfeb638f60cf96d1402999ff1.jar" />
     </item>
 
 </items>

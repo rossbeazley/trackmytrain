@@ -26,7 +26,7 @@ class StartsTrackingActivity implements ServiceView {
 
     @Override
     public void trackingStarted() {
-        launchActivity();
+        //launchActivity();
     }
 
 

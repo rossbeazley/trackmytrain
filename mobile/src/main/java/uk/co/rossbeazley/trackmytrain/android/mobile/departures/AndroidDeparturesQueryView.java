@@ -85,7 +85,7 @@ class AndroidDeparturesQueryView implements DeparturesQueryView {
     }
 
     private void prepareForTransitionAnimation() {
-        TransitionManager.beginDelayedTransition(servicedetailsRoot, new AutoTransition().setDuration(100));
+        TransitionManager.beginDelayedTransition(servicedetailsRoot, new AutoTransition().setDuration(80));
     }
 
     void dispatchQuery() {
