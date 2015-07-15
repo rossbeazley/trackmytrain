@@ -1,5 +1,6 @@
 package uk.co.rossbeazley.trackmytrain.android.mobile.departures;
 
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
 import android.view.MotionEvent;
@@ -56,6 +57,13 @@ class AndroidDeparturesQueryView implements DeparturesQueryView {
                 dispatchQuery();
                 showCompactQueryBar();
                 inputMethodManager.hideSoftInputFromWindow(at.getWindowToken(), 0);
+            }
+        });
+
+        ((SwipeRefreshLayout) findsView.findViewById(R.id.refresh)).setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                dispatchQuery();
             }
         });
 

@@ -37,4 +37,5 @@ dependencies {
     testCompile 'org.robolectric:robolectric:2.4'
     testCompile project(path: ':core', configuration: 'testArtifacts')
     compile project(':WearNetwork')
+    compile 'com.android.support:support-v4:22.2.0'
 }

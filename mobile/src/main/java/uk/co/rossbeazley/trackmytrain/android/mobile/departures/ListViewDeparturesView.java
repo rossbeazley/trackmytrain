@@ -1,5 +1,6 @@
 package uk.co.rossbeazley.trackmytrain.android.mobile.departures;
 
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -18,7 +19,8 @@ class ListViewDeparturesView implements DeparturesView {
     private DeparturesViewModel trains;
 
     public ListViewDeparturesView(FindsView findsView) {
-        this((ListView) findsView.findViewById(R.id.departurelist), findsView.findViewById(R.id.departurelist_loading));
+        this((ListView) findsView.findViewById(R.id.departurelist),
+                findsView.findViewById(R.id.departurelist_loading));
     }
 
     public ListViewDeparturesView(ListView listView, View loading) {

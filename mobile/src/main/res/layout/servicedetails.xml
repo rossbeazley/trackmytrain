@@ -16,8 +16,8 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:listSelector="#33559B91"
-        android:choiceMode="singleChoice"
-        />
+        android:choiceMode="singleChoice" />
+
 
     <View
         android:layout_width="match_parent"
