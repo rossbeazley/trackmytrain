@@ -60,12 +60,12 @@ class AndroidDeparturesQueryView implements DeparturesQueryView {
             }
         });
 
-        ((SwipeRefreshLayout) findsView.findViewById(R.id.refresh)).setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                dispatchQuery();
-            }
-        });
+//        ((SwipeRefreshLayout) findsView.findViewById(R.id.refresh)).setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                dispatchQuery();
+//            }
+//        });
 
         showFullQueryBoxWhenCompactTouched();
     }
