@@ -80,6 +80,32 @@ public class TrackingAService {
         assertThat(serviceView.serviceDisplayed, is(expectedService));
     }
 
+    @Test
+    public void
+    startingAppAfterTrackingHasEndedWillNotShowTheLastTrackedService() {
+
+        TrainViewModel NONE = new TrainViewModel(new Train("", "", "", "")) {
+            @Override
+            public String toString() {
+                return "NONE";
+            }
+        };
+
+        HostNode hostNode = new HostNode();
+        WearApp wearApp = new WearApp(hostNode, new CapturingPostman());
+        ServiceTest.CapturingServiceView serviceView = new ServiceTest.CapturingServiceView();
+
+        serviceView.serviceDisplayed = NONE;
+
+        final Postman.NodeId anyId = new Postman.NodeId("anyId");
+        wearApp.message(new MessageEnvelope(anyId, new TrackedServiceMessage(new TrainViewModel(new Train("2", "10:00", "09:00", "1")))));
+        wearApp.message(new MessageEnvelope(anyId, new StoppedTrackingMessage()));
+
+        wearApp.attach(serviceView);
+
+        assertThat(serviceView.serviceDisplayed, is(NONE));
+    }
+
     private static class CapturingCanFinishWearApp implements CanFinishWearApp {
         public static final String FINISHED = "finished";
         public String state = "UNKNOWN";
