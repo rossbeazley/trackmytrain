@@ -15,7 +15,7 @@ public class HostNode {
         registeredId=nodeId;
     }
 
-    interface Result {
+    public interface Result {
         void id(Postman.NodeId id);
     }
 }

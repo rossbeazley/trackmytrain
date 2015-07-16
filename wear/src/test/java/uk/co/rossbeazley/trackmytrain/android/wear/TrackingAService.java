@@ -3,6 +3,8 @@ package uk.co.rossbeazley.trackmytrain.android.wear;
 import org.junit.Test;
 
 import uk.co.rossbeazley.trackmytrain.android.ServiceTest;
+import uk.co.rossbeazley.trackmytrain.android.Train;
+import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -16,7 +18,7 @@ public class TrackingAService {
 
 
         HostNode hostNode = new HostNode();
-        WearApp wearApp = new WearApp(hostNode);
+        WearApp wearApp = new WearApp(hostNode, new CapturingPostman());
 
         final ServiceTest.CapturingServiceView serviceView = new ServiceTest.CapturingServiceView();
         wearApp.attach(serviceView);
@@ -35,7 +37,7 @@ public class TrackingAService {
     finishesWearAppWhenTrackingEnds() {
 
         HostNode hostNode = new HostNode();
-        WearApp wearApp = new WearApp(hostNode);
+        WearApp wearApp = new WearApp(hostNode, new CapturingPostman());
 
         final CapturingCanFinishWearApp capturingCanFinishWearApp = new CapturingCanFinishWearApp();
         wearApp.attach(new ExitWearApp(capturingCanFinishWearApp));
@@ -46,6 +48,21 @@ public class TrackingAService {
 
         assertThat(capturingCanFinishWearApp.state, is(CapturingCanFinishWearApp.FINISHED));
 
+    }
+
+    @Test
+    public void
+    updatesViewWithTrackedServiceViewModel() {
+
+        HostNode hostNode = new HostNode();
+        WearApp wearApp = new WearApp(hostNode, new CapturingPostman());
+        ServiceTest.CapturingServiceView serviceView = new ServiceTest.CapturingServiceView();
+        wearApp.attach(serviceView);
+
+        TrainViewModel expectedService = new TrainViewModel(new Train("2", "10:00", "09:00", "1"));
+        wearApp.message(new MessageEnvelope(new Postman.NodeId("anyId"), new TrackedServiceMessage(expectedService)));
+
+        assertThat(serviceView.serviceDisplayed, is(expectedService));
     }
 
     private static class CapturingCanFinishWearApp implements CanFinishWearApp {

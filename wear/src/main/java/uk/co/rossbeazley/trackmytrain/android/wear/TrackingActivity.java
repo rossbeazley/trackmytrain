@@ -4,18 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.wearable.activity.WearableActivity;
-import android.support.wearable.view.BoxInsetLayout;
-import android.view.View;
-import android.widget.TextView;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 import uk.co.rossbeazley.trackmytrain.android.R;
 import uk.co.rossbeazley.trackmytrain.android.WearAppSingleton;
 
-public class TrackingActivity extends WearableActivity implements CanFinishWearApp {
+public class TrackingActivity extends WearableActivity implements CanFinishWearApp, FindsView {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +21,7 @@ public class TrackingActivity extends WearableActivity implements CanFinishWearA
 
         //attach "view" that will finish activity when tracking stops
 
+        WearAppSingleton.instance.attach(new TrackingView(this));
         WearAppSingleton.instance.attach(new ExitWearApp(this));
     }
 
@@ -57,4 +51,5 @@ public class TrackingActivity extends WearableActivity implements CanFinishWearA
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
+
 }

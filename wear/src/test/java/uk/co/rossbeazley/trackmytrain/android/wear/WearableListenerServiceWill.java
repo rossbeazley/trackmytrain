@@ -14,9 +14,9 @@ public class WearableListenerServiceWill {
         Postman.NodeId expectedId = new Postman.NodeId("any id");
 
         HostNode hostNode  = new HostNode();
-        WearApp wearApp = new WearApp(hostNode);
+        WearApp wearApp = new WearApp(hostNode, new CapturingPostman());
 
-        Postman.Message iAmBaseMessage = new Postman.Message(null, null);
+        Postman.Message iAmBaseMessage = new Postman.Message(null);
         final MessageEnvelope messageEnvelope = new MessageEnvelope(expectedId, iAmBaseMessage);
         wearApp.message(messageEnvelope);
 

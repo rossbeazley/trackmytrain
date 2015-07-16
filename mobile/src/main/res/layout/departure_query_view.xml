@@ -59,7 +59,7 @@
             android:id="@+id/at"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:inputType="textCapCharacters"
+            android:inputType="textCapCharacters|textNoSuggestions"
             android:selectAllOnFocus="true"
             android:hint="Select station from"
             android:layout_marginLeft="16dp"
@@ -87,7 +87,7 @@
             android:id="@+id/to"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textCapCharacters"
+            android:inputType="textCapCharacters|textNoSuggestions"
             android:selectAllOnFocus="true"
             android:hint="Selection train destination"
             android:layout_marginTop="0dp"
@@ -109,4 +109,6 @@
         android:background="@color/dark_green"
         android:textColor="@color/white"
         />
+
+
 </LinearLayout>

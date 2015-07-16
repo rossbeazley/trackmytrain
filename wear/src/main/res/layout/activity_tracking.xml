@@ -8,19 +8,62 @@
     tools:context="uk.co.rossbeazley.trackmytrain.android.wear.TrackingActivity"
     tools:deviceIds="wear">
 
-    <TextView
-        android:id="@+id/text"
-        app:layout_box="all"
-        android:layout_width="match_parent"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_world" />
+        android:background="@color/sea_green"
+        android:gravity="center_horizontal|center_vertical"
+        android:layout_gravity="center_horizontal|center_vertical">
 
-    <TextView
-        android:id="@+id/clock"
-        app:layout_box="all"
-        android:layout_gravity="bottom|start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/white" />
+
+        <include layout="@layout/clock"/>
+
+        <View android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/white"
+            android:layout_marginBottom="10dp"/>
+
+
+
+                <TextView
+                    android:id="@+id/platform"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#ddd"
+                    android:gravity="bottom"
+                    android:textSize="18sp"
+                    tools:text="Platform 4"
+
+                    android:fontFamily="sans-serif-thin"
+                    />
+
+                <TextView
+                    android:id="@+id/scheduledtime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="28sp"
+                    android:textColor="#ddd"
+                    tools:text="12:01"
+
+                    android:fontFamily="sans-serif-thin"/>
+
+                <TextView
+                    android:id="@+id/estimatedtime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="28sp"
+                    android:textColor="#ddd"
+                    tools:text="On Time"
+
+                    android:fontFamily="sans-serif-thin"/>
+
+
+        <View
+
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
 
 </android.support.wearable.view.BoxInsetLayout>

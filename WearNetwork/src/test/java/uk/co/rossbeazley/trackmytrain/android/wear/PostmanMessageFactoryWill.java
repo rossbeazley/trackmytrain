@@ -4,6 +4,8 @@ import com.google.android.gms.wearable.MessageEvent;
 
 import org.junit.Test;
 
+import uk.co.rossbeazley.trackmytrain.android.Train;
+import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -49,6 +51,32 @@ public class PostmanMessageFactoryWill {
 
     }
 
+    @Test
+    public void
+    convertMessageEventToTrackedServiceMessage() {
+
+        Postman.Message expectedMessage = new TrackedServiceMessage(new TrainViewModel(new Train("2", "10:00", "09:00", "1")));
+
+        String anyId = "anyId";
+        MessageEvent msg = new WearMessageEvent(expectedMessage.messageAsString(), anyId);
+
+        MessageEnvelope convertMessage=new PostmanMessageFactory().toMessage(msg);
+
+        assertThat(convertMessage.message(), is(equalTo(expectedMessage)));
+    }
+
+    @Test
+    public void
+    convertAnalyticsEventMessage() {
+
+        String anyId = "anyId";
+        Postman.Message expectedMessage = new AnalyticsEventMessage();
+        MessageEvent msg = new WearMessageEvent(expectedMessage.messageAsString(), anyId);
+
+        MessageEnvelope convertMessage = new PostmanMessageFactory().toMessage(msg);
+
+        assertThat(convertMessage.message(), is(equalTo(expectedMessage)));
+    }
 
     private static class WearMessageEvent implements MessageEvent {
 

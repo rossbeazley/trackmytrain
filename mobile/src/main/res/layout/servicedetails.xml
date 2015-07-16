@@ -16,8 +16,23 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:listSelector="#33559B91"
-        android:choiceMode="singleChoice"
-        />
+        android:choiceMode="singleChoice" />
 
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <ImageView
+        android:id="@+id/powered_by_nre"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:background="#fff"
+        android:scaleType="centerInside"
+        android:paddingTop="8dp"
+        android:src="@drawable/nre_powered_logo_1024_208"
+        android:contentDescription="powered by national rail enquiries" />
 
 </LinearLayout>
