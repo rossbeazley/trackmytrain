@@ -43,7 +43,7 @@ public class TrainViewModel {
     }
 
     public String platform() {
-        return String.format("Platform %s", train.platform);
+        return String.format("Platform %s", train.platform==null||train.platform.length()==0?"-":train.platform);
     }
 
     public String estimatedTime() {
