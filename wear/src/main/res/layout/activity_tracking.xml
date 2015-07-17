@@ -34,7 +34,7 @@
                     android:textSize="18sp"
                     tools:text="Platform 4"
 
-                    android:fontFamily="sans-serif-thin"
+                    android:fontFamily="sans-serif"
                     />
 
                 <TextView
@@ -45,7 +45,7 @@
                     android:textColor="#ddd"
                     tools:text="12:01"
 
-                    android:fontFamily="sans-serif-thin"/>
+                    android:fontFamily="sans-serif"/>
 
                 <TextView
                     android:id="@+id/estimatedtime"
@@ -55,7 +55,7 @@
                     android:textColor="#ddd"
                     tools:text="On Time"
 
-                    android:fontFamily="sans-serif-thin"/>
+                    android:fontFamily="sans-serif"/>
 
 
         <View
