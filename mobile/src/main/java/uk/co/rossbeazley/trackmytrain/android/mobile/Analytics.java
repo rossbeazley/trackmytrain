@@ -7,6 +7,8 @@ public interface Analytics {
 
     void event(EventTrack eventTrack);
 
+    void pageView(String pageName);
+
     static class EventTrack {
         final String category;
         final String label;

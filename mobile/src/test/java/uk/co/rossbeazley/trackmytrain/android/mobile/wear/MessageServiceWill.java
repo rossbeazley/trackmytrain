@@ -42,5 +42,10 @@ public class MessageServiceWill {
         public void event(EventTrack eventTrack) {
             events.add(eventTrack);
         }
+
+        @Override
+        public void pageView(String pageName) {
+
+        }
     }
 }
