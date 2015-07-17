@@ -1,5 +1,4 @@
 <resources>
     <string name="app_name">TrackMyTrain</string>
-    <string name="title_activity_tracking">TrackingActivity</string>
-    <string name="hello_world">Hello World!</string>
+    <string name="title_activity_tracking">Track My Train</string>
 </resources>
