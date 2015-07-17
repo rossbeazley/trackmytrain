@@ -1,6 +1,7 @@
 package uk.co.rossbeazley.trackmytrain.android.wear;
 
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
+import uk.co.rossbeazley.trackmytrain.android.WearAppSingleton;
 import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
 
 class ExitWearApp implements ServiceView {
@@ -19,6 +20,7 @@ class ExitWearApp implements ServiceView {
     @Override
     public void hide() {
         canFinishWearApp.finish();
+        WearAppSingleton.instance.detach(this);
     }
 
     @Override

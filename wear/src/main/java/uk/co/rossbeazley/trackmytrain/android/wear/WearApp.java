@@ -14,6 +14,7 @@ import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
 public class WearApp implements CanTrackTrains {
     private final HostNode hostNode;
     private List<ServiceView> serviceViews;
+    private TrainViewModel currentService;
 
     public WearApp(HostNode hostNode, Postman postman) {
         serviceViews = new CopyOnWriteArrayList<>();
@@ -43,6 +44,7 @@ public class WearApp implements CanTrackTrains {
     }
 
     private void announceServiceTracking(TrainViewModel trainViewModel) {
+        currentService = trainViewModel;
         for (ServiceView serviceView : serviceViews) {
             serviceView.present(trainViewModel);
         }
@@ -50,6 +52,7 @@ public class WearApp implements CanTrackTrains {
     }
 
     void announceServiceTrackingStopped() {
+        currentService = null;
         for (ServiceView serviceView : serviceViews) {
             serviceView.hide();
         }
@@ -75,10 +78,11 @@ public class WearApp implements CanTrackTrains {
     @Override
     public void attach(ServiceView serviceView) {
         this.serviceViews.add(serviceView);
+        if (currentService != null) serviceView.present(currentService);
     }
 
     @Override
     public void detach(ServiceView serviceView) {
-
+        this.serviceViews.remove(serviceView);
     }
 }

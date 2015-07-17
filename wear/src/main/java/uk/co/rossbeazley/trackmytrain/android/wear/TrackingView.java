@@ -4,6 +4,7 @@ import android.widget.TextView;
 
 import uk.co.rossbeazley.trackmytrain.android.R;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
+import uk.co.rossbeazley.trackmytrain.android.WearAppSingleton;
 import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
 
 /**
@@ -41,7 +42,7 @@ class TrackingView implements ServiceView {
 
     @Override
     public void hide() {
-
+        WearAppSingleton.instance.detach(this);
     }
 
     @Override

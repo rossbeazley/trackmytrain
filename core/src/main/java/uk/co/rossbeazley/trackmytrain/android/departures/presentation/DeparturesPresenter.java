@@ -2,6 +2,7 @@ package uk.co.rossbeazley.trackmytrain.android.departures.presentation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import uk.co.rossbeazley.trackmytrain.android.TMTError;
 import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQuery;
@@ -15,14 +16,14 @@ public class DeparturesPresenter {
 
     private List<DeparturesView> departuresViews;
 
-    private final ArrayList<DeparturesQueryView> departuresQueryViews;
+    private final List<DeparturesQueryView> departuresQueryViews;
     public DepartureQueryCommand departureQueryCommand;
     private final Success trainRepoResultCallback;
 
     public DeparturesPresenter(DepartureQueryCommand queryCommand) {
 
-        this.departuresViews = new ArrayList<>(2);
-        this.departuresQueryViews = new ArrayList<>();
+        this.departuresViews = new CopyOnWriteArrayList<>();
+        this.departuresQueryViews = new CopyOnWriteArrayList<>();
         departureQueryCommand = queryCommand;
         trainRepoResultCallback = new Success() {
             @Override
