@@ -12,8 +12,16 @@ public class TrackedServiceMessage extends Postman.BroadcastMessage {
     private final TrainViewModel trainViewModel;
 
     public TrackedServiceMessage(TrainViewModel trainViewModel) {
-        super(MESSAGE_PATH + "/" + trainViewModel.id() + "/" + trainViewModel.estimatedTime() + "/" + trainViewModel.scheduledTime() + "/" + trainViewModel.platform().replace("Platform ", ""));
+        super(MESSAGE_PATH + "/" + encoded(trainViewModel.id()) + "/" + trainViewModel.estimatedTime() + "/" + trainViewModel.scheduledTime() + "/" + trainViewModel.platform().replace("Platform ", ""));
         this.trainViewModel = trainViewModel;
+    }
+
+    private static String encoded(String id) {
+        return id.replaceAll("/","%2F");
+    }
+
+    private static String dencoded(String id) {
+        return id.replaceAll("%2F","/");
     }
 
     public TrainViewModel trainViewModel() {
@@ -53,7 +61,7 @@ public class TrackedServiceMessage extends Postman.BroadcastMessage {
              */
             String path = messageEvent.getPath().replace(MESSAGE_PATH, "");
             String[] parts = path.split("\\/");
-            final String id = parts[1];
+            final String id = dencoded(parts[1]);
             final String estimatedTime = parts[2];
             final String scheduledTime = parts[3];
             final String platform = parts[4];

@@ -64,6 +64,19 @@ public class PostmanMessageFactoryWill {
 
         assertThat(convertMessage.message(), is(equalTo(expectedMessage)));
     }
+    @Test
+    public void
+    convertMessageEventToTrackedServiceMessageWithSlashesInId() {
+
+        Postman.Message expectedMessage = new TrackedServiceMessage(new TrainViewModel(new Train("123/456/234", "10:00", "09:00", "1")));
+
+        String anyId = "anyId";
+        MessageEvent msg = new WearMessageEvent(expectedMessage.messageAsString(), anyId);
+
+        MessageEnvelope convertMessage=new PostmanMessageFactory().toMessage(msg);
+
+        assertThat(convertMessage.message(), is(equalTo(expectedMessage)));
+    }
 
     @Test
     public void
