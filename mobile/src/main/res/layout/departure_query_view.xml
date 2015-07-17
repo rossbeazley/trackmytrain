@@ -106,8 +106,9 @@
         android:text="find trains..."
         android:layout_weight="1"
         android:layout_margin="16dp"
-        android:background="@color/dark_green"
+        android:background="@drawable/button_background"
         android:textColor="@color/white"
+
         />
 
 
