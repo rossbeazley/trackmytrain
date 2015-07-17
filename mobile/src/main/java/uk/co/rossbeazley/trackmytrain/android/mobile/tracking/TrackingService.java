@@ -47,13 +47,12 @@ public class TrackingService extends Service {
             @Override
             public void present(TrainViewModel train) {
                 Notification not;
-
                 not = new Notification.Builder(TrackingService.this)
-                        .setContentTitle("Track My Train")
-                        .setContentText("...is currently tracking")
+                        .setContentTitle(train.platform())
+                        .setContentText(train.scheduledTime() + " exp " + train.estimatedTime())
                         .setSmallIcon(R.drawable.n_train)
                         .addAction(R.drawable.ic_stop_tracking,"Stop Tracking", TrackingService.stopTrackingPendingIntent(TrackingService.this))
-                        .setPriority(Notification.PRIORITY_MIN)
+                        .setPriority(Notification.PRIORITY_MAX)
                         .setOngoing(true)
                         .build();
 
