@@ -30,7 +30,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#ddd"
-                    android:gravity="bottom"
+                    android:gravity="bottom|center_horizontal"
                     android:textSize="18sp"
                     android:hint="use your mobile\nto find a train to track"
                     tools:text="Platform 4"
@@ -45,7 +45,7 @@
                     android:textSize="28sp"
                     android:textColor="#ddd"
                     tools:text="12:01"
-
+                    android:gravity="center_horizontal"
                     android:fontFamily="sans-serif"/>
 
                 <TextView
@@ -55,6 +55,7 @@
                     android:textSize="28sp"
                     android:textColor="#ddd"
                     tools:text="On Time"
+                    android:gravity="center_horizontal"
 
                     android:fontFamily="sans-serif"/>
 

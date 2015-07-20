@@ -7,10 +7,10 @@ android {
 
     defaultConfig {
         applicationId "uk.co.rossbeazley.trackmytrain.android"
-        minSdkVersion 21
+        minSdkVersion 19
         targetSdkVersion 22
-        versionCode 3
-        versionName "1.2"
+        versionCode 15
+        versionName "2.2"
     }
     buildTypes {
         release {
