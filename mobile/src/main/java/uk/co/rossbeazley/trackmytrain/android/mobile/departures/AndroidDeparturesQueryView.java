@@ -1,25 +1,26 @@
 package uk.co.rossbeazley.trackmytrain.android.mobile.departures;
 
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.transition.AutoTransition;
-import android.transition.TransitionManager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.MotionEvent;
-import android.view.View;
+import android.transition.TransitionManager;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
+import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AutoCompleteTextView;
+import android.widget.ArrayAdapter;
+
 import android.widget.TextView;
 
-import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesQueryView;
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesQueryViewModel;
-import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
+import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesQueryView;
 import uk.co.rossbeazley.trackmytrain.android.R;
-import uk.co.rossbeazley.trackmytrain.android.departures.Station;
+import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.mobile.FindsView;
-import uk.co.rossbeazley.trackmytrain.android.mobile.TrackMyTrainApp;
+import uk.co.rossbeazley.trackmytrain.android.departures.Station;
 
+import uk.co.rossbeazley.trackmytrain.android.mobile.TrackMyTrainApp;
 class AndroidDeparturesQueryView implements DeparturesQueryView {
     private final AutoCompleteTextView at;
     private final AutoCompleteTextView to;

@@ -16,11 +16,6 @@ public class TrackingActivity extends WearableActivity implements CanFinishWearA
         setContentView(R.layout.activity_tracking);
         setAmbientEnabled();
 
-        //inflate tracking view
-        //attach to app core
-
-        //attach "view" that will finish activity when tracking stops
-
         WearAppSingleton.instance.attach(new TrackingView(this));
         WearAppSingleton.instance.attach(new ExitWearApp(this));
     }

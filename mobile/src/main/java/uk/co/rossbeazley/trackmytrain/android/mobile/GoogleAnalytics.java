@@ -23,8 +23,15 @@ public class GoogleAnalytics implements Analytics {
     public void event(EventTrack eventTrack) {
         tracker.send(new HitBuilders.EventBuilder()
                 .setCategory(eventTrack.category)
+                .setAction(eventTrack.label)
                 .setLabel(eventTrack.label)
                 .build());
+    }
+
+    @Override
+    public void pageView(String pageName) {
+        tracker.setPage(pageName);
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
 }
