@@ -37,7 +37,9 @@ public class DeparturesScreen {
 
             @Override
             public void loading() {
-                ((ViewGroup) (findsView.findViewById(R.id.servicedetails))).removeView(nreLogo);
+                final ViewGroup viewById = (ViewGroup) (findsView.findViewById(R.id.servicedetails));
+                viewById.removeView(nreLogo);
+                viewById.removeView(findsView.findViewById(R.id.powered_by_nre_spacer));
                 TrackMyTrainApp.instance.detach(this);
             }
 

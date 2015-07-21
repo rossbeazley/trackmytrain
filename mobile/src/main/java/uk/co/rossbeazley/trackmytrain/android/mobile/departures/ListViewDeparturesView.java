@@ -3,6 +3,7 @@ package uk.co.rossbeazley.trackmytrain.android.mobile.departures;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -57,6 +58,7 @@ class ListViewDeparturesView implements DeparturesView {
         loading.post(new Runnable() {
             @Override
             public void run() {
+                listView.setAdapter(null);
                 loading.setVisibility(View.VISIBLE);
                 listView.setVisibility(View.GONE);
             }
@@ -69,6 +71,7 @@ class ListViewDeparturesView implements DeparturesView {
         loading.post(new Runnable() {
             @Override
             public void run() {
+                listView.setAdapter(null);
                 loading.setVisibility(View.GONE);
                 Toast.makeText(loading.getContext(),error.toString(),Toast.LENGTH_LONG).show();
             }
