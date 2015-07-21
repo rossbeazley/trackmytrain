@@ -3,6 +3,7 @@ package uk.co.rossbeazley.trackmytrain.android.mobile.departures;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.TextView;
 
 import uk.co.rossbeazley.trackmytrain.android.R;
@@ -55,6 +56,7 @@ public class DeparturesScreen {
             TextView scheduledTime = (TextView) container.findViewById(R.id.scheduledtime);
             TextView expectedTime = (TextView) container.findViewById(R.id.estimatedtime);
             TextView platorm = (TextView) container.findViewById(R.id.platform);
+            Button stopTracking = (Button) container.findViewById(R.id.trackbutton);
 
             @Override
             public void present(final TrainViewModel train) {
@@ -64,6 +66,12 @@ public class DeparturesScreen {
                         scheduledTime.setText(train.scheduledTime());
                         expectedTime.setText(train.estimatedTime());
                         platorm.setText(train.platform());
+                        stopTracking.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                TrackMyTrainApp.instance.unwatch();
+                            }
+                        });
                     }
                 });
             }
