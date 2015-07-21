@@ -16,8 +16,10 @@ class TrackingView implements ServiceView {
     private final TextView scheduledtime;
     private final TextView estimatedtime;
     private final TextView platform;
+    private final FindsView findsView;
 
     public TrackingView(FindsView findsView) {
+        this.findsView = findsView;
 
         scheduledtime = (TextView) findsView.findViewById(R.id.scheduledtime);
         estimatedtime = (TextView) findsView.findViewById(R.id.estimatedtime);
@@ -47,6 +49,19 @@ class TrackingView implements ServiceView {
 
     @Override
     public void trackingStarted() {
+
+    }
+
+    public void colour() {
+        findsView.findViewById(R.id.container).setBackgroundColor(0xff559B91);
+        findsView.findViewById(R.id.clock_background).setBackgroundColor(0xffffffff);
+        findsView.findViewById(R.id.clock).setBackgroundColor(0xffff0000);
+    }
+
+    public void grey() {
+        findsView.findViewById(R.id.container).setBackgroundColor(0xff000000);
+        findsView.findViewById(R.id.clock_background).setBackgroundColor(0xff000000);
+        findsView.findViewById(R.id.clock).setBackgroundColor(0xffaaaaaa);
 
     }
 }
