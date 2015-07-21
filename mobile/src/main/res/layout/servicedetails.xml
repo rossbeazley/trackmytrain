@@ -28,6 +28,8 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
+    <include layout="@layout/tracked_service" />
+
     <ImageView
         android:id="@+id/powered_by_nre"
         android:layout_gravity="bottom|center_horizontal"
@@ -39,6 +41,5 @@
         android:src="@drawable/nre_powered_logo_1024_208"
         android:contentDescription="powered by national rail enquiries" />
 
-    <include layout="@layout/tracked_service" />
 
 </LinearLayout>

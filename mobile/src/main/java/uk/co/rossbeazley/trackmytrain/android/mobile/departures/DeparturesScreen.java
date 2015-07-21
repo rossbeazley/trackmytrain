@@ -63,6 +63,7 @@ public class DeparturesScreen {
                 container.post(new Runnable() {
                     @Override
                     public void run() {
+                        container.setVisibility(View.VISIBLE);
                         scheduledTime.setText(train.scheduledTime());
                         expectedTime.setText(train.estimatedTime());
                         platorm.setText(train.platform());
