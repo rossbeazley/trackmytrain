@@ -33,6 +33,7 @@
                     android:gravity="bottom|center_horizontal"
                     android:textSize="18sp"
                     android:hint="use your mobile\nto find a train to track"
+                    android:textColorHint="@color/white"
                     tools:text="Platform 4"
 
                     android:fontFamily="sans-serif"
