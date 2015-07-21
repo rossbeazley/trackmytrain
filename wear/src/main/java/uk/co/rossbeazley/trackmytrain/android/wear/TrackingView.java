@@ -55,13 +55,12 @@ class TrackingView implements ServiceView {
     public void colour() {
         findsView.findViewById(R.id.container).setBackgroundColor(0xff559B91);
         findsView.findViewById(R.id.clock_background).setBackgroundColor(0xffffffff);
-        findsView.findViewById(R.id.clock).setBackgroundColor(0xffff0000);
+        ((TextView) findsView.findViewById(R.id.clock)).setTextColor(0xffff0000);
     }
 
     public void grey() {
         findsView.findViewById(R.id.container).setBackgroundColor(0xff000000);
         findsView.findViewById(R.id.clock_background).setBackgroundColor(0xff000000);
-        findsView.findViewById(R.id.clock).setBackgroundColor(0xffaaaaaa);
-
+        ((TextView) findsView.findViewById(R.id.clock)).setTextColor(0xffaaaaaa);
     }
 }

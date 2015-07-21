@@ -25,22 +25,23 @@ public class TrackingActivity extends WearableActivity implements CanFinishWearA
         exitWearApp = new ExitWearApp(this);
 
         bind();
+        WearAppSingleton.instance.attach(exitWearApp);
     }
 
     private void bind() {
         WearAppSingleton.instance.attach(serviceView);
-        WearAppSingleton.instance.attach(exitWearApp);
+
     }
 
     @Override
     protected void onDestroy() {
         unbind();
+        WearAppSingleton.instance.detach(exitWearApp);
         super.onDestroy();
     }
 
     private void unbind() {
         WearAppSingleton.instance.detach(serviceView);
-        WearAppSingleton.instance.detach(exitWearApp);
     }
 
     @Override
