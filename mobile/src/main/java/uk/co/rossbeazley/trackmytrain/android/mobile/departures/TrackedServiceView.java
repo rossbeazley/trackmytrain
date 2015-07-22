@@ -62,6 +62,9 @@ class TrackedServiceView implements ServiceView {
         container.post(new Runnable() {
             @Override
             public void run() {
+                scheduledTime.setText("");
+                expectedTime.setText("");
+                platorm.setText("loading...");
                 container.setVisibility(View.VISIBLE);
             }
         });
