@@ -1,5 +1,6 @@
 package uk.co.rossbeazley.trackmytrain.android.mobile.departures;
 
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -38,6 +39,11 @@ public class TrainViewModelListAdapter extends BaseAdapter {
 
     private static DepartureRow departureRow(View convertView, ViewGroup parent) {
         return (convertView == null ? createDepartureRow(parent) : recycleDepartureRow(convertView));
+    }
+
+    @NonNull
+    public static TrainViewModelListAdapter empty() {
+        return new TrainViewModelListAdapter(new DeparturesViewModel());
     }
 
 }

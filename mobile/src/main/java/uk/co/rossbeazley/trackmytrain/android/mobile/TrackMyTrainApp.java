@@ -59,7 +59,13 @@ public class TrackMyTrainApp extends Application{
         final com.google.android.gms.analytics.GoogleAnalytics analytics;
         analytics = com.google.android.gms.analytics.GoogleAnalytics.getInstance(this);
 
+        analytics.setLocalDispatchPeriod(1800);
         final Tracker newTracker = analytics.newTracker("UA-8505275-4");
+
+        newTracker.enableExceptionReporting(true);
+        newTracker.enableAdvertisingIdCollection(true);
+        newTracker.enableAutoActivityTracking(true);
+
         final Analytics tracker = new GoogleAnalytics(newTracker);
 
         messageService = new MessageService(instance, tracker);
