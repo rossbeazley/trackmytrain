@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/container"
-
     android:background="@color/sea_green"
     tools:context="uk.co.rossbeazley.trackmytrain.android.wear.TrackingActivity"
     tools:deviceIds="wear">
@@ -16,15 +15,12 @@
         android:gravity="center_horizontal|center_vertical"
         android:layout_gravity="center_horizontal|center_vertical">
 
-
         <include layout="@layout/clock"/>
 
         <View android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@android:color/white"
-            android:layout_marginBottom="10dp"/>
-
-
+            android:layout_marginBottom="1dp" />
 
                 <TextView
                     android:id="@+id/platform"
@@ -32,19 +28,17 @@
                     android:layout_height="wrap_content"
                     android:textColor="#ddd"
                     android:gravity="bottom|center_horizontal"
-                    android:textSize="18sp"
                     android:hint="use your mobile\nto find a train to track"
                     android:textColorHint="@color/white"
                     tools:text="Platform 4"
-
                     android:fontFamily="sans-serif"
-                    />
+                    style="@style/fonts_small" />
 
                 <TextView
                     android:id="@+id/scheduledtime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="28sp"
+                    style="@style/fonts_medium"
                     android:textColor="#ddd"
                     tools:text="12:01"
                     android:gravity="center_horizontal"
@@ -53,20 +47,13 @@
                 <TextView
                     android:id="@+id/estimatedtime"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="28sp"
+                    android:layout_height="0dp"
+                    style="@style/fonts_medium"
                     android:textColor="#ddd"
                     tools:text="On Time"
-                    android:gravity="center_horizontal"
-
+                    android:gravity="center_horizontal|top"
+                    android:layout_weight="2"
                     android:fontFamily="sans-serif"/>
-
-
-        <View
-
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
 
     </LinearLayout>
 
