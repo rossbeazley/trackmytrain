@@ -12,6 +12,7 @@ public class GoogleAnalytics implements Analytics {
 
     @Override
     public void timing(long millis, String category, String variable) {
+        tracker.setPage("none");
         tracker.send(new HitBuilders.TimingBuilder()
                 .setCategory(category)
                 .setValue(millis)
@@ -21,6 +22,7 @@ public class GoogleAnalytics implements Analytics {
 
     @Override
     public void event(EventTrack eventTrack) {
+        tracker.setPage("none");
         tracker.send(new HitBuilders.EventBuilder()
                 .setCategory(eventTrack.category)
                 .setAction(eventTrack.label)
