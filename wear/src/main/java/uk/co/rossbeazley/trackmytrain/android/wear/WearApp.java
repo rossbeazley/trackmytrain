@@ -21,7 +21,7 @@ public class WearApp implements CanTrackTrains {
 
         this.hostNode = hostNode;
 
-        postman.broadcast(new AnalyticsEventMessage());
+        postman.broadcast(new AnalyticsEventMessage("CREATED"));
     }
 
     public void message(MessageEnvelope messageEnvelope) {
