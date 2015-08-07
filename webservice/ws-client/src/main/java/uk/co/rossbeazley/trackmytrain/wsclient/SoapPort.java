@@ -1,8 +1,10 @@
 package uk.co.rossbeazley.trackmytrain.wsclient;
 
 import com.thalesgroup.rtti._2013_11_28.token.types.AccessToken;
-import com.thalesgroup.rtti._2014_02_20.ldb.LDBServiceSoap;
-import com.thalesgroup.rtti._2014_02_20.ldb.Ldb;
+import com.thalesgroup.rtti._2015_05_14.ldb.LDBServiceSoap;
+import com.thalesgroup.rtti._2015_05_14.ldb.Ldb;
+
+
 import org.apache.cxf.headers.Header;
 import org.apache.cxf.jaxb.JAXBDataBinding;
 
@@ -14,6 +16,9 @@ import java.util.ArrayList;
 
 import static com.thalesgroup.rtti._2013_11_28.token.types.ObjectFactory._AccessToken_QNAME;
 
+
+
+import static com.thalesgroup.rtti._2015_05_14.ldb.ObjectFactory._AccessToken_QNAME;
 public class SoapPort {
     private static final QName SERVICE_NAME = new QName("http://thalesgroup.com/RTTI/2014-02-20/ldb/", "ldb");
     private static LDBServiceSoap port;

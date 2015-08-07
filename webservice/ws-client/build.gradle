@@ -1,0 +1,9 @@
+apply plugin: 'java'
+sourceSets {
+    v2 {
+        java.srcDirs += 'src/v2/java'
+    }
+}
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+}
