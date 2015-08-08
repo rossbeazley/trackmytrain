@@ -1,12 +1,12 @@
 package uk.co.rossbeazley.trackmytrain.wsclient;
 
 import com.thalesgroup.rtti._2007_10_10.ldb.commontypes.FilterType;
-import com.thalesgroup.rtti._2014_02_20.ldb.GetBoardRequestParams;
-import com.thalesgroup.rtti._2014_02_20.ldb.LDBServiceSoap;
-import com.thalesgroup.rtti._2014_02_20.ldb.StationBoardResponseType;
-import com.thalesgroup.rtti._2014_02_20.ldb.types.ArrayOfServiceItems;
-import com.thalesgroup.rtti._2014_02_20.ldb.types.ServiceItem;
-import com.thalesgroup.rtti._2014_02_20.ldb.types.StationBoard;
+import com.thalesgroup.rtti._2015_05_14.ldb.GetBoardRequestParams;
+import com.thalesgroup.rtti._2015_05_14.ldb.LDBServiceSoap;
+import com.thalesgroup.rtti._2015_05_14.ldb.StationBoardResponseType;
+import com.thalesgroup.rtti._2015_05_14.ldb.types.ArrayOfServiceItems;
+import com.thalesgroup.rtti._2015_05_14.ldb.types.ServiceItem;
+import com.thalesgroup.rtti._2015_05_14.ldb.types.StationBoard;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ import static org.apache.cxf.common.util.StringUtils.isEmpty;
 public class DeparturesClient {
 
     public static void main(String args[]) throws Exception {
-        DeparturesResult result = services("BSV", "CRL");
+        DeparturesResult result = services("MCO", "MAN");
         System.out.println(result.toJson());
         System.exit(0);
     }
@@ -49,6 +49,7 @@ public class DeparturesClient {
             }
         } catch (Exception e) {
             result = DeparturesResult.error(e.getMessage());
+            e.printStackTrace();
         }
         return result;
     }

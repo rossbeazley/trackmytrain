@@ -24,7 +24,7 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _AccessToken_QNAME = new QName("http://thalesgroup.com/RTTI/2013-11-28/Token/types", "AccessToken");
+    public final static QName _AccessToken_QNAME = new QName("http://thalesgroup.com/RTTI/2013-11-28/Token/types", "AccessToken");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.thalesgroup.rtti._2013_11_28.token.types
