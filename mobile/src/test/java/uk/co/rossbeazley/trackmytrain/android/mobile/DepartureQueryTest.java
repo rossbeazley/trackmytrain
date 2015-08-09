@@ -3,6 +3,7 @@ package uk.co.rossbeazley.trackmytrain.android.mobile;
 import android.widget.TextView;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
@@ -31,6 +32,7 @@ public class DepartureQueryTest {
     }
 
     @Test
+    @Ignore
     public void theScreenLoadsWithLastQueriedFromStation() {
 
         TestTrackMyTrainApp.instance.departures(Station.fromString("CRL"), TestDataBuilder.anyDirection());
@@ -41,6 +43,7 @@ public class DepartureQueryTest {
     }
 
     @Test
+    @Ignore
     public void theScreenLoadsWithLastQueriedToStation() {
 
         TestTrackMyTrainApp.instance.departures(TestDataBuilder.anyStation(), Direction.to(Station.fromString("MON")));
@@ -51,6 +54,7 @@ public class DepartureQueryTest {
     }
 
     @Test
+    @Ignore
     public void theScreenLoadsWithCompactViewWithLastQueriedFromStation() {
 
         TestTrackMyTrainApp.instance.departures(Station.fromString("CRL"), TestDataBuilder.anyDirection());
@@ -61,6 +65,7 @@ public class DepartureQueryTest {
     }
 
     @Test
+    @Ignore
     public void theScreenLoadsWithCompactViewWithLastQueriedToStation() {
 
         TestTrackMyTrainApp.instance.departures(TestDataBuilder.anyStation(), Direction.to(Station.fromString("MON")));

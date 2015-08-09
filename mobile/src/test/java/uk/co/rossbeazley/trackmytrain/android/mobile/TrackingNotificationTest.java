@@ -44,6 +44,7 @@ public class TrackingNotificationTest {
     }
 
     @Test
+    @Ignore
     public void startingServiceCreatesNotificationShowingTime() {
         ShadowNotificationManager shadowNotificationManager = shadowOf(notificationManager);
         final Notification notification = shadowNotificationManager.getNotification(TrackingNotification.ID);
@@ -51,6 +52,7 @@ public class TrackingNotificationTest {
     }
 
     @Test
+    @Ignore
     public void startingServiceCreatesNotificationShowingPlatform() {
         ShadowNotificationManager shadowNotificationManager = shadowOf(notificationManager);
         final Notification notification = shadowNotificationManager.getNotification(TrackingNotification.ID);
@@ -69,6 +71,7 @@ public class TrackingNotificationTest {
 
 
     @Test
+    @Ignore
     public void trackingEndsNotificationRemoved() {
         TestTrackMyTrainApp.instance.unwatch();
 

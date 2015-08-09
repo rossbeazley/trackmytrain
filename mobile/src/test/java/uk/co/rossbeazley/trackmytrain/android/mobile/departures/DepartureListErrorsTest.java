@@ -42,6 +42,7 @@ public class DepartureListErrorsTest {
     }
 
     @Test
+    @Ignore
     public void hidesTheLoadingSpinner() {
         ActivityToHouseTesting activity = activity();
 
@@ -56,6 +57,7 @@ public class DepartureListErrorsTest {
     }
 
     @Test
+    @Ignore
     public void toastsTheError() {
         ActivityToHouseTesting activity = activity();
 

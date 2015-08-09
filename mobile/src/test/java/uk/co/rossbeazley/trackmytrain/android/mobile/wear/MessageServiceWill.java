@@ -23,10 +23,10 @@ public class MessageServiceWill {
         new TestTrackMyTrainApp();
         CapturingAnalytics capturingAnalytics = new CapturingAnalytics();
 
-        MessageEnvelope envelope = new MessageEnvelope(new Postman.NodeId("anyId"), new AnalyticsEventMessage("CREATED", ""));
+        MessageEnvelope envelope = new MessageEnvelope(new Postman.NodeId("anyId"), new AnalyticsEventMessage("CREATED", "APP"));
         new MessageService(TrackMyTrainApp.instance, capturingAnalytics).message(envelope);
 
-        assertThat(capturingAnalytics.events, hasItem(new Analytics.EventTrack("WearApp", "constructed")));
+        assertThat(capturingAnalytics.events, hasItem(new Analytics.EventTrack("CREATED", "APP")));
     }
 
     private static class CapturingAnalytics implements Analytics {

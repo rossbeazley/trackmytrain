@@ -3,6 +3,7 @@ package uk.co.rossbeazley.trackmytrain.android.mobile.departures;
 import android.view.View;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
@@ -38,6 +39,7 @@ public class RendersDepartureListTest {
     }
 
     @Test
+    @Ignore
     public void showsTheLoadingSpinner() {
         ActivityToHouseTesting activity = activity();
 
@@ -50,6 +52,7 @@ public class RendersDepartureListTest {
     }
 
     @Test
+    @Ignore
     public void hidesTheListWhenLoading() {
         ActivityToHouseTesting activity = activity();
 
@@ -62,6 +65,7 @@ public class RendersDepartureListTest {
     }
 
     @Test
+    @Ignore
     public void hidesTheLoadingSpinner() {
         ActivityToHouseTesting activity = activity();
 
@@ -74,7 +78,9 @@ public class RendersDepartureListTest {
         View spinner = activity.findViewById(R.id.departurelist_loading);
         assertThat(spinner.getVisibility(),is(View.GONE));
     }
+
     @Test
+    @Ignore
     public void showsTheList() {
         ActivityToHouseTesting activity = activity();
 

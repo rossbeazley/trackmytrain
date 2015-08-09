@@ -5,6 +5,7 @@ import org.junit.Test;
 import uk.co.rossbeazley.trackmytrain.android.ServiceTest;
 import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
+import uk.co.rossbeazley.trackmytrain.android.WearAppSingleton;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -38,6 +39,7 @@ public class TrackingAService {
 
         HostNode hostNode = new HostNode();
         WearApp wearApp = new WearApp(hostNode, new CapturingPostman());
+        WearAppSingleton.instance = wearApp;
 
         final CapturingCanFinishWearApp capturingCanFinishWearApp = new CapturingCanFinishWearApp();
         wearApp.attach(new ExitWearApp(capturingCanFinishWearApp));

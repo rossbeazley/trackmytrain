@@ -51,6 +51,14 @@ public class AnalyticsEventMessage extends Postman.Message {
         return result;
     }
 
+    public String category() {
+        return category;
+    }
+
+    public String label() {
+        return label;
+    }
+
     public static class Factory implements PostmanMessageFactory.MessageFactory {
         @Override
         public Postman.Message create(MessageEvent messageEvent) {

@@ -1,5 +1,6 @@
 package uk.co.rossbeazley.trackmytrain.android.mobile;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
@@ -16,6 +17,7 @@ import static org.hamcrest.core.Is.is;
 public class SharedPrefKeyValuePersistenceTest {
 
     @Test
+    @Ignore
     public void persistsAndRetreivesData() {
         String expectedValue = "test_data_Stored";
         KeyValuePersistence persistence = new SharedPrefKeyValuePersistence(Robolectric.application);

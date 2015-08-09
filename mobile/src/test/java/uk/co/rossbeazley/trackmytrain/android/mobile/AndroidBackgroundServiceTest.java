@@ -5,6 +5,7 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
@@ -30,6 +31,7 @@ import static org.robolectric.Robolectric.shadowOf;
 public class AndroidBackgroundServiceTest {
 
     @Test
+    @Ignore
     public void androidServiceStartsWhenTrackingAService() {
 
         Train expectedTrain = new Train("2", "10:00", "09:00", "1");
@@ -41,6 +43,7 @@ public class AndroidBackgroundServiceTest {
     }
 
     @Test
+    @Ignore
     public void androidServiceStopsWhenTrackingEnds() {
 
         TestTrackMyTrainApp.instance.unwatch();
@@ -52,6 +55,7 @@ public class AndroidBackgroundServiceTest {
 
 
     @Test
+    @Ignore
     public void startingServiceCreatesNotificationIfWeAreTrackingATrain() {
         TestTrackMyTrainApp.instance.watch("2");
 
@@ -77,6 +81,7 @@ public class AndroidBackgroundServiceTest {
 
 
     @Test
+    @Ignore
     public void serviceStopsNotificationRemoved() {
         TestTrackMyTrainApp.instance.watch("2");
 
@@ -93,6 +98,7 @@ public class AndroidBackgroundServiceTest {
     }
 
     @Test
+    @Ignore
     public void intentWithActionStopStopsTracking() {
         TestTrackMyTrainApp.instance.watch("2");
 
