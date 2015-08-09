@@ -19,17 +19,19 @@ public class Train {
     public final String estimatedTime;
     public final String platform;
     private final String error;
+    private final boolean departed;
 
-    public Train(String id, String scheduledTime, String estimatedTime, String platform, String error) {
+    public Train(String id, String scheduledTime, String estimatedTime, String platform, String error, boolean departed) {
         this.id = id;
         this.scheduledTime = scheduledTime;
         this.estimatedTime = estimatedTime;
         this.platform = platform;
         this.error=error;
+        this.departed = departed;
     }
 
-    public static Train ok(String id, String scheduledTime, String estimatedTime, String platform) {
-        return new Train(id,scheduledTime,estimatedTime,platform!=null?platform:"","");
+    public static Train ok(String id, String scheduledTime, String estimatedTime, String platform, boolean departed) {
+        return new Train(id, scheduledTime, estimatedTime, platform != null ? platform : "", "", departed);
     }
 
     @Override
@@ -42,7 +44,8 @@ public class Train {
                 "\"id\":\""+ id +"\",\n" +
                 "\"scheduledTime\":\""+ scheduledTime +"\",\n" +
                 "\"estimatedTime\":\""+ estimatedTime +"\",\n" +
-                "\"platform\":\""+ platform +"\"\n" +
-                "}\n";
+                "\"platform\":\"" + platform + "\"" +
+                (departed ? ",\n\"departed\":true" : "") +
+                "\n}\n";
     }
 }

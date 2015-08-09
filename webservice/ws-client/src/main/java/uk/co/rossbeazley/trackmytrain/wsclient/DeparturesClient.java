@@ -43,7 +43,7 @@ public class DeparturesClient {
                         final String scheduledTime = isEmpty(service.getSta()) ? service.getStd() : service.getSta();
                         final String estimatedTime = isEmpty(service.getEta()) ? service.getEtd() : service.getEta();
 
-                        result.add(Train.ok(service.getServiceID(), scheduledTime, estimatedTime, service.getPlatform()));
+                        result.add(Train.ok(service.getServiceID(), scheduledTime, estimatedTime, service.getPlatform(), false));
                     }
                 }
             }

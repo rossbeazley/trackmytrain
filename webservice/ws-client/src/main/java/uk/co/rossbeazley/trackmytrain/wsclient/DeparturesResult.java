@@ -15,6 +15,10 @@ public class DeparturesResult {
         this.error = error;
     }
 
+    Train firstTrain() {
+        return trains.size() > 0 ? trains.get(0) : new Train("", "", "", "", "", false);
+    }
+
     public static DeparturesResult ok() {
         return new DeparturesResult("");
     }

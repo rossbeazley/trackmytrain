@@ -29,10 +29,11 @@ public class ServiceDetailsClient {
             ServiceDetailsResponseType serviceDetailsResponseType;
             serviceDetailsResponseType = port.getServiceDetails(requestParams);
             ServiceDetails r = serviceDetailsResponseType.getGetServiceDetailsResult();
+            final boolean departed = !isEmpty(r.getAtd());
+            final String scheduledTime = departed ? "Departed" : isEmpty(r.getSta()) ? r.getStd() : r.getSta();
 
-            final String scheduledTime = isEmpty(r.getSta()) ? r.getStd() : r.getSta();
-            final String estimatedTime = isEmpty(r.getEta()) ? r.getEtd() : r.getEta();
-            result = ServiceResult.ok(Train.ok(serviceID, scheduledTime, estimatedTime, r.getPlatform()));
+            final String estimatedTime = departed ? r.getAtd() : isEmpty(r.getEta()) ? r.getEtd() : r.getEta();
+            result = ServiceResult.ok(Train.ok(serviceID, scheduledTime, estimatedTime, r.getPlatform(), departed));
 
 
         } catch (Exception e) {
@@ -42,3 +43,11 @@ public class ServiceDetailsClient {
     }
 
 }
+/**
+ * sta 1723
+ * eta null
+ * ata on time
+ * std 1724
+ * etd on time
+ * atd null
+ **/
