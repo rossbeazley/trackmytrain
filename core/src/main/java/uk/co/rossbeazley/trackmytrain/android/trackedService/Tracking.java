@@ -70,11 +70,13 @@ public class Tracking {
     }
 
     void presentTrackedTrain(Train train) {
-        if (train.departed()) {
-            unwatch();
-        } else
-        for (ServiceView serviceView : new ArrayList<ServiceView>(serviceViews)) {
-            serviceView.present(new TrainViewModel(train));
+        if (trackedService != null) {
+            if (train.departed()) {
+                unwatch();
+            } else
+                for (ServiceView serviceView : new ArrayList<ServiceView>(serviceViews)) {
+                    serviceView.present(new TrainViewModel(train));
+                }
         }
     }
 

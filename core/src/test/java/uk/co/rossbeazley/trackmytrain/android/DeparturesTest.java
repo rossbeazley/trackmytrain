@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
@@ -87,13 +88,13 @@ public class DeparturesTest {
         assertThat(req.asUrlString(),is(DeparturesFromToRequest.WS_URL_ROOT + "departures/MCO/to/SLD"));
     }
 
-    private class SlowRequestMapNetworkClient implements NetworkClient {
+    public static class SlowRequestMapNetworkClient implements NetworkClient {
 
-        private final HashMap<Request, String> mapOfRequestToString;
+        private final Map<Request, String> mapOfRequestToString;
         private Request request;
         private Response response;
 
-        public SlowRequestMapNetworkClient(HashMap<Request, String> hashMap) {
+        public SlowRequestMapNetworkClient(Map<Request, String> hashMap) {
             this.mapOfRequestToString = hashMap;
         }
 
