@@ -1,16 +1,35 @@
 package uk.co.rossbeazley.trackmytrain.android.wear;
 
+import android.support.annotation.NonNull;
+
 import com.google.android.gms.wearable.MessageEvent;
 
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 
 public class AnalyticsEventMessage extends Postman.Message {
     public static final String MESSAGE_PATH = "/ANALYTICS/EVENT";
-    private String eventName;
+    private String category;
+    private final String label;
 
-    public AnalyticsEventMessage(String eventName) {
+    public AnalyticsEventMessage(String category, String label) {
         super(MESSAGE_PATH);
-        this.eventName = eventName;
+        this.category = category;
+        this.label = label;
+    }
+
+    @Override
+    public String messageAsString() {
+        return super.messageAsString() + params();
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + params();
+    }
+
+    @NonNull
+    private String params() {
+        return "/" + category + "/" + label;
     }
 
     @Override
@@ -21,21 +40,22 @@ public class AnalyticsEventMessage extends Postman.Message {
 
         AnalyticsEventMessage that = (AnalyticsEventMessage) o;
 
-        return !(eventName != null ? !eventName.equals(that.eventName) : that.eventName != null);
+        return !(category != null ? !category.equals(that.category) : that.category != null);
 
     }
 
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + (eventName != null ? eventName.hashCode() : 0);
+        result = 31 * result + (category != null ? category.hashCode() : 0);
         return result;
     }
 
     public static class Factory implements PostmanMessageFactory.MessageFactory {
         @Override
         public Postman.Message create(MessageEvent messageEvent) {
-            return new AnalyticsEventMessage(""); //can add category and label stuff here
+            String[] parts = messageEvent.getPath().replace(MESSAGE_PATH + "/", "").split("/");
+            return new AnalyticsEventMessage(parts[0], parts[1]); //can add category and label stuff here
         }
     }
 }

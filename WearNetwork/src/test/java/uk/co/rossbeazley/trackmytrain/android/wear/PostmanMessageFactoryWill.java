@@ -83,7 +83,7 @@ public class PostmanMessageFactoryWill {
     convertAnalyticsEventMessage() {
 
         String anyId = "anyId";
-        Postman.Message expectedMessage = new AnalyticsEventMessage("CREATED");
+        Postman.Message expectedMessage = new AnalyticsEventMessage("CREATED", "WEAR");
         MessageEvent msg = new WearMessageEvent(expectedMessage.messageAsString(), anyId);
 
         MessageEnvelope convertMessage = new PostmanMessageFactory().toMessage(msg);

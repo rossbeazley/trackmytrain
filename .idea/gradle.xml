@@ -13,6 +13,8 @@
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/mobile" />
             <option value="$PROJECT_DIR$/wear" />
+            <option value="$PROJECT_DIR$/webservice/rest-ws" />
+            <option value="$PROJECT_DIR$/webservice/ws-client" />
           </set>
         </option>
       </GradleProjectSettings>

@@ -18,7 +18,7 @@ public class TheApplicationWill {
 
         new WearApp(new HostNode(), capturingPostman);
 
-        final Postman.Message expectedMessage = new AnalyticsEventMessage("CREATED");
+        final Postman.Message expectedMessage = new AnalyticsEventMessage("CREATED", "");
         assertThat(capturingPostman.broadcasts, hasItem(expectedMessage));
     }
 

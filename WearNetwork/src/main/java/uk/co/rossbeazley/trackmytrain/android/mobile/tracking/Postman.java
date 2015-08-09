@@ -76,6 +76,10 @@ public interface Postman {
         public byte[] messageBytes() {
             return new byte[0];
         }
+
+        public String toString() {
+            return getClass().getSimpleName() + "::" + messagePath;
+        }
     }
 
     class NodeId {

@@ -1,7 +1,10 @@
 apply plugin: 'java'
 apply plugin: 'war'
-
+war {
+    archiveName = 'trackmytrain'
+}
 dependencies {
     compile fileTree(dir: 'lib', include: ['*.jar'])
     compile project(':ldb-client')
 }
+
