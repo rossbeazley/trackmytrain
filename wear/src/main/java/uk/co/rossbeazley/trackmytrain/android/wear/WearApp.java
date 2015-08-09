@@ -13,15 +13,17 @@ import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
  */
 public class WearApp implements CanTrackTrains {
     private final HostNode hostNode;
+    private final Postman postman;
     private List<ServiceView> serviceViews;
     private TrainViewModel currentService;
 
     public WearApp(HostNode hostNode, Postman postman) {
+        this.postman = postman;
         serviceViews = new CopyOnWriteArrayList<>();
 
         this.hostNode = hostNode;
 
-        postman.broadcast(new AnalyticsEventMessage("CREATED", ""));
+        postman.broadcast(new AnalyticsEventMessage("WEAR-CREATED", "CREATED"));
     }
 
     public void message(MessageEnvelope messageEnvelope) {
@@ -78,7 +80,12 @@ public class WearApp implements CanTrackTrains {
     @Override
     public void attach(ServiceView serviceView) {
         this.serviceViews.add(serviceView);
+        announcServiceViewAttached(serviceView);
+    }
+
+    private void announcServiceViewAttached(ServiceView serviceView) {
         if (currentService != null) serviceView.present(currentService);
+        postman.broadcast(new AnalyticsEventMessage("WEAR-SERVICEVIEW-ATTACHED", serviceView.getClass().getSimpleName()));
     }
 
     @Override
