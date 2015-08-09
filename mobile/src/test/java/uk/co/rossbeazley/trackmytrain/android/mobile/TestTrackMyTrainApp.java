@@ -25,7 +25,7 @@ public class TestTrackMyTrainApp extends TrackMyTrainApp {
     }
 
     public static TrackMyTrain getCore() {
-        trackedService = new Train("2", "10:00", "09:00", "1");
+        trackedService = new Train("2", "10:00", "09:00", "1", false);
         keyValuePersistence = new HashMapKeyValuePersistence(){{
             this.put("at","CRL");
             this.put("direction","SLD");
@@ -50,8 +50,8 @@ public class TestTrackMyTrainApp extends TrackMyTrainApp {
             if(request instanceof ServiceDetailsRequest) {
                 response.ok(TestDataBuilder.jsonForTrain(trackedService));
             } else if(request instanceof DeparturesFromToRequest) {
-                response.ok(TestDataBuilder.jsonForTrains(new Train("1", "", "", ""),
-                new Train("2", "", "", "")));
+                response.ok(TestDataBuilder.jsonForTrains(new Train("1", "", "", "", false),
+                        new Train("2", "", "", "", false)));
             }
         }
     }

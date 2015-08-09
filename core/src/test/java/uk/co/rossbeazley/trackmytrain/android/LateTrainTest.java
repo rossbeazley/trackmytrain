@@ -10,7 +10,7 @@ public class LateTrainTest {
     @Test
     public void aLateTrain() {
 
-        Train train = new Train("anyId","20:24","20:22","4");
+        Train train = new Train("anyId", "20:24", "20:22", "4", false);
         TrainViewModel tvm = new TrainViewModel(train);
         assertThat(tvm.isLate(),is(true));
     }

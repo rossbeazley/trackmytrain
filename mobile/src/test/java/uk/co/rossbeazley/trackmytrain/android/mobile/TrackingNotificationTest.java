@@ -36,7 +36,7 @@ public class TrackingNotificationTest {
         notificationManager = (NotificationManager) Robolectric.application.getSystemService(Context.NOTIFICATION_SERVICE);
 
 
-        Train expectedTrain = new Train("2", "10:00", "09:00", "1");
+        Train expectedTrain = new Train("2", "10:00", "09:00", "1", false);
         TestTrackMyTrainApp.instance.watch("2");
 
 

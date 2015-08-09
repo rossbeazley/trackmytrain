@@ -69,18 +69,18 @@ public class TestDataBuilder {
     public static String anyTrainsJson() {
         final Train train1, train2;
         train1 = anyTrain();
-        train2 = new Train("EAG/q7qfInIUZyPhCdwQKw==", "On time", "22:38", "2");
+        train2 = new Train("EAG/q7qfInIUZyPhCdwQKw==", "On time", "22:38", "2", false);
         return jsonForTrains(train1, train2);
     }
 
     static Train anyTrain() {
-        return new Train("aN5S6pak5nKFawy0sXb65Q==", "On time", "21:39", "2");
+        return new Train("aN5S6pak5nKFawy0sXb65Q==", "On time", "21:39", "2", false);
     }
 
     public static List<Train> anyTrains() {
         final Train train1, train2;
         train1 = anyTrain();
-        train2 = new Train("EAG/q7qfInIUZyPhCdwQKw==", "On time", "22:38", "2");
+        train2 = new Train("EAG/q7qfInIUZyPhCdwQKw==", "On time", "22:38", "2", false);
         return Arrays.asList(train1,train2);
     }
 

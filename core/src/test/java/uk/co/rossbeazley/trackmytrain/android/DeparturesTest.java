@@ -55,8 +55,8 @@ public class DeparturesTest {
         TrackMyTrain tmt;
 
         final Train train1, train2;
-        train1 = new Train("aN5S6pak5nKFawy0sXb65Q==", "On time", "21:39", "2");
-        train2 = new Train("EAG/q7qfInIUZyPhCdwQKw==", "On time", "22:38", "2");
+        train1 = new Train("aN5S6pak5nKFawy0sXb65Q==", "On time", "21:39", "2", false);
+        train2 = new Train("EAG/q7qfInIUZyPhCdwQKw==", "On time", "22:38", "2", false);
 
         NetworkClient networkClient = new RequestMapNetworkClient(new HashMap<NetworkClient.Request, String>() {{
             put(new DeparturesFromToRequest(Station.fromString("SLD"), Station.fromString("CRL")), TestDataBuilder.jsonForTrains(train1, train2));

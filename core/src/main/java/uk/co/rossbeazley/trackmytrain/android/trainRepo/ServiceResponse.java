@@ -21,7 +21,8 @@ class ServiceResponse implements NetworkClient.Response {
             String estimatedTime = obj.getString("estimatedTime");
             String scheduledTime = obj.getString("scheduledTime");
             String platform = obj.getString("platform");
-            Train train = new Train(id, estimatedTime, scheduledTime, platform);
+            boolean departed = obj.optBoolean("departed");
+            Train train = new Train(id, estimatedTime, scheduledTime, platform, departed);
             serviceSuccess.result(train);
         } catch (JSONException e) {
             e.printStackTrace();

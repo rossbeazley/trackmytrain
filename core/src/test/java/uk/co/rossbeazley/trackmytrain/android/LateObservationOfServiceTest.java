@@ -31,7 +31,7 @@ public class LateObservationOfServiceTest {
         String scheduledTime = "20:48";
         String estimatedTime = "On time";
         String platform = "2";
-        final Train train = new Train(serviceId, estimatedTime, scheduledTime, platform);
+        final Train train = new Train(serviceId, estimatedTime, scheduledTime, platform, false);
         expectedTrain = new TrainViewModel(train);
         final String initialJson = TestDataBuilder.jsonForTrain(train);
         serviceDetailsRequest = new ServiceDetailsRequest(serviceId);

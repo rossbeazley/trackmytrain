@@ -34,7 +34,7 @@ public class AndroidBackgroundServiceTest {
     @Ignore
     public void androidServiceStartsWhenTrackingAService() {
 
-        Train expectedTrain = new Train("2", "10:00", "09:00", "1");
+        Train expectedTrain = new Train("2", "10:00", "09:00", "1", false);
         TestTrackMyTrainApp.instance.watch("2");
 
         Intent intent = Robolectric.getShadowApplication().getNextStartedService();

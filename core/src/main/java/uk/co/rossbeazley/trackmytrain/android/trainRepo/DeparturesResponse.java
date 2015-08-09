@@ -37,7 +37,7 @@ public class DeparturesResponse implements NetworkClient.Response {
             JSONArray jtrains = jobj.getJSONArray("trains");
             for(int i=0 ; i<jtrains.length() ; i++) {
                 JSONObject jtrain = jtrains.getJSONObject(i);
-                Train train = new Train(jtrain.getString("id"), jtrain.getString("estimatedTime"), jtrain.getString("scheduledTime"), jtrain.getString("platform"));
+                Train train = new Train(jtrain.getString("id"), jtrain.getString("estimatedTime"), jtrain.getString("scheduledTime"), jtrain.getString("platform"), false);
                 trains.add(train);
             }
 

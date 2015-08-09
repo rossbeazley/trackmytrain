@@ -37,7 +37,7 @@ public class ServiceTest {
         scheduledTime = "20:48";
         estimatedTime = "On time";
         platform = "2";
-        final Train train = new Train(serviceId, estimatedTime, scheduledTime, platform);
+        final Train train = new Train(serviceId, estimatedTime, scheduledTime, platform, false);
         expectedTrain = new TrainViewModel(train);
         final String initialJson = TestDataBuilder.jsonForTrain(train);
         serviceDetailsRequest = new ServiceDetailsRequest(serviceId);
@@ -85,7 +85,7 @@ public class ServiceTest {
     public void theOneWhereWeAreUpdatedAboutTheSelectedService() {
         tmt.watch(serviceId);
         serviceView.serviceDisplayed=null;
-        final Train train = new Train(serviceId, "20:52", scheduledTime, platform);
+        final Train train = new Train(serviceId, "20:52", scheduledTime, platform, false);
         final TrainViewModel expectedTrain = new TrainViewModel(train);
         map.put(serviceDetailsRequest, TestDataBuilder.jsonForTrain(train));
         ness.scheduledCommand.run();
@@ -97,7 +97,7 @@ public class ServiceTest {
     public void continuedWatchingOfServiceDosntAnnounceTrackingStarted() {
         tmt.watch(serviceId);
         serviceView.serviceDisplayed = null;
-        final Train train = new Train(serviceId, "20:52", scheduledTime, platform);
+        final Train train = new Train(serviceId, "20:52", scheduledTime, platform, false);
         final TrainViewModel expectedTrain = new TrainViewModel(train);
         map.put(serviceDetailsRequest, TestDataBuilder.jsonForTrain(train));
         ness.scheduledCommand.run();

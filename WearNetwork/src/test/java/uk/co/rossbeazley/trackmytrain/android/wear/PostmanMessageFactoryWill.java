@@ -55,7 +55,7 @@ public class PostmanMessageFactoryWill {
     public void
     convertMessageEventToTrackedServiceMessage() {
 
-        Postman.Message expectedMessage = new TrackedServiceMessage(new TrainViewModel(new Train("2", "10:00", "09:00", "1")));
+        Postman.Message expectedMessage = new TrackedServiceMessage(new TrainViewModel(new Train("2", "10:00", "09:00", "1", false)));
 
         String anyId = "anyId";
         MessageEvent msg = new WearMessageEvent(expectedMessage.messageAsString(), anyId);
@@ -68,7 +68,7 @@ public class PostmanMessageFactoryWill {
     public void
     convertMessageEventToTrackedServiceMessageWithSlashesInId() {
 
-        Postman.Message expectedMessage = new TrackedServiceMessage(new TrainViewModel(new Train("123/456/234", "10:00", "09:00", "1")));
+        Postman.Message expectedMessage = new TrackedServiceMessage(new TrainViewModel(new Train("123/456/234", "10:00", "09:00", "1", false)));
 
         String anyId = "anyId";
         MessageEvent msg = new WearMessageEvent(expectedMessage.messageAsString(), anyId);

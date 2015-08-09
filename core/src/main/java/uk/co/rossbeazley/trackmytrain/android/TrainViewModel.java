@@ -13,7 +13,7 @@ public class TrainViewModel {
     }
 
     public TrainViewModel(String id, String estimatedTime, String scheduledTime, String platform) {
-        train = new Train(id, estimatedTime, scheduledTime, platform);
+        train = new Train(id, estimatedTime, scheduledTime, platform, false);
     }
 
     public static DeparturesViewModel list(List<Train> expectedList) {

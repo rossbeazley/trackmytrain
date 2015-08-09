@@ -5,13 +5,15 @@ public class Train {
     public final String scheduledTime;
     public final String estimatedTime;
     public final String platform;
+    private final boolean departed;
 
-    public Train(String id, String estimatedTime, String scheduledTime, String platform)
+    public Train(String id, String estimatedTime, String scheduledTime, String platform, boolean departed)
     {
         this.id = id;
         this.estimatedTime = estimatedTime;
         this.scheduledTime = scheduledTime;
         this.platform = platform;
+        this.departed = departed;
     }
 
     public String toString() {
@@ -47,5 +49,9 @@ public class Train {
 
     public boolean isLate() {
         return !estimatedTime.equalsIgnoreCase("On Time");
+    }
+
+    public boolean departed() {
+        return departed;
     }
 }
