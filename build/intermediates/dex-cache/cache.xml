@@ -2,69 +2,237 @@
 <items version="2" >
 
     <item
-        jar="/home/rdlb/programing/android/trackmytrain/wear/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/6.5.87/jars/classes.jar"
-        jumboMode="false" revision="22.0.1" sha1="6384c6cd674a22610b932d9464aa6938d067f285">
+        jar="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.0.0/jars/classes.jar"
+        jumboMode="false" revision="22.0.1" sha1="a1372c17fccacca753d3951d3ad820571cbce075">
         <dex
-            dex="/home/rdlb/programing/android/trackmytrain/wear/build/intermediates/pre-dexed/debug/classes-b6a5a5e9000b4ed69a5496e3bdc5802fbf26e148.jar" />
-    </item>
-    <item jar="/home/rdlb/programing/android/trackmytrain/core/build/libs/core.jar"
-        jumboMode="false" revision="22.0.1" sha1="87e50fc15bc6566baf482947ea2fbae8fc0d63df">
-        <dex
-            dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/core-99ebd5d5f95f7d4ffed24ddc73a3d33976688506.jar" />
+            dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/classes-9deb63cd770cb19d5e099603e619d5cfcbfb111c.jar" />
     </item>
     <item
-        jar="/home/rdlb/programing/android/trackmytrain/wear/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar"
-        jumboMode="false" revision="22.0.1" sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        jar="/home/rdlb/programing/android/trackmytrain/wear/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar"
+        jumboMode="false" revision="22.0.1" sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
         <dex
-            dex="/home/rdlb/programing/android/trackmytrain/wear/build/intermediates/pre-dexed/debug/classes-2aa19ca9966fbe1763e4d59c3b308f453102fd87.jar" />
+            dex="/home/rdlb/programing/android/trackmytrain/wear/build/intermediates/pre-dexed/release/classes-8ae4251fcb862144308058fdec0d5c36a3e5127a.jar" />
     </item>
     <item
-        jar="/opt/google/android-sdk-linux_x86/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
-        jumboMode="false" revision="22.0.1" sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        jar="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
+        jumboMode="false" revision="22.0.1" sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
         <dex
-            dex="/home/rdlb/programing/android/trackmytrain/wear/build/intermediates/pre-dexed/debug/support-annotations-22.2.0-d4d13154d382e56e7a10a9a638d0292a9847c6d1.jar" />
+            dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/internal_impl-22.2.1-b8e6f5db1198762ff83dfe89db4dc592b003ac54.jar" />
     </item>
     <item
-        jar="/home/rdlb/programing/android/trackmytrain/wear/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar"
-        jumboMode="false" revision="22.0.1" sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        jar="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/7.5.0/jars/classes.jar"
+        jumboMode="false" revision="22.0.1" sha1="e7b35244f50663b3f8d150714bca9ecd7a290da1">
         <dex
-            dex="/home/rdlb/programing/android/trackmytrain/wear/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-9eeb7950ab2a3e8f7c2febf72ff90b8b5500d804.jar" />
+            dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/classes-d4ef5620e0b8ff824d78d5944790d5490f7644b7.jar" />
     </item>
     <item
-        jar="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/exploded-aar/trackmytrain/WearNetwork/unspecified/jars/classes.jar"
-        jumboMode="false" revision="22.0.1" sha1="d1b4e819d7397b9a3d028a85132f84ef93f68573">
+        jar="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/7.5.0/jars/classes.jar"
+        jumboMode="false" revision="22.0.1" sha1="d405025c600055237c171a0bbabaa49d69696573">
         <dex
-            dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/classes-d34ffb0e2eaf06adfeb638f60cf96d1402999ff1.jar" />
+            dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/classes-9536121c3589780ce1712786772d974f67387c81.jar" />
     </item>
     <item
-        jar="/home/rdlb/programing/android/trackmytrain/wear/build/intermediates/exploded-aar/com.google.android.support/wearable/1.2.0/jars/classes.jar"
-        jumboMode="false" revision="22.0.1" sha1="0e239b45d3b94ac3d759405a9c5fd1f88e53913b">
+        jar="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
+        jumboMode="false" revision="22.0.1" sha1="f8efd0096475e0daf054267b61544e10dc776503">
         <dex
-            dex="/home/rdlb/programing/android/trackmytrain/wear/build/intermediates/pre-dexed/debug/classes-2fb273583227023e17a9f06bfbdfe5d9a27203f8.jar" />
+            dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/classes-83f193fe4d1145545728e4b2d34430fc0aca9568.jar" />
     </item>
     <item
-        jar="/home/rdlb/programing/android/trackmytrain/wear/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/jars/classes.jar"
-        jumboMode="false" revision="22.0.1" sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
+        jar="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.5.0/jars/classes.jar"
+        jumboMode="false" revision="22.0.1" sha1="a78183f30e769a98ab4820794f597763088d3065">
         <dex
-            dex="/home/rdlb/programing/android/trackmytrain/wear/build/intermediates/pre-dexed/debug/classes-56ed473822669096cc98916883410f8e52e546ba.jar" />
+            dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/classes-8fb9fcb658570a09a1911021af01f5beb3b61cc9.jar" />
+    </item>
+    <item
+        jar="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-games/7.5.0/jars/classes.jar"
+        jumboMode="false" revision="22.0.1" sha1="02bac2dc792d78241077861566f2c82da955e7fa">
+        <dex
+            dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/classes-2b067bb46af6c9b6e5274953dc4fbd75e95d7288.jar" />
+    </item>
+    <item
+        jar="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/7.5.0/jars/classes.jar"
+        jumboMode="false" revision="22.0.1" sha1="29ebc7e04d877062317c8cc0e68b20f0c1fcda66">
+        <dex
+            dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/classes-33bb5a42b2a15c924bdada9290c30f4ad84d725f.jar" />
     </item>
     <item
         jar="/home/rdlb/programing/android/trackmytrain/wear/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/22.0.0/jars/classes.jar"
         jumboMode="false" revision="22.0.1" sha1="c6d79137693d494dee16372d3921f919eb724ced">
         <dex
-            dex="/home/rdlb/programing/android/trackmytrain/wear/build/intermediates/pre-dexed/debug/classes-bc15c4c3b94c0196b2e34ef6e2f591cde9a1d281.jar" />
+            dex="/home/rdlb/programing/android/trackmytrain/wear/build/intermediates/pre-dexed/release/classes-bc15c4c3b94c0196b2e34ef6e2f591cde9a1d281.jar" />
+    </item>
+    <item
+        jar="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/7.5.0/jars/classes.jar"
+        jumboMode="false" revision="22.0.1" sha1="8e3a972f28b8bae817e382257ba177a31bcadbbc">
+        <dex
+            dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/classes-4da3d3b7c513010418ac30112815f3ece13b3473.jar" />
+    </item>
+    <item
+        jar="/opt/google/android-sdk-linux_x86/extras/android/m2repository/com/android/support/support-annotations/22.2.1/support-annotations-22.2.1.jar"
+        jumboMode="false" revision="22.0.1" sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
+        <dex
+            dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/support-annotations-22.2.1-ec709aa3a89281a2cc6aea1e7cc215f625cbb72b.jar" />
+    </item>
+    <item
+        jar="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/7.5.0/jars/classes.jar"
+        jumboMode="false" revision="22.0.1" sha1="69dd177337ead693c408c8dddc9546bb6f1244fa">
+        <dex
+            dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/classes-2e27641aae91e5d595d632c499b6e1a358b0029d.jar" />
+    </item>
+    <item
+        jar="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-panorama/7.5.0/jars/classes.jar"
+        jumboMode="false" revision="22.0.1" sha1="ba207be21987c11b37d9f8faa08ed6e722569f30">
+        <dex
+            dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/classes-efaf1da096695b05f2eac00fe6c0a6df43bcdf8d.jar" />
+    </item>
+    <item
+        jar="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/exploded-aar/com.google.android.support/wearable/1.0.0/jars/classes.jar"
+        jumboMode="false" revision="22.0.1" sha1="6804efbb78d7facc2e1aa107c7342bee83afae45">
+        <dex
+            dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/classes-1bfdf1a8aeb63597b8aa6d462444ae68f97d0b97.jar" />
+    </item>
+    <item
+        jar="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-fitness/7.5.0/jars/classes.jar"
+        jumboMode="false" revision="22.0.1" sha1="a172852a35ff919e85b9b7f14bbc15c5bee25520">
+        <dex
+            dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/classes-49f9773cba2c04b40daeb88f3a58143936a40ab3.jar" />
+    </item>
+    <item
+        jar="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/exploded-aar/trackmytrain/WearNetwork/unspecified/jars/classes.jar"
+        jumboMode="false" revision="22.0.1" sha1="4baedac180145364c0d9a0d15b1e6405c7022976">
+        <dex
+            dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/classes-d34ffb0e2eaf06adfeb638f60cf96d1402999ff1.jar" />
+    </item>
+    <item jar="/home/rdlb/programing/android/trackmytrain/core/build/libs/core.jar"
+        jumboMode="false" revision="22.0.1" sha1="f2e52aaca1011246f1bc79d5c343d5adc7d02acf">
+        <dex
+            dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/core-99ebd5d5f95f7d4ffed24ddc73a3d33976688506.jar" />
+    </item>
+    <item
+        jar="/home/rdlb/programing/android/trackmytrain/wear/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
+        jumboMode="false" revision="22.0.1" sha1="f8efd0096475e0daf054267b61544e10dc776503">
+        <dex
+            dex="/home/rdlb/programing/android/trackmytrain/wear/build/intermediates/pre-dexed/release/classes-8cbb52ad1b1863121a24cb5a00e1194fe69d2ff1.jar" />
+    </item>
+    <item
+        jar="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-appinvite/7.5.0/jars/classes.jar"
+        jumboMode="false" revision="22.0.1" sha1="63ec6e9f4fe5482a7447d0f3091b8e543a02554c">
+        <dex
+            dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/classes-53c1d2abcbeb9830fca6751ff767a5d43a8cb233.jar" />
+    </item>
+    <item
+        jar="/home/rdlb/programing/android/trackmytrain/wear/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/7.5.0/jars/classes.jar"
+        jumboMode="false" revision="22.0.1" sha1="69dd177337ead693c408c8dddc9546bb6f1244fa">
+        <dex
+            dex="/home/rdlb/programing/android/trackmytrain/wear/build/intermediates/pre-dexed/release/classes-a5e0eb08389eaef17401d11f7fbdbb8dcdf0d152.jar" />
+    </item>
+    <item
+        jar="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.0.0/jars/libs/internal_impl-22.0.0.jar"
+        jumboMode="false" revision="22.0.1" sha1="ba3df4eb0a630d7de294f0e48d3f9267d279b784">
+        <dex
+            dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-c1e03f2da1144c2e20ee6c3e11659f43e5bb8a9b.jar" />
+    </item>
+    <item
+        jar="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-drive/7.5.0/jars/classes.jar"
+        jumboMode="false" revision="22.0.1" sha1="f44d03c138cb6488fdbaa65e3a7e5878861a56d8">
+        <dex
+            dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/classes-447683dd363e5d49256bd929eafaf2c658c74be1.jar" />
+    </item>
+    <item
+        jar="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-nearby/7.5.0/jars/classes.jar"
+        jumboMode="false" revision="22.0.1" sha1="6440e5e5cfe368f9bff3c537fb8988048069cb33">
+        <dex
+            dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/classes-cd355e4b440432e4febabd55d1f308f9b4e8340b.jar" />
+    </item>
+    <item
+        jar="/home/rdlb/programing/android/trackmytrain/wear/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.5.0/jars/classes.jar"
+        jumboMode="false" revision="22.0.1" sha1="a78183f30e769a98ab4820794f597763088d3065">
+        <dex
+            dex="/home/rdlb/programing/android/trackmytrain/wear/build/intermediates/pre-dexed/release/classes-518c31a0378cc1738289409596829a8c8b983541.jar" />
+    </item>
+    <item
+        jar="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/7.5.0/jars/classes.jar"
+        jumboMode="false" revision="22.0.1" sha1="06a42becc33232ec0ee125161da68c1829c9f8fd">
+        <dex
+            dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/classes-064ad7a44dc0e47cd39994225cb6729b9ec40096.jar" />
+    </item>
+    <item
+        jar="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/exploded-aar/com.android.support/support-v13/20.0.0/jars/classes.jar"
+        jumboMode="false" revision="22.0.1" sha1="e128103d5281ddd26195a7f980b36d0d005a4e56">
+        <dex
+            dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/classes-6fb1a64624195edd47f4f3b29cbf4b6df6fd2bdd.jar" />
+    </item>
+    <item
+        jar="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/7.5.0/jars/classes.jar"
+        jumboMode="false" revision="22.0.1" sha1="6836d188602ec5382d1967c58b00960eb8ff8773">
+        <dex
+            dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/classes-5b4e8965d42d7e7ea8448a5cce9b042aefcdbc82.jar" />
+    </item>
+    <item
+        jar="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-safetynet/7.5.0/jars/classes.jar"
+        jumboMode="false" revision="22.0.1" sha1="1a6411087ab88ce5542f593e63a2752b6b0d6f1a">
+        <dex
+            dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/classes-cfe51d0d65cd424d6ea1cf4165f5b140c36a7471.jar" />
+    </item>
+    <item
+        jar="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/7.5.0/jars/classes.jar"
+        jumboMode="false" revision="22.0.1" sha1="f02127a85abd52a2cd526d4c2409f21969f80ee8">
+        <dex
+            dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/classes-9fa6196b395c13d12d5af0fe047f41a017c0787e.jar" />
+    </item>
+    <item
+        jar="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar"
+        jumboMode="false" revision="22.0.1" sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
+        <dex
+            dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/classes-55dc7cce132aa6c8e535b0a54eebc5d5559644f7.jar" />
+    </item>
+    <item
+        jar="/home/rdlb/programing/android/trackmytrain/wear/build/intermediates/exploded-aar/com.google.android.support/wearable/1.2.0/jars/classes.jar"
+        jumboMode="false" revision="22.0.1" sha1="0e239b45d3b94ac3d759405a9c5fd1f88e53913b">
+        <dex
+            dex="/home/rdlb/programing/android/trackmytrain/wear/build/intermediates/pre-dexed/release/classes-2fb273583227023e17a9f06bfbdfe5d9a27203f8.jar" />
     </item>
     <item
         jar="/home/rdlb/programing/android/trackmytrain/wear/build/intermediates/exploded-aar/trackmytrain/WearNetwork/unspecified/jars/classes.jar"
-        jumboMode="false" revision="22.0.1" sha1="70c3a0d997e6b4fa9a83950ddf34bf6dd5962054">
+        jumboMode="false" revision="22.0.1" sha1="4baedac180145364c0d9a0d15b1e6405c7022976">
         <dex
-            dex="/home/rdlb/programing/android/trackmytrain/wear/build/intermediates/pre-dexed/debug/classes-d640b1ca9b82ac9bcf5a277c209baf95e5c71ce0.jar" />
+            dex="/home/rdlb/programing/android/trackmytrain/wear/build/intermediates/pre-dexed/release/classes-d640b1ca9b82ac9bcf5a277c209baf95e5c71ce0.jar" />
     </item>
     <item
-        jar="/home/rdlb/programing/android/trackmytrain/wear/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/6.5.87/jars/classes.jar"
-        jumboMode="false" revision="22.0.1" sha1="95482e7c792a7c0d5a9d5461e97726bd54fe9549">
+        jar="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-appstate/7.5.0/jars/classes.jar"
+        jumboMode="false" revision="22.0.1" sha1="68c140702c7242d914655bcb3164d9e8c45b84cb">
         <dex
-            dex="/home/rdlb/programing/android/trackmytrain/wear/build/intermediates/pre-dexed/debug/classes-a129faea6a4384688d8907b099a255a5d447dea9.jar" />
+            dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/classes-11d86274de7554d86b76dc59686efe8c0382801e.jar" />
+    </item>
+    <item
+        jar="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/7.5.0/jars/classes.jar"
+        jumboMode="false" revision="22.0.1" sha1="1e98ef3f124bb7a11f8575f9ff5dfea330b61b6f">
+        <dex
+            dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/classes-81681dbd4dfa209c588298b49b6f71089bd10e3b.jar" />
+    </item>
+    <item
+        jar="/home/rdlb/programing/android/trackmytrain/wear/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
+        jumboMode="false" revision="22.0.1" sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
+        <dex
+            dex="/home/rdlb/programing/android/trackmytrain/wear/build/intermediates/pre-dexed/release/internal_impl-22.2.1-c371122cfde5134bf454ee1be685b3c4da8d3916.jar" />
+    </item>
+    <item
+        jar="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-plus/7.5.0/jars/classes.jar"
+        jumboMode="false" revision="22.0.1" sha1="272bc5d7063f24bc3a33ea1d318cde8f31f5ec4c">
+        <dex
+            dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/classes-120ced76a9391018a3b553b1839ea4f35dc14063.jar" />
+    </item>
+    <item
+        jar="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/7.5.0/jars/classes.jar"
+        jumboMode="false" revision="22.0.1" sha1="8d736fefa22d896e84a268354b3ed48a42663150">
+        <dex
+            dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/classes-f2a82ab77a3cdd16b378c0f433b3675fe2a9ab05.jar" />
+    </item>
+    <item
+        jar="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/exploded-aar/com.android.support/support-v13/20.0.0/jars/libs/internal_impl-20.0.0.jar"
+        jumboMode="false" revision="22.0.1" sha1="27bbd3982cdfe4468a9bf99c8c773734a9049e33">
+        <dex
+            dex="/home/rdlb/programing/android/trackmytrain/mobile/build/intermediates/pre-dexed/debug/internal_impl-20.0.0-f72bc6b2c898d5e46cbc1f85a28d09fb8468af22.jar" />
     </item>
 
 </items>

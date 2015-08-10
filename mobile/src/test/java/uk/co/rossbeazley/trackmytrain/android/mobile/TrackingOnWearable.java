@@ -98,7 +98,7 @@ public class TrackingOnWearable {
         CapturingPostman postman = new CapturingPostman();
 
         final MessagingTrackingPresenter messagingTrackingPresenter = new MessagingTrackingPresenter(postman);
-        TestTrackMyTrainApp.instance.attach(messagingTrackingPresenter);
+        TrackMyTrainApp.instance.attach(messagingTrackingPresenter);
 
         TrackMyTrainApp.instance.watch("2");
         Postman.Message expectedMessage = new TrackedServiceMessage(new TrainViewModel(new Train("2", "10:00", "09:00", "1", false)));

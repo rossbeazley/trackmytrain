@@ -25,3 +25,4 @@ android:
 script: ./gradlew core:test
 script: ./gradlew wear:test
 script: ./gradlew WearNetwork:test
+script: ./gradlew mobile:test
