@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.trackmytrain.android.mobile.rum;
+package uk.co.rossbeazley.trackmytrain.android.mobile.analytics;
 
 /**
  * Created by beazlr02 on 17/08/15.
