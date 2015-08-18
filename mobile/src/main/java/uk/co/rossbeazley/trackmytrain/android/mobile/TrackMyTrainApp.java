@@ -7,12 +7,13 @@ import com.google.android.gms.analytics.Tracker;
 
 import uk.co.rossbeazley.trackmytrain.android.TMTBuilder;
 import uk.co.rossbeazley.trackmytrain.android.TrackMyTrain;
+import uk.co.rossbeazley.trackmytrain.android.mobile.analytics.Analytics;
+import uk.co.rossbeazley.trackmytrain.android.mobile.analytics.GoogleAnalytics;
 import uk.co.rossbeazley.trackmytrain.android.mobile.departures.AnalyticsDeparturesView;
 import uk.co.rossbeazley.trackmytrain.android.mobile.departures.PerfMonitoringView;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.MessagingTrackingPresenter;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.ServiceTrackingNavigationController;
-import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.TrackingNotification;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.WearNetworkBuilder;
 import uk.co.rossbeazley.trackmytrain.android.mobile.wear.MessageService;
 

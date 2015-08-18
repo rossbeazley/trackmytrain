@@ -5,7 +5,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import uk.co.rossbeazley.trackmytrain.android.mobile.Analytics;
+import uk.co.rossbeazley.trackmytrain.android.mobile.analytics.Analytics;
 import uk.co.rossbeazley.trackmytrain.android.mobile.TestTrackMyTrainApp;
 import uk.co.rossbeazley.trackmytrain.android.mobile.TrackMyTrainApp;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
