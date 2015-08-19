@@ -2,7 +2,7 @@ package uk.co.rossbeazley.trackmytrain.android;
 
 public interface NetworkClient {
 
-    void requestString(Request request, Response response);
+    void get(Request request, Response response);
 
     public static interface Response {
         public void ok(String response);

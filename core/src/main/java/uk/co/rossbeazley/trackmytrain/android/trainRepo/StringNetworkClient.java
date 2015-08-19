@@ -20,7 +20,7 @@ public class StringNetworkClient implements NetworkClient {
     }
 
     @Override
-    public void requestString(final Request request, final Response response) {
+    public void get(final Request request, final Response response) {
 
         Runnable runnable = new Runnable() {
             public void run() {

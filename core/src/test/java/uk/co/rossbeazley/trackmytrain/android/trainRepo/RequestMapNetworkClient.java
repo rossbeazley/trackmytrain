@@ -15,7 +15,7 @@ public class RequestMapNetworkClient implements NetworkClient {
         this.mapOfRequestToString = mapOfRequestToString;
     }
 
-    @Override public void requestString(Request request, Response response) {
+    @Override public void get(Request request, Response response) {
         if(mapOfRequestToString.containsKey(request)) {
             response.ok(mapOfRequestToString.get(request));
         }

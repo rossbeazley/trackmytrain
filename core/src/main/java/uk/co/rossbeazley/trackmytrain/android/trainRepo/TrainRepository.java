@@ -19,14 +19,14 @@ public class TrainRepository {
 
         NetworkClient.Request request = new DeparturesFromToRequest(at, direction.station());
         NetworkClient.Response response = new DeparturesResponse(result);
-        networkClient.requestString(request, response);
+        networkClient.get(request, response);
     }
 
     public void service(String serviceId, ServiceSuccess serviceSuccess) {
 
         NetworkClient.Request request = new ServiceDetailsRequest(serviceId);
         NetworkClient.Response response = new ServiceResponse(serviceSuccess);
-        networkClient.requestString(request, response);
+        networkClient.get(request, response);
 
     }
 

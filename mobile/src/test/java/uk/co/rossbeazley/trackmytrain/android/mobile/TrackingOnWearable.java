@@ -1,7 +1,9 @@
 package uk.co.rossbeazley.trackmytrain.android.mobile;
 
+import org.junit.Before;
 import org.junit.Test;
 
+import uk.co.rossbeazley.trackmytrain.android.TestDataBuilder;
 import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.MessagingTrackingPresenter;
@@ -18,90 +20,37 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class TrackingOnWearable {
 
+    private MessagingTrackingPresenter messagingTrackingPresenter;
+    private CapturingPostman postman;
+
+    @Before
+    public void setup() {
+        postman = new CapturingPostman();
+        messagingTrackingPresenter = new MessagingTrackingPresenter(postman);
+    }
+
     @Test
     public void
     sendsMessageWhenTrackingStarts() {
-
-        new TestTrackMyTrainApp();
-        CapturingPostman postman = new CapturingPostman();
-        final MessagingTrackingPresenter messagingTrackingPresenter = new MessagingTrackingPresenter(postman);
-        TestTrackMyTrainApp.instance.attach(messagingTrackingPresenter);
-
-        TrackMyTrainApp.instance.watch("2");
-
+        messagingTrackingPresenter.trackingStarted();
         Postman.Message expectedMessage = new StartedTrackingMessage();
-
         assertThat(postman.broadcasts, hasItem(expectedMessage));
     }
-
-    @Test
-    public void
-    dosntSendsMessageWhenTrackingUpdated() {
-
-        new TestTrackMyTrainApp();
-        CapturingPostman postman = new CapturingPostman();
-        final MessagingTrackingPresenter messagingTrackingPresenter = new MessagingTrackingPresenter(postman);
-        TestTrackMyTrainApp.instance.attach(messagingTrackingPresenter);
-
-        TrackMyTrainApp.instance.watch("2");
-        postman.clearBroadcasts();
-        TestTrackMyTrainApp.executorService.command.run();
-
-
-        assertThat(postman.broadcasts, not(hasItem(new StartedTrackingMessage())));
-    }
-
-
-    @Test
-    public void
-    sendsMessageWhenTrackingANewService() {
-
-        new TestTrackMyTrainApp();
-        CapturingPostman postman = new CapturingPostman();
-        final MessagingTrackingPresenter messagingTrackingPresenter = new MessagingTrackingPresenter(postman);
-        TestTrackMyTrainApp.instance.attach(messagingTrackingPresenter);
-
-        TrackMyTrainApp.instance.watch("2");
-        postman.clearBroadcasts();
-        TrackMyTrainApp.instance.unwatch();
-        TrackMyTrainApp.instance.watch("2");
-
-        Postman.Message expectedMessage = new StartedTrackingMessage();
-
-        assertThat(postman.broadcasts, hasItem(expectedMessage));
-    }
-
 
     @Test
     public void
     sendsMessageWhenTrackingStops() {
-
-        new TestTrackMyTrainApp();
-        CapturingPostman postman = new CapturingPostman();
-        final MessagingTrackingPresenter messagingTrackingPresenter = new MessagingTrackingPresenter(postman);
-        TestTrackMyTrainApp.instance.attach(messagingTrackingPresenter);
-
-        TrackMyTrainApp.instance.watch("2");
-        postman.clearBroadcasts();
-        TrackMyTrainApp.instance.unwatch();
-
+        messagingTrackingPresenter.hide();
         Postman.Message expectedMessage = new StoppedTrackingMessage();
-
         assertThat(postman.broadcasts, hasItem(expectedMessage));
     }
 
     @Test
     public void
     sendsDetailsOfTrackedService() {
-
-        new TestTrackMyTrainApp();
-        CapturingPostman postman = new CapturingPostman();
-
-        final MessagingTrackingPresenter messagingTrackingPresenter = new MessagingTrackingPresenter(postman);
-        TrackMyTrainApp.instance.attach(messagingTrackingPresenter);
-
-        TrackMyTrainApp.instance.watch("2");
-        Postman.Message expectedMessage = new TrackedServiceMessage(new TrainViewModel(new Train("2", "10:00", "09:00", "1", false)));
+        TrainViewModel train = TestDataBuilder.anyTrainViewModel();
+        messagingTrackingPresenter.present(train);
+        Postman.Message expectedMessage = new TrackedServiceMessage(train);
         assertThat(postman.broadcasts, hasItem(expectedMessage));
     }
 

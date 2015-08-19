@@ -46,7 +46,7 @@ public class TestTrackMyTrainApp extends TrackMyTrainApp {
 
     private static class ProgrammableNetworkClient implements NetworkClient {
         @Override
-        public void requestString(Request request, Response response) {
+        public void get(Request request, Response response) {
             if(request instanceof ServiceDetailsRequest) {
                 response.ok(TestDataBuilder.jsonForTrain(trackedService));
             } else if(request instanceof DeparturesFromToRequest) {

@@ -29,7 +29,7 @@ public class TrackMyTrainApp extends Application{
                 .with(new SharedPrefKeyValuePersistence(this))
 //                .with(new NetworkClient() {
 //                    @Override
-//                    public void requestString(Request request, Response response) {
+//                    public void get(Request request, Response response) {
 //                        if(request instanceof DeparturesFromToRequest) {
 //                            response.ok("{\"error\":\"\"," +
 //                                    "\"trains\":[" +

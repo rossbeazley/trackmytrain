@@ -46,7 +46,7 @@ public class TestDataBuilder {
         return new TMTBuilder()
                 .with(new NetworkClient() {
                     @Override
-                    public void requestString(Request request, Response response) {
+                    public void get(Request request, Response response) {
 
                     }
                 })

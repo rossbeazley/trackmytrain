@@ -99,7 +99,7 @@ public class DeparturesTest {
         }
 
         @Override
-        public void requestString(Request request, Response response) {
+        public void get(Request request, Response response) {
             this.request = request;
             this.response = response;
 
