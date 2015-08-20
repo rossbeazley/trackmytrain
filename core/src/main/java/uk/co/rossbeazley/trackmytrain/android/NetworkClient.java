@@ -12,6 +12,12 @@ public interface NetworkClient {
 
     public static interface Request {
         public String asUrlString();
+
+        void output(Output output);
+
+        interface Output {
+            void write(String output);
+        }
     }
 
 }

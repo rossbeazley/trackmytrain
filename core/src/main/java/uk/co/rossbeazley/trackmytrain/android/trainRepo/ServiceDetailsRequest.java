@@ -23,6 +23,11 @@ public class ServiceDetailsRequest implements NetworkClient.Request {
         return "http://tmt.rossbeazley.co.uk/trackmytrain/rest/api/service?id="+ encode;
     }
 
+    @Override
+    public void output(Output output) {
+
+    }
+
     public boolean equals(Object object) {
         ServiceDetailsRequest that = (ServiceDetailsRequest) object;
         return this.serviceId.equals(that.serviceId);
