@@ -10,8 +10,8 @@ public interface Analytics {
     void pageView(String pageName);
 
     static class EventTrack {
-        final String category;
-        final String label;
+        public final String category;
+        public final String label;
 
         public EventTrack(String category, String label) {
             this.category = category;
