@@ -30,6 +30,11 @@ public class DeparturesFromToRequest implements NetworkClient.Request {
     }
 
     @Override
+    public String method() {
+        return NetworkClient.Request.GET;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         DeparturesFromToRequest that = (DeparturesFromToRequest) o;

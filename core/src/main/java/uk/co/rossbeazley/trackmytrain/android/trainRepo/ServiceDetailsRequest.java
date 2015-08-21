@@ -28,6 +28,11 @@ public class ServiceDetailsRequest implements NetworkClient.Request {
 
     }
 
+    @Override
+    public String method() {
+        return NetworkClient.Request.GET;
+    }
+
     public boolean equals(Object object) {
         ServiceDetailsRequest that = (ServiceDetailsRequest) object;
         return this.serviceId.equals(that.serviceId);

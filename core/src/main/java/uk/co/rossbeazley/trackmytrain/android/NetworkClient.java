@@ -15,9 +15,14 @@ public interface NetworkClient {
 
         void output(Output output);
 
+        String method();
+
         interface Output {
             void write(String output);
         }
+
+        String GET = "get";
+        String POST = "post";
     }
 
 }

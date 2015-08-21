@@ -25,7 +25,7 @@ public class StringNetworkClient implements NetworkClient {
     @Override
     public void get(final Request request, final Response response) {
 
-        Runnable runnable = new NetworkRequestRunnable(request, response,"GET");
+        Runnable runnable = new NetworkRequestRunnable(request, response);
 
         executor.submit(runnable);
     }
@@ -33,31 +33,43 @@ public class StringNetworkClient implements NetworkClient {
     private static class NetworkRequestRunnable implements Runnable {
         private final Request request;
         private final Response response;
-        private String requestMethod;
 
-        public NetworkRequestRunnable(Request request, Response response, String requestMethod) {
+        public NetworkRequestRunnable(Request request, Response response) {
             this.request = request;
             this.response = response;
-            this.requestMethod = requestMethod;
         }
 
         public void run() {
-            final StringBuilder total = new StringBuilder();
+
             HttpURLConnection con = null;
-            InputStream inputStream = null;
-            BufferedReader r = null;
+
             try {
-                URL ws = new URL(request.asUrlString());
-                con = (HttpURLConnection) ws.openConnection();
-                con.setDoInput(true);
-                con.setRequestMethod(requestMethod);
+                con = connect();
+                writeRequestBody(con);
+                readResponse(con);
 
-                request.output(new NetworkOutput(con));
+            } catch (Throwable e) {
+                e.printStackTrace();
+                response.error(e.getMessage());
+            } finally {
+                if (con != null) {
+                    con.disconnect();
+                }
 
+            }
 
-                inputStream = con.getInputStream();
-                r = new BufferedReader(new InputStreamReader(inputStream));
+        }
 
+        private void writeRequestBody(HttpURLConnection con) {
+            request.output(new NetworkOutput(con));
+        }
+
+        private void readResponse(HttpURLConnection con) throws IOException {
+            final StringBuilder total = new StringBuilder();
+            try (
+                    InputStream inputStream = con.getInputStream();
+                    BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
+            ) {
                 String line;
                 while ((line = r.readLine()) != null) {
                     total.append(line);
@@ -65,35 +77,15 @@ public class StringNetworkClient implements NetworkClient {
 
                 String urlresult = total.toString();
                 response.ok(urlresult);
-
-            } catch (Throwable e) {
-                e.printStackTrace();
-                response.error(e.getMessage());
-            } finally {
-//TODO try with resources
-                if (r != null) {
-                    try {
-                        r.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                if (inputStream != null) {
-                    try {
-                        inputStream.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                if (con != null) {
-                    con.disconnect();
-                }
-
             }
+        }
 
-
+        private HttpURLConnection connect() throws IOException {
+            URL ws = new URL(request.asUrlString());
+            HttpURLConnection con = (HttpURLConnection) ws.openConnection();
+            con.setDoInput(true);
+            con.setRequestMethod(request.method());
+            return con;
         }
 
         static class NetworkOutput implements Request.Output {
