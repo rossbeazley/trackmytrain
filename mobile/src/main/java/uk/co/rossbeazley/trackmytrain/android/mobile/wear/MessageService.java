@@ -2,7 +2,7 @@ package uk.co.rossbeazley.trackmytrain.android.mobile.wear;
 
 
 import uk.co.rossbeazley.trackmytrain.android.TrackMyTrain;
-import uk.co.rossbeazley.trackmytrain.android.mobile.analytics.Analytics;
+import uk.co.rossbeazley.trackmytrain.android.analytics.Analytics;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 import uk.co.rossbeazley.trackmytrain.android.wear.AnalyticsEventMessage;
 import uk.co.rossbeazley.trackmytrain.android.wear.MessageEnvelope;

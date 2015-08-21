@@ -7,7 +7,7 @@ import com.google.android.gms.analytics.Tracker;
 
 import uk.co.rossbeazley.trackmytrain.android.TMTBuilder;
 import uk.co.rossbeazley.trackmytrain.android.TrackMyTrain;
-import uk.co.rossbeazley.trackmytrain.android.mobile.analytics.Analytics;
+import uk.co.rossbeazley.trackmytrain.android.analytics.Analytics;
 import uk.co.rossbeazley.trackmytrain.android.mobile.analytics.GoogleAnalytics;
 import uk.co.rossbeazley.trackmytrain.android.mobile.departures.AnalyticsDeparturesView;
 import uk.co.rossbeazley.trackmytrain.android.mobile.departures.PerfMonitoringView;

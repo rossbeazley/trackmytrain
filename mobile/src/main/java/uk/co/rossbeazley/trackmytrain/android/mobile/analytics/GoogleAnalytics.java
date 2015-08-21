@@ -3,6 +3,8 @@ package uk.co.rossbeazley.trackmytrain.android.mobile.analytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
+import uk.co.rossbeazley.trackmytrain.android.analytics.Analytics;
+
 public class GoogleAnalytics implements Analytics {
     private final Tracker tracker;
 

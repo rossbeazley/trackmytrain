@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.trackmytrain.android.mobile.analytics;
+package uk.co.rossbeazley.trackmytrain.android.analytics;
 
 import java.util.Objects;
 
