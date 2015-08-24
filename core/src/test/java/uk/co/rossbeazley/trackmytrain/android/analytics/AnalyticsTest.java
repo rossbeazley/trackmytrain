@@ -1,5 +1,6 @@
 package uk.co.rossbeazley.trackmytrain.android.analytics;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -10,19 +11,41 @@ import static org.junit.Assert.*;
 public class AnalyticsTest {
 
 
-    @Test
-    public void
-    multiplexingAnalticsEvents() {
+    private ArrayList<String> journal;
+    private AnalyticsMultiplexer analyticsMultiplexer;
 
-        ArrayList<String> journal = new ArrayList<>();
-
-        AnalyticsMultiplexer analyticsMultiplexer = new AnalyticsMultiplexer();
+    @Before
+    public void setUp() throws Exception {
+        journal = new ArrayList<>();
+        analyticsMultiplexer = new AnalyticsMultiplexer();
         analyticsMultiplexer.register(new JournalingAnalytics("one", journal));
         analyticsMultiplexer.register(new JournalingAnalytics("two", journal));
 
-        analyticsMultiplexer.event(anyEvent());
+    }
 
-        assertThat(journal, hasItems("one", "two"));
+    @Test
+    public void
+    multiplexingAnalticsEvents() {
+        analyticsMultiplexer.event(anyEvent());
+        assertThat(journal, hasItems("oneevent", "twoevent"));
+    }
+
+    @Test
+    public void
+    multiplexingAnalticsPageView() {
+        analyticsMultiplexer.pageView(anyPageName());
+        assertThat(journal, hasItems("onepageview","twopageview"));
+    }
+
+    @Test
+    public void
+    multiplexingAnalticsTiming() {
+        analyticsMultiplexer.timing(0,"","");
+        assertThat(journal, hasItems("onetiming", "twotiming"));
+    }
+
+    private String anyPageName() {
+        return "any";
     }
 
     private Analytics.EventTrack anyEvent() {
@@ -42,17 +65,17 @@ public class AnalyticsTest {
 
         @Override
         public void timing(long millis, String category, String variable) {
-
+            journal.add(name+"timing");
         }
 
         @Override
         public void event(EventTrack eventTrack) {
-            journal.add(name);
+            journal.add(name+"event");
         }
 
         @Override
         public void pageView(String pageName) {
-
+            journal.add(name+"pageview");
         }
     }
 
@@ -62,7 +85,9 @@ public class AnalyticsTest {
 
         @Override
         public void timing(long millis, String category, String variable) {
-
+            for (Analytics t :things) {
+                t.timing(millis,category,variable);
+            }
         }
 
         @Override
@@ -74,7 +99,9 @@ public class AnalyticsTest {
 
         @Override
         public void pageView(String pageName) {
-
+            for (Analytics t :things) {
+                t.pageView(pageName);
+            }
         }
 
         public void register(Analytics analytics) {
