@@ -4,14 +4,14 @@ public interface NetworkClient {
 
     void get(Request request, Response response);
 
-    public static interface Response {
-        public void ok(String response);
+    interface Response {
+        void ok(String response);
 
         void error(String error);
     }
 
-    public static interface Request {
-        public String asUrlString();
+    interface Request {
+        String asUrlString();
 
         void output(Output output);
 
