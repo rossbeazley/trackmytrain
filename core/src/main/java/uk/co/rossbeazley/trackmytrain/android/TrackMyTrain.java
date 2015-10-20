@@ -3,7 +3,6 @@ package uk.co.rossbeazley.trackmytrain.android;
 import uk.co.rossbeazley.time.NarrowScheduledExecutorService;
 import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQuery;
 import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQueryCommand;
-import uk.co.rossbeazley.trackmytrain.android.departures.DeparturesFacade;
 import uk.co.rossbeazley.trackmytrain.android.departures.StationRepository;
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesPresenter;
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesQueryView;
@@ -17,7 +16,6 @@ import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
 public class TrackMyTrain implements CanTrackTrains {
 
     private final Tracking tracking;
-    private final DeparturesFacade departuresFacade;
     private DeparturesPresenter departures;
     private final DepartureQueryCommand departureQueryCommand;
 
@@ -25,7 +23,8 @@ public class TrackMyTrain implements CanTrackTrains {
         TrainRepository trainRepository = new TrainRepository(networkClient);
         tracking = new Tracking(trainRepository, executorService);
         departureQueryCommand = new DepartureQueryCommand(trainRepository, new StationRepository(keyValuePersistence));
-        this.departuresFacade = new DeparturesFacade(keyValuePersistence, departureQueryCommand);
+
+        this.departures = new DeparturesPresenter(this);
     }
 
     //core
@@ -38,31 +37,30 @@ public class TrackMyTrain implements CanTrackTrains {
         return departureQueryCommand.lastQuery();
     }
 
-
     //ui
 
     public void departures(Station at, Direction direction) {
-        departuresFacade.departures(at, direction);
+        departures.departures(at, direction);
     }
 
     public void departures(DepartureQuery query) {
-       departuresFacade.departures(query.at(), query.direction());
+        departures.departures(query.at(), query.direction());
     }
 
     public void attach(DeparturesView departureView) {
-        departuresFacade.attach(departureView);
+        departures.attach(departureView);
     }
 
     public void detach(DeparturesView departuresView) {
-        departuresFacade.detach(departuresView);
+        departures.detach(departuresView);
     }
 
     public void attach(DeparturesQueryView departuresQueryView) {
-        departuresFacade.attach(departuresQueryView);
+        departures.attach(departuresQueryView);
     }
 
     public void detach(DeparturesQueryView departuresQueryView) {
-        departuresFacade.detach(departuresQueryView);
+        departures.detach(departuresQueryView);
     }
 
 

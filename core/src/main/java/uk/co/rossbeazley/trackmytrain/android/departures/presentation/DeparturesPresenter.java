@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import uk.co.rossbeazley.trackmytrain.android.TMTError;
+import uk.co.rossbeazley.trackmytrain.android.TrackMyTrain;
 import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQuery;
 import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQueryCommand;
 import uk.co.rossbeazley.trackmytrain.android.Train;
@@ -16,15 +17,15 @@ public class DeparturesPresenter {
     private List<DeparturesView> departuresViews;
 
     private final List<DeparturesQueryView> departuresQueryViews;
-    public DepartureQueryCommand departureQueryCommand;
-    private final DepartureQueryCommand.Success trainRepoResultCallback;
+    public TrackMyTrain trackMyTrain;
+    private final DepartureQueryCommand.Success resultCallback;
 
-    public DeparturesPresenter(DepartureQueryCommand queryCommand) {
+    public DeparturesPresenter(TrackMyTrain trackMyTrain) {
 
         this.departuresViews = new CopyOnWriteArrayList<>();
         this.departuresQueryViews = new CopyOnWriteArrayList<>();
-        departureQueryCommand = queryCommand;
-        trainRepoResultCallback = new DepartureQueryCommand.Success() {
+        this.trackMyTrain = trackMyTrain;
+        resultCallback = new DepartureQueryCommand.Success() {
             @Override
             public void success(List<Train> expectedList) {
                 departuresFound(expectedList);
@@ -55,7 +56,7 @@ public class DeparturesPresenter {
 
     public void departures(Station at, Direction direction) {
         showLoading();
-        departureQueryCommand.invoke(at, direction, trainRepoResultCallback);
+        trackMyTrain.invoke(at, direction, resultCallback);
     }
 
     void departuresError(TMTError tmtError) {
@@ -71,7 +72,7 @@ public class DeparturesPresenter {
     }
 
     public void attach(DeparturesQueryView departuresQueryView) {
-        DepartureQuery departureQuery = departureQueryCommand.lastQuery();
+        DepartureQuery departureQuery = trackMyTrain.lastQuery();
         departuresQueryView.present(new DeparturesQueryViewModel(departureQuery));
         this.departuresQueryViews.add(departuresQueryView);
     }
