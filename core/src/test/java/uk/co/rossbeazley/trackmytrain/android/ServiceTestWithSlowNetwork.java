@@ -7,9 +7,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import fakes.SlowRequestMapNetworkClient;
 import uk.co.rossbeazley.time.NarrowScheduledExecutorService;
 import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
-import uk.co.rossbeazley.trackmytrain.android.trainRepo.RequestMapNetworkClient;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.ServiceDetailsRequest;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -30,7 +30,7 @@ public class ServiceTestWithSlowNetwork {
 
     private ControllableExecutorService ness;
     private CapturingServiceView serviceView;
-    private DeparturesTest.SlowRequestMapNetworkClient client;
+    private SlowRequestMapNetworkClient client;
 
     @Before
     public void setUp() throws Exception {
@@ -45,7 +45,7 @@ public class ServiceTestWithSlowNetwork {
         map = new HashMap<NetworkClient.Request, String>() {{
             put(serviceDetailsRequest, initialJson);
         }};
-        client = new DeparturesTest.SlowRequestMapNetworkClient(map);
+        client = new SlowRequestMapNetworkClient(map);
         serviceView = new CapturingServiceView();
 
 

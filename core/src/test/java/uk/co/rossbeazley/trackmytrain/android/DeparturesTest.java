@@ -6,11 +6,10 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import fakes.SlowRequestMapNetworkClient;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
-import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesViewModel;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.DeparturesFromToRequest;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.RequestMapNetworkClient;
 
@@ -21,10 +20,8 @@ public class DeparturesTest {
 
 
 
-    @Test @Ignore("add loading state into success callback")
+    @Test
     public void theOneWhereWeRequestDetailsOfAServiceAndWeStartLoading() {
-
-        CapturingDeparturesView departuresView = new CapturingDeparturesView();
 
         TrackMyTrain tmt;
 
@@ -38,18 +35,18 @@ public class DeparturesTest {
                 .with(networkClient)
                 .build();
 
-        tmt.attach(departuresView);
-
         Station at = fromStation;
         Direction direction = Direction.to(toStation);
 
-        tmt.departures(at, direction);
+        CapturingSuccess success = new CapturingSuccess();
 
-        assertThat(departuresView.isLoading, is(true));
+        tmt.departures(at, direction, success);
+
+        assertThat(success.loading, is(true));
     }
 
     @Test
-    public void theOneWhereWeRequestDetailsOfAServiceAndTheResultsAreDisplayed() {
+    public void theOneWhereWeRequestDetailsOfAService() {
         TrackMyTrain tmt;
 
         final Train train1, train2;
@@ -83,32 +80,9 @@ public class DeparturesTest {
         assertThat(req.asUrlString(),is(DeparturesFromToRequest.WS_URL_ROOT + "departures/MCO/to/SLD"));
     }
 
-    public static class SlowRequestMapNetworkClient implements NetworkClient {
-
-        private final Map<Request, String> mapOfRequestToString;
-        private Request request;
-        private Response response;
-
-        public SlowRequestMapNetworkClient(Map<Request, String> hashMap) {
-            this.mapOfRequestToString = hashMap;
-        }
-
-        @Override
-        public void get(Request request, Response response) {
-            this.request = request;
-            this.response = response;
-
-        }
-
-        public void completeRequest() {
-            if(mapOfRequestToString.containsKey(request)) {
-                response.ok(mapOfRequestToString.get(request));
-            }
-        }
-    }
-
     private static class CapturingSuccess implements CanQueryDepartures.Success {
         public List<Train> trainList;
+        private boolean loading;
 
         @Override
         public void success(List<Train> expectedList) {
@@ -118,6 +92,11 @@ public class DeparturesTest {
         @Override
         public void error(TMTError tmtError) {
 
+        }
+
+        @Override
+        public void loading() {
+            this.loading = true;
         }
     }
 }

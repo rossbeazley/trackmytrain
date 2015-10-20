@@ -35,6 +35,11 @@ public class DeparturesPresenter {
             public void error(TMTError tmtError) {
                 departuresError(tmtError);
             }
+
+            @Override
+            public void loading() {
+
+            }
         };
     }
 

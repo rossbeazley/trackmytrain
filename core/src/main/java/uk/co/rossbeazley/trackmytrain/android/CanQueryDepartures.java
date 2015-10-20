@@ -16,5 +16,7 @@ public interface CanQueryDepartures {
         void success(List<Train> expectedList);
 
         void error(TMTError tmtError);
+
+        void loading();
     }
 }
