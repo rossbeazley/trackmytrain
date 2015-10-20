@@ -2,11 +2,12 @@ package uk.co.rossbeazley.trackmytrain.android.departures;
 
 import java.util.List;
 
+import uk.co.rossbeazley.trackmytrain.android.CanQueryDepartures;
 import uk.co.rossbeazley.trackmytrain.android.TMTError;
 import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
 
-public class DepartureQueryCommand {
+public class DepartureQueryCommand implements CanQueryDepartures {
 
     private final TrainRepository trainRepository;
     private final StationRepository stationRepository;
@@ -16,7 +17,7 @@ public class DepartureQueryCommand {
         this.stationRepository = stationRepository;
     }
 
-    public void invoke(Station at, Direction direction, final Success success) {
+    public void departures(Station at, Direction direction, final Success success) {
         stationRepository.storeCurrentAt(at);
         stationRepository.storeCurrentDirection(direction);
         if (direction.station() != null && at != null) {
@@ -38,9 +39,4 @@ public class DepartureQueryCommand {
         return stationRepository.lastDepartureQuery();
     }
 
-    public interface Success {
-        void success(List<Train> expectedList);
-
-        void error(TMTError tmtError);
-    }
 }

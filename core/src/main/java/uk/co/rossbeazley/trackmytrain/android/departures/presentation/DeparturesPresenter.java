@@ -3,12 +3,12 @@ package uk.co.rossbeazley.trackmytrain.android.departures.presentation;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import uk.co.rossbeazley.trackmytrain.android.CanQueryDepartures;
 import uk.co.rossbeazley.trackmytrain.android.TMTError;
-import uk.co.rossbeazley.trackmytrain.android.TrackMyTrain;
-import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQuery;
-import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQueryCommand;
 import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
+import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQuery;
+import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQueryCommand;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
 
@@ -17,14 +17,14 @@ public class DeparturesPresenter {
     private List<DeparturesView> departuresViews;
 
     private final List<DeparturesQueryView> departuresQueryViews;
-    public TrackMyTrain trackMyTrain;
+    public CanQueryDepartures canQueryDepartures;
     private final DepartureQueryCommand.Success resultCallback;
 
-    public DeparturesPresenter(TrackMyTrain trackMyTrain) {
+    public DeparturesPresenter(CanQueryDepartures canQueryDepartures) {
 
         this.departuresViews = new CopyOnWriteArrayList<>();
         this.departuresQueryViews = new CopyOnWriteArrayList<>();
-        this.trackMyTrain = trackMyTrain;
+        this.canQueryDepartures = canQueryDepartures;
         resultCallback = new DepartureQueryCommand.Success() {
             @Override
             public void success(List<Train> expectedList) {
@@ -56,7 +56,7 @@ public class DeparturesPresenter {
 
     public void departures(Station at, Direction direction) {
         showLoading();
-        trackMyTrain.invoke(at, direction, resultCallback);
+        canQueryDepartures.departures(at, direction, resultCallback);
     }
 
     void departuresError(TMTError tmtError) {
@@ -72,7 +72,7 @@ public class DeparturesPresenter {
     }
 
     public void attach(DeparturesQueryView departuresQueryView) {
-        DepartureQuery departureQuery = trackMyTrain.lastQuery();
+        DepartureQuery departureQuery = canQueryDepartures.lastQuery();
         departuresQueryView.present(new DeparturesQueryViewModel(departureQuery));
         this.departuresQueryViews.add(departuresQueryView);
     }

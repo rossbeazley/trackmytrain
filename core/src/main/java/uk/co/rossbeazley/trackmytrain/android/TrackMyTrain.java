@@ -13,7 +13,7 @@ import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
 import uk.co.rossbeazley.trackmytrain.android.trackedService.Tracking;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
 
-public class TrackMyTrain implements CanTrackTrains {
+public class TrackMyTrain implements CanTrackTrains, CanQueryDepartures {
 
     private final Tracking tracking;
     private DeparturesPresenter departures;
@@ -23,16 +23,17 @@ public class TrackMyTrain implements CanTrackTrains {
         TrainRepository trainRepository = new TrainRepository(networkClient);
         tracking = new Tracking(trainRepository, executorService);
         departureQueryCommand = new DepartureQueryCommand(trainRepository, new StationRepository(keyValuePersistence));
-
         this.departures = new DeparturesPresenter(this);
     }
 
     //core
 
-    public void invoke(Station at, Direction direction, final DepartureQueryCommand.Success success) {
-        departureQueryCommand.invoke(at,direction,success);
+    @Override
+    public void departures(Station at, Direction direction, final DepartureQueryCommand.Success success) {
+        departureQueryCommand.departures(at, direction, success);
     }
 
+    @Override
     public DepartureQuery lastQuery() {
         return departureQueryCommand.lastQuery();
     }
