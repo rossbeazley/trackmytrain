@@ -6,12 +6,14 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import uk.co.rossbeazley.trackmytrain.android.CanQueryDepartures;
 import uk.co.rossbeazley.trackmytrain.android.CapturingDeparturesView;
 import uk.co.rossbeazley.trackmytrain.android.NetworkClient;
 import uk.co.rossbeazley.trackmytrain.android.TestDataBuilder;
 import uk.co.rossbeazley.trackmytrain.android.TrackMyTrain;
 import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
+import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQuery;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.DeparturesFromToRequest;
@@ -58,31 +60,31 @@ public class DeparturesPresenterTest {
 /**
  * connascence of algorithm with all this json and url strings :S
  */
-        TrackMyTrain tmt;
 
         final Train train1, train2;
         train1 = new Train("aN5S6pak5nKFawy0sXb65Q==", "On time", "21:39", "2", false);
         train2 = new Train("EAG/q7qfInIUZyPhCdwQKw==", "On time", "22:38", "2", false);
 
-        NetworkClient networkClient = new RequestMapNetworkClient(new HashMap<NetworkClient.Request, String>() {{
-            put(new DeparturesFromToRequest(Station.fromString("SLD"), Station.fromString("CRL")), TestDataBuilder.jsonForTrains(train1, train2));
-        }
+        final DeparturesViewModel expectedList = TrainViewModel.list(Arrays.asList(train1, train2));
 
+        CanQueryDepartures stubCanQueryDepartures = new CanQueryDepartures() {
+            @Override
+            public void departures(Station at, Direction direction, Success success) {
+                success.success(Arrays.asList(train1, train2));
+            }
 
-        });
-
-        DeparturesViewModel expectedList = TrainViewModel.list(Arrays.asList(train1, train2));
-
-        tmt = TestDataBuilder.TMTBuilder()
-                .with(networkClient)
-                .build();
-
-        tmt.attach(departuresView);
+            @Override
+            public DepartureQuery lastQuery() {
+                return null;
+            }
+        };
+        DeparturesPresenter departuresPresenter = new DeparturesPresenter(stubCanQueryDepartures);
+        departuresPresenter.attach(departuresView);
 
         Station at = Station.fromString("SLD");
         Direction direction = Direction.to(Station.fromString("CRL"));
 
-        tmt.departures(at, direction);
+        departuresPresenter.departures(at, direction);
 
         assertThat(departuresView.trainList, is(expectedList));
     }
