@@ -1,6 +1,5 @@
 package uk.co.rossbeazley.trackmytrain.android;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -14,7 +13,7 @@ import uk.co.rossbeazley.trackmytrain.android.trainRepo.DeparturesFromToRequest;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.RequestMapNetworkClient;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 public class DeparturesTest {
 

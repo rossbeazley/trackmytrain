@@ -18,6 +18,7 @@ public class DepartureQueryCommand implements CanQueryDepartures {
     }
 
     public void departures(Station at, Direction direction, final Success success) {
+        success.loading();
         stationRepository.storeCurrentAt(at);
         stationRepository.storeCurrentDirection(direction);
         if (direction.station() != null && at != null) {
