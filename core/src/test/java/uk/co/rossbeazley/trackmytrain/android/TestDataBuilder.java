@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 import uk.co.rossbeazley.time.NarrowScheduledExecutorService;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
+import uk.co.rossbeazley.trackmytrain.android.departures.Stations;
 
 public class TestDataBuilder {
     static public String jsonForTrain(Train trainParam) {
@@ -59,7 +60,8 @@ public class TestDataBuilder {
     }
 
     public static Station anyStation() {
-        return Station.fromString("MAN");
+        List<Station> list = new Stations().list();
+        return list.get((int) (Math.random()*list.size()));
     }
 
     public static Direction anyDirection() {
@@ -67,20 +69,72 @@ public class TestDataBuilder {
     }
 
     public static String anyTrainsJson() {
-        final Train train1, train2;
-        train1 = anyTrain();
-        train2 = new Train("EAG/q7qfInIUZyPhCdwQKw==", "On time", "22:38", "2", false);
-        return jsonForTrains(train1, train2);
+        return jsonForTrains((Train[]) anyTrains().toArray());
     }
 
     static Train anyTrain() {
-        return new Train("aN5S6pak5nKFawy0sXb65Q==", "On time", "21:39", "2", false);
+        return new Train(generateId(), generateEstimatedTime(), generateScheduledTime(), generatePlatform(), false);
+    }
+
+    private static String generatePlatform() {
+        return String.valueOf((int)Math.random()*10);
+    }
+
+    private static String generateEstimatedTime() {
+        return Math.random()>0.5?"On time":generateScheduledTime();
+    }
+
+    private static String generateScheduledTime() {
+        int hour = (int) (Math.random()*24);
+        int minute = (int) (Math.random()*60);
+        return hour + ":" + minute;
+    }
+
+    private static String generateId() {
+        StringBuilder sb = new StringBuilder();
+        for(int i=0 ; i<25 ; i++) {
+            int choice = (int) (Math.random()*3);
+            switch(choice) {
+                case 0:
+                    sb.append(randomCharacter_A_to_Z());
+                    break;
+                case 1:
+                    sb.append(randomCharacter_a_to_z());
+                    break;
+                case 2:
+                    sb.append(randSingleDigitInt());
+                    break;
+                default:
+                    break;
+            }
+        }
+        sb.append("==");
+        return sb.toString();
+    }
+
+    private static String randomCharacter_a_to_z() {
+        char baseChar = 'a';
+        return randomChar(baseChar);
+    }
+
+    private static String randomCharacter_A_to_Z() {
+        char baseChar = 'A';
+        return randomChar(baseChar);
+    }
+
+    private static String randomChar(char baseChar) {
+        int offset = (int) (Math.random()*26);
+        return String.valueOf(Character.toChars(baseChar + offset));
+    }
+
+    private static int randSingleDigitInt() {
+        return (int) (Math.random()*10);
     }
 
     public static List<Train> anyTrains() {
         final Train train1, train2;
         train1 = anyTrain();
-        train2 = new Train("EAG/q7qfInIUZyPhCdwQKw==", "On time", "22:38", "2", false);
+        train2 = anyTrain();
         return Arrays.asList(train1,train2);
     }
 
