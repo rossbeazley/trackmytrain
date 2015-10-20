@@ -19,12 +19,27 @@ public class TrackMyTrain implements CanTrackTrains {
     private final Tracking tracking;
     private final DeparturesFacade departuresFacade;
     private DeparturesPresenter departures;
+    private final DepartureQueryCommand departureQueryCommand;
 
     public TrackMyTrain(NetworkClient networkClient, NarrowScheduledExecutorService executorService, KeyValuePersistence keyValuePersistence) {
         TrainRepository trainRepository = new TrainRepository(networkClient);
         tracking = new Tracking(trainRepository, executorService);
-        this.departuresFacade = new DeparturesFacade(keyValuePersistence,trainRepository);
+        departureQueryCommand = new DepartureQueryCommand(trainRepository, new StationRepository(keyValuePersistence));
+        this.departuresFacade = new DeparturesFacade(keyValuePersistence, departureQueryCommand);
     }
+
+    //core
+
+    public void invoke(Station at, Direction direction, final DepartureQueryCommand.Success success) {
+        departureQueryCommand.invoke(at,direction,success);
+    }
+
+    public DepartureQuery lastQuery() {
+        return departureQueryCommand.lastQuery();
+    }
+
+
+    //ui
 
     public void departures(Station at, Direction direction) {
         departuresFacade.departures(at, direction);

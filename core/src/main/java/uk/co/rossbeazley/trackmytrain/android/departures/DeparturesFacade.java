@@ -4,7 +4,6 @@ import uk.co.rossbeazley.trackmytrain.android.KeyValuePersistence;
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesPresenter;
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesQueryView;
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesView;
-import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
 
 /**
  * Created by rdlb on 19/10/15.
@@ -12,11 +11,11 @@ import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
 public class DeparturesFacade {
 
     private final DeparturesPresenter departures;
+    private final DepartureQueryCommand departureQueryCommand;
 
-    public DeparturesFacade(KeyValuePersistence keyValuePersistence, TrainRepository trainRepository) {
-      StationRepository stationRepository = new StationRepository(keyValuePersistence);
-      DepartureQueryCommand departureQueryCommand = new DepartureQueryCommand(trainRepository, stationRepository);
-      this.departures = new DeparturesPresenter(departureQueryCommand);
+    public DeparturesFacade(KeyValuePersistence keyValuePersistence, DepartureQueryCommand departureQueryCommand) {
+        this.departureQueryCommand = departureQueryCommand;
+      this.departures = new DeparturesPresenter(this.departureQueryCommand);
   }
 
     public void departures(Station at, Direction direction) {

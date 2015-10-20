@@ -1,6 +1,5 @@
 package uk.co.rossbeazley.trackmytrain.android.departures.presentation;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -18,14 +17,14 @@ public class DeparturesPresenter {
 
     private final List<DeparturesQueryView> departuresQueryViews;
     public DepartureQueryCommand departureQueryCommand;
-    private final Success trainRepoResultCallback;
+    private final DepartureQueryCommand.Success trainRepoResultCallback;
 
     public DeparturesPresenter(DepartureQueryCommand queryCommand) {
 
         this.departuresViews = new CopyOnWriteArrayList<>();
         this.departuresQueryViews = new CopyOnWriteArrayList<>();
         departureQueryCommand = queryCommand;
-        trainRepoResultCallback = new Success() {
+        trainRepoResultCallback = new DepartureQueryCommand.Success() {
             @Override
             public void success(List<Train> expectedList) {
                 departuresFound(expectedList);
@@ -82,9 +81,4 @@ public class DeparturesPresenter {
     }
 
 
-    public static interface Success {
-        public abstract void success(List<Train> expectedList);
-
-        void error(TMTError tmtError);
-    }
 }
