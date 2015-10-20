@@ -1,27 +1,30 @@
-package uk.co.rossbeazley.trackmytrain.android;
+package uk.co.rossbeazley.trackmytrain.android.departures.presentation;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
+import uk.co.rossbeazley.trackmytrain.android.CapturingDeparturesView;
+import uk.co.rossbeazley.trackmytrain.android.NetworkClient;
+import uk.co.rossbeazley.trackmytrain.android.TestDataBuilder;
+import uk.co.rossbeazley.trackmytrain.android.TrackMyTrain;
+import uk.co.rossbeazley.trackmytrain.android.Train;
+import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
-import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesViewModel;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.DeparturesFromToRequest;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.RequestMapNetworkClient;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
-public class DeparturesTest {
+public class DeparturesPresenterTest {
 
 
 
-    @Test @Ignore("add loading state into success callback")
+    @Test
     public void theOneWhereWeRequestDetailsOfAServiceAndWeStartLoading() {
 
         CapturingDeparturesView departuresView = new CapturingDeparturesView();
@@ -50,6 +53,11 @@ public class DeparturesTest {
 
     @Test
     public void theOneWhereWeRequestDetailsOfAServiceAndTheResultsAreDisplayed() {
+
+        CapturingDeparturesView departuresView = new CapturingDeparturesView();
+/**
+ * connascence of algorithm with all this json and url strings :S
+ */
         TrackMyTrain tmt;
 
         final Train train1, train2;
@@ -59,22 +67,24 @@ public class DeparturesTest {
         NetworkClient networkClient = new RequestMapNetworkClient(new HashMap<NetworkClient.Request, String>() {{
             put(new DeparturesFromToRequest(Station.fromString("SLD"), Station.fromString("CRL")), TestDataBuilder.jsonForTrains(train1, train2));
         }
+
+
         });
 
-        List<Train> expectedTrainList = Arrays.asList(train1, train2);
+        DeparturesViewModel expectedList = TrainViewModel.list(Arrays.asList(train1, train2));
 
         tmt = TestDataBuilder.TMTBuilder()
                 .with(networkClient)
                 .build();
 
+        tmt.attach(departuresView);
+
         Station at = Station.fromString("SLD");
         Direction direction = Direction.to(Station.fromString("CRL"));
 
-        CapturingSuccess success = new CapturingSuccess();
+        tmt.departures(at, direction);
 
-        tmt.departures(at, direction, success);
-
-        assertThat(success.trainList, is(expectedTrainList));
+        assertThat(departuresView.trainList, is(expectedList));
     }
 
     @Test
@@ -104,20 +114,6 @@ public class DeparturesTest {
             if(mapOfRequestToString.containsKey(request)) {
                 response.ok(mapOfRequestToString.get(request));
             }
-        }
-    }
-
-    private static class CapturingSuccess implements CanQueryDepartures.Success {
-        public List<Train> trainList;
-
-        @Override
-        public void success(List<Train> expectedList) {
-            this.trainList = expectedList;
-        }
-
-        @Override
-        public void error(TMTError tmtError) {
-
         }
     }
 }
