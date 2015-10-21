@@ -25,7 +25,7 @@ public class ServiceTest {
     private String platform;
     private ServiceDetailsRequest serviceDetailsRequest;
     private Map<NetworkClient.Request, String> map;
-    private CanTrackTrains tmt;
+    private TrackMyTrain tmt;
     private TrainViewModel expectedTrain;
 
     private ControllableExecutorService ness;

@@ -21,7 +21,7 @@ public class LateObservationOfServiceTest {
     private String serviceId;
 
     private ServiceDetailsRequest serviceDetailsRequest;
-    private CanTrackTrains tmt;
+    private TrackMyTrain tmt;
     private TrainViewModel expectedTrain;
     private TrainViewModel presentedTrain;
 

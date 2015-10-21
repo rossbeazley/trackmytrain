@@ -26,6 +26,7 @@ public class TrackMyTrain implements CanTrackTrains, CanQueryDepartures {
         this.departures = new DeparturesPresenter(this);
     }
 
+//departures
     //core
 
     @Override
@@ -66,17 +67,17 @@ public class TrackMyTrain implements CanTrackTrains, CanQueryDepartures {
 
 
 
-
-    @Override
+//tracking
+    //core
     public void watch(String serviceId) {
         tracking.watch(serviceId);
     }
 
-    @Override
     public void unwatch() {
         tracking.unwatch();
     }
 
+    //ui
     @Override
     public void attach(ServiceView serviceView) {
         tracking.attach(serviceView);

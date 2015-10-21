@@ -72,7 +72,7 @@ public class TestDataBuilder {
         return jsonForTrains((Train[]) anyTrains().toArray());
     }
 
-    static Train anyTrain() {
+    public static Train anyTrain() {
         return new Train(generateId(), generateEstimatedTime(), generateScheduledTime(), generatePlatform(), false);
     }
 

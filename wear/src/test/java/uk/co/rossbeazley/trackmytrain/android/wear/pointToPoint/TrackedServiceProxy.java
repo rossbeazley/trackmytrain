@@ -16,16 +16,6 @@ class TrackedServiceProxy implements CanTrackTrains {
     }
 
     @Override
-    public void watch(String serviceId) {
-        //unused
-    }
-
-    @Override
-    public void unwatch() {
-        //unused
-    }
-
-    @Override
     public void attach(ServiceView serviceView) {
         // keep a ref to the ServiceView as it needs to receive messages back
         hostNode.id(new HostNode.Result() {

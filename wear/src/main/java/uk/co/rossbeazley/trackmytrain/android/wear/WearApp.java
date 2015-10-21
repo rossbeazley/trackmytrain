@@ -68,16 +68,6 @@ public class WearApp implements CanTrackTrains {
     }
 
     @Override
-    public void watch(String serviceId) {
-
-    }
-
-    @Override
-    public void unwatch() {
-
-    }
-
-    @Override
     public void attach(ServiceView serviceView) {
         this.serviceViews.add(serviceView);
         announcServiceViewAttached(serviceView);
