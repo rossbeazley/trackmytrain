@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import uk.co.rossbeazley.time.NarrowScheduledExecutorService;
+import uk.co.rossbeazley.trackmytrain.android.TrackMyTrain;
 import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
@@ -12,30 +13,26 @@ import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
 public class Tracking {
     private final TrainRepository trainRepository;
     private final NarrowScheduledExecutorService executorService;
+    private TrackMyTrain trackMyTrain;
     private final List<ServiceView> serviceViews;
     private String trackedService;
     private NarrowScheduledExecutorService.Cancelable cancelable;
 
-    public Tracking(TrainRepository trainRepository, NarrowScheduledExecutorService executorService) {
+    public Tracking(TrainRepository trainRepository, NarrowScheduledExecutorService executorService, TrackMyTrain trackMyTrain) {
         this.trainRepository = trainRepository;
         this.executorService = executorService;
+        this.trackMyTrain = trackMyTrain;
         this.serviceViews = new ArrayList<>(2);
         this.cancelable = NarrowScheduledExecutorService.Cancelable.NULL;
         this.trackedService = null;
     }
-
-    public void watch(String serviceId) {
+//core
+    public void watchService(String serviceId) {
         this.trackedService = serviceId;
-        announceTrackingStarted();
         refreshTrackedService();
         startTimer();
     }
 
-    void announceTrackingStarted() {
-        for (ServiceView serviceView : serviceViews) {
-            serviceView.trackingStarted();
-        }
-    }
 
     void startTimer() {
         cancelable.cancel();
@@ -47,16 +44,29 @@ public class Tracking {
         }, 30, TimeUnit.SECONDS);
     }
 
-    public void unwatch() {
-        cancelTracking();
-        unpresentTrackedTrain();
-    }
-
-    void cancelTracking() {
+    void unwatchService() {
         this.trackedService = null;
         cancelable.cancel();
         cancelable = NarrowScheduledExecutorService.Cancelable.NULL;
     }
+
+//ui
+    public void watch(String serviceId) {
+        watchService(serviceId);
+        announceTrackingStarted();
+    }
+
+    void announceTrackingStarted() {
+        for (ServiceView serviceView : serviceViews) {
+            serviceView.trackingStarted();
+        }
+    }
+
+    public void unwatch() {
+        unwatchService();
+        unpresentTrackedTrain();
+    }
+
 
     void refreshTrackedService() {
         if (this.trackedService != null) {
