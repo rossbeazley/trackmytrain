@@ -3,15 +3,17 @@ package uk.co.rossbeazley.trackmytrain.android.trackedService;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.co.rossbeazley.trackmytrain.android.TrackMyTrain;
 import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 
-class TrackedServicePresenter {
-    private Tracking tracking;
+public class TrackedServicePresenter {
+    private TrackMyTrain tracking;
 
     private final List<ServiceView> serviceViews;
+    private TrainViewModel lastPresentedTrainViewModel;
 
-    public TrackedServicePresenter(Tracking tracking) {
+    public TrackedServicePresenter(TrackMyTrain tracking) {
         this.tracking = tracking;
 
         this.serviceViews = new ArrayList<>(2);
@@ -33,7 +35,6 @@ class TrackedServicePresenter {
 
     public void watch(String serviceId) {
         tracking.watchService(serviceId);
-        tracking.announceTrackingStarted();
     }
 
 
@@ -43,10 +44,16 @@ class TrackedServicePresenter {
         if (tracking.isTracking()) {
             if (train.departed()) {
                 unpresentTrackedTrain();
-            } else
+                lastPresentedTrainViewModel = null;
+            } else{
+                    lastPresentedTrainViewModel = new TrainViewModel(train);
                 for (ServiceView serviceView : new ArrayList<ServiceView>(serviceViews)) {
-                    serviceView.present(new TrainViewModel(train));
-                }
+                    serviceView.present(lastPresentedTrainViewModel);
+
+                }}
+
+        }else {
+            lastPresentedTrainViewModel=null;
         }
     }
 
@@ -58,7 +65,9 @@ class TrackedServicePresenter {
 
     public void attach(ServiceView serviceView) {
         this.serviceViews.add(serviceView);
-        this.tracking.refreshTrackedService();
+        if(lastPresentedTrainViewModel!=null) {
+            serviceView.present(lastPresentedTrainViewModel);
+        }
     }
 
     public void detach(ServiceView serviceView) {

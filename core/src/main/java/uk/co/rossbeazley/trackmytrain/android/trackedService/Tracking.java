@@ -12,7 +12,6 @@ import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
 public class Tracking {
     private final TrainRepository trainRepository;
     private final NarrowScheduledExecutorService executorService;
-    private final TrackedServicePresenter trackedServicePresenter;
     private TrackMyTrain trackMyTrain;
     private String trackedServiceId;
     private NarrowScheduledExecutorService.Cancelable cancelable;
@@ -26,11 +25,11 @@ public class Tracking {
         this.cancelable = NarrowScheduledExecutorService.Cancelable.NULL;
         this.trackedServiceId = null;
         trackedServiceListeners = new CopyOnWriteArrayList<>();
-        trackedServicePresenter = new TrackedServicePresenter(this);
     }
 //core
     public void watchService(String serviceId) {
         this.trackedServiceId = serviceId;
+        announceTrackingStarted();
         startTimer();
     }
 
@@ -47,7 +46,7 @@ public class Tracking {
 
     }
 
-    void unwatchService() {
+    public void unwatchService() {
         this.trackedServiceId = null;
         cancelable.cancel();
         cancelable = NarrowScheduledExecutorService.Cancelable.NULL;
@@ -64,21 +63,11 @@ public class Tracking {
         }
     }
 
-//ui
-    public void watch(String serviceId) {
-        this.trackedServicePresenter.watch(serviceId);
-    }
-
     void announceTrackingStarted() {
         for (TrackedServiceListener listeners : trackedServiceListeners) {
             listeners.trackingStarted();
         }
     }
-
-    public void unwatch() {
-        trackedServicePresenter.unwatch();
-    }
-
 
     private void storeTrackedServiceDetails(Train train) {
         for (TrackedServiceListener listeners : trackedServiceListeners) {
@@ -87,14 +76,7 @@ public class Tracking {
     }
 
 
-    public void attach(ServiceView serviceView) {
-        this.trackedServicePresenter.attach(serviceView);
-    }
 
-    public void detach(ServiceView serviceView) {
-        this.trackedServicePresenter.detach(serviceView);
-
-    }
     public void addTrackedServiceListener(TrackedServiceListener trackedServiceListener) {
         this.trackedServiceListeners.add(trackedServiceListener);
     }
