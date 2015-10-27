@@ -6,7 +6,7 @@ import android.os.Build;
 import com.google.android.gms.analytics.Tracker;
 
 import uk.co.rossbeazley.trackmytrain.android.TMTBuilder;
-import uk.co.rossbeazley.trackmytrain.android.TrackMyTrain;
+import uk.co.rossbeazley.trackmytrain.android.PresentTrackedMyTrain;
 import uk.co.rossbeazley.trackmytrain.android.analytics.Analytics;
 import uk.co.rossbeazley.trackmytrain.android.mobile.analytics.GoogleAnalytics;
 import uk.co.rossbeazley.trackmytrain.android.mobile.departures.AnalyticsDeparturesView;
@@ -19,7 +19,7 @@ import uk.co.rossbeazley.trackmytrain.android.mobile.wear.MessageService;
 
 public class TrackMyTrainApp extends Application{
 
-    public static TrackMyTrain instance;
+    public static PresentTrackedMyTrain instance;
 
     public static MessageService messageService;
 

@@ -7,7 +7,7 @@ import uk.co.rossbeazley.trackmytrain.android.HashMapKeyValuePersistence;
 import uk.co.rossbeazley.trackmytrain.android.KeyValuePersistence;
 import uk.co.rossbeazley.trackmytrain.android.TMTBuilder;
 import uk.co.rossbeazley.trackmytrain.android.TestDataBuilder;
-import uk.co.rossbeazley.trackmytrain.android.TrackMyTrain;
+import uk.co.rossbeazley.trackmytrain.android.PresentTrackedMyTrain;
 import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.DeparturesFromToRequest;
 import uk.co.rossbeazley.trackmytrain.android.NetworkClient;
@@ -24,14 +24,14 @@ public class TestTrackMyTrainApp extends TrackMyTrainApp {
         instance = getCore();
     }
 
-    public static TrackMyTrain getCore() {
+    public static PresentTrackedMyTrain getCore() {
         trackedService = TestDataBuilder.anyTrain();
         keyValuePersistence = new HashMapKeyValuePersistence(){{
             this.put("at","CRL");
             this.put("direction","SLD");
 
         }};
-        final TrackMyTrain trackMyTrain;
+        final PresentTrackedMyTrain trackMyTrain;
 
         networkClient = new ProgrammableNetworkClient();
         executorService = new ControllableNarrowScheduledExecutorService();

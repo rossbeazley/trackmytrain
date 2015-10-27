@@ -25,7 +25,7 @@ public class ServiceTestWithSlowNetwork {
     private String platform;
     private ServiceDetailsRequest serviceDetailsRequest;
     private Map<NetworkClient.Request, String> map;
-    private TrackMyTrain tmt;
+    private PresentTrackedMyTrain tmt;
     private TrainViewModel expectedTrain;
 
     private ControllableExecutorService ness;
