@@ -20,7 +20,7 @@ public class DeparturesErrorTest {
         final Station fromStation = TestDataBuilder.anyStation();
         final Station toStation = TestDataBuilder.anyStation();
 
-        PresentTrackedMyTrain tmt = TestDataBuilder.TMTBuilder()
+        TrackMyTrain tmt = TestDataBuilder.TMTBuilder()
                 .with(new NetworkClient() {
                     @Override
                     public void get(Request request, Response response) {

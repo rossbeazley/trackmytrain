@@ -22,7 +22,7 @@ public class DeparturesTest {
     @Test
     public void theOneWhereWeRequestDetailsOfAServiceAndWeStartLoading() {
 
-        PresentTrackedMyTrain tmt;
+        TrackMyTrain tmt;
 
         final Station fromStation = TestDataBuilder.anyStation();
         final Station toStation = TestDataBuilder.anyStation();
@@ -46,7 +46,7 @@ public class DeparturesTest {
 
     @Test
     public void theOneWhereWeRequestDetailsOfAService() {
-        PresentTrackedMyTrain tmt;
+        TrackMyTrain tmt;
 
         final Train train1, train2;
         train1 = new Train("aN5S6pak5nKFawy0sXb65Q==", "On time", "21:39", "2", false);

@@ -16,8 +16,8 @@ public class TMTBuilder {
         keyValuePersistence = new HashMapKeyValuePersistence();
     }
 
-    public PresentTrackedMyTrain build() {
-        return new PresentTrackedMyTrain(networkClient, executorService, keyValuePersistence);
+    public TrackMyTrain build() {
+        return new TrackMyTrain(networkClient, executorService, keyValuePersistence);
     }
 
     public TMTBuilder with(NetworkClient networkClient) {

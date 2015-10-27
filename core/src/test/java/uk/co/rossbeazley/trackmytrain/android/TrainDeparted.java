@@ -32,7 +32,7 @@ public class TrainDeparted {
 
         requestMap.put(new ServiceDetailsRequest(serviceId), resultJson);
 
-        PresentTrackedMyTrain tmt = TestDataBuilder.TMTBuilder()
+        TrackMyTrain tmt = TestDataBuilder.TMTBuilder()
                 .with(new RequestMapNetworkClient(requestMap))
                 .build();
 

@@ -15,7 +15,7 @@ import static org.junit.Assert.fail;
 
 public class RemembersDeparturesQuery {
 
-    private PresentTrackedMyTrain tmt;
+    private TrackMyTrain tmt;
     private Direction expectedDirection;
     private Station expectedStation;
     private KeyValuePersistence keyValuePersistence;

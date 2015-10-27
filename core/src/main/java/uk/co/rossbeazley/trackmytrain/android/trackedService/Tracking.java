@@ -5,7 +5,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.TimeUnit;
 
 import uk.co.rossbeazley.time.NarrowScheduledExecutorService;
-import uk.co.rossbeazley.trackmytrain.android.PresentTrackedMyTrain;
+import uk.co.rossbeazley.trackmytrain.android.TrackMyTrain;
 import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
 
@@ -13,13 +13,13 @@ public class Tracking {
     private final TrainRepository trainRepository;
     private final NarrowScheduledExecutorService executorService;
     private final TrackedServicePresenter trackedServicePresenter;
-    private PresentTrackedMyTrain trackMyTrain;
+    private TrackMyTrain trackMyTrain;
     private String trackedServiceId;
     private NarrowScheduledExecutorService.Cancelable cancelable;
 
     private List<TrackedServiceListener> trackedServiceListeners;
 
-    public Tracking(TrainRepository trainRepository, NarrowScheduledExecutorService executorService, PresentTrackedMyTrain trackMyTrain) {
+    public Tracking(TrainRepository trainRepository, NarrowScheduledExecutorService executorService, TrackMyTrain trackMyTrain) {
         this.trainRepository = trainRepository;
         this.executorService = executorService;
         this.trackMyTrain = trackMyTrain;
