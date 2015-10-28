@@ -28,7 +28,7 @@ public class DeparturesPresenterTest {
 
         CanQueryDepartures canQueryDepartures = new CanQueryDepartures() {
             @Override
-            public void departures(Station at, Direction direction, Success success) {
+            public void departures(Station at, Direction direction, Result success) {
                 success.loading();
             }
 
@@ -68,7 +68,7 @@ public class DeparturesPresenterTest {
 
         CanQueryDepartures stubCanQueryDepartures = new CanQueryDepartures() {
             @Override
-            public void departures(Station at, Direction direction, Success success) {
+            public void departures(Station at, Direction direction, Result success) {
                 success.success(Arrays.asList(train1, train2));
             }
 

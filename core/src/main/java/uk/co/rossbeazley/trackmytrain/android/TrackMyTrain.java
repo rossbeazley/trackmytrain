@@ -34,8 +34,8 @@ public class TrackMyTrain implements CanPresentTrackedTrains, CanQueryDepartures
     //core
 
     @Override
-    public void departures(Station at, Direction direction, final DepartureQueryCommand.Success success) {
-        departureQueryCommand.departures(at, direction, success);
+    public void departures(Station at, Direction direction, final Result result) {
+        departureQueryCommand.departures(at, direction, result);
     }
 
     @Override

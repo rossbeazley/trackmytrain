@@ -8,7 +8,6 @@ import uk.co.rossbeazley.trackmytrain.android.TMTError;
 import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQuery;
-import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQueryCommand;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
 
@@ -18,14 +17,14 @@ public class DeparturesPresenter {
 
     private final List<DeparturesQueryView> departuresQueryViews;
     public CanQueryDepartures canQueryDepartures;
-    private final DepartureQueryCommand.Success resultCallback;
+    private final CanQueryDepartures.Result resultCallback;
 
     public DeparturesPresenter(CanQueryDepartures canQueryDepartures) {
 
         this.departuresViews = new CopyOnWriteArrayList<>();
         this.departuresQueryViews = new CopyOnWriteArrayList<>();
         this.canQueryDepartures = canQueryDepartures;
-        resultCallback = new DepartureQueryCommand.Success() {
+        resultCallback = new CanQueryDepartures.Result() {
             @Override
             public void success(List<Train> expectedList) {
                 departuresFound(expectedList);
