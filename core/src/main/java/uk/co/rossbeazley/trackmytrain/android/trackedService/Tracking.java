@@ -26,7 +26,7 @@ public class Tracking {
         this.trackedServiceId = null;
         trackedServiceListeners = new CopyOnWriteArrayList<>();
     }
-//core
+
     public void watchService(String serviceId) {
         this.trackedServiceId = serviceId;
         announceTrackingStarted();
@@ -34,7 +34,13 @@ public class Tracking {
     }
 
 
-    void startTimer() {
+    public void unwatchService() {
+        this.trackedServiceId = null;
+        cancelable.cancel();
+        cancelable = NarrowScheduledExecutorService.Cancelable.NULL;
+    }
+
+    private void startTimer() {
         refreshTrackedService();
         cancelable.cancel();
         cancelable = executorService.scheduleAtFixedRate(new Runnable() {
@@ -46,13 +52,7 @@ public class Tracking {
 
     }
 
-    public void unwatchService() {
-        this.trackedServiceId = null;
-        cancelable.cancel();
-        cancelable = NarrowScheduledExecutorService.Cancelable.NULL;
-    }
-
-    void refreshTrackedService() {
+    private void refreshTrackedService() {
         if (this.trackedServiceId != null) {
             this.trainRepository.service(this.trackedServiceId, new TrainRepository.ServiceSuccess() {
                 @Override
@@ -63,7 +63,7 @@ public class Tracking {
         }
     }
 
-    void announceTrackingStarted() {
+    private void announceTrackingStarted() {
         for (TrackedServiceListener listeners : trackedServiceListeners) {
             listeners.trackingStarted();
         }
@@ -75,10 +75,12 @@ public class Tracking {
         }
     }
 
-
-
     public void addTrackedServiceListener(TrackedServiceListener trackedServiceListener) {
         this.trackedServiceListeners.add(trackedServiceListener);
+    }
+
+    public void removeTrackedServiceListener(TrackedServiceListener trackedServiceListener) {
+        this.trackedServiceListeners.remove(trackedServiceListener);
     }
 
     public interface TrackedServiceListener {
