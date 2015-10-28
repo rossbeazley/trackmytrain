@@ -36,6 +36,10 @@ public class Tracking {
         this.trackedServiceId = null;
         cancelable.cancel();
         cancelable = NarrowScheduledExecutorService.Cancelable.NULL;
+        for (CanTrackService.TrackedServiceListener listener : trackedServiceListeners) {
+            listener.trackingStopped();
+        }
+
     }
 
     private void startTimer() {

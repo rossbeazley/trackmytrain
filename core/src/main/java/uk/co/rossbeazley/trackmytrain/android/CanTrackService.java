@@ -13,5 +13,7 @@ public interface CanTrackService {
         void trackingStarted();
 
         void trackedServiceUpdated(Train train);
+
+        void trackingStopped();
     }
 }

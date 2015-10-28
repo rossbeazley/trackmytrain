@@ -120,7 +120,7 @@ public class ServiceTest {
     }
 
     @Test
-    public void theOneWhereTheServiceViewIsHidden() {
+    public void theOneWhereTheServiceViewIsHiddenWhenWeStopTracking() {
         tmt.watch(serviceId);
         ness.scheduledCommand.run();
         serviceView.serviceDisplayed=null;

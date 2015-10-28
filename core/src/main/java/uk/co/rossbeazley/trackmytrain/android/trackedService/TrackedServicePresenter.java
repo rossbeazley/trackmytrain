@@ -30,6 +30,11 @@ public class TrackedServicePresenter {
             public void trackedServiceUpdated(Train train) {
                 presentTrackedTrain(train);
             }
+
+            @Override
+            public void trackingStopped() {
+                unpresentTrackedTrain();
+            }
         });
     }
 
@@ -77,6 +82,6 @@ public class TrackedServicePresenter {
 
     public void unwatch() {
         this.tracking.unwatchService();
-        unpresentTrackedTrain();
+
     }
 }
