@@ -94,7 +94,7 @@ public class TrackMyTrain implements CanPresentTrackedTrains, CanQueryDepartures
 
 
     @Override
-    public void addTrackedServiceListener(Tracking.TrackedServiceListener trackedServiceListener) {
+    public void addTrackedServiceListener(TrackedServiceListener trackedServiceListener) {
         tracking.addTrackedServiceListener(trackedServiceListener);
     }
 

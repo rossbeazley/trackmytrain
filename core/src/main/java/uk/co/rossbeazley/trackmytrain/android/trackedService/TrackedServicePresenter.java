@@ -17,7 +17,7 @@ public class TrackedServicePresenter {
         this.tracking = tracking;
 
         this.serviceViews = new ArrayList<>(2);
-        this.tracking.addTrackedServiceListener(new Tracking.TrackedServiceListener() {
+        this.tracking.addTrackedServiceListener(new CanTrackService.TrackedServiceListener() {
             @Override
             public void trackingStarted() {
                 for (ServiceView view : serviceViews) {

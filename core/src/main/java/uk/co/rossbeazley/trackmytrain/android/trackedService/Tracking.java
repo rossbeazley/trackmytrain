@@ -15,7 +15,7 @@ public class Tracking {
     private String trackedServiceId;
     private NarrowScheduledExecutorService.Cancelable cancelable;
 
-    private List<TrackedServiceListener> trackedServiceListeners;
+    private List<CanTrackService.TrackedServiceListener> trackedServiceListeners;
 
     public Tracking(TrainRepository trainRepository, NarrowScheduledExecutorService executorService) {
         this.trainRepository = trainRepository;
@@ -62,29 +62,23 @@ public class Tracking {
     }
 
     private void announceTrackingStarted() {
-        for (TrackedServiceListener listeners : trackedServiceListeners) {
+        for (CanTrackService.TrackedServiceListener listeners : trackedServiceListeners) {
             listeners.trackingStarted();
         }
     }
 
     private void storeTrackedServiceDetails(Train train) {
-        for (TrackedServiceListener listeners : trackedServiceListeners) {
+        for (CanTrackService.TrackedServiceListener listeners : trackedServiceListeners) {
             listeners.trackedServiceUpdated(train);
         }
     }
 
-    public void addTrackedServiceListener(TrackedServiceListener trackedServiceListener) {
+    public void addTrackedServiceListener(CanTrackService.TrackedServiceListener trackedServiceListener) {
         this.trackedServiceListeners.add(trackedServiceListener);
     }
 
-    public void removeTrackedServiceListener(TrackedServiceListener trackedServiceListener) {
+    public void removeTrackedServiceListener(CanTrackService.TrackedServiceListener trackedServiceListener) {
         this.trackedServiceListeners.remove(trackedServiceListener);
-    }
-
-    public interface TrackedServiceListener {
-        void trackingStarted();
-
-        void trackedServiceUpdated(Train train);
     }
 
     public boolean isTracking() {
