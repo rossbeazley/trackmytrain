@@ -9,7 +9,7 @@ import uk.co.rossbeazley.trackmytrain.android.CanTrackService;
 import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
 
-public class Tracking {
+public class Tracking implements CanTrackService{
     private final TrainRepository trainRepository;
     private final NarrowScheduledExecutorService executorService;
     private String trackedServiceId;

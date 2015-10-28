@@ -24,10 +24,11 @@ public class TrackMyTrain implements CanPresentTrackedTrains, CanQueryDepartures
     public TrackMyTrain(NetworkClient networkClient, NarrowScheduledExecutorService executorService, KeyValuePersistence keyValuePersistence) {
         TrainRepository trainRepository = new TrainRepository(networkClient);
         this.tracking = new Tracking(trainRepository, executorService);
-        departureQueryCommand = new DepartureQueryCommand(trainRepository, new StationRepository(keyValuePersistence));
-        this.departures = new DeparturesPresenter(this);
+        this.trackedServicePresenter = new TrackedServicePresenter(tracking);
 
-        trackedServicePresenter = new TrackedServicePresenter(this);
+        this.departureQueryCommand = new DepartureQueryCommand(trainRepository, new StationRepository(keyValuePersistence));
+        this.departures = new DeparturesPresenter(departureQueryCommand);
+
     }
 
 //departures
