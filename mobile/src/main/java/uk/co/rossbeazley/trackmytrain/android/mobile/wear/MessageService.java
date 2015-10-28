@@ -1,17 +1,17 @@
 package uk.co.rossbeazley.trackmytrain.android.mobile.wear;
 
 
-import uk.co.rossbeazley.trackmytrain.android.TrackMyTrain;
+import uk.co.rossbeazley.trackmytrain.android.CanTrackService;
 import uk.co.rossbeazley.trackmytrain.android.analytics.Analytics;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 import uk.co.rossbeazley.trackmytrain.android.wear.AnalyticsEventMessage;
 import uk.co.rossbeazley.trackmytrain.android.wear.MessageEnvelope;
 
 public class MessageService {
-    private final TrackMyTrain instance;
+    private final CanTrackService instance;
     private final Analytics analytics;
 
-    public MessageService(TrackMyTrain instance, Analytics tracker) {
+    public MessageService(CanTrackService instance, Analytics tracker) {
         this.instance = instance;
         this.analytics = tracker;
 

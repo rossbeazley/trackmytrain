@@ -14,7 +14,7 @@ import uk.co.rossbeazley.trackmytrain.android.trackedService.TrackedServicePrese
 import uk.co.rossbeazley.trackmytrain.android.trackedService.Tracking;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
 
-public class TrackMyTrain implements CanPresentTrackedTrains, CanQueryDepartures {
+public class TrackMyTrain implements CanPresentTrackedTrains, CanQueryDepartures, CanTrackService {
 
     private final Tracking tracking;
     private final TrackedServicePresenter trackedServicePresenter;
@@ -23,7 +23,7 @@ public class TrackMyTrain implements CanPresentTrackedTrains, CanQueryDepartures
 
     public TrackMyTrain(NetworkClient networkClient, NarrowScheduledExecutorService executorService, KeyValuePersistence keyValuePersistence) {
         TrainRepository trainRepository = new TrainRepository(networkClient);
-        this.tracking = new Tracking(trainRepository, executorService, this);
+        this.tracking = new Tracking(trainRepository, executorService);
         departureQueryCommand = new DepartureQueryCommand(trainRepository, new StationRepository(keyValuePersistence));
         this.departures = new DeparturesPresenter(this);
 
@@ -93,18 +93,22 @@ public class TrackMyTrain implements CanPresentTrackedTrains, CanQueryDepartures
     }
 
 
+    @Override
     public void addTrackedServiceListener(Tracking.TrackedServiceListener trackedServiceListener) {
         tracking.addTrackedServiceListener(trackedServiceListener);
     }
 
+    @Override
     public void watchService(String serviceId) {
         tracking.watchService(serviceId);
     }
 
+    @Override
     public boolean isTracking() {
         return tracking.isTracking();
     }
 
+    @Override
     public void unwatchService() {
         tracking.unwatchService();
     }
