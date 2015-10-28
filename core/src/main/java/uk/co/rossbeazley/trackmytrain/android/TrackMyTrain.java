@@ -18,16 +18,16 @@ public class TrackMyTrain implements CanPresentTrackedTrains, CanQueryDepartures
 
     private final Tracking tracking;
     private final TrackedServicePresenter trackedServicePresenter;
-    private DeparturesPresenter departures;
-    private final DepartureQueryCommand departureQueryCommand;
+    private DeparturesPresenter departuresPresenter;
+    private final DepartureQueryCommand departures;
 
     public TrackMyTrain(NetworkClient networkClient, NarrowScheduledExecutorService executorService, KeyValuePersistence keyValuePersistence) {
         TrainRepository trainRepository = new TrainRepository(networkClient);
         this.tracking = new Tracking(trainRepository, executorService);
         this.trackedServicePresenter = new TrackedServicePresenter(tracking);
 
-        this.departureQueryCommand = new DepartureQueryCommand(trainRepository, new StationRepository(keyValuePersistence));
-        this.departures = new DeparturesPresenter(departureQueryCommand);
+        this.departures = new DepartureQueryCommand(trainRepository, new StationRepository(keyValuePersistence));
+        this.departuresPresenter = new DeparturesPresenter(departures);
 
     }
 
@@ -35,43 +35,43 @@ public class TrackMyTrain implements CanPresentTrackedTrains, CanQueryDepartures
     //core
     @Override
     public void departures(Station at, Direction direction, final Result result) {
-        departureQueryCommand.departures(at, direction, result);
+        departures.departures(at, direction, result);
     }
 
     @Override
     public DepartureQuery lastQuery() {
-        return departureQueryCommand.lastQuery();
+        return departures.lastQuery();
     }
 
     //ui
     @Override
     public void departures(Station at, Direction direction) {
-        departures.departures(at, direction);
+        departuresPresenter.departures(at, direction);
     }
 
     @Override
     public void departures(DepartureQuery query) {
-        departures.departures(query.at(), query.direction());
+        departuresPresenter.departures(query.at(), query.direction());
     }
 
     @Override
     public void attach(DeparturesView departureView) {
-        departures.attach(departureView);
+        departuresPresenter.attach(departureView);
     }
 
     @Override
     public void detach(DeparturesView departuresView) {
-        departures.detach(departuresView);
+        departuresPresenter.detach(departuresView);
     }
 
     @Override
     public void attach(DeparturesQueryView departuresQueryView) {
-        departures.attach(departuresQueryView);
+        departuresPresenter.attach(departuresQueryView);
     }
 
     @Override
     public void detach(DeparturesQueryView departuresQueryView) {
-        departures.detach(departuresQueryView);
+        departuresPresenter.detach(departuresQueryView);
     }
 
 
