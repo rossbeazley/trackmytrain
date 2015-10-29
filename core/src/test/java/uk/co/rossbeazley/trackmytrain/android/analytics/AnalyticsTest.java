@@ -5,6 +5,8 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
+import fakes.JournalingAnalytics;
+
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.junit.Assert.*;
 
@@ -50,33 +52,6 @@ public class AnalyticsTest {
 
     private Analytics.EventTrack anyEvent() {
         return new Analytics.EventTrack("","");
-    }
-
-    static class JournalingAnalytics implements Analytics {
-
-        private final String name;
-        private final ArrayList<String> journal;
-
-        public JournalingAnalytics(String name, ArrayList<String> journal) {
-
-            this.name = name;
-            this.journal = journal;
-        }
-
-        @Override
-        public void timing(long millis, String category, String variable) {
-            journal.add(name+"timing");
-        }
-
-        @Override
-        public void event(EventTrack eventTrack) {
-            journal.add(name+"event");
-        }
-
-        @Override
-        public void pageView(String pageName) {
-            journal.add(name+"pageview");
-        }
     }
 
 }
