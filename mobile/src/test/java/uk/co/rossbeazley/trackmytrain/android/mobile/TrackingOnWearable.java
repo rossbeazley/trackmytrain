@@ -40,7 +40,7 @@ public class TrackingOnWearable {
     @Test
     public void
     sendsMessageWhenTrackingStops() {
-        messagingTrackingPresenter.hide();
+        messagingTrackingPresenter.trackingStopped();
         Postman.Message expectedMessage = new StoppedTrackingMessage();
         assertThat(postman.broadcasts, hasItem(expectedMessage));
     }
@@ -48,9 +48,11 @@ public class TrackingOnWearable {
     @Test
     public void
     sendsDetailsOfTrackedService() {
-        TrainViewModel train = TestDataBuilder.anyTrainViewModel();
-        messagingTrackingPresenter.present(train);
-        Postman.Message expectedMessage = new TrackedServiceMessage(train);
+
+        Train train = TestDataBuilder.anyTrain();
+        TrainViewModel trainViewModel = new TrainViewModel(train);
+        messagingTrackingPresenter.trackedServiceUpdated(train);
+        Postman.Message expectedMessage = new TrackedServiceMessage(trainViewModel);
         assertThat(postman.broadcasts, hasItem(expectedMessage));
     }
 

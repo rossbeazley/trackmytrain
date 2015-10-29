@@ -70,7 +70,7 @@ public class TrackMyTrainApp extends Application{
         final Analytics tracker = new GoogleAnalytics(newTracker);
 
         messageService = new MessageService(instance, tracker);
-        instance.attach(new MessagingTrackingPresenter(postman));
+        instance.addTrackedServiceListener(new MessagingTrackingPresenter(postman));
 
         instance.attach(new ServiceTrackingNavigationController(this));
         //instance.attach(new TrackingNotification(this));

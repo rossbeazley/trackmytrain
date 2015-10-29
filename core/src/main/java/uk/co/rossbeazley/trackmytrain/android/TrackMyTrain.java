@@ -14,7 +14,7 @@ import uk.co.rossbeazley.trackmytrain.android.trackedService.TrackedServicePrese
 import uk.co.rossbeazley.trackmytrain.android.trackedService.Tracking;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
 
-public class TrackMyTrain implements CanPresentTrackedTrains, CanQueryDepartures, CanTrackService, CanPresentDepartureQueries {
+public class TrackMyTrain implements CanPresentTrackedTrains, CanQueryDepartures, CanTrackService, CanPresentDepartureQueries, CanProcessPresentTrackedTrainsCommands  {
 
     private final Tracking tracking;
     private final TrackedServicePresenter trackedServicePresenter;
