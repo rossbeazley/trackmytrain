@@ -10,15 +10,12 @@ import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 
 public class TrackedServiceMessage extends Postman.BroadcastMessage {
     public static final String MESSAGE_PATH = "/TRACKED/SERVICE";
-    private final TrainViewModel trainViewModel;
+    private final Train train;
 
-    public TrackedServiceMessage(TrainViewModel trainViewModel) {
-        super(MESSAGE_PATH + "/" + encoded(trainViewModel.id()) + "/" + trainViewModel.estimatedTime() + "/" + trainViewModel.scheduledTime() + "/" + trainViewModel.platform().replace("Platform ", ""));
-        this.trainViewModel = trainViewModel;
-    }
 
     public TrackedServiceMessage(Train train) {
-        this(new TrainViewModel(train));
+        super(MESSAGE_PATH + "/" + encoded(train.id) + "/" + train.estimatedTime + "/" + train.scheduledTime + "/" + train.platform);
+        this.train = train;
     }
 
     private static String encoded(String id) {
@@ -30,7 +27,7 @@ public class TrackedServiceMessage extends Postman.BroadcastMessage {
     }
 
     public TrainViewModel trainViewModel() {
-        return trainViewModel;
+        return new TrainViewModel(train);
     }
 
     @Override
@@ -39,18 +36,18 @@ public class TrackedServiceMessage extends Postman.BroadcastMessage {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         TrackedServiceMessage that = (TrackedServiceMessage) o;
-        return Objects.equals(trainViewModel, that.trainViewModel);
+        return Objects.equals(train, that.train);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), trainViewModel);
+        return Objects.hash(super.hashCode(), train);
     }
 
     @Override
     public String toString() {
         return super.toString() + " {" +
-                "trainViewModel=" + trainViewModel +
+                "train=" + train +
                 '}';
     }
 
@@ -70,7 +67,7 @@ public class TrackedServiceMessage extends Postman.BroadcastMessage {
             final String estimatedTime = parts[2];
             final String scheduledTime = parts[3];
             final String platform = parts[4];
-            TrainViewModel tvm = new TrainViewModel(id, estimatedTime, scheduledTime, platform);
+            Train tvm = new Train(id, estimatedTime, scheduledTime, platform,false);
             return new TrackedServiceMessage(tvm);
         }
     }

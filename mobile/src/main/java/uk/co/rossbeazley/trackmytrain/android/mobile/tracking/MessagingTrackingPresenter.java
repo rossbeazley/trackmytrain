@@ -23,7 +23,7 @@ public class MessagingTrackingPresenter implements CanTrackService.TrackedServic
 
     @Override
     public void trackedServiceUpdated(Train train) {
-        postman.broadcast(new TrackedServiceMessage(new TrainViewModel(train)));
+        postman.broadcast(new TrackedServiceMessage(train));
     }
 
     @Override

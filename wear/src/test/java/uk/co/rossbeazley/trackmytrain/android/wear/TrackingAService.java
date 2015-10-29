@@ -3,6 +3,7 @@ package uk.co.rossbeazley.trackmytrain.android.wear;
 import org.junit.Test;
 
 import uk.co.rossbeazley.trackmytrain.android.ServiceTest;
+import uk.co.rossbeazley.trackmytrain.android.TestDataBuilder;
 import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.WearAppSingleton;
@@ -61,21 +62,23 @@ public class TrackingAService {
         ServiceTest.CapturingServiceView serviceView = new ServiceTest.CapturingServiceView();
         wearApp.attach(serviceView);
 
-        TrainViewModel expectedService = new TrainViewModel(new Train("2", "10:00", "09:00", "1", false));
-        wearApp.message(new MessageEnvelope(new Postman.NodeId("anyId"), new TrackedServiceMessage(expectedService)));
+        Train train = TestDataBuilder.anyTrain();
+        TrainViewModel expectedViewModel = new TrainViewModel(train);
+        wearApp.message(new MessageEnvelope(new Postman.NodeId("anyId"), new TrackedServiceMessage(train)));
 
-        assertThat(serviceView.serviceDisplayed, is(expectedService));
+        assertThat(serviceView.serviceDisplayed, is(expectedViewModel));
     }
 
     @Test
     public void
     startingAppAfterTrackingViewUpdatedWithCurrentService() {
-        TrainViewModel expectedService = new TrainViewModel(new Train("2", "10:00", "09:00", "1", false));
+        Train train = TestDataBuilder.anyTrain();
+        TrainViewModel expectedService = new TrainViewModel(train);
 
         HostNode hostNode = new HostNode();
         WearApp wearApp = new WearApp(hostNode, new CapturingPostman());
         ServiceTest.CapturingServiceView serviceView = new ServiceTest.CapturingServiceView();
-        wearApp.message(new MessageEnvelope(new Postman.NodeId("anyId"), new TrackedServiceMessage(expectedService)));
+        wearApp.message(new MessageEnvelope(new Postman.NodeId("anyId"), new TrackedServiceMessage(train)));
 
         wearApp.attach(serviceView);
 
@@ -86,7 +89,7 @@ public class TrackingAService {
     public void
     startingAppAfterTrackingHasEndedWillNotShowTheLastTrackedService() {
 
-        TrainViewModel NONE = new TrainViewModel(new Train("", "", "", "", false)) {
+        final TrainViewModel NONE = new TrainViewModel(new Train("", "", "", "", false)) {
             @Override
             public String toString() {
                 return "NONE";
@@ -100,7 +103,7 @@ public class TrackingAService {
         serviceView.serviceDisplayed = NONE;
 
         final Postman.NodeId anyId = new Postman.NodeId("anyId");
-        wearApp.message(new MessageEnvelope(anyId, new TrackedServiceMessage(new TrainViewModel(new Train("2", "10:00", "09:00", "1", false)))));
+        wearApp.message(new MessageEnvelope(anyId, new TrackedServiceMessage(TestDataBuilder.anyTrain())));
         wearApp.message(new MessageEnvelope(anyId, new StoppedTrackingMessage()));
 
         wearApp.attach(serviceView);

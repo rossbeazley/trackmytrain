@@ -50,9 +50,8 @@ public class TrackingOnWearable {
     sendsDetailsOfTrackedService() {
 
         Train train = TestDataBuilder.anyTrain();
-        TrainViewModel trainViewModel = new TrainViewModel(train);
         messagingTrackingPresenter.trackedServiceUpdated(train);
-        Postman.Message expectedMessage = new TrackedServiceMessage(trainViewModel);
+        Postman.Message expectedMessage = new TrackedServiceMessage(train);
         assertThat(postman.broadcasts, hasItem(expectedMessage));
     }
 
