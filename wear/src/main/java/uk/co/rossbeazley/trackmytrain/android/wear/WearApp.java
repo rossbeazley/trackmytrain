@@ -41,7 +41,7 @@ public class WearApp implements CanPresentTrackedTrains {
 
         if (message instanceof TrackedServiceMessage) {
             TrackedServiceMessage msg = (TrackedServiceMessage) message;
-            announceServiceTracking(msg.trainViewModel());
+            announceServiceTracking(new TrainViewModel(msg.train()));
         }
     }
 

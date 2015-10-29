@@ -26,9 +26,7 @@ public class TrackedServiceMessage extends Postman.BroadcastMessage {
         return id.replaceAll("%2F","/");
     }
 
-    public TrainViewModel trainViewModel() {
-        return new TrainViewModel(train);
-    }
+    public Train train() {return train;}
 
     @Override
     public boolean equals(Object o) {
