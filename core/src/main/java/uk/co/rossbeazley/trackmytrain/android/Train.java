@@ -5,7 +5,7 @@ public class Train {
     public final String scheduledTime;
     public final String estimatedTime;
     public final String platform;
-    private final boolean departed;
+    public final boolean departed;
 
     public Train(String id, String estimatedTime, String scheduledTime, String platform, boolean departed)
     {
@@ -17,7 +17,7 @@ public class Train {
     }
 
     public String toString() {
-        return scheduledTime + " : " + estimatedTime + " : platform " + platform  + ":" + id + System.getProperty("line.separator");
+        return scheduledTime + " : " + estimatedTime + " : platform " + platform  + (departed?" : departed : " : " : ") + id + System.getProperty("line.separator");
     }
 
     @Override
@@ -33,6 +33,9 @@ public class Train {
         if (platform != null ? !platform.equals(train.platform) : train.platform != null)
             return false;
         if (scheduledTime != null ? !scheduledTime.equals(train.scheduledTime) : train.scheduledTime != null)
+            return false;
+
+        if (departed != train.departed)
             return false;
 
         return true;

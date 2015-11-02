@@ -23,6 +23,9 @@ android {
 dependencies {
     compile project(':core')
     compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    testCompile project(path: ':core', configuration: 'testArtifacts')
+
     compile 'com.android.support:appcompat-v7:22.2.1'
     compile 'com.google.android.support:wearable:1.0.0'
     compile 'com.google.android.gms:play-services-wearable:7.5.0'

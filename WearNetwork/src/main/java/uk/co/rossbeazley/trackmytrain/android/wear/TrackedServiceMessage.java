@@ -14,7 +14,7 @@ public class TrackedServiceMessage extends Postman.BroadcastMessage {
 
 
     public TrackedServiceMessage(Train train) {
-        super(MESSAGE_PATH + "/" + encoded(train.id) + "/" + train.estimatedTime + "/" + train.scheduledTime + "/" + train.platform);
+        super(MESSAGE_PATH + "/" + encoded(train.id) + "/" + train.estimatedTime + "/" + train.scheduledTime + "/" + train.platform + "/" + train.departed);
         this.train = train;
     }
 
@@ -65,8 +65,9 @@ public class TrackedServiceMessage extends Postman.BroadcastMessage {
             final String estimatedTime = parts[2];
             final String scheduledTime = parts[3];
             final String platform = parts[4];
-            Train tvm = new Train(id, estimatedTime, scheduledTime, platform,false);
-            return new TrackedServiceMessage(tvm);
+            final String departed = parts[5];
+            Train train = new Train(id, estimatedTime, scheduledTime, platform,departed.equals("true"));
+            return new TrackedServiceMessage(train);
         }
     }
 }

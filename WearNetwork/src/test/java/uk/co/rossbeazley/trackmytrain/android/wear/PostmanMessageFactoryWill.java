@@ -4,6 +4,7 @@ import com.google.android.gms.wearable.MessageEvent;
 
 import org.junit.Test;
 
+import uk.co.rossbeazley.trackmytrain.android.TestDataBuilder;
 import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
@@ -53,6 +54,20 @@ public class PostmanMessageFactoryWill {
 
     @Test
     public void
+    convertMessageEventToTrackedServiceMessageForDepartedTrain() {
+
+        Postman.Message expectedMessage = new TrackedServiceMessage(new Train("2", "10:00", "09:00", "1", true));
+
+        String anyId = "anyId";
+        MessageEvent msg = new WearMessageEvent(expectedMessage.messageAsString(), anyId);
+
+        MessageEnvelope convertMessage=new PostmanMessageFactory().toMessage(msg);
+
+        assertThat(convertMessage.message(), is(equalTo(expectedMessage)));
+    }
+
+    @Test
+    public void
     convertMessageEventToTrackedServiceMessage() {
 
         Postman.Message expectedMessage = new TrackedServiceMessage(new Train("2", "10:00", "09:00", "1", false));
@@ -64,6 +79,8 @@ public class PostmanMessageFactoryWill {
 
         assertThat(convertMessage.message(), is(equalTo(expectedMessage)));
     }
+
+
     @Test
     public void
     convertMessageEventToTrackedServiceMessageWithSlashesInId() {
