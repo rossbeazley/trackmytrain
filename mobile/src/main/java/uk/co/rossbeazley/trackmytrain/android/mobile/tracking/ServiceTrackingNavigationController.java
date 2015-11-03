@@ -2,10 +2,12 @@ package uk.co.rossbeazley.trackmytrain.android.mobile.tracking;
 
 import android.content.Context;
 
+import uk.co.rossbeazley.trackmytrain.android.CanTrackService;
+import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 
-public class ServiceTrackingNavigationController implements ServiceView {
+public class ServiceTrackingNavigationController implements CanTrackService.TrackedServiceListener {
     private final Context context;
 
     public ServiceTrackingNavigationController(Context context) {
@@ -13,18 +15,17 @@ public class ServiceTrackingNavigationController implements ServiceView {
     }
 
     @Override
-    public void present(TrainViewModel train) {
+    public void trackingStarted() {
         TrackingService.startTrackingService(context);
     }
 
-
     @Override
-    public void hide() {
-        TrackingService.stopTrackingService(context);
+    public void trackedServiceUpdated(Train train) {
+        TrackingService.startTrackingService(context);
     }
 
     @Override
-    public void trackingStarted() {
-
+    public void trackingStopped() {
+        TrackingService.stopTrackingService(context);
     }
 }

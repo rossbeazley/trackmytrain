@@ -6,6 +6,7 @@
 Another experiment, pushing the boundaries on ports and adapters. The network is the port, not the repo as i may have done in the past.
 
 
+The big mistake I made was pulling the presenters into the black box side of the boundary
 
 
 Todo list:
@@ -16,21 +17,6 @@ Todo list:
 2nd deliverable Wearable can send a attach service tracking ui message.
 2nd deliverable Mobile will store the node id of the wearable that has attached ui
 2nd deliverable Wearable can send a detach service tracking ui message.
-
-+ Mobile can send serialised train view models
-
-+ Mobile can send a tracking started broadcast.
-+ Wearable will show UI in response to tracking started.
-+ Wearable will hide UI in response to tracking finished.
-
-+ Very next task is the update view in response to service details update
-
-
-First deliverable:
-
-+ host will need to send presentation messages as broadcast -- SERVICE_VIEW_PRESENT
-+ wear activity is always on
-+ activity finishes self when tracking stops
 
 
 After first deliverable:
@@ -44,3 +30,23 @@ mobile can listen to message and track event
 
 
 GET RID OF BROADCAST MESSAGES
+
+Re-implement rum stuff, pull "rum controller" within boundary. extract rum client interface
+Tracking rum
+Tracking error
+
+Buzz only if train "lateness" changes
+
+colour train row if "very late"
+
+optional to field
+
+choose direction to/from
+
+show no results
+
+Fix API so two query operations use same "train times"
+
+query multiple stations
+
+view stopping points of a train

@@ -72,11 +72,11 @@ public class TrackMyTrainApp extends Application{
         messageService = new MessageService(instance, tracker);
         instance.addTrackedServiceListener(new MessagingTrackingPresenter(postman));
 
-        instance.attach(new ServiceTrackingNavigationController(this));
+        instance.addTrackedServiceListener(new ServiceTrackingNavigationController(this));
         //instance.attach(new TrackingNotification(this));
 
         instance.attach(new PerfMonitoringView(tracker));
-        instance.detach(new AnalyticsDeparturesView(tracker));
+        instance.attach(new AnalyticsDeparturesView(tracker));
     }
 
 }
