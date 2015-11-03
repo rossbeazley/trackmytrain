@@ -21,8 +21,8 @@ public interface NetworkClient {
             void write(String output);
         }
 
-        String GET = "get";
-        String POST = "post";
+        String GET = "GET";
+        String POST = "POST";
     }
 
 }
