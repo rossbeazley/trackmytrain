@@ -1,11 +1,13 @@
 package uk.co.rossbeazley.trackmytrain.android.mobile.departures;
 
+import uk.co.rossbeazley.trackmytrain.android.CanTrackService;
 import uk.co.rossbeazley.trackmytrain.android.TMTError;
+import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesView;
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesViewModel;
 import uk.co.rossbeazley.trackmytrain.android.analytics.Analytics;
 
-public class AnalyticsDeparturesView implements DeparturesView {
+public class AnalyticsDeparturesView implements CanTrackService.TrackedServiceListener {
     private final Analytics tracker;
 
     public AnalyticsDeparturesView(Analytics tracker) {
@@ -13,17 +15,17 @@ public class AnalyticsDeparturesView implements DeparturesView {
     }
 
     @Override
-    public void present(DeparturesViewModel trains) {
-        tracker.pageView("Departures Result");
+    public void trackingStarted() {
+        tracker.pageView("Tracking_Loading");
     }
 
     @Override
-    public void loading() {
-        tracker.pageView("Departures Loading");
+    public void trackedServiceUpdated(Train train) {
+        tracker.pageView("Tracking_Result");
     }
 
     @Override
-    public void error(TMTError error) {
-        tracker.pageView("Departures Error");
+    public void trackingStopped() {
+        tracker.pageView("Tracking_Stopped");
     }
 }

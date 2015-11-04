@@ -11,25 +11,17 @@ The big mistake I made was pulling the presenters into the black box side of the
 
 Todo list:
 
+-- introduce listener for search query actions
+
+point to point comms from wearable
 - Wearable can send broadcast message to "find home"
 - Mobile can send a "I am base" message for wearables so then can register node id
 - Mobile can respond with to "find home" with "i am base"
-2nd deliverable Wearable can send a attach service tracking ui message.
-2nd deliverable Mobile will store the node id of the wearable that has attached ui
-2nd deliverable Wearable can send a detach service tracking ui message.
+- Wearable can send a attach service tracking ui message.
+- Mobile will store the node id of the wearable that has attached ui
+- Wearable can send a detach service tracking ui message.
 
-
-After first deliverable:
-point to point comms
-
-
-Second deliverale:
-
-when wear app starts it sends broadcast analytics message
-mobile can listen to message and track event
-
-
-GET RID OF BROADCAST MESSAGES
+?GET RID OF BROADCAST MESSAGES as a class, its just an action?
 
 Re-implement rum stuff, pull "rum controller" within boundary. extract rum client interface
 Tracking rum

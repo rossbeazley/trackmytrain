@@ -9,7 +9,7 @@ public interface Analytics {
 
     void pageView(String pageName);
 
-    static class EventTrack {
+    class EventTrack {
         public final String category;
         public final String label;
 

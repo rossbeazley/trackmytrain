@@ -76,7 +76,7 @@ public class TrackMyTrainApp extends Application{
         //instance.attach(new TrackingNotification(this));
 
         instance.attach(new PerfMonitoringView(tracker));
-        instance.attach(new AnalyticsDeparturesView(tracker));
+        instance.addTrackedServiceListener(new AnalyticsDeparturesView(tracker));
     }
 
 }
