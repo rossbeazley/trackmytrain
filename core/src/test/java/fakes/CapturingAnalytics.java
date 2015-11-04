@@ -56,5 +56,14 @@ public class CapturingAnalytics implements Analytics {
             result = 31 * result + variable.hashCode();
             return result;
         }
+
+        @Override
+        public String toString() {
+            return "TimingTrack{" +
+                    "millis=" + millis +
+                    ", category='" + category + '\'' +
+                    ", variable='" + variable + '\'' +
+                    '}';
+        }
     }
 }

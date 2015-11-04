@@ -10,25 +10,20 @@ import uk.co.rossbeazley.trackmytrain.android.departures.presentation.Departures
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesViewModel;
 import uk.co.rossbeazley.trackmytrain.android.analytics.Analytics;
 
-public class PerfMonitoringView implements DeparturesView, CanQueryDepartures.DepartureQueryListener {
+public class PerfMonitoringView implements CanQueryDepartures.DepartureQueryListener {
 
     private long timer;
     private Analytics tracker;
+    private Clock clock;
 
     public PerfMonitoringView(Analytics tracker, Clock clock) {
         this.tracker = tracker;
+        this.clock = clock;
     }
 
-    @Override
-    public void present(DeparturesViewModel trains) {
-        long millis = timeInMillis() - timer;
-        final String category = "DeparturesQuery";
-        final String variable = "DeparturesQuery.load";
-        tracker.timing(millis, category, variable);
-    }
 
     private long timeInMillis() {
-        return System.currentTimeMillis();
+        return clock.time();
     }
 
     @Override
@@ -38,7 +33,10 @@ public class PerfMonitoringView implements DeparturesView, CanQueryDepartures.De
 
     @Override
     public void success(List<Train> expectedList) {
-
+        long millis = timeInMillis() - timer;
+        final String category = "DeparturesQuery";
+        final String variable = "DeparturesQuery.load";
+        tracker.timing(millis, category, variable);
     }
 
     @Override

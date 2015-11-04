@@ -15,11 +15,13 @@ public class PerfMonitoring {
     public void
     theOneWhereWeCompleteASearchAndTheTimingInformationIsRecorded() {
 
-        Clock clock = new MyClock();
+        MyClock clock = new MyClock();
         CapturingAnalytics tracker = new CapturingAnalytics();
         CanQueryDepartures.DepartureQueryListener perf = new PerfMonitoringView(tracker, clock);
 
-        CapturingAnalytics.TimingTrack expected = new CapturingAnalytics.TimingTrack(1337,"cat","var");
+        final String category = "DeparturesQuery";
+        final String variable = "DeparturesQuery.load";
+        CapturingAnalytics.TimingTrack expected = new CapturingAnalytics.TimingTrack(1337,category,variable);
 
 
         perf.loading();
@@ -37,9 +39,13 @@ public class PerfMonitoring {
             nextReportedTime = 0;
         }
 
-        @Override
         public void advanceBy(int i) {
             nextReportedTime+=i;
+        }
+
+        @Override
+        public long time() {
+            return nextReportedTime;
         }
     }
 }
