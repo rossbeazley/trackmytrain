@@ -17,14 +17,14 @@ public class DeparturesPresenter {
 
     private final List<DeparturesQueryView> departuresQueryViews;
     public CanQueryDepartures canQueryDepartures;
-    private final CanQueryDepartures.Result resultCallback;
+    private final CanQueryDepartures.DepartureQueryListener resultCallback;
 
     public DeparturesPresenter(CanQueryDepartures canQueryDepartures) {
 
         this.departuresViews = new CopyOnWriteArrayList<>();
         this.departuresQueryViews = new CopyOnWriteArrayList<>();
         this.canQueryDepartures = canQueryDepartures;
-        resultCallback = new CanQueryDepartures.Result() {
+        resultCallback = new CanQueryDepartures.DepartureQueryListener() {
             @Override
             public void success(List<Train> expectedList) {
                 departuresFound(expectedList);

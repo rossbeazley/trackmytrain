@@ -7,11 +7,11 @@ import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
 
 public interface CanQueryDepartures {
-    void departures(Station at, Direction direction, Result result);
+    void departures(Station at, Direction direction, DepartureQueryListener result);
 
     DepartureQuery lastQuery();
 
-    interface Result {
+    interface DepartureQueryListener {
         void success(List<Train> expectedList);
 
         void error(TMTError tmtError);

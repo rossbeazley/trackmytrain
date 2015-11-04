@@ -79,7 +79,7 @@ public class DeparturesTest {
         assertThat(req.asUrlString(),is(DeparturesFromToRequest.WS_URL_ROOT + "departures/MCO/to/SLD"));
     }
 
-    private static class CapturingSuccess implements CanQueryDepartures.Result {
+    private static class CapturingSuccess implements CanQueryDepartures.DepartureQueryListener {
         public List<Train> trainList;
         private boolean loading;
 
