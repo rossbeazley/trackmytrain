@@ -52,6 +52,23 @@ public class PerfMonitoring {
         assertThat(tracker.timing, hasItem(expected));
     }
 
+
+    @Test
+    public void
+    theOneWhereASearchErrorsAndTheTimingInformationIsRecorded() {
+
+        final String category = "DeparturesQuery";
+        final String variable = "DeparturesQuery.error";
+        CapturingAnalytics.TimingTrack expected = new CapturingAnalytics.TimingTrack(1337,category,variable);
+
+        tmt.departures(TestDataBuilder.anyStation(), TestDataBuilder.anyDirection(), new NullDepartureQueryListener());
+
+        clock.advanceBy(1337);
+        networkClient.errorRequest();
+
+        assertThat(tracker.timing, hasItem(expected));
+    }
+
     private static class NullDepartureQueryListener implements CanQueryDepartures.DepartureQueryListener {
         @Override
         public void success(List<Train> expectedList) {

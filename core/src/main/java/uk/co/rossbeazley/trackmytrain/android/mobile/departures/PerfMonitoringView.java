@@ -43,6 +43,8 @@ public class PerfMonitoringView implements CanQueryDepartures.DepartureQueryList
     public void error(TMTError error) {
         final String category = "DeparturesQuery";
         final String label = "DeparturesQuery.error";
+        long millis = timeInMillis() - timer;
+        tracker.timing(millis, category, label);
         tracker.event(new Analytics.EventTrack(category, label));
     }
 

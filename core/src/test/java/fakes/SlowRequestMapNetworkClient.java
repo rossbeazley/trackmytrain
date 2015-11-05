@@ -37,4 +37,8 @@ public class SlowRequestMapNetworkClient implements NetworkClient {
     private boolean thisClientRespondsToAnyRequest() {
         return mapOfRequestToString.isEmpty();
     }
+
+    public void errorRequest() {
+        response.error("from test");
+    }
 }

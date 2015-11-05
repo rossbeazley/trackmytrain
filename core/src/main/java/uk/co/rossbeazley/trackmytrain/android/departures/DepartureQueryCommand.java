@@ -46,6 +46,10 @@ public class DepartureQueryCommand implements CanQueryDepartures {
                 @Override
                 public void error(TMTError tmtError) {
                     result.error(tmtError);
+
+                    for (DepartureQueryListener listener : departureQueryListeners) {
+                        listener.error(tmtError);
+                    }
                 }
             });
         }
