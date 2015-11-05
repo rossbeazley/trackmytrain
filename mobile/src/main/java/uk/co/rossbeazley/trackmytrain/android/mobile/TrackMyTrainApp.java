@@ -10,6 +10,7 @@ import uk.co.rossbeazley.trackmytrain.android.TrackMyTrain;
 import uk.co.rossbeazley.trackmytrain.android.analytics.Analytics;
 import uk.co.rossbeazley.trackmytrain.android.mobile.analytics.GoogleAnalytics;
 import uk.co.rossbeazley.trackmytrain.android.mobile.departures.AnalyticsDeparturesView;
+import uk.co.rossbeazley.trackmytrain.android.mobile.departures.Clock;
 import uk.co.rossbeazley.trackmytrain.android.mobile.departures.PerfMonitoringView;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.MessagingTrackingPresenter;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
@@ -75,7 +76,7 @@ public class TrackMyTrainApp extends Application{
         instance.addTrackedServiceListener(new ServiceTrackingNavigationController(this));
         //instance.attach(new TrackingNotification(this));
 
-        instance.attach(new PerfMonitoringView(tracker, null));
+
         instance.addTrackedServiceListener(new AnalyticsDeparturesView(tracker));
     }
 

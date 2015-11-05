@@ -9,6 +9,7 @@ import uk.co.rossbeazley.trackmytrain.android.departures.presentation.Departures
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesView;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
+import uk.co.rossbeazley.trackmytrain.android.mobile.departures.PerfMonitoringView;
 import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
 import uk.co.rossbeazley.trackmytrain.android.trackedService.TrackedServicePresenter;
 import uk.co.rossbeazley.trackmytrain.android.trackedService.Tracking;
@@ -36,6 +37,10 @@ public class TrackMyTrain implements CanPresentTrackedTrains, CanQueryDepartures
     @Override
     public void departures(Station at, Direction direction, final DepartureQueryListener result) {
         departures.departures(at, direction, result);
+    }
+
+    public void addDepartureQueryListener(DepartureQueryListener departureQueryListener) {
+        departures.addDepartureQueryListener(departureQueryListener);
     }
 
     @Override
@@ -119,4 +124,5 @@ public class TrackMyTrain implements CanPresentTrackedTrains, CanQueryDepartures
     public void unwatchService() {
         tracking.unwatchService();
     }
+
 }

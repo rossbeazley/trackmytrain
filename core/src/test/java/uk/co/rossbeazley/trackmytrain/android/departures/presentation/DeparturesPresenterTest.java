@@ -36,6 +36,11 @@ public class DeparturesPresenterTest {
             public DepartureQuery lastQuery() {
                 return null;
             }
+
+            @Override
+            public void addDepartureQueryListener(DepartureQueryListener departureQueryListener) {
+
+            }
         };
         DeparturesPresenter tmt = new DeparturesPresenter(canQueryDepartures);
 
@@ -75,6 +80,11 @@ public class DeparturesPresenterTest {
             @Override
             public DepartureQuery lastQuery() {
                 return null;
+            }
+
+            @Override
+            public void addDepartureQueryListener(DepartureQueryListener departureQueryListener) {
+
             }
         };
         DeparturesPresenter departuresPresenter = new DeparturesPresenter(stubCanQueryDepartures);

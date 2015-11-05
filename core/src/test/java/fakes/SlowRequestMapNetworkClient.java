@@ -3,6 +3,7 @@ package fakes;
 import java.util.Map;
 
 import uk.co.rossbeazley.trackmytrain.android.NetworkClient;
+import uk.co.rossbeazley.trackmytrain.android.TestDataBuilder;
 
 public class SlowRequestMapNetworkClient implements NetworkClient {
 
@@ -22,8 +23,18 @@ public class SlowRequestMapNetworkClient implements NetworkClient {
     }
 
     public void completeRequest() {
-        if(mapOfRequestToString.containsKey(request)) {
+        if (thisClientRespondsToAnyRequest()) {
+            response.ok(TestDataBuilder.anyTrainsJson());
+        } else if (thisClientRespondsToThisRequest(request)) {
             response.ok(mapOfRequestToString.get(request));
         }
+    }
+
+    private boolean thisClientRespondsToThisRequest(Request request) {
+        return mapOfRequestToString.containsKey(request);
+    }
+
+    private boolean thisClientRespondsToAnyRequest() {
+        return mapOfRequestToString.isEmpty();
     }
 }

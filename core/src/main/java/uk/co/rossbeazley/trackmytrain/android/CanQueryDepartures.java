@@ -11,6 +11,8 @@ public interface CanQueryDepartures {
 
     DepartureQuery lastQuery();
 
+    void addDepartureQueryListener(DepartureQueryListener departureQueryListener);
+
     interface DepartureQueryListener {
         void success(List<Train> expectedList);
 
