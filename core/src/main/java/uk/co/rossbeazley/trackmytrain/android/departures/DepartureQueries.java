@@ -9,14 +9,14 @@ import uk.co.rossbeazley.trackmytrain.android.TMTError;
 import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
 
-public class DepartureQueryCommand implements CanQueryDepartures {
+public class DepartureQueries implements CanQueryDepartures {
 
     private final TrainRepository trainRepository;
     private final StationRepository stationRepository;
     private Collection<DepartureQueryListener> departureQueryListeners;
 
 
-    public DepartureQueryCommand(TrainRepository trainRepository, StationRepository stationRepository) {
+    public DepartureQueries(TrainRepository trainRepository, StationRepository stationRepository) {
         this.trainRepository = trainRepository;
         this.stationRepository = stationRepository;
         this.departureQueryListeners = new CopyOnWriteArrayList<>();

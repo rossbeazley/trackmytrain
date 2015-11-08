@@ -3,8 +3,7 @@ package uk.co.rossbeazley.trackmytrain.android;
 import uk.co.rossbeazley.time.DefaultNarrowScheduledExecutorService;
 import uk.co.rossbeazley.time.NarrowScheduledExecutorService;
 import uk.co.rossbeazley.trackmytrain.android.analytics.Analytics;
-import uk.co.rossbeazley.trackmytrain.android.mobile.departures.Clock;
-import uk.co.rossbeazley.trackmytrain.android.mobile.departures.DeparturesPerformanceMonitoring;
+import uk.co.rossbeazley.trackmytrain.android.departures.DeparturesPerformanceMonitoring;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.StringNetworkClient;
 
 public class TMTBuilder {

@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.trackmytrain.android.mobile.departures;
+package uk.co.rossbeazley.trackmytrain.android.departures;
 
 
 import java.util.List;
@@ -6,9 +6,8 @@ import java.util.List;
 import uk.co.rossbeazley.trackmytrain.android.CanQueryDepartures;
 import uk.co.rossbeazley.trackmytrain.android.TMTError;
 import uk.co.rossbeazley.trackmytrain.android.Train;
-import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesView;
-import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesViewModel;
 import uk.co.rossbeazley.trackmytrain.android.analytics.Analytics;
+import uk.co.rossbeazley.trackmytrain.android.Clock;
 
 public class DeparturesPerformanceMonitoring implements CanQueryDepartures.DepartureQueryListener {
 

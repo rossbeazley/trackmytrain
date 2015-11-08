@@ -1,6 +1,6 @@
 package fakes;
 
-import uk.co.rossbeazley.trackmytrain.android.mobile.departures.Clock;
+import uk.co.rossbeazley.trackmytrain.android.Clock;
 
 public class ClockStub implements Clock {
 
