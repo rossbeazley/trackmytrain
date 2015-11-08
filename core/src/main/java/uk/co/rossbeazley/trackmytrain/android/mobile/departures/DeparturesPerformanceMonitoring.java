@@ -10,13 +10,13 @@ import uk.co.rossbeazley.trackmytrain.android.departures.presentation.Departures
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesViewModel;
 import uk.co.rossbeazley.trackmytrain.android.analytics.Analytics;
 
-public class PerfMonitoringView implements CanQueryDepartures.DepartureQueryListener {
+public class DeparturesPerformanceMonitoring implements CanQueryDepartures.DepartureQueryListener {
 
     private long timer;
     private Analytics tracker;
     private Clock clock;
 
-    public PerfMonitoringView(Analytics tracker, Clock clock) {
+    public DeparturesPerformanceMonitoring(Analytics tracker, Clock clock) {
         this.tracker = tracker;
         this.clock = clock;
     }
