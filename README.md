@@ -11,7 +11,8 @@ The big mistake I made was pulling the presenters into the black box side of the
 
 Todo list:
 
--- introduce listener for search query actions
+-- move presenters etc out of core module
+
 
 point to point comms from wearable
 - Wearable can send broadcast message to "find home"
