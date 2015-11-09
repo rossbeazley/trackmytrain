@@ -21,7 +21,7 @@ public class TrackingService extends Service {
     private  CanProcessPresentTrackedTrainsCommands canProcessPresentTrackedTrainsCommands;
 
     public TrackingService() {
-        this(TrackMyTrainApp.canProcessPresentTrackedTrainsCommands);
+        this(TrackMyTrainApp.trackedServicePresenter);
     }
 
     public TrackingService(CanProcessPresentTrackedTrainsCommands canProcessPresentTrackedTrainsCommands) {
@@ -54,7 +54,7 @@ public class TrackingService extends Service {
     public void onCreate() {
         super.onCreate();
 
-        TrackMyTrainApp.instance.attach(new ServiceView() {
+        TrackMyTrainApp.trackedServicePresenter.attach(new ServiceView() {
             @Override
             public void present(TrainViewModel train) {
                 Notification not;
@@ -74,7 +74,7 @@ public class TrackingService extends Service {
             @Override
             public void hide() {
                 stopForeground(true);
-                TrackMyTrainApp.instance.detach(this);
+                TrackMyTrainApp.trackedServicePresenter.detach(this);
             }
 
             @Override

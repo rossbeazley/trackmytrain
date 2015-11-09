@@ -17,7 +17,7 @@ public class Departures extends Activity implements FindsView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.servicedetails);
         final InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        CanProcessPresentTrackedTrainsCommands canProcessPresentTrackedTrainsCommands = TrackMyTrainApp.canProcessPresentTrackedTrainsCommands;
+        CanProcessPresentTrackedTrainsCommands canProcessPresentTrackedTrainsCommands = TrackMyTrainApp.trackedServicePresenter;
         departuresScreen = new DeparturesScreen(this, inputMethodManager, canProcessPresentTrackedTrainsCommands);
     }
 

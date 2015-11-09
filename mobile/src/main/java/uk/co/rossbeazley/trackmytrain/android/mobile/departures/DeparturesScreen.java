@@ -17,7 +17,7 @@ public class DeparturesScreen {
         TrackMyTrainApp.instance.attach(departureView);
         TrackMyTrainApp.instance.attach(departuresQueryView);
         TrackMyTrainApp.instance.attach(new NRELogoView(findsView));
-        TrackMyTrainApp.instance.attach(new TrackedServiceView(findsView, canProcessPresentTrackedTrainsCommands));
+        TrackMyTrainApp.trackedServicePresenter.attach(new TrackedServiceView(findsView, canProcessPresentTrackedTrainsCommands));
     }
 
     public void tearDown() {

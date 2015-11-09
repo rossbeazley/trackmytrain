@@ -14,17 +14,17 @@ import uk.co.rossbeazley.trackmytrain.android.trackedService.TrackedServicePrese
 import uk.co.rossbeazley.trackmytrain.android.trackedService.Tracking;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
 
-public class TrackMyTrain implements CanPresentTrackedTrains, CanQueryDepartures, CanTrackService, CanPresentDepartureQueries, CanProcessPresentTrackedTrainsCommands  {
+public class TrackMyTrain implements  CanQueryDepartures, CanTrackService, CanPresentDepartureQueries{
 
     private final Tracking tracking;
-    private final TrackedServicePresenter trackedServicePresenter;
+
     private DeparturesPresenter departuresPresenter;
     private final DepartureQueries departures;
 
     public TrackMyTrain(NetworkClient networkClient, NarrowScheduledExecutorService executorService, KeyValuePersistence keyValuePersistence) {
         TrainRepository trainRepository = new TrainRepository(networkClient);
         this.tracking = new Tracking(trainRepository, executorService);
-        this.trackedServicePresenter = new TrackedServicePresenter(tracking);
+
 
         this.departures = new DepartureQueries(trainRepository, new StationRepository(keyValuePersistence));
         this.departuresPresenter = new DeparturesPresenter(departures);
@@ -81,28 +81,6 @@ public class TrackMyTrain implements CanPresentTrackedTrains, CanQueryDepartures
 
 
 //tracking
-    //ui
-    @Override
-    public void watch(String serviceId) {
-        trackedServicePresenter.watch(serviceId);
-    }
-
-    @Override
-    public void unwatch() {
-        trackedServicePresenter.unwatch();
-    }
-
-    @Override
-    public void attach(ServiceView serviceView) {
-        trackedServicePresenter.attach(serviceView);
-    }
-
-    @Override
-    public void detach(ServiceView serviceView) {
-        trackedServicePresenter.detach(serviceView);
-    }
-
-
     //core
     @Override
     public void addTrackedServiceListener(TrackedServiceListener trackedServiceListener) {
