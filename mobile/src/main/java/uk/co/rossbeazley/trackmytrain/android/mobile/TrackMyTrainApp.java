@@ -27,7 +27,6 @@ public class TrackMyTrainApp extends Application{
     public static MessageService messageService;
 
     public TrackMyTrainApp() {
-        System.setProperty("http.agent", "TrackMyTrain/1.2 ("+ Build.DEVICE +", " +Build.MANUFACTURER+", "+Build.MODEL+")");
         instance = new TMTBuilder()
                 .with(new SharedPrefKeyValuePersistence(this))
 //                .with(new NetworkClient() {
@@ -52,14 +51,18 @@ public class TrackMyTrainApp extends Application{
 //                    }
 //                })
                 .build();
-        trackedServicePresenter = new TrackedServicePresenter(instance);
-        departuresPresenter = new DeparturesPresenter(instance);
     }
 
 
     @Override
     public void onCreate() {
         super.onCreate();
+
+        System.setProperty("http.agent", "TrackMyTrain/1.2 (" + Build.DEVICE + ", " + Build.MANUFACTURER + ", " + Build.MODEL + ")");
+
+        trackedServicePresenter = new TrackedServicePresenter(instance);
+        departuresPresenter = new DeparturesPresenter(instance);
+
         Postman postman = WearNetworkBuilder.fromContext(this);
 
         final Analytics tracker = buildAnalytics();
