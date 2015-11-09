@@ -4,6 +4,7 @@ import uk.co.rossbeazley.time.DefaultNarrowScheduledExecutorService;
 import uk.co.rossbeazley.time.NarrowScheduledExecutorService;
 import uk.co.rossbeazley.trackmytrain.android.analytics.Analytics;
 import uk.co.rossbeazley.trackmytrain.android.departures.DeparturesPerformanceMonitoring;
+import uk.co.rossbeazley.trackmytrain.android.mobile.departures.AnalyticsDeparturesView;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.StringNetworkClient;
 
 public class TMTBuilder {
@@ -47,6 +48,7 @@ public class TMTBuilder {
         TrackMyTrain trackMyTrain = new TrackMyTrain(networkClient, executorService, keyValuePersistence);
 
         trackMyTrain.addDepartureQueryListener(new DeparturesPerformanceMonitoring(analytics, clock));
+        trackMyTrain.addTrackedServiceListener(new AnalyticsDeparturesView(analytics));
         return trackMyTrain;
     }
 

@@ -8,6 +8,7 @@ import uk.co.rossbeazley.trackmytrain.android.analytics.Analytics;
 public class CapturingAnalytics implements Analytics {
     public List<EventTrack> events = new ArrayList<>();
     public List<TimingTrack> timing = new ArrayList<>();
+    public List<String> pageViews = new ArrayList<>();
 
     @Override
     public void timing(long millis, String category, String variable) {
@@ -21,7 +22,7 @@ public class CapturingAnalytics implements Analytics {
 
     @Override
     public void pageView(String pageName) {
-
+        pageViews.add(pageName);
     }
 
     public static class TimingTrack {

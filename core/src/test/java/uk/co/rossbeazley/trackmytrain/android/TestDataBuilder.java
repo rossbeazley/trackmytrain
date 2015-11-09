@@ -73,7 +73,7 @@ public class TestDataBuilder {
     }
 
     public static Train anyTrain() {
-        return new Train(generateId(), generateEstimatedTime(), generateScheduledTime(), generatePlatform(), generateDepartedFlag());
+        return new Train(anyTrainId(), generateEstimatedTime(), generateScheduledTime(), generatePlatform(), generateDepartedFlag());
     }
 
     private static boolean generateDepartedFlag() {
@@ -94,7 +94,7 @@ public class TestDataBuilder {
         return hour + ":" + minute;
     }
 
-    private static String generateId() {
+    public static String anyTrainId() {
         StringBuilder sb = new StringBuilder();
         for(int i=0 ; i<25 ; i++) {
             int choice = (int) (Math.random()*3);

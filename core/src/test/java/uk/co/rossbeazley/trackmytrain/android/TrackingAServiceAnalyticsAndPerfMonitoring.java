@@ -13,7 +13,7 @@ import fakes.SlowRequestMapNetworkClient;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.junit.Assert.*;
 
-public class PerfMonitoring {
+public class TrackingAServiceAnalyticsAndPerfMonitoring {
 
     private TrackMyTrain tmt;
     private SlowRequestMapNetworkClient networkClient;
@@ -69,6 +69,32 @@ public class PerfMonitoring {
 
         assertThat(tracker.timing, hasItem(expected));
     }
+    /**
+     *
+     public void trackingStarted() {
+     tracker.pageView("Tracking_Loading");
+     }
+
+     @Override
+     public void trackedServiceUpdated(Train train) {
+     tracker.pageView("Tracking_Result");
+     }
+
+     @Override
+     public void trackingStopped() {
+     tracker.pageView("Tracking_Stopped");
+     }
+     */
+    @Test
+    public void
+    trackingStartsPageViewRecorded() {
+
+        tmt.watch(TestDataBuilder.anyTrainId());
+
+        String expected = "Tracking_Loading";
+        assertThat(tracker.pageViews, hasItem(expected));
+    }
+
 
     private static class NullDepartureQueryListener implements CanQueryDepartures.DepartureQueryListener {
         @Override
