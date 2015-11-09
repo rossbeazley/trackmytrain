@@ -2,6 +2,7 @@ package uk.co.rossbeazley.trackmytrain.android.mobile;
 
 import android.app.Application;
 import android.os.Build;
+import android.support.annotation.NonNull;
 
 import com.google.android.gms.analytics.Tracker;
 
@@ -56,6 +57,18 @@ public class TrackMyTrainApp extends Application{
         super.onCreate();
         Postman postman = WearNetworkBuilder.fromContext(this);
 
+        final Analytics tracker = buildAnalytics();
+
+        // wear module
+        messageService = new MessageService(instance, tracker);
+        instance.addTrackedServiceListener(new MessagingTrackingPresenter(postman));
+
+        // ui
+        instance.addTrackedServiceListener(new ServiceTrackingNavigationController(this));
+    }
+
+    @NonNull
+    private Analytics buildAnalytics() {
         final com.google.android.gms.analytics.GoogleAnalytics analytics;
         analytics = com.google.android.gms.analytics.GoogleAnalytics.getInstance(this);
 
@@ -66,16 +79,7 @@ public class TrackMyTrainApp extends Application{
         newTracker.enableAdvertisingIdCollection(true);
         newTracker.enableAutoActivityTracking(true);
 
-        final Analytics tracker = new GoogleAnalytics(newTracker);
-
-        // wear module
-        messageService = new MessageService(instance, tracker);
-        instance.addTrackedServiceListener(new MessagingTrackingPresenter(postman));
-
-        // ui
-        instance.addTrackedServiceListener(new ServiceTrackingNavigationController(this));
-
-        instance.addTrackedServiceListener(new TrackingAnalytics(tracker));
+        return new GoogleAnalytics(newTracker);
     }
 
 }
