@@ -42,11 +42,12 @@ public class PerfMonitoring {
 
         final String category = "DeparturesQuery";
         final String variable = "DeparturesQuery.load";
-        CapturingAnalytics.TimingTrack expected = new CapturingAnalytics.TimingTrack(1337,category,variable);
+        int anyAmountOfTimeInMillis = 1337;
+        CapturingAnalytics.TimingTrack expected = new CapturingAnalytics.TimingTrack(anyAmountOfTimeInMillis,category,variable);
 
         tmt.departures(TestDataBuilder.anyStation(), TestDataBuilder.anyDirection(), new NullDepartureQueryListener());
 
-        clock.advanceBy(1337);
+        clock.advanceBy(anyAmountOfTimeInMillis);
         networkClient.completeRequest();
 
         assertThat(tracker.timing, hasItem(expected));

@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.trackmytrain.android.trainRepo;
+package fakes;
 
 import java.util.Map;
 

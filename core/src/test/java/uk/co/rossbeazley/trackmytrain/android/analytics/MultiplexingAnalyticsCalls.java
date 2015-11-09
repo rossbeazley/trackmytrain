@@ -10,7 +10,7 @@ import fakes.JournalingAnalytics;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.junit.Assert.*;
 
-public class AnalyticsTest {
+public class MultiplexingAnalyticsCalls {
 
 
     private ArrayList<String> journal;

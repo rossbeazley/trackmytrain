@@ -61,9 +61,6 @@ public class DeparturesPresenterTest {
     public void theOneWhereWeRequestDetailsOfAServiceAndTheResultsAreDisplayed() {
 
         CapturingDeparturesView departuresView = new CapturingDeparturesView();
-/**
- * connascence of algorithm with all this json and url strings :S
- */
 
         final Train train1, train2;
         train1 = new Train("aN5S6pak5nKFawy0sXb65Q==", "On time", "21:39", "2", false);

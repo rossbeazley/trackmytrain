@@ -2,7 +2,7 @@ package uk.co.rossbeazley.trackmytrain.android.wear.pointToPoint;
 
 import org.junit.Test;
 
-import uk.co.rossbeazley.trackmytrain.android.ServiceTest;
+import fakes.CapturingServiceView;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
 import uk.co.rossbeazley.trackmytrain.android.wear.HostNode;
@@ -23,7 +23,7 @@ public class A_TrackedServiceProxy {
 
         TrackedServiceProxy trackedServiceProxy = new TrackedServiceProxy(postman,hostNode);
 
-        ServiceView anyServiceView = new ServiceTest.CapturingServiceView();
+        ServiceView anyServiceView = new CapturingServiceView();
         trackedServiceProxy.attach(anyServiceView);
 
         Postman.Message watchServiceMessage = WatchServiceMessage.createWatchServiceMessage();
@@ -40,7 +40,7 @@ public class A_TrackedServiceProxy {
 
         TrackedServiceProxy trackedServiceProxy = new TrackedServiceProxy(postman, hostNode);
 
-        ServiceView anyServiceView = new ServiceTest.CapturingServiceView();
+        ServiceView anyServiceView = new CapturingServiceView();
         trackedServiceProxy.attach(anyServiceView);
 
         assertThat(postman.deliveryAddress, is(equalTo(anyNodeId)));

@@ -5,13 +5,14 @@ import org.junit.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-import uk.co.rossbeazley.trackmytrain.android.trainRepo.RequestMapNetworkClient;
+import fakes.CapturingServiceView;
+import fakes.RequestMapNetworkClient;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.ServiceDetailsRequest;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class TrainDeparted {
+public class TrainAlreadyDeparted {
 
     @Test
     public void
@@ -36,12 +37,12 @@ public class TrainDeparted {
                 .with(new RequestMapNetworkClient(requestMap))
                 .build();
 
-        final ServiceTest.CapturingServiceView serviceView = new ServiceTest.CapturingServiceView();
+        final CapturingServiceView serviceView = new CapturingServiceView();
         tmt.attach(serviceView);
 
         tmt.watch(serviceId);
 
-        assertThat(serviceView.visibility, is(ServiceTest.CapturingServiceView.HIDDEN));
+        assertThat(serviceView.visibility, is(CapturingServiceView.HIDDEN));
 
     }
 

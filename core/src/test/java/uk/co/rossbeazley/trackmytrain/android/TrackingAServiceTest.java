@@ -5,18 +5,17 @@ import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
-import uk.co.rossbeazley.time.NarrowScheduledExecutorService;
-import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
-import uk.co.rossbeazley.trackmytrain.android.trainRepo.RequestMapNetworkClient;
+import fakes.CapturingServiceView;
+import fakes.ControllableExecutorService;
+import fakes.RequestMapNetworkClient;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.ServiceDetailsRequest;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
-public class ServiceTest {
+public class TrackingAServiceTest {
 
     private String serviceId;
     private String scheduledTime;
@@ -140,57 +139,4 @@ public class ServiceTest {
         assertThat(ness.cancelable, is(nullValue()));
     }
 
-    public static class CapturingServiceView implements ServiceView {
-        public static final String HIDDEN = "Hidden";
-        public static final String VISIBLE = "Visible";
-        public String visibility = "UNKNOWN";
-        public TrainViewModel serviceDisplayed;
-
-        public static final String STARTED = "Started";
-        public String trackingIs = "UNKNOWN";
-
-        @Override
-        public void present(TrainViewModel train) {
-            visibility = VISIBLE;
-            serviceDisplayed = train;
-        }
-
-        @Override
-        public void hide() {
-            serviceDisplayed = null;
-            visibility = HIDDEN;
-            trackingIs = HIDDEN;
-        }
-
-        @Override
-        public void trackingStarted() {
-            trackingIs = STARTED;
-        }
-    }
-
-    public static class ControllableExecutorService implements NarrowScheduledExecutorService {
-
-
-        public NarrowScheduledExecutorService.Cancelable cancelable;
-        public Runnable NO_COMMAND = new Runnable() {
-            @Override
-            public void run() {
-            }
-        };
-        public Runnable scheduledCommand = NO_COMMAND;
-
-
-        @Override
-        public Cancelable scheduleAtFixedRate(Runnable command, long period, TimeUnit unit) {
-            scheduledCommand = command;
-            cancelable = new Cancelable() {
-                @Override
-                public void cancel() {
-                    cancelable = null;
-                    scheduledCommand = NO_COMMAND;
-                }
-            };
-            return cancelable;
-        }
-    }
 }

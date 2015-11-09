@@ -10,7 +10,7 @@ import fakes.SlowRequestMapNetworkClient;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.DeparturesFromToRequest;
-import uk.co.rossbeazley.trackmytrain.android.trainRepo.RequestMapNetworkClient;
+import fakes.RequestMapNetworkClient;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
