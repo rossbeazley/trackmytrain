@@ -2,7 +2,7 @@ package uk.co.rossbeazley.trackmytrain.android.wear;
 
 import org.junit.Test;
 
-import uk.co.rossbeazley.trackmytrain.android.ServiceTest;
+import fakes.CapturingServiceView;
 import uk.co.rossbeazley.trackmytrain.android.TestDataBuilder;
 import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
@@ -22,7 +22,7 @@ public class TrackingAService {
         HostNode hostNode = new HostNode();
         WearApp wearApp = new WearApp(hostNode, new CapturingPostman());
 
-        final ServiceTest.CapturingServiceView serviceView = new ServiceTest.CapturingServiceView();
+        final CapturingServiceView serviceView = new CapturingServiceView();
         wearApp.attach(serviceView);
 
 
@@ -30,7 +30,7 @@ public class TrackingAService {
         MessageEnvelope message = new MessageEnvelope(anyId, new StartedTrackingMessage());
         wearApp.message(message);
 
-        assertThat(serviceView.trackingIs, is(ServiceTest.CapturingServiceView.STARTED));
+        assertThat(serviceView.trackingIs, is(CapturingServiceView.STARTED));
 
     }
 
@@ -59,7 +59,7 @@ public class TrackingAService {
 
         HostNode hostNode = new HostNode();
         WearApp wearApp = new WearApp(hostNode, new CapturingPostman());
-        ServiceTest.CapturingServiceView serviceView = new ServiceTest.CapturingServiceView();
+        CapturingServiceView serviceView = new CapturingServiceView();
         wearApp.attach(serviceView);
 
         Train train = TestDataBuilder.anyTrain();
@@ -77,7 +77,7 @@ public class TrackingAService {
 
         HostNode hostNode = new HostNode();
         WearApp wearApp = new WearApp(hostNode, new CapturingPostman());
-        ServiceTest.CapturingServiceView serviceView = new ServiceTest.CapturingServiceView();
+        CapturingServiceView serviceView = new CapturingServiceView();
         wearApp.message(new MessageEnvelope(new Postman.NodeId("anyId"), new TrackedServiceMessage(train)));
 
         wearApp.attach(serviceView);
@@ -98,7 +98,7 @@ public class TrackingAService {
 
         HostNode hostNode = new HostNode();
         WearApp wearApp = new WearApp(hostNode, new CapturingPostman());
-        ServiceTest.CapturingServiceView serviceView = new ServiceTest.CapturingServiceView();
+        CapturingServiceView serviceView = new CapturingServiceView();
 
         serviceView.serviceDisplayed = NONE;
 
