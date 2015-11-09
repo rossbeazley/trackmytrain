@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.trackmytrain.android.mobile.departures;
+package uk.co.rossbeazley.trackmytrain.android.trackedService;
 
 import uk.co.rossbeazley.trackmytrain.android.CanTrackService;
 import uk.co.rossbeazley.trackmytrain.android.TMTError;
@@ -7,10 +7,10 @@ import uk.co.rossbeazley.trackmytrain.android.departures.presentation.Departures
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesViewModel;
 import uk.co.rossbeazley.trackmytrain.android.analytics.Analytics;
 
-public class AnalyticsDeparturesView implements CanTrackService.TrackedServiceListener {
+public class TrackingAnalytics implements CanTrackService.TrackedServiceListener {
     private final Analytics tracker;
 
-    public AnalyticsDeparturesView(Analytics tracker) {
+    public TrackingAnalytics(Analytics tracker) {
         this.tracker = tracker;
     }
 
