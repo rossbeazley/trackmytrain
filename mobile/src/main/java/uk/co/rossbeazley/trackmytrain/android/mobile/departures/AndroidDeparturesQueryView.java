@@ -1,7 +1,6 @@
 package uk.co.rossbeazley.trackmytrain.android.mobile.departures;
 
 import android.transition.AutoTransition;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.MotionEvent;
 import android.transition.TransitionManager;
 import android.view.ViewGroup;
@@ -13,6 +12,7 @@ import android.widget.ArrayAdapter;
 
 import android.widget.TextView;
 
+import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesPresenter;
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesQueryViewModel;
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesQueryView;
 import uk.co.rossbeazley.trackmytrain.android.R;
@@ -20,18 +20,18 @@ import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.mobile.FindsView;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
 
-import uk.co.rossbeazley.trackmytrain.android.mobile.TrackMyTrainApp;
 class AndroidDeparturesQueryView implements DeparturesQueryView {
     private final AutoCompleteTextView at;
     private final AutoCompleteTextView to;
     private final TextView at_compact;
     private final TextView to_compact;
     private final ViewGroup servicedetailsRoot;
+    private final DeparturesPresenter departuresPresenter;
     private DeparturesQueryViewModel departuresQueryViewModel;
     private View departureQueryView;
     private final View departureQueryViewCompact;
 
-    public AndroidDeparturesQueryView(final FindsView findsView, final InputMethodManager inputMethodManager) {
+    public AndroidDeparturesQueryView(final FindsView findsView, final InputMethodManager inputMethodManager, DeparturesPresenter departuresPresenter) {
         at = (AutoCompleteTextView) findsView.findViewById(R.id.at);
         to = (AutoCompleteTextView) findsView.findViewById(R.id.to);
 
@@ -61,14 +61,8 @@ class AndroidDeparturesQueryView implements DeparturesQueryView {
             }
         });
 
-//        ((SwipeRefreshLayout) findsView.findViewById(R.id.refresh)).setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-//            @Override
-//            public void onRefresh() {
-//                dispatchQuery();
-//            }
-//        });
-
         showFullQueryBoxWhenCompactTouched();
+        this.departuresPresenter = departuresPresenter;
     }
 
     private void showFullQueryBoxWhenCompactTouched() {
@@ -98,7 +92,7 @@ class AndroidDeparturesQueryView implements DeparturesQueryView {
     }
 
     void dispatchQuery() {
-        TrackMyTrainApp.departuresPresenter.departures(departuresQueryViewModel.departuresQuery());
+        departuresPresenter.departures(departuresQueryViewModel.departuresQuery());
     }
 
     @Override
