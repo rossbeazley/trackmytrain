@@ -3,11 +3,12 @@ package uk.co.rossbeazley.trackmytrain.android.trackedService;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.co.rossbeazley.trackmytrain.android.CanProcessPresentTrackedTrainsCommands;
 import uk.co.rossbeazley.trackmytrain.android.CanTrackService;
 import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 
-public class TrackedServicePresenter {
+public class TrackedServicePresenter implements CanProcessPresentTrackedTrainsCommands {
     private CanTrackService tracking;
 
     private final List<ServiceView> serviceViews;

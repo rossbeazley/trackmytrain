@@ -11,6 +11,7 @@ import uk.co.rossbeazley.trackmytrain.android.TMTBuilder;
 import uk.co.rossbeazley.trackmytrain.android.TrackMyTrain;
 import uk.co.rossbeazley.trackmytrain.android.analytics.Analytics;
 import uk.co.rossbeazley.trackmytrain.android.mobile.analytics.GoogleAnalytics;
+import uk.co.rossbeazley.trackmytrain.android.trackedService.TrackedServicePresenter;
 import uk.co.rossbeazley.trackmytrain.android.trackedService.TrackingAnalytics;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.MessagingTrackingPresenter;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
@@ -51,7 +52,7 @@ public class TrackMyTrainApp extends Application{
 //                    }
 //                })
                 .build();
-        canProcessPresentTrackedTrainsCommands = instance;
+        canProcessPresentTrackedTrainsCommands = new TrackedServicePresenter(instance);
     }
 
 

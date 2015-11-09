@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 import fakes.SlowRequestMapNetworkClient;
 import uk.co.rossbeazley.time.NarrowScheduledExecutorService;
 import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
+import uk.co.rossbeazley.trackmytrain.android.trackedService.TrackedServicePresenter;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.ServiceDetailsRequest;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -25,7 +26,7 @@ public class ServiceTestWithSlowNetwork {
     private String platform;
     private ServiceDetailsRequest serviceDetailsRequest;
     private Map<NetworkClient.Request, String> map;
-    private TrackMyTrain tmt;
+    private TrackedServicePresenter trackedServicePresenter;
     private TrainViewModel expectedTrain;
 
     private ControllableExecutorService ness;
@@ -51,25 +52,28 @@ public class ServiceTestWithSlowNetwork {
 
         ness = new ControllableExecutorService();
 
-        tmt = TestDataBuilder.TMTBuilder()
+        TrackMyTrain tmt2 = TestDataBuilder.TMTBuilder()
                 .with(client)
                 .with(ness)
                 .build();
 
-        tmt.attach(serviceView);
+        trackedServicePresenter = new TrackedServicePresenter(tmt2);
+
+        trackedServicePresenter.attach(serviceView);
     }
 
     @Test
     public void
     stoppingTrackingWhilstARefreshIsHappening() {
-        tmt.watch(serviceId);
+        trackedServicePresenter.watch(serviceId);
         ness.scheduledCommand.run();
-        tmt.unwatch();
+        trackedServicePresenter.unwatch();
         client.completeRequest();
 
         assertThat(serviceView.visibility, is(CapturingServiceView.HIDDEN));
     }
 
+    //REFACTOR
     public static class CapturingServiceView implements ServiceView {
         public static final String HIDDEN = "Hidden";
         public static final String VISIBLE = "Visible";
@@ -98,6 +102,7 @@ public class ServiceTestWithSlowNetwork {
         }
     }
 
+    //REFACTOR
     public static class ControllableExecutorService implements NarrowScheduledExecutorService {
 
 

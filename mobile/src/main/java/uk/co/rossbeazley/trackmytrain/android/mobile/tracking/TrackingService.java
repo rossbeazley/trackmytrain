@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 
+import uk.co.rossbeazley.trackmytrain.android.CanProcessPresentTrackedTrainsCommands;
 import uk.co.rossbeazley.trackmytrain.android.R;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.mobile.TrackMyTrainApp;
@@ -17,6 +18,16 @@ public class TrackingService extends Service {
     public static final int ID = 80085;
     public static final int STOP_TRACKING_ID = 666;
     public static final String STOP_TRACKING_ACTION = "STOP_TRACKING_ACTION";
+    private  CanProcessPresentTrackedTrainsCommands canProcessPresentTrackedTrainsCommands;
+
+    public TrackingService() {
+        this(TrackMyTrainApp.canProcessPresentTrackedTrainsCommands);
+    }
+
+    public TrackingService(CanProcessPresentTrackedTrainsCommands canProcessPresentTrackedTrainsCommands) {
+        super();
+        this.canProcessPresentTrackedTrainsCommands = canProcessPresentTrackedTrainsCommands;
+    }
 
     public static PendingIntent stopTrackingPendingIntent(Context context) {
         return PendingIntent.getService(context, STOP_TRACKING_ID, stopTrackingIntent(context), PendingIntent.FLAG_UPDATE_CURRENT);
@@ -77,7 +88,7 @@ public class TrackingService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         String action = intent.getAction();
         if (STOP_TRACKING_ACTION.equals(action)) {
-            TrackMyTrainApp.instance.unwatch();
+            canProcessPresentTrackedTrainsCommands.unwatch();
         }
         return START_STICKY;
     }

@@ -9,6 +9,7 @@ import java.util.Map;
 import fakes.CapturingServiceView;
 import fakes.ControllableExecutorService;
 import fakes.RequestMapNetworkClient;
+import uk.co.rossbeazley.trackmytrain.android.trackedService.TrackedServicePresenter;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.ServiceDetailsRequest;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -24,7 +25,7 @@ public class TrackingAServiceTest {
     private String platform;
     private ServiceDetailsRequest serviceDetailsRequest;
     private Map<NetworkClient.Request, String> map;
-    private TrackMyTrain tmt;
+    private TrackedServicePresenter tmt;
     private TrainViewModel expectedTrain;
 
     private ControllableExecutorService ness;
@@ -48,10 +49,12 @@ public class TrackingAServiceTest {
 
         ness = new ControllableExecutorService();
 
-        tmt = TestDataBuilder.TMTBuilder()
+        TrackMyTrain tmt2 = TestDataBuilder.TMTBuilder()
                 .with(client)
                 .with(ness)
                 .build();
+
+        tmt = new TrackedServicePresenter(tmt2);
 
         tmt.attach(serviceView);
     }
