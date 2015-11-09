@@ -25,7 +25,7 @@ public class TrackingAServiceTest {
     private String platform;
     private ServiceDetailsRequest serviceDetailsRequest;
     private Map<NetworkClient.Request, String> map;
-    private TrackedServicePresenter tmt;
+    private TrackedServicePresenter trackedServicePresenter;
     private TrainViewModel expectedTrain;
 
     private ControllableExecutorService ness;
@@ -54,20 +54,20 @@ public class TrackingAServiceTest {
                 .with(ness)
                 .build();
 
-        tmt = new TrackedServicePresenter(tmt2);
+        trackedServicePresenter = new TrackedServicePresenter(tmt2);
 
-        tmt.attach(serviceView);
+        trackedServicePresenter.attach(serviceView);
     }
 
     @Test
     public void theOneWhereWeSelectAServiceAndTrackingStarts() {
-        tmt.watch(serviceId);
+        trackedServicePresenter.watch(serviceId);
         assertThat(serviceView.serviceDisplayed, is(expectedTrain));
     }
 
     @Test
     public void theOneWhereAnnounceTrackingStarted() {
-        tmt.watch(serviceId);
+        trackedServicePresenter.watch(serviceId);
         assertThat(serviceView.trackingIs, is(CapturingServiceView.STARTED));
     }
 
@@ -85,7 +85,7 @@ public class TrackingAServiceTest {
 
     @Test
     public void theOneWhereWeAreUpdatedAboutTheSelectedService() {
-        tmt.watch(serviceId);
+        trackedServicePresenter.watch(serviceId);
         serviceView.serviceDisplayed=null;
         final Train train = new Train(serviceId, "20:52", scheduledTime, platform, false);
         final TrainViewModel expectedTrain = new TrainViewModel(train);
@@ -97,7 +97,7 @@ public class TrackingAServiceTest {
 
     @Test
     public void continuedWatchingOfServiceDosntAnnounceTrackingStarted() {
-        tmt.watch(serviceId);
+        trackedServicePresenter.watch(serviceId);
         serviceView.serviceDisplayed = null;
         final Train train = new Train(serviceId, "20:52", scheduledTime, platform, false);
         final TrainViewModel expectedTrain = new TrainViewModel(train);
@@ -112,10 +112,10 @@ public class TrackingAServiceTest {
 
     @Test
     public void theOneWhereWeStopTracking() {
-        tmt.watch(serviceId);
+        trackedServicePresenter.watch(serviceId);
         ness.scheduledCommand.run();
         serviceView.serviceDisplayed=null;
-        tmt.unwatch();
+        trackedServicePresenter.unwatch();
         ness.scheduledCommand.run();
 
         assertThat(serviceView.serviceDisplayed, is(nullValue()));
@@ -123,10 +123,10 @@ public class TrackingAServiceTest {
 
     @Test
     public void theOneWhereTheServiceViewIsHiddenWhenWeStopTracking() {
-        tmt.watch(serviceId);
+        trackedServicePresenter.watch(serviceId);
         ness.scheduledCommand.run();
         serviceView.serviceDisplayed=null;
-        tmt.unwatch();
+        trackedServicePresenter.unwatch();
         ness.scheduledCommand.run();
 
         assertThat(serviceView.visibility, is(serviceView.HIDDEN));
@@ -134,9 +134,9 @@ public class TrackingAServiceTest {
 
     @Test
     public void theOneWhereTheTimerIsStopped() {
-        tmt.watch(serviceId);
+        trackedServicePresenter.watch(serviceId);
         ness.scheduledCommand.run();
-        tmt.unwatch();
+        trackedServicePresenter.unwatch();
         ness.scheduledCommand.run();
 
         assertThat(ness.cancelable, is(nullValue()));

@@ -7,6 +7,7 @@ import java.util.Map;
 
 import fakes.CapturingServiceView;
 import fakes.RequestMapNetworkClient;
+import uk.co.rossbeazley.trackmytrain.android.trackedService.TrackedServicePresenter;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.ServiceDetailsRequest;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -37,10 +38,12 @@ public class TrainAlreadyDeparted {
                 .with(new RequestMapNetworkClient(requestMap))
                 .build();
 
-        final CapturingServiceView serviceView = new CapturingServiceView();
-        tmt.attach(serviceView);
+        TrackedServicePresenter trackedServicePresenter = new TrackedServicePresenter(tmt);
 
-        tmt.watch(serviceId);
+        final CapturingServiceView serviceView = new CapturingServiceView();
+        trackedServicePresenter.attach(serviceView);
+
+        trackedServicePresenter.watch(serviceId);
 
         assertThat(serviceView.visibility, is(CapturingServiceView.HIDDEN));
 
