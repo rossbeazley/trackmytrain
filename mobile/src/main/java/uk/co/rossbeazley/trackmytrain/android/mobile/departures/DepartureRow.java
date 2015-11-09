@@ -11,9 +11,9 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import uk.co.rossbeazley.trackmytrain.android.CanProcessPresentTrackedTrainsCommands;
 import uk.co.rossbeazley.trackmytrain.android.R;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
-import uk.co.rossbeazley.trackmytrain.android.mobile.TrackMyTrainApp;
 
 @TargetApi(21)
 public class DepartureRow extends LinearLayout {
@@ -73,16 +73,10 @@ public class DepartureRow extends LinearLayout {
         estimatedTime = (TextView) findViewById(R.id.estimatedtime);
         platform = (TextView) findViewById(R.id.platform);
         trackButton = (Button) findViewById(R.id.trackbutton);
-        trackButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TrackMyTrainApp.instance.watch(((String) v.getTag()));
-            }
-        });
     }
 
 
-    public DepartureRow bind(TrainViewModel trainViewModel, TrainViewModel selectedTrain) {
+    public DepartureRow bind(TrainViewModel trainViewModel, TrainViewModel selectedTrain, final CanProcessPresentTrackedTrainsCommands canProcessPresentTrackedTrainsCommands) {
         scheduledTime.setText(trainViewModel.scheduledTime());
         estimatedTime.setText(trainViewModel.estimatedTime());
         platform.setText(trainViewModel.platform());
@@ -90,6 +84,14 @@ public class DepartureRow extends LinearLayout {
         final int color = loadColourInt(trainViewModel.isLate() ? R.color.dark_yellow : R.color.dark_green );
         onTimeIndicator.setBackgroundColor(color);
         int vis = trainViewModel.equals(selectedTrain) ? VISIBLE : GONE;
+
+        trackButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                canProcessPresentTrackedTrainsCommands.watch(((String) v.getTag()));
+            }
+        });
+
         trackButton.setVisibility(vis);
         return this;
     }

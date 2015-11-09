@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 
 import com.google.android.gms.analytics.Tracker;
 
+import uk.co.rossbeazley.trackmytrain.android.CanProcessPresentTrackedTrainsCommands;
 import uk.co.rossbeazley.trackmytrain.android.TMTBuilder;
 import uk.co.rossbeazley.trackmytrain.android.TrackMyTrain;
 import uk.co.rossbeazley.trackmytrain.android.analytics.Analytics;
@@ -20,6 +21,7 @@ import uk.co.rossbeazley.trackmytrain.android.mobile.wear.MessageService;
 public class TrackMyTrainApp extends Application{
 
     public static TrackMyTrain instance;
+    public static CanProcessPresentTrackedTrainsCommands canProcessPresentTrackedTrainsCommands;
 
     public static MessageService messageService;
 
@@ -49,6 +51,7 @@ public class TrackMyTrainApp extends Application{
 //                    }
 //                })
                 .build();
+        canProcessPresentTrackedTrainsCommands = instance;
     }
 
 

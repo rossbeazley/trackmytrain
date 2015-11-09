@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.inputmethod.InputMethodManager;
 
+import uk.co.rossbeazley.trackmytrain.android.CanProcessPresentTrackedTrainsCommands;
 import uk.co.rossbeazley.trackmytrain.android.R;
 import uk.co.rossbeazley.trackmytrain.android.mobile.departures.DeparturesScreen;
 public class Departures extends Activity implements FindsView {
@@ -16,7 +17,8 @@ public class Departures extends Activity implements FindsView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.servicedetails);
         final InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        departuresScreen = new DeparturesScreen(this, inputMethodManager);
+        CanProcessPresentTrackedTrainsCommands canProcessPresentTrackedTrainsCommands = TrackMyTrainApp.canProcessPresentTrackedTrainsCommands;
+        departuresScreen = new DeparturesScreen(this, inputMethodManager, canProcessPresentTrackedTrainsCommands);
     }
 
     @Override

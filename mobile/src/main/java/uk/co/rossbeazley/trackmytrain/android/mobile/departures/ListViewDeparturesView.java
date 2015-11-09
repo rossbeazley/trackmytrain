@@ -5,6 +5,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import uk.co.rossbeazley.trackmytrain.android.CanProcessPresentTrackedTrainsCommands;
 import uk.co.rossbeazley.trackmytrain.android.TMTError;
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesView;
 import uk.co.rossbeazley.trackmytrain.android.R;
@@ -15,14 +16,15 @@ import uk.co.rossbeazley.trackmytrain.android.mobile.FindsView;
 class ListViewDeparturesView implements DeparturesView {
     private final ListView listView;
     private final View loading;
+    private final CanProcessPresentTrackedTrainsCommands canProcessPresentTrackedTrainsCommands;
     private DeparturesViewModel trains;
 
-    public ListViewDeparturesView(FindsView findsView) {
+    public ListViewDeparturesView(FindsView findsView, CanProcessPresentTrackedTrainsCommands canProcessPresentTrackedTrainsCommands) {
         this((ListView) findsView.findViewById(R.id.departurelist),
-                findsView.findViewById(R.id.departurelist_loading));
+                findsView.findViewById(R.id.departurelist_loading), canProcessPresentTrackedTrainsCommands);
     }
 
-    public ListViewDeparturesView(final ListView listView, View loading) {
+    public ListViewDeparturesView(final ListView listView, View loading, CanProcessPresentTrackedTrainsCommands canProcessPresentTrackedTrainsCommands) {
         this.listView = listView;
         this.loading = loading;
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -34,6 +36,7 @@ class ListViewDeparturesView implements DeparturesView {
                 ((TrainViewModelListAdapter) parent.getAdapter()).notifyDataSetChanged();
             }
         });
+        this.canProcessPresentTrackedTrainsCommands = canProcessPresentTrackedTrainsCommands;
     }
 
     @Override
@@ -44,7 +47,7 @@ class ListViewDeparturesView implements DeparturesView {
             public void run() {
                 loading.setVisibility(View.GONE);
                 listView.setVisibility(View.VISIBLE);
-                listView.setAdapter(new TrainViewModelListAdapter(trains));
+                listView.setAdapter(new TrainViewModelListAdapter(trains, canProcessPresentTrackedTrainsCommands));
             }
         };
 
