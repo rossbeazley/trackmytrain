@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQuery;
+import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesPresenter;
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesQueryView;
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesQueryViewModel;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
@@ -15,7 +16,7 @@ import static org.junit.Assert.fail;
 
 public class RemembersDeparturesQuery {
 
-    private TrackMyTrain tmt;
+    private DeparturesPresenter departuresPresenter;
     private Direction expectedDirection;
     private Station expectedStation;
     private KeyValuePersistence keyValuePersistence;
@@ -23,19 +24,22 @@ public class RemembersDeparturesQuery {
     @Before
     public void setUp() throws Exception {
         keyValuePersistence = new HashMapKeyValuePersistence();
-        tmt = TestDataBuilder.TMTBuilder()
+        TrackMyTrain tmt = TestDataBuilder.TMTBuilder()
                 .with(keyValuePersistence)
                 .build();
+
+         departuresPresenter = new DeparturesPresenter(tmt);
+
         expectedDirection = Direction.to(new Station("Salford Crescent","SLD"));
         expectedStation = new Station("Chorley","CRL");
 
-        tmt.departures(expectedStation, expectedDirection);
+        departuresPresenter.departures(expectedStation, expectedDirection);
     }
 
     @Test
     public void theOneWhereTheDirectionIsRemembered() {
         CapturingDeparturesQueryView departuresQueryView = new CapturingDeparturesQueryView();
-        tmt.attach(departuresQueryView);
+        departuresPresenter.attach(departuresQueryView);
 
         assertThat(departuresQueryView.direction, is(expectedDirection));
 
@@ -44,7 +48,7 @@ public class RemembersDeparturesQuery {
     @Test
     public void theOneWhereTheAtIsRemembered() {
         CapturingDeparturesQueryView departuresQueryView = new CapturingDeparturesQueryView();
-        tmt.attach(departuresQueryView);
+        departuresPresenter.attach(departuresQueryView);
 
         assertThat(departuresQueryView.at, is(expectedStation));
     }
@@ -53,12 +57,8 @@ public class RemembersDeparturesQuery {
     @Test
     public void theOneWhereTheDirectionIsRememberedBetweenSessions() {
 
-        tmt = TestDataBuilder.TMTBuilder()
-                .with(keyValuePersistence)
-                .build();
-
         CapturingDeparturesQueryView departuresQueryView = new CapturingDeparturesQueryView();
-        tmt.attach(departuresQueryView);
+        departuresPresenter.attach(departuresQueryView);
 
         assertThat(departuresQueryView.direction, is(expectedDirection));
 
@@ -68,12 +68,8 @@ public class RemembersDeparturesQuery {
     @Test
     public void theOneWhereTheAtIsRememberedAcrossSessions() {
 
-        tmt = TestDataBuilder.TMTBuilder()
-                .with(keyValuePersistence)
-                .build();
-
         CapturingDeparturesQueryView departuresQueryView = new CapturingDeparturesQueryView();
-        tmt.attach(departuresQueryView);
+        departuresPresenter.attach(departuresQueryView);
 
         assertThat(departuresQueryView.at, is(expectedStation));
     }
@@ -81,7 +77,7 @@ public class RemembersDeparturesQuery {
     @Test
     public void generatesADepartureQueryFromTheViewModel() {
         CapturingDeparturesQueryView departuresQueryView = new CapturingDeparturesQueryView();
-        tmt.attach(departuresQueryView);
+        departuresPresenter.attach(departuresQueryView);
 
         DepartureQuery expectedQuery = new DepartureQuery(expectedStation,expectedDirection);
         assertThat(departuresQueryView.departuresQueryViewModel.departuresQuery(), is(expectedQuery));
@@ -90,7 +86,7 @@ public class RemembersDeparturesQuery {
     @Test
     public void swapsStationsInQuery() {
         CapturingDeparturesQueryView departuresQueryView = new CapturingDeparturesQueryView();
-        tmt.attach(departuresQueryView);
+        departuresPresenter.attach(departuresQueryView);
 
         departuresQueryView.departuresQueryViewModel.swapStations();
 

@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
+import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesPresenter;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -29,11 +30,13 @@ public class DeparturesErrorTest {
                 })
                 .build();
 
-        tmt.attach(departuresView);
+        DeparturesPresenter departuresPresenter = new DeparturesPresenter(tmt);
+
+        departuresPresenter.attach(departuresView);
 
         Station at = fromStation;
         Direction direction = Direction.to(toStation);
-        tmt.departures(at, direction);
+        departuresPresenter.departures(at, direction);
 
         assertThat(departuresView.error, is(new TMTError("404")));
     }

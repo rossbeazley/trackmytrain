@@ -9,6 +9,7 @@ import com.google.android.gms.analytics.Tracker;
 import uk.co.rossbeazley.trackmytrain.android.TMTBuilder;
 import uk.co.rossbeazley.trackmytrain.android.TrackMyTrain;
 import uk.co.rossbeazley.trackmytrain.android.analytics.Analytics;
+import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesPresenter;
 import uk.co.rossbeazley.trackmytrain.android.mobile.analytics.GoogleAnalytics;
 import uk.co.rossbeazley.trackmytrain.android.trackedService.TrackedServicePresenter;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.MessagingTrackingPresenter;
@@ -21,6 +22,7 @@ public class TrackMyTrainApp extends Application{
 
     public static TrackMyTrain instance;
     public static TrackedServicePresenter trackedServicePresenter;
+    public static DeparturesPresenter departuresPresenter;
 
     public static MessageService messageService;
 
@@ -51,6 +53,7 @@ public class TrackMyTrainApp extends Application{
 //                })
                 .build();
         trackedServicePresenter = new TrackedServicePresenter(instance);
+        departuresPresenter = new DeparturesPresenter(instance);
     }
 
 

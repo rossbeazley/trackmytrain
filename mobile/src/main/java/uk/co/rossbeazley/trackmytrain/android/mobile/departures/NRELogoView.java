@@ -30,7 +30,7 @@ class NRELogoView implements DeparturesView {
         final ViewGroup viewById = (ViewGroup) (findsView.findViewById(R.id.servicedetails));
         viewById.removeView(nreLogo);
         viewById.removeView(findsView.findViewById(R.id.powered_by_nre_spacer));
-        TrackMyTrainApp.instance.detach(this);
+        TrackMyTrainApp.departuresPresenter.detach(this);
     }
 
     @Override

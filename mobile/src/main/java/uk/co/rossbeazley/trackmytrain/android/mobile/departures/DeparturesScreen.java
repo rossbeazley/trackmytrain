@@ -14,15 +14,15 @@ public class DeparturesScreen {
     public DeparturesScreen(final FindsView findsView, InputMethodManager inputMethodManager, CanProcessPresentTrackedTrainsCommands canProcessPresentTrackedTrainsCommands) {
         departureView = new ListViewDeparturesView(findsView, canProcessPresentTrackedTrainsCommands);
         departuresQueryView = new AndroidDeparturesQueryView(findsView, inputMethodManager);
-        TrackMyTrainApp.instance.attach(departureView);
-        TrackMyTrainApp.instance.attach(departuresQueryView);
-        TrackMyTrainApp.instance.attach(new NRELogoView(findsView));
+        TrackMyTrainApp.departuresPresenter.attach(departureView);
+        TrackMyTrainApp.departuresPresenter.attach(departuresQueryView);
+        TrackMyTrainApp.departuresPresenter.attach(new NRELogoView(findsView));
         TrackMyTrainApp.trackedServicePresenter.attach(new TrackedServiceView(findsView, canProcessPresentTrackedTrainsCommands));
     }
 
     public void tearDown() {
-        TrackMyTrainApp.instance.detach(departureView);
-        TrackMyTrainApp.instance.detach(departuresQueryView);
+        TrackMyTrainApp.departuresPresenter.detach(departureView);
+        TrackMyTrainApp.departuresPresenter.detach(departuresQueryView);
         departureView=null;
         departuresQueryView=null;
     }

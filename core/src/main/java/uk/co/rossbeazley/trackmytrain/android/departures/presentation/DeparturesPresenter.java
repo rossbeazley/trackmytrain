@@ -3,6 +3,7 @@ package uk.co.rossbeazley.trackmytrain.android.departures.presentation;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import uk.co.rossbeazley.trackmytrain.android.CanPresentDepartureQueries;
 import uk.co.rossbeazley.trackmytrain.android.CanQueryDepartures;
 import uk.co.rossbeazley.trackmytrain.android.TMTError;
 import uk.co.rossbeazley.trackmytrain.android.Train;
@@ -11,7 +12,7 @@ import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQuery;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
 
-public class DeparturesPresenter {
+public class DeparturesPresenter implements CanPresentDepartureQueries {
 
     private List<DeparturesView> departuresViews;
 
@@ -61,6 +62,11 @@ public class DeparturesPresenter {
     public void departures(Station at, Direction direction) {
         showLoading();
         canQueryDepartures.departures(at, direction, resultCallback);
+    }
+
+    @Override
+    public void departures(DepartureQuery query) {
+        departures(query.at(), query.direction());
     }
 
     void departuresError(TMTError tmtError) {

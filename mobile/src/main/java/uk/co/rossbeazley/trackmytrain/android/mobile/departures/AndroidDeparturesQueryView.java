@@ -98,7 +98,7 @@ class AndroidDeparturesQueryView implements DeparturesQueryView {
     }
 
     void dispatchQuery() {
-        TrackMyTrainApp.instance.departures(departuresQueryViewModel.departuresQuery());
+        TrackMyTrainApp.departuresPresenter.departures(departuresQueryViewModel.departuresQuery());
     }
 
     @Override

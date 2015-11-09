@@ -14,7 +14,7 @@ import uk.co.rossbeazley.trackmytrain.android.trackedService.TrackedServicePrese
 import uk.co.rossbeazley.trackmytrain.android.trackedService.Tracking;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
 
-public class TrackMyTrain implements  CanQueryDepartures, CanTrackService, CanPresentDepartureQueries{
+public class TrackMyTrain implements  CanTrackService, CanQueryDepartures {
 
     private final Tracking tracking;
 
@@ -46,39 +46,6 @@ public class TrackMyTrain implements  CanQueryDepartures, CanTrackService, CanPr
     public DepartureQuery lastQuery() {
         return departures.lastQuery();
     }
-
-    //ui
-    @Override
-    public void departures(Station at, Direction direction) {
-        departuresPresenter.departures(at, direction);
-    }
-
-    @Override
-    public void departures(DepartureQuery query) {
-        departuresPresenter.departures(query.at(), query.direction());
-    }
-
-    @Override
-    public void attach(DeparturesView departureView) {
-        departuresPresenter.attach(departureView);
-    }
-
-    @Override
-    public void detach(DeparturesView departuresView) {
-        departuresPresenter.detach(departuresView);
-    }
-
-    @Override
-    public void attach(DeparturesQueryView departuresQueryView) {
-        departuresPresenter.attach(departuresQueryView);
-    }
-
-    @Override
-    public void detach(DeparturesQueryView departuresQueryView) {
-        departuresPresenter.detach(departuresQueryView);
-    }
-
-
 
 //tracking
     //core
