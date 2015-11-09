@@ -71,14 +71,6 @@ public class TrackingAServiceAnalyticsAndPerfMonitoring {
     }
     /**
      *
-     public void trackingStarted() {
-     tracker.pageView("Tracking_Loading");
-     }
-
-     @Override
-     public void trackedServiceUpdated(Train train) {
-     tracker.pageView("Tracking_Result");
-     }
 
      @Override
      public void trackingStopped() {
@@ -104,6 +96,20 @@ public class TrackingAServiceAnalyticsAndPerfMonitoring {
         networkClient.completeRequestWith(TestDataBuilder.anyTrainJson());
 
         String expected = "Tracking_Result";
+        assertThat(tracker.pageViews, hasItem(expected));
+    }
+
+    @Test
+    public void
+    trackingIsStoppedPageViewRecorded() {
+
+        tmt.watch(TestDataBuilder.anyTrainId());
+
+        networkClient.completeRequestWith(TestDataBuilder.anyTrainJson());
+
+        tmt.unwatch();
+
+        String expected = "Tracking_Stopped";
         assertThat(tracker.pageViews, hasItem(expected));
     }
 

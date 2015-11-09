@@ -54,7 +54,7 @@ public class TestDataBuilder {
                 .with(new NarrowScheduledExecutorService() {
                     @Override
                     public Cancelable scheduleAtFixedRate(Runnable command, long period, TimeUnit unit) {
-                        return null;
+                        return Cancelable.NULL;
                     }
                 });
     }
