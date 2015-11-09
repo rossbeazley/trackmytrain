@@ -81,7 +81,7 @@ public class TrackingAServiceAnalyticsAndPerfMonitoring {
     public void
     trackingStartsPageViewRecorded() {
 
-        tmt.watch(TestDataBuilder.anyTrainId());
+        tmt.watchService(TestDataBuilder.anyTrainId());
 
         String expected = "Tracking_Loading";
         assertThat(tracker.pageViews, hasItem(expected));
@@ -91,7 +91,7 @@ public class TrackingAServiceAnalyticsAndPerfMonitoring {
     public void
     trackedServiceIsUpdatedPageViewRecorded() {
 
-        tmt.watch(TestDataBuilder.anyTrainId());
+        tmt.watchService(TestDataBuilder.anyTrainId());
 
         networkClient.completeRequestWith(TestDataBuilder.anyTrainJson());
 
@@ -103,11 +103,11 @@ public class TrackingAServiceAnalyticsAndPerfMonitoring {
     public void
     trackingIsStoppedPageViewRecorded() {
 
-        tmt.watch(TestDataBuilder.anyTrainId());
+        tmt.watchService(TestDataBuilder.anyTrainId());
 
         networkClient.completeRequestWith(TestDataBuilder.anyTrainJson());
 
-        tmt.unwatch();
+        tmt.unwatchService();
 
         String expected = "Tracking_Stopped";
         assertThat(tracker.pageViews, hasItem(expected));
