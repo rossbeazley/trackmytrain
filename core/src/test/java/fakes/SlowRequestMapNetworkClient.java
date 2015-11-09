@@ -29,6 +29,9 @@ public class SlowRequestMapNetworkClient implements NetworkClient {
             response.ok(mapOfRequestToString.get(request));
         }
     }
+    public void completeRequestWith(String response) {
+        this.response.ok(response);
+    }
 
     private boolean thisClientRespondsToThisRequest(Request request) {
         return mapOfRequestToString.containsKey(request);

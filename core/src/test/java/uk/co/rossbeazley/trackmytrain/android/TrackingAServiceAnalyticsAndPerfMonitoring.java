@@ -95,6 +95,19 @@ public class TrackingAServiceAnalyticsAndPerfMonitoring {
         assertThat(tracker.pageViews, hasItem(expected));
     }
 
+    @Test
+    public void
+    trackedServiceIsUpdatedPageViewRecorded() {
+
+        tmt.watch(TestDataBuilder.anyTrainId());
+
+        networkClient.completeRequestWith(TestDataBuilder.anyTrainJson());
+
+        String expected = "Tracking_Result";
+        assertThat(tracker.pageViews, hasItem(expected));
+    }
+
+
 
     private static class NullDepartureQueryListener implements CanQueryDepartures.DepartureQueryListener {
         @Override

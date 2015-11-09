@@ -61,7 +61,7 @@ public class TestDataBuilder {
 
     public static Station anyStation() {
         List<Station> list = new Stations().list();
-        return list.get((int) (Math.random()*list.size()));
+        return list.get((int) (Math.random() * list.size()));
     }
 
     public static Direction anyDirection() {
@@ -147,4 +147,7 @@ public class TestDataBuilder {
         return new TrainViewModel(anyTrain());
     }
 
+    public static String anyTrainJson() {
+        return jsonForTrain(anyTrain());
+    }
 }
