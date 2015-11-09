@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 import uk.co.rossbeazley.time.NarrowScheduledExecutorService;
 import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
 import fakes.RequestMapNetworkClient;
+import uk.co.rossbeazley.trackmytrain.android.trackedService.TrackedServicePresenter;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.ServiceDetailsRequest;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -21,9 +22,9 @@ public class LateObservationOfServiceTest {
     private String serviceId;
 
     private ServiceDetailsRequest serviceDetailsRequest;
-    private TrackMyTrain tmt;
     private TrainViewModel expectedTrain;
     private TrainViewModel presentedTrain;
+    private TrackedServicePresenter trackedServicePresenter;
 
     @Before
     public void setUp() throws Exception {
@@ -53,18 +54,19 @@ public class LateObservationOfServiceTest {
             }
         };
 
-        tmt = TestDataBuilder.TMTBuilder()
+        TrackMyTrain tmt = TestDataBuilder.TMTBuilder()
                 .with(client)
                 .with(ness)
                 .build();
 
+        trackedServicePresenter = new TrackedServicePresenter(tmt);
     }
 
     @Test
     public void lateObservationOfWatchedTrain() {
-        tmt.watch(serviceId);
+        trackedServicePresenter.watch(serviceId);
 
-        tmt.attach(new ServiceView() {
+        trackedServicePresenter.attach(new ServiceView() {
             @Override
             public void present(TrainViewModel train) {
                 presentedTrain = train;
