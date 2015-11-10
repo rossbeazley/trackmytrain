@@ -1,27 +1,24 @@
-package uk.co.rossbeazley.trackmytrain.android.departures.presentation;
+package uk.co.rossbeazley.trackmytrain.android;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
-import fakes.JournalingDepartureQueryListener;
-import uk.co.rossbeazley.trackmytrain.android.HashMapKeyValuePersistence;
-import uk.co.rossbeazley.trackmytrain.android.KeyValuePersistence;
-import uk.co.rossbeazley.trackmytrain.android.TestDataBuilder;
-import uk.co.rossbeazley.trackmytrain.android.TrackMyTrain;
 import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQuery;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
+import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesPresenter;
+import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesQueryView;
+import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesQueryViewModel;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 public class RemembersDeparturesQuery {
 
+    private DeparturesPresenter departuresPresenter;
     private Direction expectedDirection;
     private Station expectedStation;
     private KeyValuePersistence keyValuePersistence;
-    private DepartureQuery actualQuery;
 
     @Before
     public void setUp() throws Exception {
@@ -30,25 +27,28 @@ public class RemembersDeparturesQuery {
                 .with(keyValuePersistence)
                 .build();
 
+        departuresPresenter = new DeparturesPresenter(tmt);
+
         expectedDirection = Direction.to(new Station("Salford Crescent","SLD"));
         expectedStation = new Station("Chorley","CRL");
 
-
-        actualQuery = tmt.lastQuery();
+        departuresPresenter.departures(expectedStation, expectedDirection);
     }
 
 
-    @Test @Ignore("TODO")
+    @Test
     public void generatesADepartureQueryFromTheViewModel() {
         CapturingDeparturesQueryView departuresQueryView = new CapturingDeparturesQueryView();
+        departuresPresenter.attach(departuresQueryView);
 
         DepartureQuery expectedQuery = new DepartureQuery(expectedStation,expectedDirection);
         assertThat(departuresQueryView.departuresQueryViewModel.departuresQuery(), is(expectedQuery));
     }
 
-    @Test @Ignore("TODO")
+    @Test
     public void swapsStationsInQuery() {
         CapturingDeparturesQueryView departuresQueryView = new CapturingDeparturesQueryView();
+        departuresPresenter.attach(departuresQueryView);
 
         departuresQueryView.departuresQueryViewModel.swapStations();
 

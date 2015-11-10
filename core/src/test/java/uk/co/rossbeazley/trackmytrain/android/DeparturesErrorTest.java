@@ -1,5 +1,6 @@
 package uk.co.rossbeazley.trackmytrain.android;
 
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -13,14 +14,17 @@ import static org.junit.Assert.assertThat;
 public class DeparturesErrorTest {
 
 
+    private Station fromStation;
+    private Station toStation;
+    private TrackMyTrain tmt;
+    private Station at;
+    private Direction direction;
 
-    @Test
-    public void networkErrorWhenRequestingServiceDetails() {
-
-        final Station fromStation = TestDataBuilder.anyStation();
-        final Station toStation = TestDataBuilder.anyStation();
-
-        TrackMyTrain tmt = TestDataBuilder.TMTBuilder()
+    @Before
+    public void setUp() throws Exception {
+        fromStation = TestDataBuilder.anyStation();
+        toStation = TestDataBuilder.anyStation();
+        tmt = TestDataBuilder.TMTBuilder()
                 .with(new NetworkClient() {
                     @Override
                     public void get(Request request, Response response) {
@@ -28,20 +32,30 @@ public class DeparturesErrorTest {
                     }
                 })
                 .build();
+        at = fromStation;
+        direction = Direction.to(toStation);
+    }
 
-        Station at = fromStation;
-        Direction direction = Direction.to(toStation);
+    @Test
+    public void networkErrorWhenRequestingServiceDetails() {
+
         JournalingDepartureQueryListener journalingDepartureQueryListener = new JournalingDepartureQueryListener();
         tmt.departures(at, direction, journalingDepartureQueryListener);
 
         assertThat(journalingDepartureQueryListener.errors, hasItem(new TMTError("404")));
     }
 
-    @Test @Ignore("TODO")
+    @Test
     public void
     networkErrorThroughObservationOfTMTWhenRequestingServiceDetails()
     {
 
+        JournalingDepartureQueryListener departureQueryListener = new JournalingDepartureQueryListener();
+        tmt.addDepartureQueryListener(departureQueryListener);
+
+        tmt.departures(at, direction, new JournalingDepartureQueryListener());
+
+        assertThat(departureQueryListener.errors, hasItem(new TMTError("404")));
     }
 
 }
