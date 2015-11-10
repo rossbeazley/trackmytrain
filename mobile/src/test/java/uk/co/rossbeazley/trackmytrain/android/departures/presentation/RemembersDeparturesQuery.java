@@ -1,17 +1,17 @@
-package uk.co.rossbeazley.trackmytrain.android;
+package uk.co.rossbeazley.trackmytrain.android.departures.presentation;
 
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import java.util.List;
-
 import fakes.JournalingDepartureQueryListener;
+import uk.co.rossbeazley.trackmytrain.android.HashMapKeyValuePersistence;
+import uk.co.rossbeazley.trackmytrain.android.KeyValuePersistence;
+import uk.co.rossbeazley.trackmytrain.android.TestDataBuilder;
+import uk.co.rossbeazley.trackmytrain.android.TrackMyTrain;
 import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQuery;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
-import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesQueryView;
-import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesQueryViewModel;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -33,41 +33,30 @@ public class RemembersDeparturesQuery {
         expectedDirection = Direction.to(new Station("Salford Crescent","SLD"));
         expectedStation = new Station("Chorley","CRL");
 
-        tmt.departures(expectedStation,expectedDirection,new JournalingDepartureQueryListener());
 
         actualQuery = tmt.lastQuery();
     }
 
-    @Test
-    public void theOneWhereTheDirectionIsRemembered() {
-        assertThat(actualQuery.direction(), is(expectedDirection));
 
+    @Test @Ignore("TODO")
+    public void generatesADepartureQueryFromTheViewModel() {
+        CapturingDeparturesQueryView departuresQueryView = new CapturingDeparturesQueryView();
+
+        DepartureQuery expectedQuery = new DepartureQuery(expectedStation,expectedDirection);
+        assertThat(departuresQueryView.departuresQueryViewModel.departuresQuery(), is(expectedQuery));
     }
 
-    @Test
-    public void theOneWhereTheAtIsRemembered() {
+    @Test @Ignore("TODO")
+    public void swapsStationsInQuery() {
+        CapturingDeparturesQueryView departuresQueryView = new CapturingDeparturesQueryView();
 
-        assertThat(actualQuery.at(), is(expectedStation));
-    }
+        departuresQueryView.departuresQueryViewModel.swapStations();
 
+        Station swappedStation = expectedDirection.station();
+        Direction swappedDirection = Direction.to(expectedStation);
 
-    @Test
-    public void theOneWhereTheDirectionIsRememberedBetweenSessions() {
-        TrackMyTrain tmt = TestDataBuilder.TMTBuilder()
-                .with(keyValuePersistence)
-                .build();
-
-        assertThat(tmt.lastQuery().direction(), is(expectedDirection));
-
-    }
-
-
-    @Test
-    public void theOneWhereTheAtIsRememberedAcrossSessions() {
-        TrackMyTrain tmt = TestDataBuilder.TMTBuilder()
-                .with(keyValuePersistence)
-                .build();
-        assertThat(tmt.lastQuery().at(), is(expectedStation));
+        DepartureQuery expectedQuery = new DepartureQuery(swappedStation,swappedDirection);
+        assertThat(departuresQueryView.departuresQueryViewModel.departuresQuery(), is(expectedQuery));
     }
 
 

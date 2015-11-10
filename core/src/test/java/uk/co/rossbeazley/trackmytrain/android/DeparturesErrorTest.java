@@ -1,12 +1,13 @@
 package uk.co.rossbeazley.trackmytrain.android;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
+import fakes.JournalingDepartureQueryListener;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
-import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesPresenter;
 
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.hasItem;
 import static org.junit.Assert.assertThat;
 
 public class DeparturesErrorTest {
@@ -15,8 +16,6 @@ public class DeparturesErrorTest {
 
     @Test
     public void networkErrorWhenRequestingServiceDetails() {
-
-        CapturingDeparturesView departuresView = new CapturingDeparturesView();
 
         final Station fromStation = TestDataBuilder.anyStation();
         final Station toStation = TestDataBuilder.anyStation();
@@ -30,15 +29,19 @@ public class DeparturesErrorTest {
                 })
                 .build();
 
-        DeparturesPresenter departuresPresenter = new DeparturesPresenter(tmt);
-
-        departuresPresenter.attach(departuresView);
-
         Station at = fromStation;
         Direction direction = Direction.to(toStation);
-        departuresPresenter.departures(at, direction);
+        JournalingDepartureQueryListener journalingDepartureQueryListener = new JournalingDepartureQueryListener();
+        tmt.departures(at, direction, journalingDepartureQueryListener);
 
-        assertThat(departuresView.error, is(new TMTError("404")));
+        assertThat(journalingDepartureQueryListener.errors, hasItem(new TMTError("404")));
+    }
+
+    @Test @Ignore("TODO")
+    public void
+    networkErrorThroughObservationOfTMTWhenRequestingServiceDetails()
+    {
+
     }
 
 }

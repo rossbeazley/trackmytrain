@@ -1,16 +1,11 @@
 package uk.co.rossbeazley.trackmytrain.android;
 
 import uk.co.rossbeazley.time.NarrowScheduledExecutorService;
-import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQuery;
 import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQueries;
-import uk.co.rossbeazley.trackmytrain.android.departures.StationRepository;
-import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesPresenter;
-import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesQueryView;
-import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesView;
+import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQuery;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
-import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
-import uk.co.rossbeazley.trackmytrain.android.trackedService.TrackedServicePresenter;
+import uk.co.rossbeazley.trackmytrain.android.departures.StationRepository;
 import uk.co.rossbeazley.trackmytrain.android.trackedService.Tracking;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
 
@@ -18,7 +13,6 @@ public class TrackMyTrain implements  CanTrackService, CanQueryDepartures {
 
     private final Tracking tracking;
 
-    private DeparturesPresenter departuresPresenter;
     private final DepartureQueries departures;
 
     public TrackMyTrain(NetworkClient networkClient, NarrowScheduledExecutorService executorService, KeyValuePersistence keyValuePersistence) {
@@ -27,7 +21,6 @@ public class TrackMyTrain implements  CanTrackService, CanQueryDepartures {
 
 
         this.departures = new DepartureQueries(trainRepository, new StationRepository(keyValuePersistence));
-        this.departuresPresenter = new DeparturesPresenter(departures);
 
     }
 
