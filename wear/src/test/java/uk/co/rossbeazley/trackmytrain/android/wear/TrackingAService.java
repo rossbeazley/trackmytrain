@@ -2,7 +2,6 @@ package uk.co.rossbeazley.trackmytrain.android.wear;
 
 import org.junit.Test;
 
-import fakes.CapturingServiceView;
 import uk.co.rossbeazley.trackmytrain.android.TestDataBuilder;
 import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;

@@ -2,7 +2,6 @@ package uk.co.rossbeazley.trackmytrain.android.wear;
 
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.WearAppSingleton;
-import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
 
 class ExitWearApp implements ServiceView {
     private final CanFinishWearApp canFinishWearApp;
