@@ -5,7 +5,7 @@ import org.junit.Test;
 import java.util.Arrays;
 
 import uk.co.rossbeazley.trackmytrain.android.CanQueryDepartures;
-import uk.co.rossbeazley.trackmytrain.android.CapturingDeparturesView;
+import fakes.CapturingDeparturesView;
 import uk.co.rossbeazley.trackmytrain.android.TestDataBuilder;
 import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;

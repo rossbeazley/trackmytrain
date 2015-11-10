@@ -1,5 +1,6 @@
-package uk.co.rossbeazley.trackmytrain.android;
+package fakes;
 
+import uk.co.rossbeazley.trackmytrain.android.TMTError;
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesView;
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesViewModel;
 
