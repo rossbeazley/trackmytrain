@@ -3,10 +3,8 @@ package uk.co.rossbeazley.trackmytrain.android.wear;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import uk.co.rossbeazley.trackmytrain.android.CanPresentTrackedTrains;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
-import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
 
 /**
  * Created by beazlr02 on 02/07/2015.

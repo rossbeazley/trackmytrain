@@ -5,7 +5,6 @@ import android.widget.TextView;
 import uk.co.rossbeazley.trackmytrain.android.R;
 import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.WearAppSingleton;
-import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
 
 /**
  * Created by beazlr02 on 13/07/2015.

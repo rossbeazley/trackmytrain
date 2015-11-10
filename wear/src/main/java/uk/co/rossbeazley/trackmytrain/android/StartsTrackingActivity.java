@@ -2,7 +2,7 @@ package uk.co.rossbeazley.trackmytrain.android;
 
 import android.content.Context;
 
-import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
+import uk.co.rossbeazley.trackmytrain.android.wear.ServiceView;
 import uk.co.rossbeazley.trackmytrain.android.wear.TrackingActivity;
 
 //TODO write a connected test for this
