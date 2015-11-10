@@ -1,17 +1,12 @@
 package uk.co.rossbeazley.trackmytrain.android;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
-
-import java.util.List;
 
 import fakes.JournalingDepartureQueryListener;
 import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQuery;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
-import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesQueryView;
-import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesQueryViewModel;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -70,18 +65,4 @@ public class RemembersDeparturesQuery {
         assertThat(tmt.lastQuery().at(), is(expectedStation));
     }
 
-
-    private static class CapturingDeparturesQueryView implements DeparturesQueryView {
-        public Station at;
-        public Direction direction;
-        public DeparturesQueryViewModel departuresQueryViewModel;
-
-        @Override
-        public void present(DeparturesQueryViewModel departuresQueryViewModel) {
-            this.departuresQueryViewModel = departuresQueryViewModel;
-            this.at = departuresQueryViewModel.getAt();
-            this.direction = departuresQueryViewModel.getDirection();
-        }
-
-    }
 }
