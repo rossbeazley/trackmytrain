@@ -17,7 +17,7 @@ public class TrainAlreadyDeparted {
 
     @Test
     public void
-    trackingADepartedTrain() {
+    trackingADepartedTrain_trackingStops() {
 
         final String serviceId = "1";
 
@@ -25,7 +25,7 @@ public class TrainAlreadyDeparted {
         Map<NetworkClient.Request, String> requestMap = new HashMap<>();
         String resultJson;
         resultJson = "{\n" +
-                "\"id\": \"1\",\n" +
+                "\"id\": \"" + serviceId + "\",\n" +
                 "\"scheduledTime\": \"Departed\",\n" +
                 "\"estimatedTime\": \"17:58\",\n" +
                 "\"platform\": \"\",\n" +
@@ -38,16 +38,38 @@ public class TrainAlreadyDeparted {
                 .with(new RequestMapNetworkClient(requestMap))
                 .build();
 
-        TrackedServicePresenter trackedServicePresenter = new TrackedServicePresenter(tmt);
 
-        final CapturingServiceView serviceView = new CapturingServiceView();
-        trackedServicePresenter.attach(serviceView);
+        CapturingTrackedServiceListener trackedServiceListener = new CapturingTrackedServiceListener();
+        tmt.addTrackedServiceListener(trackedServiceListener);
+        tmt.watchService(serviceId);
 
-        trackedServicePresenter.watch(serviceId);
 
-        assertThat(serviceView.visibility, is(CapturingServiceView.HIDDEN));
+        assertThat(trackedServiceListener.tracking, is(CapturingTrackedServiceListener.STOPPED));
 
     }
 
 
+    private static class CapturingTrackedServiceListener implements CanTrackService.TrackedServiceListener {
+        public static final String UNKNOWN = "UNKNOWN";
+        public static final String STARTED = "STARTED";
+        public static final String STOPPED = "STOPPED";
+        public Train train;
+        public String tracking = UNKNOWN;
+
+        @Override
+        public void trackingStarted() {
+            tracking = STARTED;
+        }
+
+        @Override
+        public void trackedServiceUpdated(Train train) {
+
+            this.train = train;
+        }
+
+        @Override
+        public void trackingStopped() {
+            tracking = STOPPED;
+        }
+    }
 }

@@ -74,6 +74,10 @@ public class Tracking implements CanTrackService{
     private void storeTrackedServiceDetails(Train train) {
         for (CanTrackService.TrackedServiceListener listeners : trackedServiceListeners) {
             listeners.trackedServiceUpdated(train);
+
+        }
+        if(train.departed()) {
+            unwatchService();
         }
     }
 
