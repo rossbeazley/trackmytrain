@@ -2,6 +2,7 @@ package uk.co.rossbeazley.trackmytrain.android.mobile;
 
 import java.util.concurrent.TimeUnit;
 
+import fakes.ControllableExecutorService;
 import uk.co.rossbeazley.time.NarrowScheduledExecutorService;
 import uk.co.rossbeazley.trackmytrain.android.HashMapKeyValuePersistence;
 import uk.co.rossbeazley.trackmytrain.android.KeyValuePersistence;
@@ -18,7 +19,7 @@ public class TestTrackMyTrainApp extends TrackMyTrainApp {
     public static Train trackedService;
     public static KeyValuePersistence keyValuePersistence;
     public static ProgrammableNetworkClient networkClient;
-    public static ControllableNarrowScheduledExecutorService executorService;
+    public static ControllableExecutorService executorService;
 
     public TestTrackMyTrainApp() {
         instance = getCore();
@@ -34,7 +35,7 @@ public class TestTrackMyTrainApp extends TrackMyTrainApp {
         final TrackMyTrain trackMyTrain;
 
         networkClient = new ProgrammableNetworkClient();
-        executorService = new ControllableNarrowScheduledExecutorService();
+        executorService = new ControllableExecutorService();
         trackMyTrain = new TMTBuilder()
                 .with(networkClient)
                 .with(executorService)
@@ -55,18 +56,4 @@ public class TestTrackMyTrainApp extends TrackMyTrainApp {
         }
     }
 
-    public static class ControllableNarrowScheduledExecutorService implements NarrowScheduledExecutorService {
-        public Runnable command;
-
-        @Override
-        public Cancelable scheduleAtFixedRate(final Runnable command, long period, TimeUnit unit) {
-            this.command = command;
-            return new Cancelable() {
-                @Override
-                public void cancel() {
-                    ControllableNarrowScheduledExecutorService.this.command = null;
-                }
-            };
-        }
-    }
 }

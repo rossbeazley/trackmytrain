@@ -37,14 +37,13 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    wearApp project(':wear')
-    compile 'com.android.support:appcompat-v7:22.2.1'
-    compile project(':core')
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.robolectric:robolectric:2.4'
     testCompile project(path: ':core', configuration: 'testArtifacts')
+    compile project(':core')
+    wearApp project(':wear')
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
     compile project(':WearNetwork')
+    compile 'com.android.support:appcompat-v7:22.2.1'
     compile 'com.android.support:support-v4:22.2.1'
     compile 'com.google.android.gms:play-services:7.5.0'
 }

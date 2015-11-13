@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import fakes.ControllableExecutorService;
 import fakes.SlowRequestMapNetworkClient;
 import uk.co.rossbeazley.time.NarrowScheduledExecutorService;
 import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
@@ -102,31 +103,5 @@ public class ServiceTestWithSlowNetwork {
         }
     }
 
-    //REFACTOR
-    public static class ControllableExecutorService implements NarrowScheduledExecutorService {
-
-
-        public Cancelable cancelable;
-        public Runnable NO_COMMAND = new Runnable() {
-            @Override
-            public void run() {
-            }
-        };
-        public Runnable scheduledCommand = NO_COMMAND;
-
-
-        @Override
-        public Cancelable scheduleAtFixedRate(Runnable command, long period, TimeUnit unit) {
-            scheduledCommand = command;
-            cancelable = new Cancelable() {
-                @Override
-                public void cancel() {
-                    cancelable = null;
-                    scheduledCommand = NO_COMMAND;
-                }
-            };
-            return cancelable;
-        }
-    }
 }
 

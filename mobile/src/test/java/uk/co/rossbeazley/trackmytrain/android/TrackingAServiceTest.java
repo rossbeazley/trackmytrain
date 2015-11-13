@@ -1,14 +1,10 @@
 package uk.co.rossbeazley.trackmytrain.android;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import fakes.CapturingServiceView;
-import fakes.ControllableExecutorService;
-import fakes.RequestMapNetworkClient;
 import uk.co.rossbeazley.trackmytrain.android.trackedService.TrackedServicePresenter;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.ServiceDetailsRequest;
 
@@ -23,13 +19,12 @@ public class TrackingAServiceTest {
     private String estimatedTime;
 
     private String platform;
-    private ServiceDetailsRequest serviceDetailsRequest;
-    private Map<NetworkClient.Request, String> map;
     private TrackedServicePresenter trackedServicePresenter;
-    private TrainViewModel expectedTrain;
+    private TrainViewModel expectedTrainViewModel;
 
-    private ControllableExecutorService ness;
     private CapturingServiceView serviceView;
+    private FakeCanTrackService tmt;
+    private Train expectedTrain;
 
     @Before
     public void setUp() throws Exception {
@@ -37,24 +32,13 @@ public class TrackingAServiceTest {
         scheduledTime = "20:48";
         estimatedTime = "On time";
         platform = "2";
-        final Train train = new Train(serviceId, estimatedTime, scheduledTime, platform, false);
-        expectedTrain = new TrainViewModel(train);
-        final String initialJson = TestDataBuilder.jsonForTrain(train);
-        serviceDetailsRequest = new ServiceDetailsRequest(serviceId);
-        map = new HashMap<NetworkClient.Request, String>(){{
-            put(serviceDetailsRequest, initialJson);
-        }};
-        NetworkClient client = new RequestMapNetworkClient(map);
+        expectedTrain = new Train(serviceId, estimatedTime, scheduledTime, platform, false);
+        expectedTrainViewModel = new TrainViewModel(expectedTrain);
+
         serviceView = new CapturingServiceView();
 
-        ness = new ControllableExecutorService();
-
-        TrackMyTrain tmt2 = TestDataBuilder.TMTBuilder()
-                .with(client)
-                .with(ness)
-                .build();
-
-        trackedServicePresenter = new TrackedServicePresenter(tmt2);
+        tmt = new FakeCanTrackService();
+        trackedServicePresenter = new TrackedServicePresenter(tmt);
 
         trackedServicePresenter.attach(serviceView);
     }
@@ -62,7 +46,8 @@ public class TrackingAServiceTest {
     @Test
     public void theOneWhereWeSelectAServiceAndTrackingStarts() {
         trackedServicePresenter.watch(serviceId);
-        assertThat(serviceView.serviceDisplayed, is(expectedTrain));
+        tmt.updateServiceData(expectedTrain);
+        assertThat(serviceView.serviceDisplayed, is(expectedTrainViewModel));
     }
 
     @Test
@@ -71,13 +56,13 @@ public class TrackingAServiceTest {
         assertThat(serviceView.trackingIs, is(CapturingServiceView.STARTED));
     }
 
-    @Test
+    @Test  @Ignore("core test")
     public void serviceDetailsRequestRendersToString() {
         final String serviceUrl = "http://tmt.rossbeazley.co.uk/trackmytrain/rest/api/service?id=123456";
         assertThat(new ServiceDetailsRequest("123456").asUrlString(),is(serviceUrl));
     }
 
-    @Test
+    @Test @Ignore("core test")
     public void serviceDetailsEncodesID() {
         final String serviceUrl = "http://tmt.rossbeazley.co.uk/trackmytrain/rest/api/service?id=123%2F456";
         assertThat(new ServiceDetailsRequest("123/456").asUrlString(),is(serviceUrl));
@@ -86,60 +71,68 @@ public class TrackingAServiceTest {
     @Test
     public void theOneWhereWeAreUpdatedAboutTheSelectedService() {
         trackedServicePresenter.watch(serviceId);
+        tmt.updateServiceData(expectedTrain);
         serviceView.serviceDisplayed=null;
         final Train train = new Train(serviceId, "20:52", scheduledTime, platform, false);
         final TrainViewModel expectedTrain = new TrainViewModel(train);
-        map.put(serviceDetailsRequest, TestDataBuilder.jsonForTrain(train));
-        ness.scheduledCommand.run();
 
+        tmt.updateServiceData(train);
         assertThat(serviceView.serviceDisplayed, is(expectedTrain));
     }
 
-    @Test
+    @Test @Ignore("core test")
     public void continuedWatchingOfServiceDosntAnnounceTrackingStarted() {
-        trackedServicePresenter.watch(serviceId);
-        serviceView.serviceDisplayed = null;
-        final Train train = new Train(serviceId, "20:52", scheduledTime, platform, false);
-        final TrainViewModel expectedTrain = new TrainViewModel(train);
-        map.put(serviceDetailsRequest, TestDataBuilder.jsonForTrain(train));
-        ness.scheduledCommand.run();
 
-        final String notReannounced = "NOT REANNOUNCED";
-        serviceView.trackingIs = notReannounced;
-
-        assertThat(serviceView.trackingIs, is(notReannounced));
     }
 
-    @Test
+    @Test @Ignore("core test")
     public void theOneWhereWeStopTracking() {
-        trackedServicePresenter.watch(serviceId);
-        ness.scheduledCommand.run();
-        serviceView.serviceDisplayed=null;
-        trackedServicePresenter.unwatch();
-        ness.scheduledCommand.run();
 
-        assertThat(serviceView.serviceDisplayed, is(nullValue()));
     }
 
     @Test
     public void theOneWhereTheServiceViewIsHiddenWhenWeStopTracking() {
         trackedServicePresenter.watch(serviceId);
-        ness.scheduledCommand.run();
+        tmt.updateServiceData(expectedTrain);
         serviceView.serviceDisplayed=null;
         trackedServicePresenter.unwatch();
-        ness.scheduledCommand.run();
-
         assertThat(serviceView.visibility, is(serviceView.HIDDEN));
     }
 
-    @Test
+    @Test  @Ignore("core test")
     public void theOneWhereTheTimerIsStopped() {
-        trackedServicePresenter.watch(serviceId);
-        ness.scheduledCommand.run();
-        trackedServicePresenter.unwatch();
-        ness.scheduledCommand.run();
 
-        assertThat(ness.cancelable, is(nullValue()));
     }
 
+    private static class FakeCanTrackService implements CanTrackService {
+        private TrackedServiceListener trackedServiceListener;
+        private boolean tracking;
+
+        @Override
+        public void addTrackedServiceListener(TrackedServiceListener trackedServiceListener) {
+
+            this.trackedServiceListener = trackedServiceListener;
+        }
+
+        @Override
+        public void watchService(String serviceId) {
+            this.tracking = true;
+            trackedServiceListener.trackingStarted();
+        }
+
+        @Override
+        public boolean isTracking() {
+            return tracking;
+        }
+
+        @Override
+        public void unwatchService() {
+            this.tracking = false;
+            trackedServiceListener.trackingStopped();
+        }
+
+        public void updateServiceData(Train train) {
+            trackedServiceListener.trackedServiceUpdated(train);
+        }
+    }
 }
