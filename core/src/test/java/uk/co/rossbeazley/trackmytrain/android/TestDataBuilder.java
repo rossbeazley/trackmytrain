@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import fakes.SlowRequestMapNetworkClient;
 import uk.co.rossbeazley.time.NarrowScheduledExecutorService;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
@@ -45,12 +46,7 @@ public class TestDataBuilder {
 
     public static TMTBuilder TMTBuilder() {
         return new TMTBuilder()
-                .with(new NetworkClient() {
-                    @Override
-                    public void get(Request request, Response response) {
-
-                    }
-                })
+                .with(new SlowRequestMapNetworkClient(true))
                 .with(new NarrowScheduledExecutorService() {
                     @Override
                     public Cancelable scheduleAtFixedRate(Runnable command, long period, TimeUnit unit) {

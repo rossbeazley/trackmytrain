@@ -56,18 +56,6 @@ public class TrackingAServiceTest {
         assertThat(serviceView.trackingIs, is(CapturingServiceView.STARTED));
     }
 
-    @Test  @Ignore("core test")
-    public void serviceDetailsRequestRendersToString() {
-        final String serviceUrl = "http://tmt.rossbeazley.co.uk/trackmytrain/rest/api/service?id=123456";
-        assertThat(new ServiceDetailsRequest("123456").asUrlString(),is(serviceUrl));
-    }
-
-    @Test @Ignore("core test")
-    public void serviceDetailsEncodesID() {
-        final String serviceUrl = "http://tmt.rossbeazley.co.uk/trackmytrain/rest/api/service?id=123%2F456";
-        assertThat(new ServiceDetailsRequest("123/456").asUrlString(),is(serviceUrl));
-    }
-
     @Test
     public void theOneWhereWeAreUpdatedAboutTheSelectedService() {
         trackedServicePresenter.watch(serviceId);
@@ -80,16 +68,6 @@ public class TrackingAServiceTest {
         assertThat(serviceView.serviceDisplayed, is(expectedTrain));
     }
 
-    @Test @Ignore("core test")
-    public void continuedWatchingOfServiceDosntAnnounceTrackingStarted() {
-
-    }
-
-    @Test @Ignore("core test")
-    public void theOneWhereWeStopTracking() {
-
-    }
-
     @Test
     public void theOneWhereTheServiceViewIsHiddenWhenWeStopTracking() {
         trackedServicePresenter.watch(serviceId);
@@ -99,10 +77,6 @@ public class TrackingAServiceTest {
         assertThat(serviceView.visibility, is(serviceView.HIDDEN));
     }
 
-    @Test  @Ignore("core test")
-    public void theOneWhereTheTimerIsStopped() {
-
-    }
 
     private static class FakeCanTrackService implements CanTrackService {
         private TrackedServiceListener trackedServiceListener;
