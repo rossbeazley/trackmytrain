@@ -61,10 +61,9 @@ public class TrackingAServiceTest {
         tmt.addTrackedServiceListener(trackedServiceListener);
 
         tmt.watchService(serviceId);
-        trackedServiceListener.tracking = "RESET";
+        trackedServiceListener.tracking = "RESET"; //TODO implement reset method on fake
 
         ness.scheduledCommand.run();
-
 
         assertThat(trackedServiceListener.tracking, is("RESET"));
     }
@@ -72,6 +71,18 @@ public class TrackingAServiceTest {
     @Test @Ignore("core test")
     public void theOneWhereWeStopTracking() {
 
+        CapturingTrackedServiceListener trackedServiceListener = new CapturingTrackedServiceListener();
+        tmt.addTrackedServiceListener(trackedServiceListener);
+
+        tmt.watchService(serviceId);
+
+        ness.scheduledCommand.run();
+
+        tmt.unwatchService();
+
+        ness.scheduledCommand.run();
+
+        assertThat(trackedServiceListener.tracking, is(CapturingTrackedServiceListener.STOPPED);
     }
 
     @Test  @Ignore("core test")
