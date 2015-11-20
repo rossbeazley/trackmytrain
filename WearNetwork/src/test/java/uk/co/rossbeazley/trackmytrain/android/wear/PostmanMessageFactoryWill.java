@@ -4,9 +4,7 @@ import com.google.android.gms.wearable.MessageEvent;
 
 import org.junit.Test;
 
-import uk.co.rossbeazley.trackmytrain.android.TestDataBuilder;
 import uk.co.rossbeazley.trackmytrain.android.Train;
-import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 
 import static org.hamcrest.CoreMatchers.equalTo;
