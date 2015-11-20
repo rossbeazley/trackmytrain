@@ -1,9 +1,5 @@
 package uk.co.rossbeazley.trackmytrain.android;
 
-import java.util.List;
-
-import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesViewModel;
-
 public class TrainViewModel {
 
     private final Train train;
@@ -23,7 +19,7 @@ public class TrainViewModel {
     public boolean equals(Object o) {
         if (o==null) return false;
         TrainViewModel that = (TrainViewModel) o;
-        return train.equals(((TrainViewModel) o).train);
+        return train.equals(that.train);
     }
 
     public int hashCode() {
