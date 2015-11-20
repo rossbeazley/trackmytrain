@@ -5,7 +5,7 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class LateTrainTest {
+public class LateTrainViewModelTest {
 
     @Test
     public void aLateTrain() {
