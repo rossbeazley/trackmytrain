@@ -1,18 +1,14 @@
 package uk.co.rossbeazley.trackmytrain.android;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import fakes.CapturingServiceView;
 import fakes.CapturingTrackedServiceListener;
 import fakes.ControllableExecutorService;
-import fakes.JournalingDepartureQueryListener;
 import fakes.SlowRequestMapNetworkClient;
-import uk.co.rossbeazley.trackmytrain.android.trackedService.TrackedServicePresenter;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.ServiceDetailsRequest;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -21,12 +17,7 @@ import static org.junit.Assert.assertThat;
 public class TrackingAServiceTest {
 
     private String serviceId;
-    private String scheduledTime;
-    private String estimatedTime;
-
-    private String platform;
     private TrackMyTrain tmt;
-    private Train expectedTrain;
     private ControllableExecutorService ness;
 
     @Before
