@@ -138,11 +138,6 @@ public class TestDataBuilder {
         return Arrays.asList(train1,train2);
     }
 
-
-    public static TrainViewModel anyTrainViewModel() {
-        return new TrainViewModel(anyTrain());
-    }
-
     public static String anyTrainJson() {
         return jsonForTrain(anyTrain());
     }
