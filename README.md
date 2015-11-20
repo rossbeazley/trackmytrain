@@ -49,6 +49,6 @@ view stopping points of a train
 --- mikado to mobile
 TrainViewModel
 - =wear module=
-- TestDataBuilder.anyTrainViewModel()
-- LateTrainTest.aLateTrain()
+- =TestDataBuilder.anyTrainViewModel()=
+- =LateTrainTest.aLateTrain()=
 - =TrainViewModelUnitTest=
