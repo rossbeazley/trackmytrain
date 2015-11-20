@@ -65,7 +65,7 @@ public class DeparturesPresenterTest {
         train1 = new Train("aN5S6pak5nKFawy0sXb65Q==", "On time", "21:39", "2", false);
         train2 = new Train("EAG/q7qfInIUZyPhCdwQKw==", "On time", "22:38", "2", false);
 
-        final DeparturesViewModel expectedList = DeparturesViewModel.list(Arrays.asList(train1, train2));
+        final DeparturesViewModel expectedList = DeparturesViewModel.fromListOfTrains(Arrays.asList(train1, train2));
 
         CanQueryDepartures stubCanQueryDepartures = new CanQueryDepartures() {
             @Override

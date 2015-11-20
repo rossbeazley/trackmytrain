@@ -54,7 +54,7 @@ public class DeparturesPresenter implements CanPresentDepartureQueries {
 
     private void departuresFound(List<Train> expectedList) {
         for (DeparturesView departuresView : departuresViews) {
-            departuresView.present(DeparturesViewModel.list(expectedList));
+            departuresView.present(DeparturesViewModel.fromListOfTrains(expectedList));
         }
     }
 

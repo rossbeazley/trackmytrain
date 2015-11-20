@@ -19,7 +19,7 @@ public class DeparturesViewModel {
         this.trains = trains;
     }
 
-    public static DeparturesViewModel list(List<Train> expectedList) {
+    public static DeparturesViewModel fromListOfTrains(List<Train> expectedList) {
         DeparturesViewModel rtn = new DeparturesViewModel();
         for(Train train : expectedList) {
             rtn.add(new TrainViewModel(train));
