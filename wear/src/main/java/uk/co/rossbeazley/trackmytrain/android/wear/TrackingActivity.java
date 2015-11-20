@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.support.wearable.activity.WearableActivity;
 
 import uk.co.rossbeazley.trackmytrain.android.R;
-import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.WearAppSingleton;
-import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
 
 public class TrackingActivity extends WearableActivity implements CanFinishWearApp, FindsView {
 

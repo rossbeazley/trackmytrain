@@ -47,8 +47,5 @@ view stopping points of a train
 
 
 --- mikado to mobile
-
-service view
-- tracked service presenter
--- =LateObservationOfServiceTest=
--- =ServiceTestWithSlowNetwork=
+DeparturesViewModel
+- TrainViewModel.list
