@@ -5,18 +5,13 @@ import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 import fakes.CapturingTrackedServiceListener;
 import fakes.ControllableExecutorService;
 import fakes.SlowRequestMapNetworkClient;
-import uk.co.rossbeazley.time.NarrowScheduledExecutorService;
-import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
-import uk.co.rossbeazley.trackmytrain.android.trackedService.TrackedServicePresenter;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.ServiceDetailsRequest;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 public class ServiceTestWithSlowNetwork {
