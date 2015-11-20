@@ -5,7 +5,6 @@ import com.google.android.gms.wearable.MessageEvent;
 import java.util.Objects;
 
 import uk.co.rossbeazley.trackmytrain.android.Train;
-import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 
 public class TrackedServiceMessage extends Postman.BroadcastMessage {

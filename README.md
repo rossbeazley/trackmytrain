@@ -47,5 +47,5 @@ view stopping points of a train
 
 
 --- mikado to mobile
-DeparturesViewModel
-- TrainViewModel.list
+TrainViewModel
+- wear module

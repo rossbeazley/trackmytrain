@@ -3,7 +3,6 @@ package uk.co.rossbeazley.trackmytrain.android.wear;
 import android.widget.TextView;
 
 import uk.co.rossbeazley.trackmytrain.android.R;
-import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.WearAppSingleton;
 
 /**

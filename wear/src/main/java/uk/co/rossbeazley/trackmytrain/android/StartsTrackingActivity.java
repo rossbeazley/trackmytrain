@@ -14,8 +14,9 @@ class StartsTrackingActivity implements ServiceView {
         this.context = context;
     }
 
+
     @Override
-    public void present(TrainViewModel train) {
+    public void present(uk.co.rossbeazley.trackmytrain.android.wear.TrainViewModel train) {
 
     }
 
