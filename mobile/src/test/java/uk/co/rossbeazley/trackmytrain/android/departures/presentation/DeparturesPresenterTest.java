@@ -8,7 +8,6 @@ import uk.co.rossbeazley.trackmytrain.android.CanQueryDepartures;
 import fakes.CapturingDeparturesView;
 import uk.co.rossbeazley.trackmytrain.android.TestDataBuilder;
 import uk.co.rossbeazley.trackmytrain.android.Train;
-import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQuery;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
@@ -66,7 +65,7 @@ public class DeparturesPresenterTest {
         train1 = new Train("aN5S6pak5nKFawy0sXb65Q==", "On time", "21:39", "2", false);
         train2 = new Train("EAG/q7qfInIUZyPhCdwQKw==", "On time", "22:38", "2", false);
 
-        final DeparturesViewModel expectedList = TrainViewModel.list(Arrays.asList(train1, train2));
+        final DeparturesViewModel expectedList = DeparturesViewModel.list(Arrays.asList(train1, train2));
 
         CanQueryDepartures stubCanQueryDepartures = new CanQueryDepartures() {
             @Override

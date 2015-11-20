@@ -7,7 +7,6 @@ import uk.co.rossbeazley.trackmytrain.android.CanPresentDepartureQueries;
 import uk.co.rossbeazley.trackmytrain.android.CanQueryDepartures;
 import uk.co.rossbeazley.trackmytrain.android.TMTError;
 import uk.co.rossbeazley.trackmytrain.android.Train;
-import uk.co.rossbeazley.trackmytrain.android.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQuery;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
@@ -55,7 +54,7 @@ public class DeparturesPresenter implements CanPresentDepartureQueries {
 
     private void departuresFound(List<Train> expectedList) {
         for (DeparturesView departuresView : departuresViews) {
-            departuresView.present(TrainViewModel.list(expectedList));
+            departuresView.present(DeparturesViewModel.list(expectedList));
         }
     }
 

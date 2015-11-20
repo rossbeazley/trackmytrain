@@ -16,14 +16,6 @@ public class TrainViewModel {
         train = new Train(id, estimatedTime, scheduledTime, platform, false);
     }
 
-    public static DeparturesViewModel list(List<Train> expectedList) {
-        DeparturesViewModel rtn = new DeparturesViewModel();
-        for(Train train : expectedList) {
-            rtn.add(new TrainViewModel(train));
-        }
-        return rtn;
-    }
-
     public String toString() {
         return train.toString();
     }
