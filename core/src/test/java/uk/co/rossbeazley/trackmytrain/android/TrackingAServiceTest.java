@@ -68,7 +68,7 @@ public class TrackingAServiceTest {
         assertThat(trackedServiceListener.tracking, is("RESET"));
     }
 
-    @Test @Ignore("core test")
+    @Test
     public void theOneWhereWeStopTracking() {
 
         CapturingTrackedServiceListener trackedServiceListener = new CapturingTrackedServiceListener();
@@ -82,12 +82,7 @@ public class TrackingAServiceTest {
 
         ness.scheduledCommand.run();
 
-        assertThat(trackedServiceListener.tracking, is(CapturingTrackedServiceListener.STOPPED);
-    }
-
-    @Test  @Ignore("core test")
-    public void theOneWhereTheTimerIsStopped() {
-
+        assertThat(trackedServiceListener.tracking, is(CapturingTrackedServiceListener.STOPPED));
     }
 
 }
