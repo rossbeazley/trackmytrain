@@ -8,15 +8,12 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import fakes.CapturingTrackedServiceListener;
-import uk.co.rossbeazley.time.NarrowScheduledExecutorService;
-import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
 import fakes.RequestMapNetworkClient;
-import uk.co.rossbeazley.trackmytrain.android.trackedService.TrackedServicePresenter;
+import uk.co.rossbeazley.time.NarrowScheduledExecutorService;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.ServiceDetailsRequest;
 
-import static fakes.CapturingTrackedServiceListener.*;
+import static fakes.CapturingTrackedServiceListener.STARTED;
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 public class LateObservationOfServiceTest {
@@ -29,11 +26,8 @@ public class LateObservationOfServiceTest {
 
     @Before
     public void setUp() throws Exception {
-        serviceId = "3Olk7M389Qp5JIdkXAQt4g==";
-        String scheduledTime = "20:48";
-        String estimatedTime = "On time";
-        String platform = "2";
-        expectedTrain = new Train(serviceId, estimatedTime, scheduledTime, platform, false);
+        expectedTrain = TestDataBuilder.anyTrain();
+        serviceId = expectedTrain.id;
         final String initialJson = TestDataBuilder.jsonForTrain(expectedTrain);
         serviceDetailsRequest = new ServiceDetailsRequest(serviceId);
         Map<NetworkClient.Request, String> map = new HashMap<NetworkClient.Request, String>() {{
