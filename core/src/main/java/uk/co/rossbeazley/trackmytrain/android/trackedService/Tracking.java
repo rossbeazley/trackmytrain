@@ -83,6 +83,10 @@ public class Tracking implements CanTrackService{
 
     public void addTrackedServiceListener(CanTrackService.TrackedServiceListener trackedServiceListener) {
         this.trackedServiceListeners.add(trackedServiceListener);
+        if(isTracking()) {
+            trackedServiceListener.trackingStarted();
+            refreshTrackedService();
+        }
     }
 
     public void removeTrackedServiceListener(CanTrackService.TrackedServiceListener trackedServiceListener) {

@@ -14,6 +14,7 @@ import fakes.RequestMapNetworkClient;
 import uk.co.rossbeazley.trackmytrain.android.trackedService.TrackedServicePresenter;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.ServiceDetailsRequest;
 
+import static fakes.CapturingTrackedServiceListener.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
@@ -62,6 +63,15 @@ public class LateObservationOfServiceTest {
 
     @Test
     public void lateObservationOfWatchedTrain() {
+        CapturingTrackedServiceListener capturingTrackedServiceListener = new CapturingTrackedServiceListener();
+        tmt.watchService(serviceId);
+        tmt.addTrackedServiceListener(capturingTrackedServiceListener);
+
+        assertThat(capturingTrackedServiceListener.tracking, is(STARTED));
+    }
+
+    @Test
+    public void lateObservationOfWatchedTrainGetsFreshTrainData() {
         CapturingTrackedServiceListener capturingTrackedServiceListener = new CapturingTrackedServiceListener();
         tmt.watchService(serviceId);
         tmt.addTrackedServiceListener(capturingTrackedServiceListener);
