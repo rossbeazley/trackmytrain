@@ -27,28 +27,16 @@ public class Train {
 
         Train train = (Train) o;
 
-        if (estimatedTime != null ? !estimatedTime.equals(train.estimatedTime) : train.estimatedTime != null)
-            return false;
-        if (id != null ? !id.equals(train.id) : train.id != null) return false;
-        if (platform != null ? !platform.equals(train.platform) : train.platform != null)
-            return false;
-        if (scheduledTime != null ? !scheduledTime.equals(train.scheduledTime) : train.scheduledTime != null)
-            return false;
-
-        if (departed != train.departed)
+        if(   (estimatedTime != null ? !estimatedTime.equals(train.estimatedTime) : train.estimatedTime != null)
+           || (id != null ? !id.equals(train.id) : train.id != null)
+           || (platform != null ? !platform.equals(train.platform) : train.platform != null)
+           || (scheduledTime != null ? !scheduledTime.equals(train.scheduledTime) : train.scheduledTime != null)
+           || (departed != train.departed))
             return false;
 
         return true;
     }
 
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (scheduledTime != null ? scheduledTime.hashCode() : 0);
-        result = 31 * result + (estimatedTime != null ? estimatedTime.hashCode() : 0);
-        result = 31 * result + (platform != null ? platform.hashCode() : 0);
-        return result;
-    }
 
     public boolean isLate() {
         return !estimatedTime.equalsIgnoreCase("On Time");

@@ -6,14 +6,16 @@ targetCompatibility = JavaVersion.VERSION_1_7
 configurations {
     testArtifacts.extendsFrom testRuntime
 }
-task testJar(type: Jar) {
+
+task testFakesJar(type: Jar) {
     classifier "test"
     from sourceSets.test.output
     include "fakes*/**"
     exclude "uk*"
 }
+
 artifacts {
-    testArtifacts testJar
+    testArtifacts testFakesJar
 }
 
 dependencies {
