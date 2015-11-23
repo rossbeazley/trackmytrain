@@ -63,8 +63,8 @@ public class LateObservationOfServiceTest {
     @Test
     public void lateObservationOfWatchedTrain() {
         CapturingTrackedServiceListener capturingTrackedServiceListener = new CapturingTrackedServiceListener();
-        tmt.addTrackedServiceListener(capturingTrackedServiceListener);
         tmt.watchService(serviceId);
+        tmt.addTrackedServiceListener(capturingTrackedServiceListener);
 
         assertThat(capturingTrackedServiceListener.train, is(expectedTrain));
     }
