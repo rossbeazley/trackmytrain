@@ -73,6 +73,10 @@ public class TestDataBuilder {
         return new Train(anyTrainId(), generateEstimatedTime(), generateScheduledTime(), generatePlatform(), generateDepartedFlag());
     }
 
+    public static Train anyTrainNotDeparted() {
+        return new Train(anyTrainId(), generateEstimatedTime(), generateScheduledTime(), generatePlatform(), false);
+    }
+
     private static boolean generateDepartedFlag() {
         return Math.random()>0.5;
     }

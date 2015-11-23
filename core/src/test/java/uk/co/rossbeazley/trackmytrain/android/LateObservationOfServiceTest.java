@@ -23,15 +23,16 @@ public class LateObservationOfServiceTest {
     private ServiceDetailsRequest serviceDetailsRequest;
     private TrackMyTrain tmt;
     private Train expectedTrain;
+    private String jsonForTrain;
 
     @Before
     public void setUp() throws Exception {
-        expectedTrain = TestDataBuilder.anyTrain();
+        expectedTrain = TestDataBuilder.anyTrainNotDeparted();
         serviceId = expectedTrain.id;
-        final String initialJson = TestDataBuilder.jsonForTrain(expectedTrain);
+        jsonForTrain = TestDataBuilder.jsonForTrain(expectedTrain);
         serviceDetailsRequest = new ServiceDetailsRequest(serviceId);
         Map<NetworkClient.Request, String> map = new HashMap<NetworkClient.Request, String>() {{
-            put(serviceDetailsRequest, initialJson);
+            put(serviceDetailsRequest, jsonForTrain);
         }};
         NetworkClient client = new RequestMapNetworkClient(map);
 
@@ -61,7 +62,7 @@ public class LateObservationOfServiceTest {
         tmt.watchService(serviceId);
         tmt.addTrackedServiceListener(capturingTrackedServiceListener);
 
-        assertThat(capturingTrackedServiceListener.tracking, is(STARTED));
+        assertThat( "failed " + expectedTrain.toString() + ":::" + jsonForTrain, capturingTrackedServiceListener.tracking, is(STARTED));
     }
 
     @Test
@@ -70,7 +71,7 @@ public class LateObservationOfServiceTest {
         tmt.watchService(serviceId);
         tmt.addTrackedServiceListener(capturingTrackedServiceListener);
 
-        assertThat(capturingTrackedServiceListener.train, is(expectedTrain));
+        assertThat( "failed " + expectedTrain.toString() + ":::" + jsonForTrain, capturingTrackedServiceListener.train, is(expectedTrain));
     }
 
 }
