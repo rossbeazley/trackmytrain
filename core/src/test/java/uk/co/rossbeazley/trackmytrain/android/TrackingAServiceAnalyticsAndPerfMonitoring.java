@@ -6,9 +6,7 @@ import org.junit.Test;
 import java.util.HashMap;
 import java.util.List;
 
-import fakes.CapturingAnalytics;
-import fakes.ClockStub;
-import fakes.SlowRequestMapNetworkClient;
+import fakes.*;
 
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.junit.Assert.*;
@@ -29,7 +27,7 @@ public class TrackingAServiceAnalyticsAndPerfMonitoring {
         clock = new ClockStub();
         tracker = new CapturingAnalytics();
 
-        tmt = TestDataBuilder.TMTBuilder()
+        tmt = fakes.TestDataBuilder.TMTBuilder()
                 .with(networkClient)
                 .with(tracker)
                 .with(clock)
@@ -45,7 +43,7 @@ public class TrackingAServiceAnalyticsAndPerfMonitoring {
         int anyAmountOfTimeInMillis = 1337;
         CapturingAnalytics.TimingTrack expected = new CapturingAnalytics.TimingTrack(anyAmountOfTimeInMillis,category,variable);
 
-        tmt.departures(TestDataBuilder.anyStation(), TestDataBuilder.anyDirection(), new NullDepartureQueryListener());
+        tmt.departures(fakes.TestDataBuilder.anyStation(), fakes.TestDataBuilder.anyDirection(), new NullDepartureQueryListener());
 
         clock.advanceBy(anyAmountOfTimeInMillis);
         networkClient.completeRequest();
@@ -62,7 +60,7 @@ public class TrackingAServiceAnalyticsAndPerfMonitoring {
         final String variable = "DeparturesQuery.error";
         CapturingAnalytics.TimingTrack expected = new CapturingAnalytics.TimingTrack(1337,category,variable);
 
-        tmt.departures(TestDataBuilder.anyStation(), TestDataBuilder.anyDirection(), new NullDepartureQueryListener());
+        tmt.departures(fakes.TestDataBuilder.anyStation(), fakes.TestDataBuilder.anyDirection(), new NullDepartureQueryListener());
 
         clock.advanceBy(1337);
         networkClient.errorRequest();
@@ -81,7 +79,7 @@ public class TrackingAServiceAnalyticsAndPerfMonitoring {
     public void
     trackingStartsPageViewRecorded() {
 
-        tmt.watchService(TestDataBuilder.anyTrainId());
+        tmt.watchService(fakes.TestDataBuilder.anyTrainId());
 
         String expected = "Tracking_Loading";
         assertThat(tracker.pageViews, hasItem(expected));
@@ -91,9 +89,9 @@ public class TrackingAServiceAnalyticsAndPerfMonitoring {
     public void
     trackedServiceIsUpdatedPageViewRecorded() {
 
-        tmt.watchService(TestDataBuilder.anyTrainId());
+        tmt.watchService(fakes.TestDataBuilder.anyTrainId());
 
-        networkClient.completeRequestWith(TestDataBuilder.anyTrainJson());
+        networkClient.completeRequestWith(fakes.TestDataBuilder.anyTrainJson());
 
         String expected = "Tracking_Result";
         assertThat(tracker.pageViews, hasItem(expected));
@@ -103,9 +101,9 @@ public class TrackingAServiceAnalyticsAndPerfMonitoring {
     public void
     trackingIsStoppedPageViewRecorded() {
 
-        tmt.watchService(TestDataBuilder.anyTrainId());
+        tmt.watchService(fakes.TestDataBuilder.anyTrainId());
 
-        networkClient.completeRequestWith(TestDataBuilder.anyTrainJson());
+        networkClient.completeRequestWith(fakes.TestDataBuilder.anyTrainJson());
 
         tmt.unwatchService();
 

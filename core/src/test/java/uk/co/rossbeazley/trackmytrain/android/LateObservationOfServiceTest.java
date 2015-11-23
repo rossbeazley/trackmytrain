@@ -7,8 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import fakes.CapturingTrackedServiceListener;
-import fakes.RequestMapNetworkClient;
+import fakes.*;
 import uk.co.rossbeazley.time.NarrowScheduledExecutorService;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.ServiceDetailsRequest;
 
@@ -27,9 +26,9 @@ public class LateObservationOfServiceTest {
 
     @Before
     public void setUp() throws Exception {
-        expectedTrain = TestDataBuilder.anyTrainNotDeparted();
+        expectedTrain = fakes.TestDataBuilder.anyTrainNotDeparted();
         serviceId = expectedTrain.id;
-        jsonForTrain = TestDataBuilder.jsonForTrain(expectedTrain);
+        jsonForTrain = fakes.TestDataBuilder.jsonForTrain(expectedTrain);
         serviceDetailsRequest = new ServiceDetailsRequest(serviceId);
         Map<NetworkClient.Request, String> map = new HashMap<NetworkClient.Request, String>() {{
             put(serviceDetailsRequest, jsonForTrain);
@@ -49,7 +48,7 @@ public class LateObservationOfServiceTest {
             }
         };
 
-        tmt = TestDataBuilder.TMTBuilder()
+        tmt = fakes.TestDataBuilder.TMTBuilder()
                 .with(client)
                 .with(ness)
                 .build();

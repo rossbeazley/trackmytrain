@@ -6,9 +6,7 @@ import org.junit.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-import fakes.CapturingTrackedServiceListener;
-import fakes.ControllableExecutorService;
-import fakes.SlowRequestMapNetworkClient;
+import fakes.*;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.ServiceDetailsRequest;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -22,12 +20,12 @@ public class TrackingAServiceTest {
 
     @Before
     public void setUp() throws Exception {
-        serviceId = TestDataBuilder.anyTrainId();
+        serviceId = fakes.TestDataBuilder.anyTrainId();
 
         ness = new ControllableExecutorService();
         Map<NetworkClient.Request, String> hashmap = new HashMap<>();
-        hashmap.put(new ServiceDetailsRequest(serviceId), TestDataBuilder.anyTrainJson());
-        tmt = TestDataBuilder.TMTBuilder()
+        hashmap.put(new ServiceDetailsRequest(serviceId), fakes.TestDataBuilder.anyTrainJson());
+        tmt = fakes.TestDataBuilder.TMTBuilder()
                 .with(ness)
                 .with(new SlowRequestMapNetworkClient(hashmap, true))
                 .build();

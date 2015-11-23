@@ -1,10 +1,9 @@
 package uk.co.rossbeazley.trackmytrain.android;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
-import fakes.JournalingDepartureQueryListener;
+import fakes.*;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
 
@@ -22,9 +21,9 @@ public class DeparturesErrorTest {
 
     @Before
     public void setUp() throws Exception {
-        fromStation = TestDataBuilder.anyStation();
-        toStation = TestDataBuilder.anyStation();
-        tmt = TestDataBuilder.TMTBuilder()
+        fromStation = fakes.TestDataBuilder.anyStation();
+        toStation = fakes.TestDataBuilder.anyStation();
+        tmt = fakes.TestDataBuilder.TMTBuilder()
                 .with(new NetworkClient() {
                     @Override
                     public void get(Request request, Response response) {

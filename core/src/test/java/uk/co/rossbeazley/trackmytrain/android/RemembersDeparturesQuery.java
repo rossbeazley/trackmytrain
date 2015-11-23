@@ -3,7 +3,7 @@ package uk.co.rossbeazley.trackmytrain.android;
 import org.junit.Before;
 import org.junit.Test;
 
-import fakes.JournalingDepartureQueryListener;
+import fakes.*;
 import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQuery;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
@@ -21,7 +21,7 @@ public class RemembersDeparturesQuery {
     @Before
     public void setUp() throws Exception {
         keyValuePersistence = new HashMapKeyValuePersistence();
-        TrackMyTrain tmt = TestDataBuilder.TMTBuilder()
+        TrackMyTrain tmt = fakes.TestDataBuilder.TMTBuilder()
                 .with(keyValuePersistence)
                 .build();
 
@@ -48,7 +48,7 @@ public class RemembersDeparturesQuery {
 
     @Test
     public void theOneWhereTheDirectionIsRememberedBetweenSessions() {
-        TrackMyTrain tmt = TestDataBuilder.TMTBuilder()
+        TrackMyTrain tmt = fakes.TestDataBuilder.TMTBuilder()
                 .with(keyValuePersistence)
                 .build();
 
@@ -59,7 +59,7 @@ public class RemembersDeparturesQuery {
 
     @Test
     public void theOneWhereTheAtIsRememberedAcrossSessions() {
-        TrackMyTrain tmt = TestDataBuilder.TMTBuilder()
+        TrackMyTrain tmt = fakes.TestDataBuilder.TMTBuilder()
                 .with(keyValuePersistence)
                 .build();
         assertThat(tmt.lastQuery().at(), is(expectedStation));

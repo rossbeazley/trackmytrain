@@ -5,8 +5,7 @@ import org.junit.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-import fakes.CapturingTrackedServiceListener;
-import fakes.RequestMapNetworkClient;
+import fakes.*;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.ServiceDetailsRequest;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -33,7 +32,7 @@ public class TrainAlreadyDeparted {
 
         requestMap.put(new ServiceDetailsRequest(serviceId), resultJson);
 
-        TrackMyTrain tmt = TestDataBuilder.TMTBuilder()
+        TrackMyTrain tmt = fakes.TestDataBuilder.TMTBuilder()
                 .with(new RequestMapNetworkClient(requestMap))
                 .build();
 

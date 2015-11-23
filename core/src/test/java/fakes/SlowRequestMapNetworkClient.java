@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import uk.co.rossbeazley.trackmytrain.android.NetworkClient;
-import uk.co.rossbeazley.trackmytrain.android.TestDataBuilder;
 
 public class SlowRequestMapNetworkClient implements NetworkClient {
 

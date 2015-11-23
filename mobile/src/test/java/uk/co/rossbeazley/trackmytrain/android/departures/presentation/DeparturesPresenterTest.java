@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import uk.co.rossbeazley.trackmytrain.android.CanQueryDepartures;
 import fakes.CapturingDeparturesView;
-import uk.co.rossbeazley.trackmytrain.android.TestDataBuilder;
+import fakes.TestDataBuilder;
 import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQuery;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;

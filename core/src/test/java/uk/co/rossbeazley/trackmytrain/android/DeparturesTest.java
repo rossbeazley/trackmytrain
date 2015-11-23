@@ -6,11 +6,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import fakes.SlowRequestMapNetworkClient;
+import fakes.*;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.DeparturesFromToRequest;
-import fakes.RequestMapNetworkClient;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -24,13 +23,13 @@ public class DeparturesTest {
 
         TrackMyTrain tmt;
 
-        final Station fromStation = TestDataBuilder.anyStation();
-        final Station toStation = TestDataBuilder.anyStation();
+        final Station fromStation = fakes.TestDataBuilder.anyStation();
+        final Station toStation = fakes.TestDataBuilder.anyStation();
         SlowRequestMapNetworkClient networkClient = new SlowRequestMapNetworkClient(new HashMap<NetworkClient.Request, String>() {{
-            put(new DeparturesFromToRequest(fromStation, toStation), TestDataBuilder.anyTrainsJson());
+            put(new DeparturesFromToRequest(fromStation, toStation), fakes.TestDataBuilder.anyTrainsJson());
         }});
 
-        tmt = TestDataBuilder.TMTBuilder()
+        tmt = fakes.TestDataBuilder.TMTBuilder()
                 .with(networkClient)
                 .build();
 
@@ -53,13 +52,13 @@ public class DeparturesTest {
         train2 = new Train("EAG/q7qfInIUZyPhCdwQKw==", "On time", "22:38", "2", false);
 
         NetworkClient networkClient = new RequestMapNetworkClient(new HashMap<NetworkClient.Request, String>() {{
-            put(new DeparturesFromToRequest(Station.fromString("SLD"), Station.fromString("CRL")), TestDataBuilder.jsonForTrains(train1, train2));
+            put(new DeparturesFromToRequest(Station.fromString("SLD"), Station.fromString("CRL")), fakes.TestDataBuilder.jsonForTrains(train1, train2));
         }
         });
 
         List<Train> expectedTrainList = Arrays.asList(train1, train2);
 
-        tmt = TestDataBuilder.TMTBuilder()
+        tmt = fakes.TestDataBuilder.TMTBuilder()
                 .with(networkClient)
                 .build();
 

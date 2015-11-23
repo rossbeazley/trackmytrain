@@ -6,9 +6,7 @@ import org.junit.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-import fakes.CapturingTrackedServiceListener;
-import fakes.ControllableExecutorService;
-import fakes.SlowRequestMapNetworkClient;
+import fakes.*;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.ServiceDetailsRequest;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -25,9 +23,9 @@ public class ServiceTestWithSlowNetwork {
 
     @Before
     public void setUp() throws Exception {
-        final Train train = TestDataBuilder.anyTrain();
+        final Train train = fakes.TestDataBuilder.anyTrain();
         serviceId = train.id;
-        final String initialJson = TestDataBuilder.jsonForTrain(train);
+        final String initialJson = fakes.TestDataBuilder.jsonForTrain(train);
         final ServiceDetailsRequest serviceDetailsRequest = new ServiceDetailsRequest(serviceId);
         map = new HashMap<NetworkClient.Request, String>() {{
             put(serviceDetailsRequest, initialJson);
@@ -36,7 +34,7 @@ public class ServiceTestWithSlowNetwork {
 
         ness = new ControllableExecutorService();
 
-        tmt = TestDataBuilder.TMTBuilder()
+        tmt = fakes.TestDataBuilder.TMTBuilder()
                 .with(client)
                 .with(ness)
                 .build();
