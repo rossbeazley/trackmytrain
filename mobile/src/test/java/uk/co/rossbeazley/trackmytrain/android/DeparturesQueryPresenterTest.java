@@ -13,7 +13,7 @@ import uk.co.rossbeazley.trackmytrain.android.departures.presentation.Departures
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class RemembersDeparturesQuery {
+public class DeparturesQueryPresenterTest {
 
     private DeparturesPresenter departuresPresenter;
     private Direction expectedDirection;
