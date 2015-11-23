@@ -18,21 +18,31 @@ public class RemembersDeparturesQuery {
     private DeparturesPresenter departuresPresenter;
     private Direction expectedDirection;
     private Station expectedStation;
-    private KeyValuePersistence keyValuePersistence;
 
     @Before
     public void setUp() throws Exception {
-        keyValuePersistence = new HashMapKeyValuePersistence();
-        TrackMyTrain tmt = TestDataBuilder.TMTBuilder()
-                .with(keyValuePersistence)
-                .build();
-
-        departuresPresenter = new DeparturesPresenter(tmt);
 
         expectedDirection = Direction.to(new Station("Salford Crescent","SLD"));
         expectedStation = new Station("Chorley","CRL");
 
-        departuresPresenter.departures(expectedStation, expectedDirection);
+        CanQueryDepartures tmt = new CanQueryDepartures() {
+            @Override
+            public void departures(Station at, Direction direction, DepartureQueryListener result) {
+
+            }
+
+            @Override
+            public DepartureQuery lastQuery() {
+                return new DepartureQuery(expectedStation,expectedDirection);
+            }
+
+            @Override
+            public void addDepartureQueryListener(DepartureQueryListener departureQueryListener) {
+
+            }
+        };
+        departuresPresenter = new DeparturesPresenter(tmt);
+
     }
 
 
