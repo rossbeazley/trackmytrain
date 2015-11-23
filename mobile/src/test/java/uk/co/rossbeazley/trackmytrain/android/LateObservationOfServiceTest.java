@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import fakes.CapturingTrackedServiceListener;
 import uk.co.rossbeazley.time.NarrowScheduledExecutorService;
 import uk.co.rossbeazley.trackmytrain.android.trackedService.ServiceView;
 import fakes.RequestMapNetworkClient;
@@ -22,9 +23,8 @@ public class LateObservationOfServiceTest {
     private String serviceId;
 
     private ServiceDetailsRequest serviceDetailsRequest;
-    private TrainViewModel expectedTrain;
-    private TrainViewModel presentedTrain;
-    private TrackedServicePresenter trackedServicePresenter;
+    private TrackMyTrain tmt;
+    private Train expectedTrain;
 
     @Before
     public void setUp() throws Exception {
@@ -32,9 +32,8 @@ public class LateObservationOfServiceTest {
         String scheduledTime = "20:48";
         String estimatedTime = "On time";
         String platform = "2";
-        final Train train = new Train(serviceId, estimatedTime, scheduledTime, platform, false);
-        expectedTrain = new TrainViewModel(train);
-        final String initialJson = TestDataBuilder.jsonForTrain(train);
+        expectedTrain = new Train(serviceId, estimatedTime, scheduledTime, platform, false);
+        final String initialJson = TestDataBuilder.jsonForTrain(expectedTrain);
         serviceDetailsRequest = new ServiceDetailsRequest(serviceId);
         Map<NetworkClient.Request, String> map = new HashMap<NetworkClient.Request, String>() {{
             put(serviceDetailsRequest, initialJson);
@@ -54,36 +53,20 @@ public class LateObservationOfServiceTest {
             }
         };
 
-        TrackMyTrain tmt = TestDataBuilder.TMTBuilder()
+        tmt = TestDataBuilder.TMTBuilder()
                 .with(client)
                 .with(ness)
                 .build();
 
-        trackedServicePresenter = new TrackedServicePresenter(tmt);
     }
 
     @Test
     public void lateObservationOfWatchedTrain() {
-        trackedServicePresenter.watch(serviceId);
+        CapturingTrackedServiceListener capturingTrackedServiceListener = new CapturingTrackedServiceListener();
+        tmt.addTrackedServiceListener(capturingTrackedServiceListener);
+        tmt.watchService(serviceId);
 
-        trackedServicePresenter.attach(new ServiceView() {
-            @Override
-            public void present(TrainViewModel train) {
-                presentedTrain = train;
-            }
-
-            @Override
-            public void hide() {
-
-            }
-
-            @Override
-            public void trackingStarted() {
-
-            }
-        });
-
-        assertThat(presentedTrain,is(expectedTrain));
+        assertThat(capturingTrackedServiceListener.train, is(expectedTrain));
     }
 
 }
