@@ -16,6 +16,7 @@ public class TestDataBuilder {
                 "\"id\": \"" + trainParam.id + "\",\n" +
                 "\"scheduledTime\": \"" + trainParam.scheduledTime + "\",\n" +
                 "\"estimatedTime\": \"" + trainParam.estimatedTime + "\",\n" +
+                "\"departed\": " + trainParam.departed + ",\n" +
                 "\"platform\": \"" + trainParam.platform + "\"\n" +
                 "}";
     }
