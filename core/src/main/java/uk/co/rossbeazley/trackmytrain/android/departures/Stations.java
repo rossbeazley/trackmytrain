@@ -1,6 +1,5 @@
 package uk.co.rossbeazley.trackmytrain.android.departures;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -2573,13 +2572,21 @@ public class Stations {
                 rtn = station;
             }
         }
-        return rtn;
+        return rtn == null ? UNKNOWN : rtn;
     }
 
     public static Station searchFor(String partialStationName) {
         Station rtn = null;
         for (Station station : list) {
             if (matchesWellEnough(partialStationName, station)) {
+                    rtn = chooseStationIfCloserMatch(rtn, station);
+            }
+        }
+
+        return rtn==null?fromStationCode(partialStationName):rtn;
+    }
+
+        private static Station chooseStationIfCloserMatch(Station rtn, Station station) {
                 if (rtn == null) {
                     rtn = station;
                 } else {
@@ -2587,17 +2594,10 @@ public class Stations {
                         rtn = station;
                     }
                 }
-            }
+                return rtn;
         }
 
-            if(rtn==null) {
-                    rtn = fromStationCode(partialStationName);
-            }
-
-        return rtn == null ? UNKNOWN : rtn;
-    }
-
-    private static boolean matchesWellEnough(String partialStationName, Station station) {
+        private static boolean matchesWellEnough(String partialStationName, Station station) {
         boolean match = station.toString().startsWith(partialStationName);
 
         return match;
