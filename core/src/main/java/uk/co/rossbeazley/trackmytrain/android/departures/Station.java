@@ -31,4 +31,8 @@ public class Station {
     public String stationCode() {
         return stationCode;
     }
+
+    public String stationName() {
+        return stationName;
+    }
 }

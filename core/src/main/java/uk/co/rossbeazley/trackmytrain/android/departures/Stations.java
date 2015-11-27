@@ -1,5 +1,6 @@
 package uk.co.rossbeazley.trackmytrain.android.departures;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -2559,17 +2560,41 @@ public class Stations {
             , new Station("Ystrad Mynach", "YSM")
             , new Station("Ystrad Rhondda", "YSR"));
 
-    public List<Station> list() {
+        public static final Station UNKNOWN = new Station("unknown", "---");
+
+        public List<Station> list() {
         return list;
     }
 
     public static Station fromStationCode(String sld) {
         Station rtn = null;
-        for(Station station : list) {
-            if(station.stationCode().equals(sld)) {
+        for (Station station : list) {
+            if (station.stationCode().equals(sld)) {
                 rtn = station;
             }
         }
         return rtn;
     }
+
+    public static Station searchFor(String partialStationName) {
+        Station rtn = null;
+        for (Station station : list) {
+            if (matchesWellEnough(partialStationName, station)) {
+                if (rtn == null) {
+                    rtn = station;
+                } else {
+                    if(rtn.stationName().length() > station.stationName().length()) {
+                            rtn = station;
+                    }
+                }
+            }
+        }
+        return rtn==null?UNKNOWN:rtn;
+    }
+
+        private static boolean matchesWellEnough(String partialStationName, Station station) {
+                boolean match = station.toString().startsWith(partialStationName);
+
+                return match;
+        }
 }
