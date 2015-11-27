@@ -2560,9 +2560,9 @@ public class Stations {
             , new Station("Ystrad Mynach", "YSM")
             , new Station("Ystrad Rhondda", "YSR"));
 
-        public static final Station UNKNOWN = new Station("unknown", "---");
+    public static final Station UNKNOWN = new Station("unknown", "---");
 
-        public List<Station> list() {
+    public List<Station> list() {
         return list;
     }
 
@@ -2583,18 +2583,23 @@ public class Stations {
                 if (rtn == null) {
                     rtn = station;
                 } else {
-                    if(rtn.stationName().length() > station.stationName().length()) {
-                            rtn = station;
+                    if (rtn.stationName().length() > station.stationName().length()) {
+                        rtn = station;
                     }
                 }
             }
         }
-        return rtn==null?UNKNOWN:rtn;
+
+            if(rtn==null) {
+                    rtn = fromStationCode(partialStationName);
+            }
+
+        return rtn == null ? UNKNOWN : rtn;
     }
 
-        private static boolean matchesWellEnough(String partialStationName, Station station) {
-                boolean match = station.toString().startsWith(partialStationName);
+    private static boolean matchesWellEnough(String partialStationName, Station station) {
+        boolean match = station.toString().startsWith(partialStationName);
 
-                return match;
-        }
+        return match;
+    }
 }

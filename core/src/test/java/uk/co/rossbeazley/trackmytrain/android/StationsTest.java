@@ -32,6 +32,14 @@ public class StationsTest {
         assertThat(foundStation,is(Stations.fromStationCode("BON")));
     }
 
+
+    @Test
+    public void
+    theOneWhereAStationIsFoundFromItsStationCodeOnly() {
+        Station foundStation = Stations.searchFor("BON");
+        assertThat(foundStation,is(Stations.fromStationCode("BON")));
+    }
+
     @Test
     public void
     theUnknownStation() {
