@@ -40,6 +40,16 @@ public class StationsTest {
         assertThat(foundStation,is(Stations.fromStationCode("BON")));
     }
 
+
+    @Test
+    public void
+    findsManchesterPicFromMAN() {
+        Station foundStation = Stations.searchFor("MAN");
+        assertThat(foundStation,is(Stations.fromStationCode("MAN")));
+    }
+
+
+
     @Test
     public void
     theUnknownStation() {

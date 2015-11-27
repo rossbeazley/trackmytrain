@@ -2566,40 +2566,64 @@ public class Stations {
     }
 
     public static Station fromStationCode(String sld) {
-        Station rtn = null;
-        for (Station station : list) {
-            if (station.stationCode().equals(sld)) {
-                rtn = station;
-            }
-        }
-        return rtn == null ? UNKNOWN : rtn;
+        return new StationSearch(list).fromStationCode(sld);
     }
 
     public static Station searchFor(String partialStationName) {
-        Station rtn = null;
-        for (Station station : list) {
-            if (matchesWellEnough(partialStationName, station)) {
-                    rtn = chooseStationIfCloserMatch(rtn, station);
-            }
-        }
-
-        return rtn==null?fromStationCode(partialStationName):rtn;
+        return new StationSearch(list).searchFor(partialStationName);
     }
 
-        private static Station chooseStationIfCloserMatch(Station rtn, Station station) {
-                if (rtn == null) {
-                    rtn = station;
-                } else {
-                    if (rtn.stationName().length() > station.stationName().length()) {
-                        rtn = station;
-                    }
+
+    private static class StationSearch {
+        private List<Station> list;
+
+        public StationSearch(final List<Station> list) {
+            this.list = list;
+        }
+
+        public Station searchFor(String partialStationName) {
+            Station rtn = UNKNOWN ;
+
+                rtn = rtn == UNKNOWN ? fromStationCode(partialStationName)        : rtn;
+                rtn = rtn == UNKNOWN ? searchByNameMatch(partialStationName, rtn) : rtn;
+
+            return rtn;
+        }
+
+        private Station searchByNameMatch(String partialStationName, Station rtn) {
+            for (Station station : list) {
+                if (StationSearch.matchesWellEnough(partialStationName, station)) {
+                    rtn = chooseStationIfCloserMatch(rtn, station);
                 }
-                return rtn;
+            }
+            return rtn == null ? UNKNOWN : rtn;
+        }
+
+        private static Station chooseStationIfCloserMatch(Station rtn, Station station) {
+            if (rtn == UNKNOWN) {
+                rtn = station;
+            } else {
+                if (rtn.stationName().length() > station.stationName().length()) {
+                    rtn = station;
+                }
+            }
+            return rtn;
         }
 
         private static boolean matchesWellEnough(String partialStationName, Station station) {
-        boolean match = station.toString().startsWith(partialStationName);
+            boolean match = station.toString().toLowerCase().startsWith(partialStationName.toLowerCase());
 
-        return match;
+            return match;
+        }
+
+        public Station fromStationCode(String sld) {
+            Station rtn = null;
+            for (Station station : list) {
+                if (station.stationCode().equals(sld)) {
+                    rtn = station;
+                }
+            }
+            return rtn == null ? UNKNOWN : rtn;
+        }
     }
 }
