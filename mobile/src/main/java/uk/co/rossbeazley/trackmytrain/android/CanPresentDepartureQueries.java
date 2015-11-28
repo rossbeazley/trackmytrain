@@ -7,9 +7,7 @@ import uk.co.rossbeazley.trackmytrain.android.departures.presentation.Departures
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesView;
 
 public interface CanPresentDepartureQueries {
-    void departures(Station at, Direction direction);
 
-    void departures(DepartureQuery query);
 
     void attach(DeparturesView departureView);
 

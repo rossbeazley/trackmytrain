@@ -76,10 +76,20 @@ public class DeparturesQueryPresenterTest {
         public DeparturesQueryViewModel departuresQueryViewModel;
 
         @Override
+        public void attach(DepartureQueryCommands departuresPresenter) {
+
+        }
+
+        @Override
         public void present(DeparturesQueryViewModel departuresQueryViewModel) {
             this.departuresQueryViewModel = departuresQueryViewModel;
             this.at = departuresQueryViewModel.getAt();
             this.direction = departuresQueryViewModel.getDirection();
+        }
+
+        @Override
+        public void detach(DepartureQueryCommands departuresPresenter) {
+
         }
 
     }

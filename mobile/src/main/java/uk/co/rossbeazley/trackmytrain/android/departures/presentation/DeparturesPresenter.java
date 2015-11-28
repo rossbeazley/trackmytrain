@@ -5,13 +5,14 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import uk.co.rossbeazley.trackmytrain.android.CanPresentDepartureQueries;
 import uk.co.rossbeazley.trackmytrain.android.CanQueryDepartures;
+import uk.co.rossbeazley.trackmytrain.android.DepartureQueryCommands;
 import uk.co.rossbeazley.trackmytrain.android.TMTError;
 import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQuery;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
 
-public class DeparturesPresenter implements CanPresentDepartureQueries {
+public class DeparturesPresenter implements CanPresentDepartureQueries, DepartureQueryCommands {
 
     private List<DeparturesView> departuresViews;
 
@@ -51,7 +52,6 @@ public class DeparturesPresenter implements CanPresentDepartureQueries {
         this.departuresViews.remove(departuresView);
     }
 
-
     private void departuresFound(List<Train> expectedList) {
         for (DeparturesView departuresView : departuresViews) {
             departuresView.present(DeparturesViewModel.fromListOfTrains(expectedList));
@@ -81,6 +81,7 @@ public class DeparturesPresenter implements CanPresentDepartureQueries {
     }
 
     public void attach(DeparturesQueryView departuresQueryView) {
+        departuresQueryView.attach(this);
         DepartureQuery departureQuery = canQueryDepartures.lastQuery();
         departuresQueryView.present(new DeparturesQueryViewModel(departureQuery));
         this.departuresQueryViews.add(departuresQueryView);
@@ -88,6 +89,7 @@ public class DeparturesPresenter implements CanPresentDepartureQueries {
 
     public void detach(DeparturesQueryView departuresQueryView) {
         this.departuresQueryViews.remove(departuresQueryView);
+        departuresQueryView.detach(this);
     }
 
 

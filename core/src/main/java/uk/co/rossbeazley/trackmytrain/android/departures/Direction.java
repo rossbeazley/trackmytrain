@@ -2,12 +2,12 @@ package uk.co.rossbeazley.trackmytrain.android.departures;
 
 public class Direction {
 
-    private static final Object TO = new Object();
+    private static final Object TO = "TO";
 
     private final Object to;
     private final Station station;
 
-    public Direction(Object to, Station station) {
+    private Direction(Object to, Station station) {
         this.to = to;
         this.station = station;
     }
@@ -16,6 +16,11 @@ public class Direction {
     public boolean equals(Object obj) {
         Direction that = (Direction) obj;
         return to.equals(that.to) && station.equals(that.station);
+    }
+
+    @Override
+    public String toString() {
+        return  to + " " + station;
     }
 
     public static Direction to(Station station) {

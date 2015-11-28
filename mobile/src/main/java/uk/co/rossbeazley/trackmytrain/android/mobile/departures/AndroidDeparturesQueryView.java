@@ -12,7 +12,11 @@ import android.widget.ArrayAdapter;
 
 import android.widget.TextView;
 
-import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesPresenter;
+import java.util.ArrayList;
+import java.util.List;
+
+import uk.co.rossbeazley.trackmytrain.android.DepartureQueryCommands;
+import uk.co.rossbeazley.trackmytrain.android.departures.Stations;
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesQueryViewModel;
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesQueryView;
 import uk.co.rossbeazley.trackmytrain.android.R;
@@ -26,12 +30,12 @@ class AndroidDeparturesQueryView implements DeparturesQueryView {
     private final TextView at_compact;
     private final TextView to_compact;
     private final ViewGroup servicedetailsRoot;
-    private final DeparturesPresenter departuresPresenter;
+    private final List<DepartureQueryCommands> departuresPresenters;
     private DeparturesQueryViewModel departuresQueryViewModel;
     private View departureQueryView;
     private final View departureQueryViewCompact;
 
-    public AndroidDeparturesQueryView(final FindsView findsView, final InputMethodManager inputMethodManager, DeparturesPresenter departuresPresenter) {
+    public          AndroidDeparturesQueryView(final FindsView findsView, final InputMethodManager inputMethodManager) {
         at = (AutoCompleteTextView) findsView.findViewById(R.id.at);
         to = (AutoCompleteTextView) findsView.findViewById(R.id.to);
 
@@ -62,7 +66,7 @@ class AndroidDeparturesQueryView implements DeparturesQueryView {
         });
 
         showFullQueryBoxWhenCompactTouched();
-        this.departuresPresenter = departuresPresenter;
+        departuresPresenters = new ArrayList<>();
     }
 
     private void showFullQueryBoxWhenCompactTouched() {
@@ -92,14 +96,31 @@ class AndroidDeparturesQueryView implements DeparturesQueryView {
     }
 
     void dispatchQuery() {
-        departuresPresenter.departures(departuresQueryViewModel.departuresQuery());
+        departuresQueryViewModel.setAt(Stations.searchFor(at.getText().toString()));
+        departuresQueryViewModel.setDirection(Direction.to(Stations.searchFor(to.getText().toString())));
+
+        for (DepartureQueryCommands departuresPresenter : departuresPresenters) {
+            departuresPresenter.departures(departuresQueryViewModel.departuresQuery());
+        }
+
     }
+
+    @Override
+    public void attach(DepartureQueryCommands departuresPresenter) {
+        this.departuresPresenters.add(departuresPresenter);
+    }
+
 
     @Override
     public void present(final DeparturesQueryViewModel departuresQueryViewModel) {
         this.departuresQueryViewModel = departuresQueryViewModel;
         presentStationNames(departuresQueryViewModel);
         presentStationLists(departuresQueryViewModel);
+    }
+
+    @Override
+    public void detach(DepartureQueryCommands departuresPresenter) {
+        departuresPresenters.remove(departuresPresenter);
     }
 
     void presentStationLists(DeparturesQueryViewModel departuresQueryViewModel) {
@@ -141,21 +162,17 @@ class AndroidDeparturesQueryView implements DeparturesQueryView {
     }
 
     private void presentAtStationList(final DeparturesQueryViewModel departuresQueryViewModel) {
-        ArrayAdapter<Station> adapter = new ArrayAdapter<Station>(at.getContext(), android.R.layout.simple_list_item_1, departuresQueryViewModel.stations());
+        final ArrayAdapter<Station> adapter = new ArrayAdapter<Station>(at.getContext(), android.R.layout.simple_list_item_1, departuresQueryViewModel.stations());
         at.setAdapter(adapter);
         at.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Station station = (Station) parent.getAdapter().getItem(position);
-                departuresQueryViewModel.setAt(station);
-                blitAtName(station);
+                //departuresQueryViewModel.setAt(station);
+                //blitAtName(station);
+                at_compact.setText(station.toString());
             }
         });
-    }
-
-    private void blitAtName(Station station) {
-        at.setText(station.toString());
-        at_compact.setText(station.toString());
     }
 
     private void presentToStationList(final DeparturesQueryViewModel departuresQueryViewModel) {
@@ -165,8 +182,8 @@ class AndroidDeparturesQueryView implements DeparturesQueryView {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Station station = (Station) parent.getAdapter().getItem(position);
-                departuresQueryViewModel.setDirection(Direction.to(station));
-                blitToName(station.toString());
+                //blitToName(station.toString());
+                to_compact.setText(station.toString());
             }
         });
     }

@@ -2566,7 +2566,7 @@ public class Stations {
     }
 
     public static Station fromStationCode(String sld) {
-        return new StationSearch(list).fromStationCode(sld);
+        return new StationSearch(list).searchStationCode(sld);
     }
 
     public static Station searchFor(String partialStationName) {
@@ -2582,15 +2582,16 @@ public class Stations {
         }
 
         public Station searchFor(String partialStationName) {
-            Station rtn = UNKNOWN ;
+            Station rtn = UNKNOWN;
 
-                rtn = rtn == UNKNOWN ? fromStationCode(partialStationName)        : rtn;
-                rtn = rtn == UNKNOWN ? searchByNameMatch(partialStationName, rtn) : rtn;
+            rtn = rtn == UNKNOWN ? searchStationCode(partialStationName) : rtn;
+            rtn = rtn == UNKNOWN ? searchByNameMatch(partialStationName) : rtn;
 
             return rtn;
         }
 
-        private Station searchByNameMatch(String partialStationName, Station rtn) {
+        private Station searchByNameMatch(String partialStationName) {
+            Station rtn = UNKNOWN;
             for (Station station : list) {
                 if (StationSearch.matchesWellEnough(partialStationName, station)) {
                     rtn = chooseStationIfCloserMatch(rtn, station);
@@ -2616,7 +2617,7 @@ public class Stations {
             return match;
         }
 
-        public Station fromStationCode(String sld) {
+        public Station searchStationCode(String sld) {
             Station rtn = null;
             for (Station station : list) {
                 if (station.stationCode().equals(sld)) {

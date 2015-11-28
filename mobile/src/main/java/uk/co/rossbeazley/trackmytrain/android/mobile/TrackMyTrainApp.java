@@ -6,6 +6,8 @@ import android.support.annotation.NonNull;
 
 import com.google.android.gms.analytics.Tracker;
 
+import uk.co.rossbeazley.trackmytrain.android.CanPresentDepartureQueries;
+import uk.co.rossbeazley.trackmytrain.android.DepartureQueryCommands;
 import uk.co.rossbeazley.trackmytrain.android.TMTBuilder;
 import uk.co.rossbeazley.trackmytrain.android.TrackMyTrain;
 import uk.co.rossbeazley.trackmytrain.android.analytics.Analytics;
@@ -22,7 +24,8 @@ public class TrackMyTrainApp extends Application{
 
     public static TrackMyTrain instance;
     public static TrackedServicePresenter trackedServicePresenter;
-    public static DeparturesPresenter departuresPresenter;
+    public static CanPresentDepartureQueries departuresPresenter;
+    public static DepartureQueryCommands departureQueryCommands;
 
     public static MessageService messageService;
 
@@ -61,7 +64,10 @@ public class TrackMyTrainApp extends Application{
         System.setProperty("http.agent", "TrackMyTrain/1.2 (" + Build.DEVICE + ", " + Build.MANUFACTURER + ", " + Build.MODEL + ")");
 
         trackedServicePresenter = new TrackedServicePresenter(instance);
-        departuresPresenter = new DeparturesPresenter(instance);
+        DeparturesPresenter departuresPresenter = new DeparturesPresenter(instance);
+        TrackMyTrainApp.departuresPresenter = departuresPresenter;
+        TrackMyTrainApp.departureQueryCommands = departuresPresenter;
+
 
         Postman postman = WearNetworkBuilder.fromContext(this);
 

@@ -2,13 +2,13 @@ apply plugin: 'com.android.application'
 
 
 android {
-    compileSdkVersion 22
-    buildToolsVersion "22.0.1"
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
 
     defaultConfig {
         applicationId "uk.co.rossbeazley.trackmytrain.android"
-        minSdkVersion 19
-        targetSdkVersion 22
+        minSdkVersion 20
+        targetSdkVersion 23
         versionCode 20
         versionName "2.7"
     }
@@ -28,8 +28,8 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile project(':core')
     compile 'com.google.android.support:wearable:1.2.0'
-    compile 'com.google.android.gms:play-services-wearable:7.5.0'
-    compile 'com.android.support:support-v4:22.2.1'
+    compile 'com.google.android.gms:play-services-wearable:8.3.0'
+    compile 'com.android.support:support-v4:23.1.1'
 
     provided 'com.google.android.wearable:wearable:1.0.0'
 }

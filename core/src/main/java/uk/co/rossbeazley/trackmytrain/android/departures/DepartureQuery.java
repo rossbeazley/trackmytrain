@@ -38,9 +38,7 @@ public class DepartureQuery {
     }
 
     @Override
-    public int hashCode() {
-        int result = currentAt != null ? currentAt.hashCode() : 0;
-        result = 31 * result + (currentDirection != null ? currentDirection.hashCode() : 0);
-        return result;
+    public String toString() {
+        return currentAt + " " + currentDirection.toString();
     }
 }

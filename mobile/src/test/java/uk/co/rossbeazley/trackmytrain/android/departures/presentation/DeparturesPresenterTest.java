@@ -51,7 +51,7 @@ public class DeparturesPresenterTest {
         Station at = fromStation;
         Direction direction = Direction.to(toStation);
 
-        tmt.departures(at, direction);
+        tmt.departures(new DepartureQuery(at, direction));
 
         assertThat(departuresView.isLoading, is(true));
     }
@@ -89,7 +89,7 @@ public class DeparturesPresenterTest {
         Station at = Station.fromString("SLD");
         Direction direction = Direction.to(Station.fromString("CRL"));
 
-        departuresPresenter.departures(at, direction);
+        departuresPresenter.departures(new DepartureQuery(at, direction));
 
         assertThat(departuresView.trainList, is(expectedList));
     }
