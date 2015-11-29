@@ -22,4 +22,10 @@ android:
     # - sys-img-armeabi-v7a-android-21
     - sys-img-x86-android-20
 
+before_script:
+  - echo no | android create avd --force -n test -t android-20 --abi x86
+  - emulator -avd test -no-skin -no-audio -no-window &
+  - android-wait-for-emulator
+  - adb shell input keyevent 82 &
+
 script: ./gradlew build test connectedTest
