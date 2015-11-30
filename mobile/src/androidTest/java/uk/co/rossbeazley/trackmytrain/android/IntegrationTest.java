@@ -3,22 +3,16 @@ package uk.co.rossbeazley.trackmytrain.android;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
-import android.os.Build;
-import android.test.ActivityUnitTestCase;
 import android.test.InstrumentationTestCase;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
 
-import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import uk.co.rossbeazley.trackmytrain.android.CanPresentDepartureQueries;
-import uk.co.rossbeazley.trackmytrain.android.DepartureQueryCommands;
 import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQuery;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
@@ -37,12 +31,13 @@ public class IntegrationTest extends InstrumentationTestCase {
     private MyDepartureQueryCommands myDepartureQueryCommands;
     private MyCanPresentDepartureQueries myCanPresentDepartureQueries;
     private Activity activity;
+    private DepartureQuery initialDepQuery;
 
 
     public void setUp() throws Exception {
         super.setUp();
         Intent intent = new Intent();
-        ComponentName component = new ComponentName(BuildConfig.APPLICATION_ID,BuildConfig.APPLICATION_ID+".mobile.Departures");
+        ComponentName component = Departures.componentName();
         intent.setComponent(component);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
@@ -56,6 +51,15 @@ public class IntegrationTest extends InstrumentationTestCase {
 
         activity = getInstrumentation().startActivitySync(intent);
 
+
+        Station crl = Station.fromString("CRL");
+        Direction bon = Direction.to(Station.fromString("BON"));
+        initialDepQuery = new DepartureQuery(crl, bon);
+
+        for (DeparturesQueryView view : myCanPresentDepartureQueries.departureQueryViews) {
+            view.present(new DeparturesQueryViewModel(initialDepQuery));
+        }
+
     }
 
 
@@ -65,16 +69,12 @@ public class IntegrationTest extends InstrumentationTestCase {
 
     public void test_viewWillDispatchQueryBackToPresenter() {
 
-        assertThat("Number of attached views", myCanPresentDepartureQueries.departureQueryViews.size() > 0, is(true));
+        performDeparturesQuery();
 
-        Station crl = Station.fromString("CRL");
-        Direction bon = Direction.to(Station.fromString("BON"));
-        DepartureQuery dep = new DepartureQuery(crl, bon);
+        assertThat(myDepartureQueryCommands.query, is(initialDepQuery));
+    }
 
-        for (DeparturesQueryView view : myCanPresentDepartureQueries.departureQueryViews) {
-            view.present(new DeparturesQueryViewModel(dep));
-        }
-
+    public void performDeparturesQuery() {
         final View viewById = activity.findViewById(R.id.getdepartures);
         getInstrumentation().runOnMainSync(new Runnable() {
             @Override
@@ -83,36 +83,24 @@ public class IntegrationTest extends InstrumentationTestCase {
 
             }
         });
-
-        assertThat(myDepartureQueryCommands.query, is(dep));
     }
 
     @Test
     public void test_viewWillDispatchQueryWithDifferentFromStation() {
 
-        Station crl = Station.fromString("CRL");
-        Station bolton = Station.fromString("BON");
-        Direction toBolton = Direction.to(bolton);
-        final DepartureQuery dep = new DepartureQuery(crl, toBolton);
-        final DepartureQuery expectedQuery = new DepartureQuery(bolton, Direction.to(crl));
-
-        final AutoCompleteTextView trainAtStationField = (AutoCompleteTextView) activity.findViewById(R.id.at);
         getInstrumentation().runOnMainSync(new Runnable() {
             @Override
             public void run() {
-
-                for (DeparturesQueryView view : myCanPresentDepartureQueries.departureQueryViews) {
-                    view.present(new DeparturesQueryViewModel(dep));
-                }
-
-                trainAtStationField.setText("BOL");
+                ((AutoCompleteTextView) activity.findViewById(R.id.at)).setText("BOL");
                 ((TextView) activity.findViewById(R.id.to)).setText("CHORLEY");
-
-                activity.findViewById(R.id.getdepartures).performClick();
-
             }
         });
 
+        performDeparturesQuery();
+
+        Station crl = Station.fromString("CRL");
+        Station bolton = Station.fromString("BON");
+        final DepartureQuery expectedQuery = new DepartureQuery(bolton, Direction.to(crl));
         assertThat(myDepartureQueryCommands.query, is(expectedQuery));
     }
 
