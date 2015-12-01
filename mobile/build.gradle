@@ -1,6 +1,9 @@
 apply plugin: 'com.android.application'
 
 android {
+    dataBinding {
+        enabled = true
+    }
     signingConfigs {
         release {
             keyAlias 'trackmytrain'
@@ -15,8 +18,8 @@ android {
         applicationId "uk.co.rossbeazley.trackmytrain.android"
         minSdkVersion 20
         targetSdkVersion 23
-        versionCode 20
-        versionName "2.7"
+        versionCode 22
+        versionName "2.8"
         signingConfig signingConfigs.release
         //testInstrumentationRunner "com.google.android.apps.common.testing.testrunner.GoogleInstrumentationTestRunner"
         //testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"

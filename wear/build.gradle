@@ -9,8 +9,8 @@ android {
         applicationId "uk.co.rossbeazley.trackmytrain.android"
         minSdkVersion 20
         targetSdkVersion 23
-        versionCode 20
-        versionName "2.7"
+        versionCode 22
+        versionName "2.8"
     }
     buildTypes {
         release {

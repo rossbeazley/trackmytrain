@@ -54,7 +54,7 @@ public class DeparturesQueryViewModel {
 
     public void swapStations() {
         Station oldat = at;
-        at = direction != null ? direction.station() : null;
+        at = (direction != null ? direction.station() : null);
         direction = Direction.to(oldat);
     }
 }
