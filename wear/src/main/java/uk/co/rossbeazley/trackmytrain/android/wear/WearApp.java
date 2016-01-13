@@ -55,6 +55,7 @@ public class WearApp implements CanPresentTrackedTrains {
 
     void announceServiceTrackingStopped() {
         currentService = null;
+        isTracking = false;
         for (ServiceView serviceView : serviceViews) {
             serviceView.hide();
         }
