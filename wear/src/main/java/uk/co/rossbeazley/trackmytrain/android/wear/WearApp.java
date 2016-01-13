@@ -11,11 +11,13 @@ import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 public class WearApp implements CanPresentTrackedTrains {
     private final HostNode hostNode;
     private final Postman postman;
+    private final WearNotification notificationService;
     private List<ServiceView> serviceViews;
     private TrainViewModel currentService;
 
-    public WearApp(HostNode hostNode, Postman postman) {
+    public WearApp(HostNode hostNode, Postman postman, WearNotification service) {
         this.postman = postman;
+        notificationService = service;
         serviceViews = new CopyOnWriteArrayList<>();
 
         this.hostNode = hostNode;
@@ -78,5 +80,8 @@ public class WearApp implements CanPresentTrackedTrains {
     @Override
     public void detach(ServiceView serviceView) {
         this.serviceViews.remove(serviceView);
+        if(serviceViews.size()==0) {
+            notificationService.show(null);
+        }
     }
 }

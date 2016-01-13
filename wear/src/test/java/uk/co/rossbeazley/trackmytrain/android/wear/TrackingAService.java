@@ -18,7 +18,7 @@ public class TrackingAService {
 
 
         HostNode hostNode = new HostNode();
-        WearApp wearApp = new WearApp(hostNode, new CapturingPostman());
+        WearApp wearApp = new WearApp(hostNode, new CapturingPostman(), new CapturingNotificationService());
 
         final CapturingServiceView serviceView = new CapturingServiceView();
         wearApp.attach(serviceView);
@@ -37,7 +37,7 @@ public class TrackingAService {
     finishesWearAppWhenTrackingEnds() {
 
         HostNode hostNode = new HostNode();
-        WearApp wearApp = new WearApp(hostNode, new CapturingPostman());
+        WearApp wearApp = new WearApp(hostNode, new CapturingPostman(), new CapturingNotificationService());
         WearAppSingleton.instance = wearApp;
 
         final CapturingCanFinishWearApp capturingCanFinishWearApp = new CapturingCanFinishWearApp();
@@ -56,7 +56,7 @@ public class TrackingAService {
     updatesViewWithTrackedServiceViewModel() {
 
         HostNode hostNode = new HostNode();
-        WearApp wearApp = new WearApp(hostNode, new CapturingPostman());
+        WearApp wearApp = new WearApp(hostNode, new CapturingPostman(), new CapturingNotificationService());
         CapturingServiceView serviceView = new CapturingServiceView();
         wearApp.attach(serviceView);
 
@@ -74,7 +74,7 @@ public class TrackingAService {
         TrainViewModel expectedService = new TrainViewModel(train);
 
         HostNode hostNode = new HostNode();
-        WearApp wearApp = new WearApp(hostNode, new CapturingPostman());
+        WearApp wearApp = new WearApp(hostNode, new CapturingPostman(), new CapturingNotificationService());
         CapturingServiceView serviceView = new CapturingServiceView();
         wearApp.message(new MessageEnvelope(new Postman.NodeId("anyId"), new TrackedServiceMessage(train)));
 
@@ -95,7 +95,7 @@ public class TrackingAService {
         };
 
         HostNode hostNode = new HostNode();
-        WearApp wearApp = new WearApp(hostNode, new CapturingPostman());
+        WearApp wearApp = new WearApp(hostNode, new CapturingPostman(), new CapturingNotificationService());
         CapturingServiceView serviceView = new CapturingServiceView();
 
         serviceView.serviceDisplayed = NONE;

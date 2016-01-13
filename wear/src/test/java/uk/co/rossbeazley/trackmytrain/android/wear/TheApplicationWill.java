@@ -18,7 +18,7 @@ public class TheApplicationWill {
     @Before
     public void setUp() throws Exception {
         capturingPostman = new CapturingPostman();
-        wearApp = new WearApp(new HostNode(), capturingPostman);
+        wearApp = new WearApp(new HostNode(), capturingPostman, new CapturingNotificationService());
     }
 
     @Test

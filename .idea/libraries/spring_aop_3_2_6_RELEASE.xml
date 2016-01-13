@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="spring-aop-3.2.6.RELEASE">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/webservice/rest-ws/lib/spring-aop-3.2.6.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
