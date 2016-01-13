@@ -55,7 +55,6 @@ public class NotificationsTests {
     public void
     whenAllUIDetachesAfterTrackingHasStopped_NONotificationServiceIsStarted() {
 
-
         CapturingNotificationService service = new CapturingNotificationService();
 
         HostNode hostNode = new HostNode();

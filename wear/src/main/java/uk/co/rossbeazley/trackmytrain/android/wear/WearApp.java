@@ -85,7 +85,7 @@ public class WearApp implements CanPresentTrackedTrains {
         this.serviceViews.remove(serviceView);
         if(serviceViews.size()==0) {
             if(isTracking) {
-                notificationService.show(null);
+                notificationService.show();
             }
         }
     }

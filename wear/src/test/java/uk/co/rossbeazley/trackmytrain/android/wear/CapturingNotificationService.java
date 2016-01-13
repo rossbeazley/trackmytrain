@@ -7,7 +7,7 @@ public class CapturingNotificationService implements WearNotification {
     public String state = UNKNOWN;
 
     @Override
-    public void show(TrainViewModel trainViewModel) {
+    public void show() {
         state = STARTED;
     }
 
