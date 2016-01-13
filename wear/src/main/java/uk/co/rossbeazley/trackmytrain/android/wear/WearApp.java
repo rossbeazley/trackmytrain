@@ -50,6 +50,7 @@ public class WearApp implements CanPresentTrackedTrains {
         for (ServiceView serviceView : serviceViews) {
             serviceView.present(trainViewModel);
         }
+        notificationService.show(trainViewModel);
 
     }
 

@@ -4,6 +4,7 @@ import android.app.Application;
 
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.WearNetworkBuilder;
 import uk.co.rossbeazley.trackmytrain.android.wear.HostNode;
+import uk.co.rossbeazley.trackmytrain.android.wear.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.wear.WearApp;
 import uk.co.rossbeazley.trackmytrain.android.wear.WearNotification;
 
@@ -24,6 +25,11 @@ public class WearAppSingleton extends Application {
         WearNotification service = new WearNotification() {
             @Override
             public void show() {
+
+            }
+
+            @Override
+            public void show(TrainViewModel trainViewModel) {
 
             }
         };

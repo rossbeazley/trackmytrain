@@ -7,7 +7,7 @@ import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class NotificationsTests {
+public class NotificationsStartTests {
 
 
     @Test
@@ -70,8 +70,25 @@ public class NotificationsTests {
         wearApp.detach(anyView);
 
         assertThat(service.state, is(CapturingNotificationService.UNKNOWN));
-
     }
 
+
+    @Test
+    public void
+    whenTrackingHasStartedWithNoUIAttached_NONotificationServiceIsStarted() {
+
+        CapturingNotificationService service = new CapturingNotificationService();
+
+        HostNode hostNode = new HostNode();
+        WearApp wearApp = new WearApp(hostNode, new CapturingPostman(), service);
+
+        Postman.NodeId anyId = new Postman.NodeId("anyId");
+        MessageEnvelope message = new MessageEnvelope(anyId, new StartedTrackingMessage());
+        wearApp.message(message);
+
+        wearApp.message(new MessageEnvelope(anyId, new StoppedTrackingMessage()));
+
+        assertThat(service.state, is(CapturingNotificationService.UNKNOWN));
+    }
 
 }
