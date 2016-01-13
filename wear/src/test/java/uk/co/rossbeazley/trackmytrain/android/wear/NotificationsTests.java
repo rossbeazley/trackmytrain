@@ -31,4 +31,23 @@ public class NotificationsTests {
 
     }
 
+
+    @Test
+    public void
+    whenAllUIDetachesWhenNotTrackingNONotificationServiceIsStarted() {
+
+
+        CapturingNotificationService service = new CapturingNotificationService();
+
+        HostNode hostNode = new HostNode();
+        WearApp wearApp = new WearApp(hostNode, new CapturingPostman(), service);
+        final CapturingServiceView anyView = new CapturingServiceView();
+        wearApp.attach(anyView);
+
+        wearApp.detach(anyView);
+
+        assertThat(service.state, is(CapturingNotificationService.UNKNOWN));
+
+    }
+
 }
