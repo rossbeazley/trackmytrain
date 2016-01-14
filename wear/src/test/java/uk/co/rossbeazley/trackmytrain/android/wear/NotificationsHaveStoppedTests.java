@@ -55,7 +55,7 @@ public class NotificationsHaveStoppedTests {
 
 
     @Test
-    public void startingTrackingWithUpdatedServiceDetailsAndAttached_dosntUpdateNotifiction() {
+    public void startingTrackingWithUpdatedServiceDetailsAndUIAttached_dosntUpdateNotifiction() {
         sendStartedTrackingMessage();
         wearApp.attach(new CapturingServiceView());
 

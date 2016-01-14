@@ -78,10 +78,11 @@ public class WearApp implements CanPresentTrackedTrains {
     @Override
     public void attach(ServiceView serviceView) {
         this.serviceViews.add(serviceView);
-        announcServiceViewAttached(serviceView);
+        announceServiceViewAttached(serviceView);
+        notificationService.hide();
     }
 
-    private void announcServiceViewAttached(ServiceView serviceView) {
+    private void announceServiceViewAttached(ServiceView serviceView) {
         if (currentService != null) serviceView.present(currentService);
         postman.broadcast(new AnalyticsEventMessage("WEAR-SERVICEVIEW-ATTACHED", serviceView.getClass().getSimpleName()));
     }

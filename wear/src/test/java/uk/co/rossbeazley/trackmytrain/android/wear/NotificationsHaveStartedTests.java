@@ -66,5 +66,11 @@ public class NotificationsHaveStartedTests {
         assertThat(service.lastPresentedTrain,is(expectedTrainViewModel));
     }
 
+    @Test
+    public void theUIIsReattached_notifiactionStops() {
+        wearApp.attach(new CapturingServiceView());
+
+        assertThat(service.state,is(CapturingNotificationService.STOPPED));
+    }
 
 }
