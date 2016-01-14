@@ -32,6 +32,11 @@ public class WearAppSingleton extends Application {
             public void show(TrainViewModel trainViewModel) {
 
             }
+
+            @Override
+            public void hide() {
+
+            }
         };
         instance = new WearApp(hostnode, WearNetworkBuilder.fromContext(this),  service);
 

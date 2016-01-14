@@ -5,4 +5,6 @@ public interface WearNotification {
     void show();
 
     void show(TrainViewModel trainViewModel);
+
+    void hide();
 }

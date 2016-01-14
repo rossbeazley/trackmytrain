@@ -63,6 +63,7 @@ public class WearApp implements CanPresentTrackedTrains {
         for (ServiceView serviceView : serviceViews) {
             serviceView.hide();
         }
+        notificationService.hide();
     }
 
     private void announceServiceTracking() {
