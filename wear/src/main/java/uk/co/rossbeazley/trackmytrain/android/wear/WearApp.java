@@ -11,20 +11,19 @@ import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 public class WearApp implements CanPresentTrackedTrains {
     private final HostNode hostNode;
     private final Postman postman;
-    private final WearNotification notificationService;
+    private final NotificationManager notificationManager;
     private List<ServiceView> serviceViews;
     private TrainViewModel currentService;
-    private boolean isTracking;
-    private boolean isNotifing;
 
     public WearApp(HostNode hostNode, Postman postman, WearNotification service) {
         this.postman = postman;
-        notificationService = service;
         serviceViews = new CopyOnWriteArrayList<>();
 
         this.hostNode = hostNode;
 
         postman.broadcast(new AnalyticsEventMessage("WEAR-CREATED", "CREATED"));
+
+        this.notificationManager = new NotificationManager(service);
     }
 
     public void message(MessageEnvelope messageEnvelope) {
@@ -51,29 +50,23 @@ public class WearApp implements CanPresentTrackedTrains {
         for (ServiceView serviceView : serviceViews) {
             serviceView.present(trainViewModel);
         }
-        if (isNotifing) {
-            notificationService.show(trainViewModel);
-        }
+        notificationManager.serviceTracking(trainViewModel);
 
     }
 
     void announceServiceTrackingStopped() {
         currentService = null;
-        isTracking = false;
         for (ServiceView serviceView : serviceViews) {
             serviceView.hide();
         }
-        if (isNotifing) {
-            isNotifing = false;
-            notificationService.hide();
-        }
+        notificationManager.trackingStopped();
     }
 
     private void announceServiceTracking() {
-        isTracking = true;
         for (ServiceView serviceView : serviceViews) {
             serviceView.trackingStarted();
         }
+        notificationManager.tracking();
 
     }
 
@@ -81,7 +74,7 @@ public class WearApp implements CanPresentTrackedTrains {
     public void attach(ServiceView serviceView) {
         this.serviceViews.add(serviceView);
         announceServiceViewAttached(serviceView);
-        if (isNotifing) notificationService.hide();
+        notificationManager.serviceViewAttached();
     }
 
     private void announceServiceViewAttached(ServiceView serviceView) {
@@ -92,10 +85,52 @@ public class WearApp implements CanPresentTrackedTrains {
     @Override
     public void detach(ServiceView serviceView) {
         this.serviceViews.remove(serviceView);
-        if (serviceViews.size() == 0) {
-            if (isTracking) {
-                isNotifing = true;
-                notificationService.show();
+        notificationManager.serviceViewDetached(serviceViews.size());
+    }
+
+    private static class NotificationManager {
+
+        private final WearNotification notificationService;
+        private boolean isTracking;
+        private boolean isNotifing;
+
+        public NotificationManager(WearNotification service) {
+
+            this.notificationService = service;
+        }
+
+        public void serviceViewDetached(int size) {
+            if (size == 0) {
+                if (isTracking) {
+                    isNotifing = true;
+                    notificationService.show();
+                }
+            }
+        }
+
+        public void serviceViewAttached() {
+
+            if (isNotifing) {
+                notificationService.hide();
+                isNotifing = false;
+            }
+        }
+
+        public void tracking() {
+            isTracking = true;
+        }
+
+        public void trackingStopped() {
+            isTracking = false;
+            if (isNotifing) {
+                isNotifing = false;
+                notificationService.hide();
+            }
+        }
+
+        public void serviceTracking(TrainViewModel trainViewModel) {
+            if (isNotifing) {
+                notificationService.show(trainViewModel);
             }
         }
     }

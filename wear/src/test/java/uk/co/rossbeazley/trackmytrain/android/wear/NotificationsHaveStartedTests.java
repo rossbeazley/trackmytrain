@@ -7,6 +7,7 @@ import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class NotificationsHaveStartedTests {
@@ -51,10 +52,10 @@ public class NotificationsHaveStartedTests {
     @Test
     public void theServiceDetailsAreUpdatedAgain() {
 
-        Train aTrain = new Train("anyId", "20:24", "20:22", "4", false);
-
         Train expectedTrain = new Train("anyId", "20:24", "20:28", "4", false);
 
+
+        Train aTrain = new Train("anyId", "20:24", "20:22", "4", false);
         Postman.NodeId anyId =  new Postman.NodeId("anyId");
         wearApp.message(new MessageEnvelope(anyId, new TrackedServiceMessage(aTrain)));
 
@@ -71,6 +72,17 @@ public class NotificationsHaveStartedTests {
         wearApp.attach(new CapturingServiceView());
 
         assertThat(service.state,is(CapturingNotificationService.STOPPED));
+    }
+
+    @Test
+    public void theUIIsReattachedWithServiceUpdate_notifiactionIsntUpdated() {
+        wearApp.attach(new CapturingServiceView());
+
+        Train aTrain = new Train("anyId", "20:24", "20:22", "4", false);
+        Postman.NodeId anyId =  new Postman.NodeId("anyId");
+        wearApp.message(new MessageEnvelope(anyId, new TrackedServiceMessage(aTrain)));
+
+        assertThat(service.lastPresentedTrain,is(nullValue()));
     }
 
 }

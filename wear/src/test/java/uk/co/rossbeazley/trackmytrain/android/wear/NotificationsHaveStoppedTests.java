@@ -49,8 +49,18 @@ public class NotificationsHaveStoppedTests {
     }
 
     @Test
-    public void theServiceDetailsAreUpdated() {
+    public void notificationIsStopped() {
         assertThat(service.state,is(CapturingNotificationService.STOPPED));
+    }
+
+
+    @Test
+    public void theServiceDetailsAreUpdated() {
+        Train aTrain = new Train("anyId", "20:24", "20:22", "4", false);
+
+        wearApp.message(new MessageEnvelope(anyNodeId(), new TrackedServiceMessage(aTrain)));
+
+        assertThat(service.lastPresentedTrain,is(nullValue()));
     }
 
 
