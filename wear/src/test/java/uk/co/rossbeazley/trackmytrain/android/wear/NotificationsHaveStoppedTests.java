@@ -1,5 +1,7 @@
 package uk.co.rossbeazley.trackmytrain.android.wear;
 
+import android.support.annotation.NonNull;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -7,6 +9,7 @@ import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class NotificationsHaveStoppedTests {
@@ -23,9 +26,7 @@ public class NotificationsHaveStoppedTests {
         wearApp = new WearApp(hostNode, new CapturingPostman(), service);
         final CapturingServiceView anyView = new CapturingServiceView();
         wearApp.attach(anyView);
-        Postman.NodeId anyId =  new Postman.NodeId("anyId");
-        MessageEnvelope message = new MessageEnvelope(anyId, new StartedTrackingMessage());
-        wearApp.message(message);
+        Postman.NodeId anyId = sendStartedTrackingMessage();
 
         wearApp.detach(anyView);
 
@@ -34,11 +35,36 @@ public class NotificationsHaveStoppedTests {
         wearApp.message(new MessageEnvelope(anyId,new StoppedTrackingMessage()));
     }
 
+    @NonNull
+    public Postman.NodeId sendStartedTrackingMessage() {
+        Postman.NodeId anyId = anyNodeId();
+        MessageEnvelope message = new MessageEnvelope(anyId, new StartedTrackingMessage());
+        wearApp.message(message);
+        return anyId;
+    }
+
+    @NonNull
+    public Postman.NodeId anyNodeId() {
+        return new Postman.NodeId("anyId");
+    }
+
     @Test
     public void theServiceDetailsAreUpdated() {
         assertThat(service.state,is(CapturingNotificationService.STOPPED));
     }
 
 
+    @Test
+    public void startingTrackingWithUpdatedServiceDetailsAndAttached_dosntUpdateNotifiction() {
+        sendStartedTrackingMessage();
+        wearApp.attach(new CapturingServiceView());
+
+        Train aTrain = new Train("anyId", "20:24", "20:22", "4", false);
+
+        wearApp.message(new MessageEnvelope(anyNodeId(), new TrackedServiceMessage(aTrain)));
+
+        assertThat(service.state, is(CapturingNotificationService.STOPPED));
+        assertThat(service.lastPresentedTrain,is(nullValue()));
+    }
 
 }
