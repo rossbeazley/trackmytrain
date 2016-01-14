@@ -51,7 +51,7 @@ public class WearApp implements CanPresentTrackedTrains {
         for (ServiceView serviceView : serviceViews) {
             serviceView.present(trainViewModel);
         }
-        if(isNotifing) {
+        if (isNotifing) {
             notificationService.show(trainViewModel);
         }
 
@@ -63,8 +63,10 @@ public class WearApp implements CanPresentTrackedTrains {
         for (ServiceView serviceView : serviceViews) {
             serviceView.hide();
         }
-        isNotifing=false;
-        notificationService.hide();
+        if (isNotifing) {
+            isNotifing = false;
+            notificationService.hide();
+        }
     }
 
     private void announceServiceTracking() {
@@ -79,7 +81,7 @@ public class WearApp implements CanPresentTrackedTrains {
     public void attach(ServiceView serviceView) {
         this.serviceViews.add(serviceView);
         announceServiceViewAttached(serviceView);
-        notificationService.hide();
+        if (isNotifing) notificationService.hide();
     }
 
     private void announceServiceViewAttached(ServiceView serviceView) {
@@ -90,8 +92,8 @@ public class WearApp implements CanPresentTrackedTrains {
     @Override
     public void detach(ServiceView serviceView) {
         this.serviceViews.remove(serviceView);
-        if(serviceViews.size()==0) {
-            if(isTracking) {
+        if (serviceViews.size() == 0) {
+            if (isTracking) {
                 isNotifing = true;
                 notificationService.show();
             }
