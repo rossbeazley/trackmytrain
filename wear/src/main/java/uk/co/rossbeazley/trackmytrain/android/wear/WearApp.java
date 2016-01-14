@@ -15,6 +15,7 @@ public class WearApp implements CanPresentTrackedTrains {
     private List<ServiceView> serviceViews;
     private TrainViewModel currentService;
     private boolean isTracking;
+    private boolean isNotifing;
 
     public WearApp(HostNode hostNode, Postman postman, WearNotification service) {
         this.postman = postman;
@@ -50,7 +51,9 @@ public class WearApp implements CanPresentTrackedTrains {
         for (ServiceView serviceView : serviceViews) {
             serviceView.present(trainViewModel);
         }
-        notificationService.show(trainViewModel);
+        if(isNotifing) {
+            notificationService.show(trainViewModel);
+        }
 
     }
 
@@ -86,6 +89,7 @@ public class WearApp implements CanPresentTrackedTrains {
         this.serviceViews.remove(serviceView);
         if(serviceViews.size()==0) {
             if(isTracking) {
+                isNotifing = true;
                 notificationService.show();
             }
         }
