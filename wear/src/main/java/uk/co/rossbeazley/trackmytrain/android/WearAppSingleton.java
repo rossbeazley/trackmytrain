@@ -6,6 +6,7 @@ import android.content.Context;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.WearNetworkBuilder;
 import uk.co.rossbeazley.trackmytrain.android.wear.HostNode;
 import uk.co.rossbeazley.trackmytrain.android.wear.WearApp;
+import uk.co.rossbeazley.trackmytrain.android.wear.notification.TrackingNotificationServiceController;
 import uk.co.rossbeazley.trackmytrain.android.wear.notification.WearNotificationService;
 
 /**
@@ -29,23 +30,4 @@ public class WearAppSingleton extends Application {
     }
 
 
-    public static class TrackingNotificationServiceController implements WearNotificationService {
-
-        private final Context context;
-
-        public TrackingNotificationServiceController(Context context) {
-            this.context = context;
-        }
-
-        @Override
-        public void show() {
-
-        }
-
-        @Override
-        public void hide() {
-
-        }
-
-    }
 }
