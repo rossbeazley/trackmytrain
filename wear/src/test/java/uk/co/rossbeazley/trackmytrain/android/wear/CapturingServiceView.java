@@ -4,6 +4,7 @@ public class CapturingServiceView implements ServiceView {
     public static final String HIDDEN = "Hidden";
     public static final String VISIBLE = "Visible";
     public String visibility = "UNKNOWN";
+
     public TrainViewModel serviceDisplayed;
 
     public static final String STARTED = "Started";

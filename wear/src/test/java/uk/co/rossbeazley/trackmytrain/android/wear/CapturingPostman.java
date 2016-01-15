@@ -5,7 +5,7 @@ import java.util.List;
 
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 
-class CapturingPostman implements Postman {
+public class CapturingPostman implements Postman {
 
     public List<Message> broadcasts = new ArrayList<>();
 

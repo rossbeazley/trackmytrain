@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
+import uk.co.rossbeazley.trackmytrain.android.wear.notification.CapturingNotificationServiceService;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;

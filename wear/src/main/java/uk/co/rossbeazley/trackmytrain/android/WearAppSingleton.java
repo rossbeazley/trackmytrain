@@ -1,16 +1,12 @@
 package uk.co.rossbeazley.trackmytrain.android;
 
 import android.app.Application;
-import android.app.Service;
 import android.content.Context;
-import android.content.Intent;
-import android.os.IBinder;
-import android.support.annotation.Nullable;
 
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.WearNetworkBuilder;
 import uk.co.rossbeazley.trackmytrain.android.wear.HostNode;
 import uk.co.rossbeazley.trackmytrain.android.wear.WearApp;
-import uk.co.rossbeazley.trackmytrain.android.wear.WearNotificationService;
+import uk.co.rossbeazley.trackmytrain.android.wear.notification.WearNotificationService;
 
 /**
  * Created by beazlr02 on 02/07/2015.

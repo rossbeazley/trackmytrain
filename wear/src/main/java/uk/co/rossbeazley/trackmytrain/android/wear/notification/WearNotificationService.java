@@ -1,4 +1,6 @@
-package uk.co.rossbeazley.trackmytrain.android.wear;
+package uk.co.rossbeazley.trackmytrain.android.wear.notification;
+
+import uk.co.rossbeazley.trackmytrain.android.wear.TrainViewModel;
 
 public interface WearNotificationService {
 
