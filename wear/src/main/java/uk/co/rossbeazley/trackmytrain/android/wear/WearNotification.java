@@ -1,10 +1,8 @@
 package uk.co.rossbeazley.trackmytrain.android.wear;
 
-public interface WearNotification {
+public interface WearNotification extends WearNotificationPresenter {
 
     void show();
-
-    void show(TrainViewModel trainViewModel);
 
     void hide();
 }
