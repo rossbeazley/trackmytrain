@@ -12,12 +12,12 @@ public class TrackingNotificationServiceController implements WearNotificationSe
 
     @Override
     public void show() {
-
+        AndroidNotificationService.start(context);
     }
 
     @Override
     public void hide() {
-
+        AndroidNotificationService.stop(context);
     }
 
 }
