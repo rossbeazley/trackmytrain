@@ -14,13 +14,13 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class NotificationsHaveStoppedTests {
 
-    private CapturingNotificationService service;
+    private CapturingNotificationServiceService service;
     private WearApp wearApp;
 
     @Before
     public void stoppedNotificationService() {
 
-        service = new CapturingNotificationService();
+        service = new CapturingNotificationServiceService();
 
         HostNode hostNode = new HostNode();
         wearApp = new WearApp(hostNode, new CapturingPostman(), service);
@@ -30,7 +30,7 @@ public class NotificationsHaveStoppedTests {
 
         wearApp.detach(anyView);
 
-        assertThat(service.state, is(CapturingNotificationService.STARTED));
+        assertThat(service.state, is(CapturingNotificationServiceService.STARTED));
 
         wearApp.message(new MessageEnvelope(anyId,new StoppedTrackingMessage()));
     }
@@ -50,7 +50,7 @@ public class NotificationsHaveStoppedTests {
 
     @Test
     public void notificationIsStopped() {
-        assertThat(service.state,is(CapturingNotificationService.STOPPED));
+        assertThat(service.state,is(CapturingNotificationServiceService.STOPPED));
     }
 
 
@@ -73,7 +73,7 @@ public class NotificationsHaveStoppedTests {
 
         wearApp.message(new MessageEnvelope(anyNodeId(), new TrackedServiceMessage(aTrain)));
 
-        assertThat(service.state, is(CapturingNotificationService.STOPPED));
+        assertThat(service.state, is(CapturingNotificationServiceService.STOPPED));
         assertThat(service.lastPresentedTrain,is(nullValue()));
     }
 

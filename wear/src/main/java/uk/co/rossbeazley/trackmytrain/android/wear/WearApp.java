@@ -15,7 +15,7 @@ public class WearApp implements CanPresentTrackedTrains {
     private List<ServiceView> serviceViews;
     private TrainViewModel currentService;
 
-    public WearApp(HostNode hostNode, Postman postman, WearNotification service) {
+    public WearApp(HostNode hostNode, Postman postman, WearNotificationService service) {
         this.postman = postman;
         serviceViews = new CopyOnWriteArrayList<>();
 
@@ -90,11 +90,11 @@ public class WearApp implements CanPresentTrackedTrains {
 
     private static class NotificationManager {
 
-        private final WearNotification notificationService;
+        private final WearNotificationService notificationService;
         private boolean isTracking;
         private boolean isNotifing;
 
-        public NotificationManager(WearNotification service) {
+        public NotificationManager(WearNotificationService service) {
 
             this.notificationService = service;
         }

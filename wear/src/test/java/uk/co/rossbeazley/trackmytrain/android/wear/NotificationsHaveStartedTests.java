@@ -12,13 +12,13 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class NotificationsHaveStartedTests {
 
-    private CapturingNotificationService service;
+    private CapturingNotificationServiceService service;
     private WearApp wearApp;
 
     @Before
     public void startNotificationService() {
 
-        service = new CapturingNotificationService();
+        service = new CapturingNotificationServiceService();
 
         HostNode hostNode = new HostNode();
         wearApp = new WearApp(hostNode, new CapturingPostman(), service);
@@ -30,7 +30,7 @@ public class NotificationsHaveStartedTests {
 
         wearApp.detach(anyView);
 
-        assertThat(service.state, is(CapturingNotificationService.STARTED));
+        assertThat(service.state, is(CapturingNotificationServiceService.STARTED));
 
     }
 
@@ -71,7 +71,7 @@ public class NotificationsHaveStartedTests {
     public void theUIIsReattached_notifiactionStops() {
         wearApp.attach(new CapturingServiceView());
 
-        assertThat(service.state,is(CapturingNotificationService.STOPPED));
+        assertThat(service.state,is(CapturingNotificationServiceService.STOPPED));
     }
 
     @Test

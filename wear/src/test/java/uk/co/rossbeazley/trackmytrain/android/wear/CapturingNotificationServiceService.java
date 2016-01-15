@@ -1,6 +1,6 @@
 package uk.co.rossbeazley.trackmytrain.android.wear;
 
-public class CapturingNotificationService implements WearNotification {
+public class CapturingNotificationServiceService implements WearNotificationService {
     public final static String STARTED = "STARTED";
     public final static String UNKNOWN = "UNKNOWN";
     public static final String STOPPED = "STOPPED";

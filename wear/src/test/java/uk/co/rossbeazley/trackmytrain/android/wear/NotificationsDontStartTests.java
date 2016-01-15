@@ -2,9 +2,6 @@ package uk.co.rossbeazley.trackmytrain.android.wear;
 
 import org.junit.Test;
 
-import uk.co.rossbeazley.trackmytrain.android.Train;
-import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
-
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -17,7 +14,7 @@ public class NotificationsDontStartTests {
     whenAllUIDetachesWhenNotTracking_NONotificationServiceIsStarted() {
 
 
-        CapturingNotificationService service = new CapturingNotificationService();
+        CapturingNotificationServiceService service = new CapturingNotificationServiceService();
 
         HostNode hostNode = new HostNode();
         WearApp wearApp = new WearApp(hostNode, new CapturingPostman(), service);
@@ -26,7 +23,7 @@ public class NotificationsDontStartTests {
 
         wearApp.detach(anyView);
 
-        assertThat(service.state, is(CapturingNotificationService.UNKNOWN));
+        assertThat(service.state, is(CapturingNotificationServiceService.UNKNOWN));
 
     }
 

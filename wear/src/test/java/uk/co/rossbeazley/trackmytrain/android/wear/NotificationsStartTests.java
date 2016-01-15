@@ -17,7 +17,7 @@ public class NotificationsStartTests {
     whenAllUIDetachesDuringTrackingNotificationServiceIsStarted() {
 
 
-        CapturingNotificationService service = new CapturingNotificationService();
+        CapturingNotificationServiceService service = new CapturingNotificationServiceService();
 
         HostNode hostNode = new HostNode();
         WearApp wearApp = new WearApp(hostNode, new CapturingPostman(), service);
@@ -29,7 +29,7 @@ public class NotificationsStartTests {
 
         wearApp.detach(anyView);
 
-        assertThat(service.state, is(CapturingNotificationService.STARTED));
+        assertThat(service.state, is(CapturingNotificationServiceService.STARTED));
 
     }
 
@@ -38,7 +38,7 @@ public class NotificationsStartTests {
     public void
     whenAllUIDetachesAfterTrackingHasStopped_NONotificationServiceIsStarted() {
 
-        CapturingNotificationService service = new CapturingNotificationService();
+        CapturingNotificationServiceService service = new CapturingNotificationServiceService();
 
         HostNode hostNode = new HostNode();
         WearApp wearApp = new WearApp(hostNode, new CapturingPostman(), service);
@@ -52,7 +52,7 @@ public class NotificationsStartTests {
 
         wearApp.detach(anyView);
 
-        assertThat(service.state, is(CapturingNotificationService.UNKNOWN));
+        assertThat(service.state, is(CapturingNotificationServiceService.UNKNOWN));
     }
 
 
@@ -60,7 +60,7 @@ public class NotificationsStartTests {
     public void
     whenTrackingHasStartedWithNoUIAttached_NONotificationServiceIsStarted() {
 
-        CapturingNotificationService service = new CapturingNotificationService();
+        CapturingNotificationServiceService service = new CapturingNotificationServiceService();
 
         HostNode hostNode = new HostNode();
         WearApp wearApp = new WearApp(hostNode, new CapturingPostman(), service);
@@ -71,7 +71,7 @@ public class NotificationsStartTests {
 
         wearApp.message(new MessageEnvelope(anyId, new StoppedTrackingMessage()));
 
-        assertThat(service.state, is(CapturingNotificationService.UNKNOWN));
+        assertThat(service.state, is(CapturingNotificationServiceService.UNKNOWN));
     }
 
 
@@ -79,7 +79,7 @@ public class NotificationsStartTests {
     public void
     whenTrackedServiecUpdatesWithUIAttached_NONotificationServiceIsUpdated() {
 
-        CapturingNotificationService service = new CapturingNotificationService();
+        CapturingNotificationServiceService service = new CapturingNotificationServiceService();
 
         HostNode hostNode = new HostNode();
         WearApp wearApp = new WearApp(hostNode, new CapturingPostman(), service);
@@ -91,7 +91,7 @@ public class NotificationsStartTests {
         Train aTrain = new Train("anyId", "20:24", "20:22", "4", false);
         wearApp.message(new MessageEnvelope(anyId, new TrackedServiceMessage(aTrain)));
 
-        assertThat(service.state, is(CapturingNotificationService.UNKNOWN));
+        assertThat(service.state, is(CapturingNotificationServiceService.UNKNOWN));
         assertThat(service.lastPresentedTrain, is(nullValue()));
     }
 

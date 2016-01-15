@@ -11,7 +11,7 @@ import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.WearNetworkBuilder
 import uk.co.rossbeazley.trackmytrain.android.wear.HostNode;
 import uk.co.rossbeazley.trackmytrain.android.wear.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.wear.WearApp;
-import uk.co.rossbeazley.trackmytrain.android.wear.WearNotification;
+import uk.co.rossbeazley.trackmytrain.android.wear.WearNotificationService;
 
 /**
  * Created by beazlr02 on 02/07/2015.
@@ -27,18 +27,18 @@ public class WearAppSingleton extends Application {
     public void onCreate() {
         super.onCreate();
         HostNode hostnode = new HostNode();
-        WearNotification service = new TrackingNotificationService((Context)this);
+        WearNotificationService service = new TrackingNotificationServiceService((Context)this);
         instance = new WearApp(hostnode, WearNetworkBuilder.fromContext(this),  service);
 
         instance.attach(new StartsTrackingActivity(this));
     }
 
 
-    public static class TrackingNotificationService extends Service implements WearNotification{
+    public static class TrackingNotificationServiceService extends Service implements WearNotificationService {
 
         private final Context context;
 
-        public TrackingNotificationService(Context context) {
+        public TrackingNotificationServiceService(Context context) {
 
             this.context = context;
         }
