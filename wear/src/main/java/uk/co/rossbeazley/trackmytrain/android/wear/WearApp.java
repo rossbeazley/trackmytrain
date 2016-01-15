@@ -88,15 +88,21 @@ public class WearApp implements CanPresentTrackedTrains {
         notificationManager.serviceViewDetached(serviceViews.size());
     }
 
+    public void attach(WearNotificationPresenter notificationPresenter) {
+        this.notificationManager.attach(notificationPresenter);
+    }
+
     private static class NotificationManager {
 
         private final WearNotificationService notificationService;
         private boolean isTracking;
         private boolean isNotifing;
+        private List<WearNotificationPresenter> notificationPresenters;
 
         public NotificationManager(WearNotificationService service) {
 
             this.notificationService = service;
+            notificationPresenters = new CopyOnWriteArrayList<>();
         }
 
         public void serviceViewDetached(int size) {
@@ -130,8 +136,15 @@ public class WearApp implements CanPresentTrackedTrains {
 
         public void serviceTracking(TrainViewModel trainViewModel) {
             if (isNotifing) {
-                notificationService.show(trainViewModel);
+                for (WearNotificationPresenter presenter : notificationPresenters) {
+                    presenter.show(trainViewModel);
+                }
+
             }
+        }
+
+        public void attach(WearNotificationPresenter notificationPresenter) {
+            this.notificationPresenters.add(notificationPresenter);
         }
     }
 }

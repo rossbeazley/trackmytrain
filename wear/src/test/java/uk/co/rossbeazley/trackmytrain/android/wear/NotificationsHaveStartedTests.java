@@ -14,6 +14,7 @@ public class NotificationsHaveStartedTests {
 
     private CapturingNotificationServiceService service;
     private WearApp wearApp;
+    private CapturingNotification notificationPresenter;
 
     @Before
     public void startNotificationService() {
@@ -32,6 +33,9 @@ public class NotificationsHaveStartedTests {
 
         assertThat(service.state, is(CapturingNotificationServiceService.STARTED));
 
+        notificationPresenter = new CapturingNotification();
+        wearApp.attach(notificationPresenter);
+
     }
 
     @Test
@@ -45,7 +49,7 @@ public class NotificationsHaveStartedTests {
 
 
         TrainViewModel expectedTrainViewModel = new TrainViewModel(expectedTrain);
-        assertThat(service.lastPresentedTrain,is(expectedTrainViewModel));
+        assertThat(notificationPresenter.lastPresentedTrain,is(expectedTrainViewModel));
     }
 
 
@@ -64,7 +68,7 @@ public class NotificationsHaveStartedTests {
 
 
         TrainViewModel expectedTrainViewModel = new TrainViewModel(expectedTrain);
-        assertThat(service.lastPresentedTrain,is(expectedTrainViewModel));
+        assertThat(notificationPresenter.lastPresentedTrain,is(expectedTrainViewModel));
     }
 
     @Test
