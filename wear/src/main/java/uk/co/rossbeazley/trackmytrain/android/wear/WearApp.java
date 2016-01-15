@@ -92,6 +92,10 @@ public class WearApp implements CanPresentTrackedTrains {
         this.notificationManager.attach(notificationPresenter);
     }
 
+    public void detach(WearNotificationService.WearNotification notificationPresenter) {
+        notificationManager.detach(notificationPresenter);
+    }
+
     private static class NotificationManager {
 
         private final WearNotificationService notificationService;
@@ -145,6 +149,10 @@ public class WearApp implements CanPresentTrackedTrains {
 
         public void attach(WearNotificationService.WearNotification notificationPresenter) {
             this.notificationPresenters.add(notificationPresenter);
+        }
+
+        public void detach(WearNotificationService.WearNotification notificationPresenter) {
+            notificationPresenters.remove(notificationPresenter);
         }
     }
 }

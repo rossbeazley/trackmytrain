@@ -52,6 +52,20 @@ public class NotificationsHaveStartedTests {
         assertThat(notificationPresenter.lastPresentedTrain,is(expectedTrainViewModel));
     }
 
+    @Test
+    public void theServiceDetailsAreUpdatedAfterServiceDetaches() {
+
+        wearApp.detach(notificationPresenter);
+
+        Train expectedTrain = new Train("anyId", "20:24", "20:22", "4", false);
+
+        Postman.NodeId anyId =  new Postman.NodeId("anyId");
+        MessageEnvelope message = new MessageEnvelope(anyId, new TrackedServiceMessage(expectedTrain));
+        wearApp.message(message);
+
+        assertThat(notificationPresenter.lastPresentedTrain,is(nullValue()));
+    }
+
 
     @Test
     public void theServiceDetailsAreUpdatedAgain() {

@@ -14,11 +14,6 @@ public class CapturingNotificationServiceService implements WearNotificationServ
     }
 
     @Override
-    public void show(TrainViewModel trainViewModel) {
-        lastPresentedTrain = trainViewModel;
-    }
-
-    @Override
     public void hide() {
         state = STOPPED;
     }
