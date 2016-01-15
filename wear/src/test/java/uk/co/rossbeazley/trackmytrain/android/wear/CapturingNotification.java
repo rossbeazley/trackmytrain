@@ -1,6 +1,6 @@
 package uk.co.rossbeazley.trackmytrain.android.wear;
 
-public class CapturingNotification implements WearNotificationPresenter {
+public class CapturingNotification implements WearNotificationService.WearNotification {
 
     public TrainViewModel lastPresentedTrain;
 

@@ -9,7 +9,6 @@ import android.support.annotation.Nullable;
 
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.WearNetworkBuilder;
 import uk.co.rossbeazley.trackmytrain.android.wear.HostNode;
-import uk.co.rossbeazley.trackmytrain.android.wear.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.wear.WearApp;
 import uk.co.rossbeazley.trackmytrain.android.wear.WearNotificationService;
 
@@ -27,19 +26,18 @@ public class WearAppSingleton extends Application {
     public void onCreate() {
         super.onCreate();
         HostNode hostnode = new HostNode();
-        WearNotificationService service = new TrackingNotificationServiceService((Context)this);
+        WearNotificationService service = new TrackingNotificationServiceController((Context)this);
         instance = new WearApp(hostnode, WearNetworkBuilder.fromContext(this),  service);
 
         instance.attach(new StartsTrackingActivity(this));
     }
 
 
-    public static class TrackingNotificationServiceService extends Service implements WearNotificationService {
+    public static class TrackingNotificationServiceController implements WearNotificationService {
 
         private final Context context;
 
-        public TrackingNotificationServiceService(Context context) {
-
+        public TrackingNotificationServiceController(Context context) {
             this.context = context;
         }
 
@@ -49,19 +47,9 @@ public class WearAppSingleton extends Application {
         }
 
         @Override
-        public void show(TrainViewModel trainViewModel) {
-            //gonna have to fire an intent :(
-        }
-
-        @Override
         public void hide() {
 
         }
 
-        @Nullable
-        @Override
-        public IBinder onBind(Intent intent) {
-            return null;
-        }
     }
 }
