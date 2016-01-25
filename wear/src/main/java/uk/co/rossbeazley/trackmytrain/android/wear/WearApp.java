@@ -3,6 +3,7 @@ package uk.co.rossbeazley.trackmytrain.android.wear;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import uk.co.rossbeazley.trackmytrain.android.StartsTrackingActivity;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 import uk.co.rossbeazley.trackmytrain.android.wear.notification.WearNotificationService;
 
@@ -15,6 +16,7 @@ public class WearApp implements CanPresentTrackedTrains {
     private final NotificationManager notificationManager;
     private List<ServiceView> serviceViews;
     private TrainViewModel currentService;
+    private List<ServiceViewNavigationController> serviceViewNavigationControllers;
 
     public WearApp(HostNode hostNode, Postman postman, WearNotificationService service) {
         this.postman = postman;
@@ -25,6 +27,7 @@ public class WearApp implements CanPresentTrackedTrains {
         postman.broadcast(new AnalyticsEventMessage("WEAR-CREATED", "CREATED"));
 
         this.notificationManager = new NotificationManager(service);
+        serviceViewNavigationControllers = new CopyOnWriteArrayList<>();
     }
 
     public void message(MessageEnvelope messageEnvelope) {
@@ -64,8 +67,8 @@ public class WearApp implements CanPresentTrackedTrains {
     }
 
     private void announceServiceTracking() {
-        for (ServiceView serviceView : serviceViews) {
-            serviceView.trackingStarted();
+        for (ServiceViewNavigationController viewNavigationController : serviceViewNavigationControllers) {
+            viewNavigationController.trackingStarted();
         }
         notificationManager.tracking();
 
@@ -95,6 +98,10 @@ public class WearApp implements CanPresentTrackedTrains {
 
     public void detach(WearNotificationService.WearNotification notificationPresenter) {
         notificationManager.detach(notificationPresenter);
+    }
+
+    public void attach(ServiceViewNavigationController serviceViewNavigationController) {
+        this.serviceViewNavigationControllers.add(serviceViewNavigationController);
     }
 
     private static class NotificationManager {

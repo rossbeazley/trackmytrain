@@ -45,10 +45,6 @@ class TrackingView implements ServiceView {
         WearAppSingleton.instance.detach(this);
     }
 
-    @Override
-    public void trackingStarted() {
-
-    }
 
     public void colour() {
         findsView.findViewById(R.id.container).setBackgroundColor(0xff559B91);

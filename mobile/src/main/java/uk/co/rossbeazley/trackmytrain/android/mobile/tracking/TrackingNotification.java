@@ -36,6 +36,11 @@ public class TrackingNotification implements ServiceView {
             builder.extend(replaceSmallIconWithLargeInlineIcon());
         }
 
+        if(Build.VERSION.SDK_INT>Build.VERSION_CODES.KITKAT_WATCH) {
+
+            builder.setVisibility(Notification.VISIBILITY_PUBLIC);
+        }
+
         if(train.isLate()) {
             builder.setVibrate(new long[]{87, 78, 87, 78, 87, 78, 87, 78});
         }

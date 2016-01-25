@@ -5,6 +5,7 @@ import android.app.Notification;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
@@ -12,6 +13,7 @@ import android.support.v4.app.NotificationManagerCompat;
 
 import uk.co.rossbeazley.trackmytrain.android.R;
 import uk.co.rossbeazley.trackmytrain.android.WearAppSingleton;
+import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 import uk.co.rossbeazley.trackmytrain.android.wear.TrainViewModel;
 
 public class AndroidNotificationService extends Service {
@@ -20,14 +22,19 @@ public class AndroidNotificationService extends Service {
     private final MyWearNotification notificationPresenter;
 
     public AndroidNotificationService() {
-        notificationPresenter = new MyWearNotification();
+        broadcast("/SERVICE/CONSTRUCTED");
+        notificationPresenter = new MyWearNotification(this);
     }
 
 
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        return null;
+        return new Binder(){
+            AndroidNotificationService getService() {
+                return AndroidNotificationService.this;
+            }
+        };
     }
 
     static public void start(Context context) {
@@ -42,47 +49,45 @@ public class AndroidNotificationService extends Service {
 
     @Override
     public void onCreate() {
+        broadcast("/SERVICE/STARTED");
         WearAppSingleton.instance.attach(notificationPresenter);
+        notificationPresenter.show(new TrainViewModel("","loading","",""));
+    }
+
+    public void broadcast(String message) {
+        WearAppSingleton.postman.broadcast(new Postman.Message(message));
     }
 
     @Override
     public void onDestroy() {
+        broadcast("/SERVICE/DESTROYED");
         stopForeground(true);
         WearAppSingleton.instance.detach(notificationPresenter);
         super.onDestroy();
     }
 
-    @TargetApi(20)
-    private Notification.WearableExtender replaceSmallIconWithLargeInlineIcon() {
-        Notification.WearableExtender ext;
-        ext = new Notification.WearableExtender()
-                .setContentIcon(R.mipmap.ic_launcher)
-                .setHintHideIcon(true);
-        return ext;
-    }
+    private static class MyWearNotification implements WearNotificationService.WearNotification {
+        private final AndroidNotificationService androidNotificationService;
 
-    private class MyWearNotification implements WearNotificationService.WearNotification {
+        public MyWearNotification(AndroidNotificationService androidNotificationService) {
+
+            this.androidNotificationService = androidNotificationService;
+        }
+
         @Override
         public void show(TrainViewModel train) {
 
 
-            final Notification.Builder builder = new Notification.Builder(AndroidNotificationService.this)
+            final Notification.Builder builder = new Notification.Builder(androidNotificationService)
                     .setContentTitle(train.platform())
                     .setContentText(train.scheduledTime() + " exp " + train.estimatedTime())
-                    //.setSmallIcon(R.drawable.n_train)
+                    .setSmallIcon(R.drawable.close_button)
                     //.addAction(R.drawable.ic_stop_tracking, "Stop Tracking", TrackingService.stopTrackingPendingIntent(service))
                     ;
 
-            if(Build.VERSION.SDK_INT>Build.VERSION_CODES.KITKAT) {
-                builder.extend(replaceSmallIconWithLargeInlineIcon());
-            }
+//            NotificationManagerCompat.from(AndroidNotificationService.this).notify(ID, builder.build());
 
-            if(train.isLate()) {
-                builder.setVibrate(new long[]{87, 78, 87, 78, 87, 78, 87, 78});
-            }
-
-            NotificationManagerCompat.from(AndroidNotificationService.this).notify(ID, builder.build());
-
+            androidNotificationService.startForeground(ID, builder.build());
         }
     }
 }

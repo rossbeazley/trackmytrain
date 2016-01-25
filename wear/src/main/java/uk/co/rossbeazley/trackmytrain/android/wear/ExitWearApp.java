@@ -21,8 +21,4 @@ class ExitWearApp implements ServiceView {
         WearAppSingleton.instance.detach(this);
     }
 
-    @Override
-    public void trackingStarted() {
-
-    }
 }

@@ -6,6 +6,7 @@ import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 import uk.co.rossbeazley.trackmytrain.android.wear.CapturingPostman;
 import uk.co.rossbeazley.trackmytrain.android.wear.CapturingServiceView;
+import uk.co.rossbeazley.trackmytrain.android.wear.CapturingServiceViewNavigationController;
 import uk.co.rossbeazley.trackmytrain.android.wear.HostNode;
 import uk.co.rossbeazley.trackmytrain.android.wear.MessageEnvelope;
 import uk.co.rossbeazley.trackmytrain.android.wear.StartedTrackingMessage;
@@ -30,7 +31,10 @@ public class NotificationsStartTests {
         HostNode hostNode = new HostNode();
         WearApp wearApp = new WearApp(hostNode, new CapturingPostman(), service);
         final CapturingServiceView anyView = new CapturingServiceView();
+        CapturingServiceViewNavigationController anyNavigationController = new CapturingServiceViewNavigationController();
+
         wearApp.attach(anyView);
+        wearApp.attach(anyNavigationController);
         Postman.NodeId anyId = new Postman.NodeId("anyId");
         MessageEnvelope message = new MessageEnvelope(anyId, new StartedTrackingMessage());
         wearApp.message(message);

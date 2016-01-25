@@ -50,10 +50,7 @@ public class TheApplicationWill {
 
         }
 
-        @Override
-        public void trackingStarted() {
 
-        }
     }
 
 }

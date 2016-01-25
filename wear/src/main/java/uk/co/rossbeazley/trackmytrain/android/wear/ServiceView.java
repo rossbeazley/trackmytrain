@@ -9,5 +9,4 @@ public interface ServiceView {
 
     void hide();
 
-    void trackingStarted();
 }

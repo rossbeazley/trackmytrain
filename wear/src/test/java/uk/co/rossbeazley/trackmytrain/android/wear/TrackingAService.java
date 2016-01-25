@@ -21,7 +21,7 @@ public class TrackingAService {
         HostNode hostNode = new HostNode();
         WearApp wearApp = new WearApp(hostNode, new CapturingPostman(), new CapturingNotificationServiceService());
 
-        final CapturingServiceView serviceView = new CapturingServiceView();
+        final CapturingServiceViewNavigationController serviceView = new CapturingServiceViewNavigationController();
         wearApp.attach(serviceView);
 
 
@@ -29,7 +29,7 @@ public class TrackingAService {
         MessageEnvelope message = new MessageEnvelope(anyId, new StartedTrackingMessage());
         wearApp.message(message);
 
-        assertThat(serviceView.trackingIs, is(CapturingServiceView.STARTED));
+        assertThat(serviceView.trackingIs, is(CapturingServiceViewNavigationController.STARTED));
 
     }
 

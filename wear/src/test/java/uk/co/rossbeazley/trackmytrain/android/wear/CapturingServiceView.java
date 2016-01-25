@@ -7,9 +7,6 @@ public class CapturingServiceView implements ServiceView {
 
     public TrainViewModel serviceDisplayed;
 
-    public static final String STARTED = "Started";
-    public String trackingIs = "UNKNOWN";
-
     @Override
     public void present(TrainViewModel train) {
         visibility = VISIBLE;
@@ -20,11 +17,6 @@ public class CapturingServiceView implements ServiceView {
     public void hide() {
         serviceDisplayed = null;
         visibility = HIDDEN;
-        trackingIs = HIDDEN;
     }
 
-    @Override
-    public void trackingStarted() {
-        trackingIs = STARTED;
-    }
 }
