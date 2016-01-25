@@ -4,9 +4,8 @@ import org.junit.Test;
 
 import uk.co.rossbeazley.trackmytrain.android.wear.CapturingPostman;
 import uk.co.rossbeazley.trackmytrain.android.wear.CapturingServiceView;
-import uk.co.rossbeazley.trackmytrain.android.wear.HostNode;
+import uk.co.rossbeazley.trackmytrain.android.wear.comms.HostNode;
 import uk.co.rossbeazley.trackmytrain.android.wear.WearApp;
-import uk.co.rossbeazley.trackmytrain.android.wear.notification.CapturingNotificationServiceService;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;

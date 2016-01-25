@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.trackmytrain.android.wear;
+package uk.co.rossbeazley.trackmytrain.android.wear.trackingScreen;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,12 +6,12 @@ import android.os.Bundle;
 import android.support.wearable.activity.WearableActivity;
 
 import uk.co.rossbeazley.trackmytrain.android.R;
-import uk.co.rossbeazley.trackmytrain.android.WearAppSingleton;
+import uk.co.rossbeazley.trackmytrain.android.wear.WearAppSingleton;
 
 public class TrackingActivity extends WearableActivity implements CanFinishWearApp, FindsView {
 
     private TrackingView serviceView;
-    private ExitWearApp exitWearApp;
+    private ExitTrackingScreen exitWearApp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +20,7 @@ public class TrackingActivity extends WearableActivity implements CanFinishWearA
         setAmbientEnabled();
 
         serviceView = new TrackingView(this);
-        exitWearApp = new ExitWearApp(this);
+        exitWearApp = new ExitTrackingScreen(this);
 
         bind();
     }

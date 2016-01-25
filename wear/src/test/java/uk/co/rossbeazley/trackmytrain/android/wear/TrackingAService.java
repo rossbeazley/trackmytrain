@@ -4,9 +4,11 @@ import org.junit.Test;
 
 import fakes.TestDataBuilder;
 import uk.co.rossbeazley.trackmytrain.android.Train;
-import uk.co.rossbeazley.trackmytrain.android.WearAppSingleton;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
+import uk.co.rossbeazley.trackmytrain.android.wear.comms.HostNode;
 import uk.co.rossbeazley.trackmytrain.android.wear.notification.CapturingNotificationServiceService;
+import uk.co.rossbeazley.trackmytrain.android.wear.trackingScreen.CanFinishWearApp;
+import uk.co.rossbeazley.trackmytrain.android.wear.trackingScreen.ExitTrackingScreen;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -42,7 +44,7 @@ public class TrackingAService {
         WearAppSingleton.instance = wearApp;
 
         final CapturingCanFinishWearApp capturingCanFinishWearApp = new CapturingCanFinishWearApp();
-        wearApp.attach(new ExitWearApp(capturingCanFinishWearApp));
+        wearApp.attach(new ExitTrackingScreen(capturingCanFinishWearApp));
 
         Postman.NodeId anyId = new Postman.NodeId("anyId");
         MessageEnvelope message = new MessageEnvelope(anyId, new StoppedTrackingMessage());

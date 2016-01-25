@@ -1,60 +1,53 @@
 package uk.co.rossbeazley.trackmytrain.android.wear.notification;
 
-import android.annotation.TargetApi;
 import android.app.Notification;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Binder;
-import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
-import android.support.v4.app.NotificationManagerCompat;
 
 import uk.co.rossbeazley.trackmytrain.android.R;
-import uk.co.rossbeazley.trackmytrain.android.WearAppSingleton;
+import uk.co.rossbeazley.trackmytrain.android.wear.WearAppSingleton;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
-import uk.co.rossbeazley.trackmytrain.android.wear.TrainViewModel;
 
-public class AndroidNotificationService extends Service {
+public class AndroidNotificationService extends Service implements WearNotificationService.NotificationView {
+
+
+    static public void start(Context context) {
+        context.startService(new Intent(context, AndroidNotificationService.class));
+    }
+
+    static public void stop(Context context) {
+        context.stopService(new Intent(context, AndroidNotificationService.class));
+    }
+
 
     public static final int ID = 80085;
-    private final MyWearNotification notificationPresenter;
+
+    public static final int STOP_TRACKING_ID = 666;
+
+    private NotificationPresenter notificationPresenter;
 
     public AndroidNotificationService() {
         broadcast("/SERVICE/CONSTRUCTED");
-        notificationPresenter = new MyWearNotification(this);
     }
 
 
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        return new Binder(){
-            AndroidNotificationService getService() {
-                return AndroidNotificationService.this;
-            }
-        };
-    }
-
-    static public void start(Context context) {
-        Intent intent = new Intent(context, AndroidNotificationService.class);
-        context.startService(intent);
-    }
-
-    static public void stop(Context context) {
-        Intent intent = new Intent(context, AndroidNotificationService.class);
-        context.stopService(intent);
+        return null;
     }
 
     @Override
     public void onCreate() {
         broadcast("/SERVICE/STARTED");
-        WearAppSingleton.instance.attach(notificationPresenter);
-        notificationPresenter.show(new TrainViewModel("","loading","",""));
+        notificationPresenter = new NotificationPresenter(this, WearAppSingleton.instance);
     }
 
-    public void broadcast(String message) {
+    private void broadcast(String message) {
         WearAppSingleton.postman.broadcast(new Postman.Message(message));
     }
 
@@ -66,28 +59,34 @@ public class AndroidNotificationService extends Service {
         super.onDestroy();
     }
 
-    private static class MyWearNotification implements WearNotificationService.WearNotification {
-        private final AndroidNotificationService androidNotificationService;
 
-        public MyWearNotification(AndroidNotificationService androidNotificationService) {
-
-            this.androidNotificationService = androidNotificationService;
-        }
-
-        @Override
-        public void show(TrainViewModel train) {
-
-
-            final Notification.Builder builder = new Notification.Builder(androidNotificationService)
-                    .setContentTitle(train.platform())
-                    .setContentText(train.scheduledTime() + " exp " + train.estimatedTime())
-                    .setSmallIcon(R.drawable.close_button)
-                    //.addAction(R.drawable.ic_stop_tracking, "Stop Tracking", TrackingService.stopTrackingPendingIntent(service))
-                    ;
-
-//            NotificationManagerCompat.from(AndroidNotificationService.this).notify(ID, builder.build());
-
-            androidNotificationService.startForeground(ID, builder.build());
-        }
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        String action = intent.getAction();
+        notificationPresenter.serviceAction(action);
+        return START_STICKY;
     }
+
+
+
+
+    public void notify(String contentTitle, String contentText) {
+        Notification.Action action;
+        action = new Notification.Action.Builder(R.mipmap.ic_launcher, "Stop Tracking", stopTrackingPendingIntent(this)).build();
+        final Notification.Builder builder = new Notification.Builder(this)
+                .setContentTitle(contentTitle)
+                .setContentText(contentText)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .addAction(action)
+                ;
+
+        this.startForeground(ID, builder.build());
+    }
+
+    public static PendingIntent stopTrackingPendingIntent(Context context) {
+        Intent intent = new Intent(NotificationPresenter.STOP_TRACKING_ACTION);
+        intent.setClass(context, AndroidNotificationService.class);
+        return PendingIntent.getService(context, STOP_TRACKING_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+    }
+
 }

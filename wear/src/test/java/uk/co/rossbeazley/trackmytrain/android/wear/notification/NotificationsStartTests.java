@@ -7,7 +7,7 @@ import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 import uk.co.rossbeazley.trackmytrain.android.wear.CapturingPostman;
 import uk.co.rossbeazley.trackmytrain.android.wear.CapturingServiceView;
 import uk.co.rossbeazley.trackmytrain.android.wear.CapturingServiceViewNavigationController;
-import uk.co.rossbeazley.trackmytrain.android.wear.HostNode;
+import uk.co.rossbeazley.trackmytrain.android.wear.comms.HostNode;
 import uk.co.rossbeazley.trackmytrain.android.wear.MessageEnvelope;
 import uk.co.rossbeazley.trackmytrain.android.wear.StartedTrackingMessage;
 import uk.co.rossbeazley.trackmytrain.android.wear.StoppedTrackingMessage;

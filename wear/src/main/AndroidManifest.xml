@@ -7,13 +7,13 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
-        android:name=".WearAppSingleton"
+        android:name=".wear.WearAppSingleton"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@android:style/Theme.DeviceDefault">
 
-        <service android:name=".wear.TrackMyTrainMessageService">
+        <service android:name=".wear.comms.TrackMyTrainMessageService">
             <intent-filter>
                 <action android:name="com.google.android.gms.wearable.BIND_LISTENER" />
             </intent-filter>
@@ -28,7 +28,7 @@
             android:required="false" />
 
         <activity
-            android:name=".wear.TrackingActivity"
+            android:name=".wear.trackingScreen.TrackingActivity"
             android:label="@string/title_activity_tracking"
             android:launchMode="singleInstance"
             android:allowEmbedded="true"

@@ -1,14 +1,15 @@
-package uk.co.rossbeazley.trackmytrain.android.wear;
+package uk.co.rossbeazley.trackmytrain.android.wear.trackingScreen;
 
 import android.widget.TextView;
 
 import uk.co.rossbeazley.trackmytrain.android.R;
-import uk.co.rossbeazley.trackmytrain.android.WearAppSingleton;
+import uk.co.rossbeazley.trackmytrain.android.wear.TrainViewModel;
+import uk.co.rossbeazley.trackmytrain.android.wear.WearAppSingleton;
 
 /**
  * Created by beazlr02 on 13/07/2015.
  */
-class TrackingView implements ServiceView {
+public class TrackingView implements ServiceView {
 
 
     private final TextView scheduledtime;

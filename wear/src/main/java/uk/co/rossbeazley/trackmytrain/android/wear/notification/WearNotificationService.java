@@ -11,4 +11,8 @@ public interface WearNotificationService {
     interface WearNotification {
         void show(TrainViewModel trainViewModel);
     }
+
+    interface NotificationView {
+        void notify(String contentTitle, String contentText);
+    }
 }

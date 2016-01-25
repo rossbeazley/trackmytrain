@@ -1,10 +1,7 @@
-package uk.co.rossbeazley.trackmytrain.android;
+package uk.co.rossbeazley.trackmytrain.android.wear.trackingScreen;
 
 import android.content.Context;
 
-import uk.co.rossbeazley.trackmytrain.android.wear.ServiceView;
-import uk.co.rossbeazley.trackmytrain.android.wear.ServiceViewNavigationController;
-import uk.co.rossbeazley.trackmytrain.android.wear.TrackingActivity;
 import uk.co.rossbeazley.trackmytrain.android.wear.notification.AndroidNotificationService;
 
 //TODO write a connected test for this

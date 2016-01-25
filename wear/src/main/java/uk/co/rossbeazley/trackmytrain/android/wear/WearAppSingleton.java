@@ -1,14 +1,15 @@
-package uk.co.rossbeazley.trackmytrain.android;
+package uk.co.rossbeazley.trackmytrain.android.wear;
 
 import android.app.Application;
 import android.content.Context;
 
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.WearNetworkBuilder;
-import uk.co.rossbeazley.trackmytrain.android.wear.HostNode;
+import uk.co.rossbeazley.trackmytrain.android.wear.comms.HostNode;
 import uk.co.rossbeazley.trackmytrain.android.wear.WearApp;
 import uk.co.rossbeazley.trackmytrain.android.wear.notification.TrackingNotificationServiceController;
 import uk.co.rossbeazley.trackmytrain.android.wear.notification.WearNotificationService;
+import uk.co.rossbeazley.trackmytrain.android.wear.trackingScreen.StartsTrackingActivity;
 
 /**
  * Created by beazlr02 on 02/07/2015.

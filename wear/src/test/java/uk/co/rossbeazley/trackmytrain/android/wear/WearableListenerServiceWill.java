@@ -3,6 +3,7 @@ package uk.co.rossbeazley.trackmytrain.android.wear;
 import org.junit.Test;
 
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
+import uk.co.rossbeazley.trackmytrain.android.wear.comms.HostNode;
 import uk.co.rossbeazley.trackmytrain.android.wear.notification.CapturingNotificationServiceService;
 
 import static org.hamcrest.CoreMatchers.is;

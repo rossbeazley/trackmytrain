@@ -3,9 +3,11 @@ package uk.co.rossbeazley.trackmytrain.android.wear;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import uk.co.rossbeazley.trackmytrain.android.StartsTrackingActivity;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
+import uk.co.rossbeazley.trackmytrain.android.wear.comms.HostNode;
 import uk.co.rossbeazley.trackmytrain.android.wear.notification.WearNotificationService;
+import uk.co.rossbeazley.trackmytrain.android.wear.trackingScreen.ServiceView;
+import uk.co.rossbeazley.trackmytrain.android.wear.trackingScreen.ServiceViewNavigationController;
 
 /**
  * Created by beazlr02 on 02/07/2015.
@@ -82,7 +84,9 @@ public class WearApp implements CanPresentTrackedTrains {
     }
 
     private void announceServiceViewAttached(ServiceView serviceView) {
-        if (currentService != null) serviceView.present(currentService);
+        if (currentService != null) {
+            serviceView.present(currentService);
+        }
         postman.broadcast(new AnalyticsEventMessage("WEAR-SERVICEVIEW-ATTACHED", serviceView.getClass().getSimpleName()));
     }
 
@@ -102,6 +106,10 @@ public class WearApp implements CanPresentTrackedTrains {
 
     public void attach(ServiceViewNavigationController serviceViewNavigationController) {
         this.serviceViewNavigationControllers.add(serviceViewNavigationController);
+    }
+
+    public void unwatch() {
+
     }
 
     private static class NotificationManager {

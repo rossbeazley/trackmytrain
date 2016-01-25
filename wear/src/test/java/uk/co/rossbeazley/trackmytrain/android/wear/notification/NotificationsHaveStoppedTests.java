@@ -9,13 +9,12 @@ import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 import uk.co.rossbeazley.trackmytrain.android.wear.CapturingPostman;
 import uk.co.rossbeazley.trackmytrain.android.wear.CapturingServiceView;
-import uk.co.rossbeazley.trackmytrain.android.wear.HostNode;
+import uk.co.rossbeazley.trackmytrain.android.wear.comms.HostNode;
 import uk.co.rossbeazley.trackmytrain.android.wear.MessageEnvelope;
 import uk.co.rossbeazley.trackmytrain.android.wear.StartedTrackingMessage;
 import uk.co.rossbeazley.trackmytrain.android.wear.StoppedTrackingMessage;
 import uk.co.rossbeazley.trackmytrain.android.wear.TrackedServiceMessage;
 import uk.co.rossbeazley.trackmytrain.android.wear.WearApp;
-import uk.co.rossbeazley.trackmytrain.android.wear.notification.CapturingNotificationServiceService;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;

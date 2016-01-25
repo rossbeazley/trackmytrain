@@ -1,10 +1,11 @@
-package uk.co.rossbeazley.trackmytrain.android.wear;
+package uk.co.rossbeazley.trackmytrain.android.wear.comms;
 
 import com.google.android.gms.wearable.MessageEvent;
 import com.google.android.gms.wearable.WearableListenerService;
 
-import uk.co.rossbeazley.trackmytrain.android.WearAppSingleton;
-import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
+import uk.co.rossbeazley.trackmytrain.android.wear.WearAppSingleton;
+import uk.co.rossbeazley.trackmytrain.android.wear.MessageEnvelope;
+import uk.co.rossbeazley.trackmytrain.android.wear.PostmanMessageFactory;
 
 /**
  * Created by beazlr02 on 30/06/2015.

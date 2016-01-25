@@ -1,4 +1,4 @@
-package uk.co.rossbeazley.trackmytrain.android.wear;
+package uk.co.rossbeazley.trackmytrain.android.wear.trackingScreen;
 
 public interface ServiceViewNavigationController {
 
