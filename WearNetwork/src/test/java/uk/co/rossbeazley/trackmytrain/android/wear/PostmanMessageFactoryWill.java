@@ -52,6 +52,17 @@ public class PostmanMessageFactoryWill {
 
     @Test
     public void
+    convertMessageEventToStopTrackingMessage() {
+        final String anyId = "anyId";
+        Postman.Message expectedMessage = new StopTrackingMessage();
+        MessageEvent msg = new WearMessageEvent(expectedMessage.messageAsString(), anyId);
+
+        MessageEnvelope convertedMessage = new PostmanMessageFactory().toMessage(msg);
+        assertThat(convertedMessage.message(), is(equalTo(expectedMessage)));
+    }
+
+    @Test
+    public void
     convertMessageEventToTrackedServiceMessageForDepartedTrain() {
 
         Postman.Message expectedMessage = new TrackedServiceMessage(new Train("2", "10:00", "09:00", "1", true));

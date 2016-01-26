@@ -109,7 +109,7 @@ public class WearApp implements CanPresentTrackedTrains {
     }
 
     public void unwatch() {
-
+        postman.broadcast(new StopTrackingMessage());
     }
 
     private static class NotificationManager {

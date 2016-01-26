@@ -6,6 +6,7 @@ import uk.co.rossbeazley.trackmytrain.android.analytics.Analytics;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 import uk.co.rossbeazley.trackmytrain.android.wear.AnalyticsEventMessage;
 import uk.co.rossbeazley.trackmytrain.android.wear.MessageEnvelope;
+import uk.co.rossbeazley.trackmytrain.android.wear.StopTrackingMessage;
 
 public class MessageService {
     private final CanTrackService instance;
@@ -25,6 +26,8 @@ public class MessageService {
             AnalyticsEventMessage analyticsMessage = ((AnalyticsEventMessage) message);
 
             analytics.event(new Analytics.EventTrack(analyticsMessage.category(), analyticsMessage.label()));
+        } else if(message instanceof StopTrackingMessage) {
+            instance.unwatchService();
         }
 
 

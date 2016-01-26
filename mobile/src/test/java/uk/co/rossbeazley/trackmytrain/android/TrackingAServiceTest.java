@@ -1,12 +1,10 @@
 package uk.co.rossbeazley.trackmytrain.android;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import fakes.CapturingServiceView;
 import uk.co.rossbeazley.trackmytrain.android.trackedService.TrackedServicePresenter;
-import uk.co.rossbeazley.trackmytrain.android.trainRepo.ServiceDetailsRequest;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
@@ -23,7 +21,7 @@ public class TrackingAServiceTest {
     private TrainViewModel expectedTrainViewModel;
 
     private CapturingServiceView serviceView;
-    private FakeCanTrackService tmt;
+    private CapturingCanTrackService tmt;
     private Train expectedTrain;
 
     @Before
@@ -37,7 +35,7 @@ public class TrackingAServiceTest {
 
         serviceView = new CapturingServiceView();
 
-        tmt = new FakeCanTrackService();
+        tmt = new CapturingCanTrackService();
         trackedServicePresenter = new TrackedServicePresenter(tmt);
 
         trackedServicePresenter.attach(serviceView);
@@ -78,8 +76,8 @@ public class TrackingAServiceTest {
     }
 
 
-    private static class FakeCanTrackService implements CanTrackService {
-        private TrackedServiceListener trackedServiceListener;
+    public static class CapturingCanTrackService implements CanTrackService {
+        private TrackedServiceListener trackedServiceListener = new NullTrackedServiceListener();
         private boolean tracking;
 
         @Override
@@ -107,6 +105,23 @@ public class TrackingAServiceTest {
 
         public void updateServiceData(Train train) {
             trackedServiceListener.trackedServiceUpdated(train);
+        }
+
+        private static class NullTrackedServiceListener implements TrackedServiceListener {
+            @Override
+            public void trackingStarted() {
+
+            }
+
+            @Override
+            public void trackedServiceUpdated(Train train) {
+
+            }
+
+            @Override
+            public void trackingStopped() {
+
+            }
         }
     }
 }

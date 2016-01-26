@@ -15,6 +15,7 @@ public class PostmanMessageFactory {
         factoriesFromPath = new HashMap<>();
         factoriesFromPath.put(StartedTrackingMessage.MESSAGE_PATH, new StartedTrackingMessage.Factory());
         factoriesFromPath.put(StoppedTrackingMessage.MESSAGE_PATH, new StoppedTrackingMessage.Factory());
+        factoriesFromPath.put(StopTrackingMessage.MESSAGE_PATH, new StopTrackingMessage.Factory());
         factoriesFromPath.put(TrackedServiceMessage.MESSAGE_PATH, new TrackedServiceMessage.Factory());
         factoriesFromPath.put(AnalyticsEventMessage.MESSAGE_PATH, new AnalyticsEventMessage.Factory());
     }
