@@ -7,7 +7,7 @@ import java.util.Objects;
 import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 
-public class TrackedServiceMessage extends Postman.BroadcastMessage {
+public class TrackedServiceMessage extends Postman.Message {
     public static final String MESSAGE_PATH = "/TRACKED/SERVICE";
     private final Train train;
 

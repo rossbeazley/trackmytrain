@@ -17,7 +17,6 @@ import uk.co.rossbeazley.trackmytrain.android.trackedService.TrackedServicePrese
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.MessagingTrackingPresenter;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.ServiceTrackingNavigationController;
-import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.WearNetworkBuilder;
 import uk.co.rossbeazley.trackmytrain.android.mobile.wear.MessageService;
 
 public class TrackMyTrainApp extends Application{
@@ -69,7 +68,7 @@ public class TrackMyTrainApp extends Application{
         TrackMyTrainApp.departureQueryCommands = departuresPresenter;
 
 
-        Postman postman = WearNetworkBuilder.fromContext(this);
+        Postman postman = Postman.Builder.fromContext(this);
 
         final Analytics tracker = buildAnalytics();
 

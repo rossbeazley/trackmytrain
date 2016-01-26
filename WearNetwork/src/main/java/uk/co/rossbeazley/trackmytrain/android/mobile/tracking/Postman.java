@@ -10,43 +10,6 @@ public interface Postman {
 
     void broadcast(Message message);
 
-    class BroadcastMessage extends Message {
-
-        private final String messagePath;
-
-        protected BroadcastMessage(String messagePath) {
-            super(messagePath);
-            this.messagePath = messagePath;
-        }
-
-        public String messageAsString() {
-            return messagePath;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-
-            BroadcastMessage that = (BroadcastMessage) o;
-
-            return !(messagePath != null ? !messagePath.equals(that.messagePath) : that.messagePath != null);
-
-        }
-
-        @Override
-        public int hashCode() {
-            return messagePath != null ? messagePath.hashCode() : 0;
-        }
-
-        @Override
-        public String toString() {
-            return "BroadcastMessage{" +
-                    "messagePath='" + messagePath + '\'' +
-                    '}';
-        }
-    }
-
     class Message {
 
         private final String messagePath;
@@ -100,13 +63,11 @@ public interface Postman {
         }
     }
 
-
     class Builder {
 
-        static public Postman build(Context context) {
+        public static Postman fromContext(Context context) {
             WearNetwork network = new WearNetwork(context);
-            WearPostman postman = new WearPostman(network);
-            return new PostOffice(postman,network);
+            return new PostOffice(new WearPostman(network), network);
         }
     }
 }

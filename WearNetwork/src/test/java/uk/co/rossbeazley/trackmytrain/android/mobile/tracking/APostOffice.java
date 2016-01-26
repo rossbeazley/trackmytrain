@@ -51,7 +51,7 @@ public class APostOffice {
         final PostOffice postOffice = new PostOffice(capturingPostman, capturingPostman);
 
         final String messagePath = "/any/message";
-        Message expectedMessage = new BroadcastMessage(messagePath);
+        Message expectedMessage = new Message(messagePath);
 
         capturingPostman.connect();
 
@@ -101,7 +101,7 @@ public class APostOffice {
         final PostOffice postOffice = new PostOffice(capturingPostman, capturingPostman);
 
         final String messagePath = "/any/message";
-        Message expectedMessage = new BroadcastMessage(messagePath);
+        Message expectedMessage = new Message(messagePath);
 
 
         postOffice.broadcast(expectedMessage);
