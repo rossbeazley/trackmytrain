@@ -47,6 +47,22 @@ public class NotificationsHaveStartedTests {
     }
 
     @Test
+    public void theServiceDetailsAreUpdatedBeforeViewAttaches() {
+
+        Train expectedTrain = new Train("anyId", "20:24", "20:22", "4", false);
+
+        Postman.NodeId anyId =  new Postman.NodeId("anyId");
+        MessageEnvelope message = new MessageEnvelope(anyId, new TrackedServiceMessage(expectedTrain));
+        wearApp.message(message);
+
+        CapturingNotification notificationPresenter = new CapturingNotification();
+        wearApp.attach(notificationPresenter);
+
+        TrainViewModel expectedTrainViewModel = new TrainViewModel(expectedTrain);
+        assertThat(notificationPresenter.lastPresentedTrain,is(expectedTrainViewModel));
+    }
+
+    @Test
     public void theServiceDetailsAreUpdated() {
 
         Train expectedTrain = new Train("anyId", "20:24", "20:22", "4", false);

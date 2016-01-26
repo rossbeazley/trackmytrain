@@ -9,6 +9,7 @@ import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 import uk.co.rossbeazley.trackmytrain.android.wear.CapturingPostman;
 import uk.co.rossbeazley.trackmytrain.android.wear.CapturingServiceView;
+import uk.co.rossbeazley.trackmytrain.android.wear.TrainViewModel;
 import uk.co.rossbeazley.trackmytrain.android.wear.comms.HostNode;
 import uk.co.rossbeazley.trackmytrain.android.wear.MessageEnvelope;
 import uk.co.rossbeazley.trackmytrain.android.wear.StartedTrackingMessage;
@@ -24,6 +25,7 @@ public class NotificationsHaveStoppedTests {
 
     private CapturingNotificationServiceService service;
     private WearApp wearApp;
+    private Train expectedTrain;
 
     @Before
     public void stoppedNotificationService() {
@@ -45,9 +47,12 @@ public class NotificationsHaveStoppedTests {
 
     @NonNull
     public Postman.NodeId sendStartedTrackingMessage() {
-        Postman.NodeId anyId = anyNodeId();
-        MessageEnvelope message = new MessageEnvelope(anyId, new StartedTrackingMessage());
-        wearApp.message(message);
+
+        expectedTrain = new Train("anyId", "20:24", "20:22", "4", false);
+        Postman.NodeId anyId =  new Postman.NodeId("anyId");
+
+        wearApp.message(new MessageEnvelope(anyId, new StartedTrackingMessage()));
+        wearApp.message(new MessageEnvelope(anyId, new TrackedServiceMessage(expectedTrain)));
         return anyId;
     }
 
@@ -61,6 +66,14 @@ public class NotificationsHaveStoppedTests {
         assertThat(service.state,is(CapturingNotificationServiceService.STOPPED));
     }
 
+    @Test
+    public void viewAttachesAfterTrackingStopped() {
+
+        CapturingNotification notificationPresenter = new CapturingNotification();
+        wearApp.attach(notificationPresenter);
+
+        assertThat(notificationPresenter.lastPresentedTrain,is(nullValue()));
+    }
 
     @Test
     public void theServiceDetailsAreUpdated() {

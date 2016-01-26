@@ -24,7 +24,7 @@ public class WearAppSingleton extends Application {
     public void onCreate() {
         super.onCreate();
         HostNode hostnode = new HostNode();
-        WearNotificationService service = new TrackingNotificationServiceController((Context)this);
+        WearNotificationService service = new TrackingNotificationServiceController(this);
         postman = Postman.Builder.fromContext(this);
         instance = new WearApp(hostnode, postman,  service);
 

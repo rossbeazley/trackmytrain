@@ -15,6 +15,8 @@ When tracking starts, watch slow to update until next refresh has happened.....
 
 Favourites screen.
 
+Widget?
+
 point to point comms from wearable, stop broadcast - probably not that useful
 - Wearable can send broadcast message to "find home"
 - Mobile can send a "I am base" message for wearables so then can register node id

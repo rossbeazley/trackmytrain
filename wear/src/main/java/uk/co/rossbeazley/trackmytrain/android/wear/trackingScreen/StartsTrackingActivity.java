@@ -2,8 +2,6 @@ package uk.co.rossbeazley.trackmytrain.android.wear.trackingScreen;
 
 import android.content.Context;
 
-import uk.co.rossbeazley.trackmytrain.android.wear.notification.AndroidNotificationService;
-
 //TODO write a connected test for this
 public class StartsTrackingActivity implements ServiceViewNavigationController {
 
@@ -15,12 +13,8 @@ public class StartsTrackingActivity implements ServiceViewNavigationController {
 
     @Override
     public void trackingStarted() {
-        launchActivity();
-        AndroidNotificationService.start(context);
-    }
-
-
-    void launchActivity() {
         TrackingActivity.launch(context);
     }
+
+
 }
