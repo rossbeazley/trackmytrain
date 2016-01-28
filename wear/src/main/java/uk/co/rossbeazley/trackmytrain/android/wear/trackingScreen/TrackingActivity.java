@@ -45,21 +45,21 @@ public class TrackingActivity extends WearableActivity implements CanFinishWearA
     public void onEnterAmbient(Bundle ambientDetails) {
         super.onEnterAmbient(ambientDetails);
         serviceView.grey();
-        unbind();
+        //unbind();
     }
 
     @Override
     public void onUpdateAmbient() {
         super.onUpdateAmbient();
-        bind();
-        unbind();
+        //bind();
+        //unbind();
     }
 
     @Override
     public void onExitAmbient() {
         super.onExitAmbient();
         serviceView.colour();
-        bind();
+        //bind();
 
     }
 

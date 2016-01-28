@@ -23,12 +23,23 @@ public class WearAppSingleton extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+
         HostNode hostnode = new HostNode();
         WearNotificationService service = new TrackingNotificationServiceController(this);
         postman = Postman.Builder.fromContext(this);
         instance = new WearApp(hostnode, postman,  service);
 
         instance.attach(new StartsTrackingActivity(this));
+
+
+        Thread.currentThread().setUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+            @Override
+            public void uncaughtException(Thread thread, Throwable ex) {
+                postman.broadcast(new Postman.Message("EXCEPTION!!!!! "+ex.toString()));
+                System.exit(-1);
+            }
+        });
     }
 
 

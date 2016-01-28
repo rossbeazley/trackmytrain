@@ -18,7 +18,7 @@ public class TrackingService extends Service {
     public static final int ID = 80085;
     public static final int STOP_TRACKING_ID = 666;
     public static final String STOP_TRACKING_ACTION = "STOP_TRACKING_ACTION";
-    private  CanProcessPresentTrackedTrainsCommands canProcessPresentTrackedTrainsCommands;
+    private CanProcessPresentTrackedTrainsCommands canProcessPresentTrackedTrainsCommands;
 
     public TrackingService() {
         this(TrackMyTrainApp.trackedServicePresenter);
@@ -62,12 +62,12 @@ public class TrackingService extends Service {
                         .setContentTitle(train.platform())
                         .setContentText(train.scheduledTime() + " exp " + train.estimatedTime())
                         .setSmallIcon(R.drawable.n_train)
-                        .addAction(R.drawable.ic_stop_tracking,"Stop Tracking", TrackingService.stopTrackingPendingIntent(TrackingService.this))
+                        .addAction(R.drawable.ic_stop_tracking, "Stop Tracking", TrackingService.stopTrackingPendingIntent(TrackingService.this))
                         .setPriority(Notification.PRIORITY_MAX)
                         .setOngoing(true)
                         .build();
 
-                startForeground(ID,not);
+                startForeground(ID, not);
 
             }
 
@@ -86,9 +86,11 @@ public class TrackingService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        String action = intent.getAction();
-        if (STOP_TRACKING_ACTION.equals(action)) {
-            canProcessPresentTrackedTrainsCommands.unwatch();
+        if (intent != null) {
+            String action = intent.getAction();
+            if (STOP_TRACKING_ACTION.equals(action)) {
+                canProcessPresentTrackedTrainsCommands.unwatch();
+            }
         }
         return START_STICKY;
     }

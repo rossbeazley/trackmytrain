@@ -32,7 +32,7 @@ public class PostmanMessageFactory {
     }
 
     private MessageFactory searchForSubPath(String path) {
-        MessageFactory messageFactory = null;
+        MessageFactory messageFactory = MessageFactory.NULL;
         for (String key : factoriesFromPath.keySet()) {
             if (path.startsWith(key)) {
                 messageFactory = factoriesFromPath.get(key);
@@ -41,7 +41,14 @@ public class PostmanMessageFactory {
         return messageFactory;
     }
 
-    public static interface MessageFactory {
+    public interface MessageFactory {
+        MessageFactory NULL = new MessageFactory() {
+            @Override
+            public Postman.Message create(MessageEvent messageEvent) {
+                return new Postman.Message(messageEvent.getPath());
+            }
+        };
+
         Postman.Message create(MessageEvent messageEvent);
     }
 }

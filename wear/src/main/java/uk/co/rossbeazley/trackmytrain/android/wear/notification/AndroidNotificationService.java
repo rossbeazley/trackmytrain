@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import uk.co.rossbeazley.trackmytrain.android.R;
 import uk.co.rossbeazley.trackmytrain.android.wear.WearAppSingleton;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
+import uk.co.rossbeazley.trackmytrain.android.wear.trackingScreen.TrackingActivity;
 
 public class AndroidNotificationService extends Service implements WearNotificationService.NotificationView {
 
@@ -43,7 +44,6 @@ public class AndroidNotificationService extends Service implements WearNotificat
 
     @Override
     public void onCreate() {
-        broadcast("/SERVICE/STARTED");
         notificationPresenter = new NotificationPresenter(this, WearAppSingleton.instance);
     }
 
@@ -53,9 +53,8 @@ public class AndroidNotificationService extends Service implements WearNotificat
 
     @Override
     public void onDestroy() {
-        broadcast("/SERVICE/DESTROYED");
-        stopForeground(true);
         WearAppSingleton.instance.detach(notificationPresenter);
+        stopForeground(true);
         super.onDestroy();
     }
 
@@ -72,12 +71,17 @@ public class AndroidNotificationService extends Service implements WearNotificat
 
     public void notify(String contentTitle, String contentText) {
         Notification.Action action;
-        action = new Notification.Action.Builder(R.mipmap.ic_launcher, "Stop Tracking", stopTrackingPendingIntent(this)).build();
+        action = new Notification.Action.Builder(R.drawable.ic_stop_tracking, "Stop Tracking", stopTrackingPendingIntent(this)).build();
+        Intent intent = new Intent(this, TrackingActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         final Notification.Builder builder = new Notification.Builder(this)
+                .setContentIntent(PendingIntent.getActivity(this,1234,intent,PendingIntent.FLAG_UPDATE_CURRENT))
                 .setContentTitle(contentTitle)
                 .setContentText(contentText)
                 .setSmallIcon(R.mipmap.ic_launcher)
+                .setPriority(Notification.PRIORITY_HIGH)
                 .addAction(action)
+                .setOngoing(false)
                 ;
 
         this.startForeground(ID, builder.build());

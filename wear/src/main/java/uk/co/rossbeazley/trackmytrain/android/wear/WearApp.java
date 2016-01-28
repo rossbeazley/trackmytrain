@@ -150,8 +150,8 @@ public class WearApp implements CanPresentTrackedTrains {
         public void trackingStopped() {
             isTracking = false;
             if (isNotifing) {
-                isNotifing = false;
                 notificationService.hide();
+                isNotifing = false;
             }
         }
 

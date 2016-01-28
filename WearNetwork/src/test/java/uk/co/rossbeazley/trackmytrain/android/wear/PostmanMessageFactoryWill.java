@@ -117,6 +117,20 @@ public class PostmanMessageFactoryWill {
         assertThat(convertMessage.message(), is(equalTo(expectedMessage)));
     }
 
+    @Test
+    public void
+    turnAnyUnknownMessageIntoAGenericMessage() {
+
+        String anyId = "anyId";
+        String path = "/A/RANDOM/MESSAGE";
+        MessageEvent msg = new WearMessageEvent(path, anyId);
+        Postman.Message expectedMessage = new Postman.Message(path);
+
+        MessageEnvelope convertMessage = new PostmanMessageFactory().toMessage(msg);
+
+        assertThat(convertMessage.message(), is(equalTo(expectedMessage)));
+    }
+
     private static class WearMessageEvent implements MessageEvent {
 
         private String path;

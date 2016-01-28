@@ -30,7 +30,7 @@ public class WearPostman implements Postman {
 
     private void broadcast(final String messagePathString, final byte[] bytes) {
 
-        Log.d("TMT-mobile", "-=-=-=-=-=-= sending =-=-=-=-=-=-");
+        Log.d("TMT-mobile", "-=-=-=-=-=-= broadcast =-=-=-=-=-=-");
         Log.d("TMT-mobile", messagePathString);
         WearNetworkTask runnable = new WearNetworkTask() {
             public void run(GoogleApiClient gac) {
