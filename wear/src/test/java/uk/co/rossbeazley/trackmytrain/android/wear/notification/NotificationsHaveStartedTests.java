@@ -23,6 +23,7 @@ public class NotificationsHaveStartedTests {
     private CapturingNotificationServiceService service;
     private WearApp wearApp;
     private CapturingNotification notificationPresenter;
+    private Train expectedTrain;
 
     @Before
     public void startNotificationService() {
@@ -37,6 +38,12 @@ public class NotificationsHaveStartedTests {
         MessageEnvelope message = new MessageEnvelope(anyId, new StartedTrackingMessage());
         wearApp.message(message);
 
+
+        expectedTrain = new Train("anyId", "20:24", "20:20", "4", false);
+
+        message = new MessageEnvelope(anyId, new TrackedServiceMessage(expectedTrain));
+        wearApp.message(message);
+
         wearApp.detach(anyView);
 
         assertThat(service.state, is(CapturingNotificationServiceService.STARTED));
@@ -49,11 +56,6 @@ public class NotificationsHaveStartedTests {
     @Test
     public void theServiceDetailsAreUpdatedBeforeViewAttaches() {
 
-        Train expectedTrain = new Train("anyId", "20:24", "20:22", "4", false);
-
-        Postman.NodeId anyId =  new Postman.NodeId("anyId");
-        MessageEnvelope message = new MessageEnvelope(anyId, new TrackedServiceMessage(expectedTrain));
-        wearApp.message(message);
 
         CapturingNotification notificationPresenter = new CapturingNotification();
         wearApp.attach(notificationPresenter);
@@ -80,6 +82,7 @@ public class NotificationsHaveStartedTests {
     public void theServiceDetailsAreUpdatedAfterServiceDetaches() {
 
         wearApp.detach(notificationPresenter);
+        notificationPresenter.lastPresentedTrain = null;
 
         Train expectedTrain = new Train("anyId", "20:24", "20:22", "4", false);
 

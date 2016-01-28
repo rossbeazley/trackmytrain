@@ -76,6 +76,7 @@ public class AndroidNotificationService extends Service implements WearNotificat
         action = new Notification.Action.Builder(R.drawable.ic_menu_close_clear_cancel, "Stop Tracking", stopTrackingPendingIntent(this)).build();
         Intent intent = new Intent(this, TrackingActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
         final Notification.Builder builder = new Notification.Builder(this)
                 .setContentIntent(PendingIntent.getActivity(this,1234,intent,PendingIntent.FLAG_UPDATE_CURRENT))
                 .setContentTitle(contentTitle)
@@ -83,8 +84,16 @@ public class AndroidNotificationService extends Service implements WearNotificat
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setPriority(Notification.PRIORITY_HIGH)
                 .addAction(action)
-                .setOngoing(false)
+                .setOngoing(true)
                 ;
+
+
+        Notification.WearableExtender ext;
+        ext = new Notification.WearableExtender()
+                .setContentIcon(R.mipmap.ic_launcher)
+                .setHintHideIcon(true);
+
+        builder.extend(ext);
 
         this.startForeground(ID, builder.build());
     }

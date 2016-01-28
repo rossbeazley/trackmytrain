@@ -23,7 +23,7 @@ public class NotificationPresenter implements WearNotificationService.WearNotifi
     public void show(TrainViewModel train) {
 
         String contentTitle = train.platform();
-        String contentText = train.scheduledTime() + " exp " + train.estimatedTime();
+        String contentText = train.scheduledTime() + "\nexp " + train.estimatedTime();
 
         androidNotificationService.notify(contentTitle, contentText);
     }

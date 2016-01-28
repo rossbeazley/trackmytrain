@@ -148,6 +148,7 @@ public class WearApp implements CanPresentTrackedTrains {
         }
 
         public void trackingStopped() {
+            this.trainViewModel = null;
             isTracking = false;
             if (isNotifing) {
                 notificationService.hide();
@@ -156,9 +157,9 @@ public class WearApp implements CanPresentTrackedTrains {
         }
 
         public void serviceTracking(TrainViewModel trainViewModel) {
+            this.trainViewModel = trainViewModel;
             if (isNotifing) {
                 for (WearNotificationService.WearNotification presenter : notificationPresenters) {
-                    this.trainViewModel = trainViewModel;
                     presenter.show(this.trainViewModel);
                 }
 
