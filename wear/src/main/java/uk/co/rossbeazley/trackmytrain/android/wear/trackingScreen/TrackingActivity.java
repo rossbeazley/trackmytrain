@@ -22,7 +22,6 @@ public class TrackingActivity extends WearableActivity implements CanFinishWearA
         serviceView = new TrackingView(this);
         exitWearApp = new ExitTrackingScreen(this);
 
-        bind();
     }
 
     private void bind() {
@@ -31,9 +30,15 @@ public class TrackingActivity extends WearableActivity implements CanFinishWearA
     }
 
     @Override
-    protected void onDestroy() {
+    protected void onResume() {
+        super.onResume();
+        bind();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
         unbind();
-        super.onDestroy();
     }
 
     private void unbind() {
