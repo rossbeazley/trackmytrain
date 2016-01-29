@@ -30,8 +30,7 @@ public class WearPostman implements Postman {
 
     private void broadcast(final String messagePathString, final byte[] bytes) {
 
-        Log.d("TMT-mobile", "-=-=-=-=-=-= broadcast =-=-=-=-=-=-");
-        Log.d("TMT-mobile", messagePathString);
+        Log.d("TMT-mobile", "-=-=-=-=-=-= broadcast " + messagePathString);
         WearNetworkTask runnable = new WearNetworkTask() {
             public void run(GoogleApiClient gac) {
                 PendingResult<NodeApi.GetConnectedNodesResult> connectedNodes = Wearable.NodeApi.getConnectedNodes(gac);
