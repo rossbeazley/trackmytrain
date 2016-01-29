@@ -73,7 +73,7 @@ public class AndroidNotificationService extends Service implements WearNotificat
 
     public void notify(String contentTitle, String contentText) {
         Notification.Action action;
-        action = new Notification.Action.Builder(R.drawable.ic_menu_close_clear_cancel, "Stop Tracking", stopTrackingPendingIntent(this)).build();
+        action = new Notification.Action.Builder(R.drawable.ic_full_cancel, "Stop Tracking", stopTrackingPendingIntent(this)).build();
         Intent intent = new Intent(this, TrackingActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
