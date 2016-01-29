@@ -129,8 +129,8 @@
     <orderEntry type="library" exported="" name="juniversalchardet-1.0.3" level="project" />
     <orderEntry type="library" exported="" name="antlr4-4.5" level="project" />
     <orderEntry type="library" exported="" name="play-services-identity-8.3.0" level="project" />
-    <orderEntry type="library" exported="" name="antlr4-runtime-4.5" level="project" />
     <orderEntry type="library" exported="" name="antlr4-annotations-4.5" level="project" />
+    <orderEntry type="library" exported="" name="antlr4-runtime-4.5" level="project" />
     <orderEntry type="library" exported="" name="org.abego.treelayout.core-1.0.1" level="project" />
     <orderEntry type="library" exported="" name="play-services-analytics-8.3.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-8.3.0" level="project" />

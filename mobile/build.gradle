@@ -18,8 +18,8 @@ android {
         applicationId "uk.co.rossbeazley.trackmytrain.android"
         minSdkVersion 20
         targetSdkVersion 23
-        versionCode 22
-        versionName "2.8"
+        versionCode 23
+        versionName "3.0"
         signingConfig signingConfigs.release
         //testInstrumentationRunner "com.google.android.apps.common.testing.testrunner.GoogleInstrumentationTestRunner"
         //testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
