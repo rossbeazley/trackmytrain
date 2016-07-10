@@ -21,7 +21,6 @@ public class TrackingActivity extends WearableActivity implements CanFinishWearA
 
         serviceView = new TrackingView(this);
         exitWearApp = new ExitTrackingScreen(this);
-
     }
 
     private void bind() {
@@ -36,8 +35,8 @@ public class TrackingActivity extends WearableActivity implements CanFinishWearA
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
+    protected void onDestroy() {
+        super.onDestroy();
         unbind();
     }
 
@@ -50,22 +49,17 @@ public class TrackingActivity extends WearableActivity implements CanFinishWearA
     public void onEnterAmbient(Bundle ambientDetails) {
         super.onEnterAmbient(ambientDetails);
         serviceView.grey();
-        //unbind();
     }
 
     @Override
     public void onUpdateAmbient() {
         super.onUpdateAmbient();
-        //bind();
-        //unbind();
     }
 
     @Override
     public void onExitAmbient() {
         super.onExitAmbient();
         serviceView.colour();
-        //bind();
-
     }
 
 

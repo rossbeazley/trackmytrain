@@ -8,7 +8,7 @@ import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 
 public class TrackedServiceMessage extends Postman.Message {
-    public static final String MESSAGE_PATH = "/TRACKED/SERVICE";
+    public static final String MESSAGE_PATH = "/TMT/TRACKED/SERVICE";
     private final Train train;
 
 

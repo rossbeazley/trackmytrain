@@ -2,15 +2,15 @@ apply plugin: 'com.android.application'
 
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion '23.0.2'
+    compileSdkVersion rootProject.androidCompileSdkVersion
+    buildToolsVersion rootProject.androidBuildToolsVersion
 
     defaultConfig {
         applicationId "uk.co.rossbeazley.trackmytrain.android"
-        minSdkVersion 20
-        targetSdkVersion 23
-        versionCode 24
-        versionName "3.0"
+        minSdkVersion rootProject.androidMinSdkVersion
+        targetSdkVersion rootProject.androidTargetSdkVersion
+        versionCode rootProject.androidVersionCode
+        versionName rootProject.androidVersionName
     }
     buildTypes {
         release {

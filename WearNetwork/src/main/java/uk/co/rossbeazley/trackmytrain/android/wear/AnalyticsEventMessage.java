@@ -7,7 +7,7 @@ import com.google.android.gms.wearable.MessageEvent;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 
 public class AnalyticsEventMessage extends Postman.Message {
-    public static final String MESSAGE_PATH = "/ANALYTICS/EVENT";
+    public static final String MESSAGE_PATH = "/TMT/ANALYTICS/EVENT";
     private String category;
     private final String label;
 

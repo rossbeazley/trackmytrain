@@ -1,7 +1,7 @@
 apply plugin: 'java'
 sourceSets {
     main {
-        java.srcDirs += 'src/v2/java'
+        java.srcDirs += 'src/v3/java'
     }
 }
 dependencies {

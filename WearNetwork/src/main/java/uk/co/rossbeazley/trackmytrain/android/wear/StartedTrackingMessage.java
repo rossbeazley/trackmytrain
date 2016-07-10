@@ -5,7 +5,7 @@ import com.google.android.gms.wearable.MessageEvent;
 import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 
 public class StartedTrackingMessage extends Postman.Message {
-    public static final String MESSAGE_PATH = "/TRACKING/STARTED";
+    public static final String MESSAGE_PATH = "/TMT/TRACKING/STARTED";
 
     public StartedTrackingMessage() {
         super(MESSAGE_PATH);

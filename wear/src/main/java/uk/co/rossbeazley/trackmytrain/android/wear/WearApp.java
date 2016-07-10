@@ -34,8 +34,8 @@ public class WearApp implements CanPresentTrackedTrains {
 
     public void message(MessageEnvelope messageEnvelope) {
         hostNode.register(messageEnvelope.fromId());
-
         final Postman.Message message = messageEnvelope.message();
+        System.out.println("WEARAPP message " + message);
 
         if (message instanceof StartedTrackingMessage) {
             announceServiceTracking();

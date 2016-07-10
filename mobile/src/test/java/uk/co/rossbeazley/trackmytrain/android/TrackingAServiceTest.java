@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fakes.CapturingServiceView;
+import fakes.CapturingTrackedServiceListener;
 import uk.co.rossbeazley.trackmytrain.android.trackedService.TrackedServicePresenter;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -77,7 +78,7 @@ public class TrackingAServiceTest {
 
 
     public static class CapturingCanTrackService implements CanTrackService {
-        private TrackedServiceListener trackedServiceListener = new NullTrackedServiceListener();
+        private TrackedServiceListener trackedServiceListener = new CapturingTrackedServiceListener();
         private boolean tracking;
 
         @Override
@@ -107,21 +108,5 @@ public class TrackingAServiceTest {
             trackedServiceListener.trackedServiceUpdated(train);
         }
 
-        private static class NullTrackedServiceListener implements TrackedServiceListener {
-            @Override
-            public void trackingStarted() {
-
-            }
-
-            @Override
-            public void trackedServiceUpdated(Train train) {
-
-            }
-
-            @Override
-            public void trackingStopped() {
-
-            }
-        }
     }
 }

@@ -18,13 +18,20 @@ class PostOffice implements Postman {
             @Override
             public void connected() {
                 connected=true;
+                deliverMessages();
+                deliverBroadcasts();
+            }
+
+            public void deliverMessages() {
                 for (Message message : messages) {
                     postman.post(message, deliveryAddresss.get(messages.indexOf(message)));
                 }
+            }
+
+            public void deliverBroadcasts() {
                 for (Message broadcast : broadcasts) {
                     postman.broadcast(broadcast);
                 }
-
             }
 
             @Override

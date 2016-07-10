@@ -6,7 +6,7 @@ import uk.co.rossbeazley.trackmytrain.android.mobile.tracking.Postman;
 
 public class StopTrackingMessage extends Postman.Message {
 
-    public static final String MESSAGE_PATH = "/TRACKING/STOP";
+    public static final String MESSAGE_PATH = "/TMT/TRACKING/STOP";
 
     public StopTrackingMessage() {
         super(MESSAGE_PATH);
