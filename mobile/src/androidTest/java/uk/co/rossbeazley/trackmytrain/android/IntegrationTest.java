@@ -3,6 +3,7 @@ package uk.co.rossbeazley.trackmytrain.android;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.support.test.InstrumentationRegistry;
 import android.test.InstrumentationTestCase;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
@@ -56,9 +57,15 @@ public class IntegrationTest extends InstrumentationTestCase {
         Direction bon = Direction.to(Station.fromString("BON"));
         initialDepQuery = new DepartureQuery(crl, bon);
 
-        for (DeparturesQueryView view : myCanPresentDepartureQueries.departureQueryViews) {
-            view.present(new DeparturesQueryViewModel(initialDepQuery));
-        }
+        Runnable runnable = new Runnable() {
+            public void run() {
+                for (DeparturesQueryView view : myCanPresentDepartureQueries.departureQueryViews) {
+                    view.present(new DeparturesQueryViewModel(initialDepQuery));
+                }
+            }
+        };
+
+        InstrumentationRegistry.getInstrumentation().runOnMainSync(runnable);
 
     }
 
