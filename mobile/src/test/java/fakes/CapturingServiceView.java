@@ -29,4 +29,10 @@ public class CapturingServiceView implements ServiceView {
     public void trackingStarted() {
         trackingIs = STARTED;
     }
+
+    public void reset() {
+        this.visibility = "UNKNOWN";
+        this.serviceDisplayed = null;
+        this.trackingIs =  "UNKNOWN";
+    }
 }

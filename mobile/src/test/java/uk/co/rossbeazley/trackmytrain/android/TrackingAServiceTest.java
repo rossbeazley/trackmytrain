@@ -76,6 +76,17 @@ public class TrackingAServiceTest {
         assertThat(serviceView.visibility, is(serviceView.HIDDEN));
     }
 
+    @Test
+    public void theOneWhereWeStopTrackingThenAttachAView() {
+        trackedServicePresenter.watch(serviceId);
+        tmt.updateServiceData(expectedTrain);
+        trackedServicePresenter.detach(serviceView);
+        trackedServicePresenter.unwatch();
+        serviceView.reset();
+        trackedServicePresenter.attach(serviceView);
+
+        assertThat(serviceView.serviceDisplayed, is(nullValue()));
+    }
 
     public static class CapturingCanTrackService implements CanTrackService {
         private TrackedServiceListener trackedServiceListener = new CapturingTrackedServiceListener();

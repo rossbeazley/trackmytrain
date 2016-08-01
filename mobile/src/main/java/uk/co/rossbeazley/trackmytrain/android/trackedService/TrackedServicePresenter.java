@@ -34,6 +34,7 @@ public class TrackedServicePresenter implements CanProcessPresentTrackedTrainsCo
 
             @Override
             public void trackingStopped() {
+                lastPresentedTrainViewModel = null;
                 unpresentTrackedTrain();
             }
         });
