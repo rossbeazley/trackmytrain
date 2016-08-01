@@ -21,6 +21,15 @@
         android:choiceMode="singleChoice"
         android:visibility="gone"/>
 
+    <TextView android:text="@string/beg"
+        android:autoLink="all"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:padding="16dp"
+        android:elevation="6dp"
+        android:background="@color/white"
+        />
 
     <View
         android:id="@+id/powered_by_nre_spacer"
