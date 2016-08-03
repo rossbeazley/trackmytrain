@@ -19,8 +19,7 @@ artifacts {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile files('libs/org.json-20120521.jar')
-
-    testCompile fileTree(dir: 'src/test/libs', include: ['*.jar'])
+    testCompile fileTree(include: ['*.jar'], dir: 'src/test/libs')
 }
