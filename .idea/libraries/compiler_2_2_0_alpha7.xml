@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="compiler-2.2.0-alpha7">
     <CLASSES>
-      <root url="jar://$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/databinding/compiler/2.2.0-alpha7/compiler-2.2.0-alpha7.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.databinding/compiler/2.2.0-alpha7/b58c4804250f443a41d7e1cf44d0e8fa8b9e263b/compiler-2.2.0-alpha7.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

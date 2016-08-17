@@ -92,7 +92,6 @@ public class IntegrationTest extends InstrumentationTestCase {
         });
     }
 
-    @Test
     public void test_viewWillDispatchQueryWithDifferentFromStation() {
 
         getInstrumentation().runOnMainSync(new Runnable() {

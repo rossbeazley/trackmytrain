@@ -1,3 +1,3 @@
-include ':mobile', ':wear', ':core', ':WearNetwork', ':rest-ws', ':ldb-client', ':cpp'
+include ':mobile', ':wear', ':core', ':WearNetwork', ':rest-ws', ':ldb-client', ':cpp', ':core-android-wrapping'
 project(':rest-ws').projectDir = file('webservice/rest-ws')
 project(':ldb-client').projectDir = file('webservice/ws-client')

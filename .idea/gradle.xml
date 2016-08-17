@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/WearNetwork" />
             <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/core-android-wrapping" />
             <option value="$PROJECT_DIR$/cpp" />
             <option value="$PROJECT_DIR$/mobile" />
             <option value="$PROJECT_DIR$/wear" />
@@ -18,7 +19,19 @@
             <option value="$PROJECT_DIR$/webservice/ws-client" />
           </set>
         </option>
-        <option name="resolveModulePerSourceSet" value="false" />
+        <option name="myModules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/WearNetwork" />
+            <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/core-android-wrapping" />
+            <option value="$PROJECT_DIR$/cpp" />
+            <option value="$PROJECT_DIR$/mobile" />
+            <option value="$PROJECT_DIR$/wear" />
+            <option value="$PROJECT_DIR$/webservice/rest-ws" />
+            <option value="$PROJECT_DIR$/webservice/ws-client" />
+          </set>
+        </option>
       </GradleProjectSettings>
     </option>
   </component>
