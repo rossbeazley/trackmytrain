@@ -22,4 +22,5 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile files('libs/org.json-20120521.jar')
     testCompile fileTree(include: ['*.jar'], dir: 'src/test/libs')
+    compile project(':core-api')
 }

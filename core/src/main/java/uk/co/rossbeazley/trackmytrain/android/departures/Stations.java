@@ -2561,6 +2561,10 @@ public class Stations {
 
     public static final Station UNKNOWN = new Station("unknown", "---");
 
+    public static Station fromString(String sld) {
+        return fromStationCode(sld);
+    }
+
     public List<Station> list() {
         return list;
     }

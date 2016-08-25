@@ -22,5 +22,5 @@ dependencies {
     compile project(':core')
     testCompile project(path: ':core', configuration: 'testArtifacts')
     testCompile 'junit:junit:4.12'
-
+    provided project(':core-api')
 }

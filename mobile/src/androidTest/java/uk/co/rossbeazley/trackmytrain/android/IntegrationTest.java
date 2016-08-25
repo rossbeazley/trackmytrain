@@ -9,14 +9,13 @@ import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
 
-import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQuery;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
+import uk.co.rossbeazley.trackmytrain.android.departures.Stations;
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesQueryView;
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesQueryViewModel;
 import uk.co.rossbeazley.trackmytrain.android.departures.presentation.DeparturesView;
@@ -53,8 +52,8 @@ public class IntegrationTest extends InstrumentationTestCase {
         activity = getInstrumentation().startActivitySync(intent);
 
 
-        Station crl = Station.fromString("CRL");
-        Direction bon = Direction.to(Station.fromString("BON"));
+        Station crl = Stations.fromString("CRL");
+        Direction bon = Direction.to(Stations.fromString("BON"));
         initialDepQuery = new DepartureQuery(crl, bon);
 
         Runnable runnable = new Runnable() {
@@ -104,8 +103,8 @@ public class IntegrationTest extends InstrumentationTestCase {
 
         performDeparturesQuery();
 
-        Station crl = Station.fromString("CRL");
-        Station bolton = Station.fromString("BON");
+        Station crl = Stations.fromString("CRL");
+        Station bolton = Stations.fromString("BON");
         final DepartureQuery expectedQuery = new DepartureQuery(bolton, Direction.to(crl));
         assertThat(myDepartureQueryCommands.query, is(expectedQuery));
     }

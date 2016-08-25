@@ -9,6 +9,7 @@ import java.util.List;
 import fakes.*;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
+import uk.co.rossbeazley.trackmytrain.android.departures.Stations;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.DeparturesFromToRequest;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -52,7 +53,7 @@ public class DeparturesTest {
         train2 = new Train("EAG/q7qfInIUZyPhCdwQKw==", "On time", "22:38", "2", false);
 
         NetworkClient networkClient = new RequestMapNetworkClient(new HashMap<NetworkClient.Request, String>() {{
-            put(new DeparturesFromToRequest(Station.fromString("SLD"), Station.fromString("CRL")), fakes.TestDataBuilder.jsonForTrains(train1, train2));
+            put(new DeparturesFromToRequest(Stations.fromString("SLD"), Stations.fromString("CRL")), fakes.TestDataBuilder.jsonForTrains(train1, train2));
         }
         });
 
@@ -62,8 +63,8 @@ public class DeparturesTest {
                 .with(networkClient)
                 .build();
 
-        Station at = Station.fromString("SLD");
-        Direction direction = Direction.to(Station.fromString("CRL"));
+        Station at = Stations.fromString("SLD");
+        Direction direction = Direction.to(Stations.fromString("CRL"));
 
         CapturingSuccess success = new CapturingSuccess();
 
@@ -74,7 +75,7 @@ public class DeparturesTest {
 
     @Test
     public void departuresToFromRequestRendersToString() {
-        DeparturesFromToRequest req = new DeparturesFromToRequest(Station.fromString("MCO"),Station.fromString("SLD"));
+        DeparturesFromToRequest req = new DeparturesFromToRequest(Stations.fromString("MCO"), Stations.fromString("SLD"));
         assertThat(req.asUrlString(),is(DeparturesFromToRequest.WS_URL_ROOT + "departures/MCO/to/SLD"));
     }
 

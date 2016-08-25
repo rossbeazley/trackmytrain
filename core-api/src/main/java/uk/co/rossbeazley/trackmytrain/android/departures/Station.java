@@ -24,10 +24,6 @@ public class Station {
         return stationCode.equals(that.stationCode) && stationName.equals(that.stationName);
     }
 
-    public static Station fromString(String sld) {
-        return Stations.fromStationCode(sld);
-    }
-
     public String stationCode() {
         return stationCode;
     }

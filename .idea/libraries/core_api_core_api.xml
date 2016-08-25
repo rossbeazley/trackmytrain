@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="core-api.core-api">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/core-api/build/libs/core-api.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

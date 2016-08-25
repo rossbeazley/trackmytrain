@@ -1,8 +1,6 @@
 package uk.co.rossbeazley.trackmytrain.android.departures;
 
 import uk.co.rossbeazley.trackmytrain.android.KeyValuePersistence;
-import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
-import uk.co.rossbeazley.trackmytrain.android.departures.Station;
 
 public class StationRepository {
     final KeyValuePersistence keyValuePersistence;
@@ -13,7 +11,7 @@ public class StationRepository {
 
     public Direction loadCurrentDirection() {
         String stationCode = this.keyValuePersistence.get("direction");
-        return Direction.to(Station.fromString(stationCode));
+        return Direction.to(Stations.fromString(stationCode));
     }
 
     public void storeCurrentDirection(Direction currentDirection) {
@@ -24,7 +22,7 @@ public class StationRepository {
 
     public Station loadCurrentAt() {
         String stationCode = this.keyValuePersistence.get("at");
-        return Station.fromString(stationCode);
+        return Stations.fromString(stationCode);
     }
 
     public void storeCurrentAt(Station currentAt) {

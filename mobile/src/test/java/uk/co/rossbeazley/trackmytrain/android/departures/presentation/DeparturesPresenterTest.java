@@ -11,6 +11,7 @@ import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQuery;
 import uk.co.rossbeazley.trackmytrain.android.departures.Direction;
 import uk.co.rossbeazley.trackmytrain.android.departures.Station;
+import uk.co.rossbeazley.trackmytrain.android.departures.Stations;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.DeparturesFromToRequest;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -86,8 +87,8 @@ public class DeparturesPresenterTest {
         DeparturesPresenter departuresPresenter = new DeparturesPresenter(stubCanQueryDepartures);
         departuresPresenter.attach(departuresView);
 
-        Station at = Station.fromString("SLD");
-        Direction direction = Direction.to(Station.fromString("CRL"));
+        Station at = Stations.fromString("SLD");
+        Direction direction = Direction.to(Stations.fromString("CRL"));
 
         departuresPresenter.departures(new DepartureQuery(at, direction));
 
@@ -96,7 +97,7 @@ public class DeparturesPresenterTest {
 
     @Test
     public void departuresToFromRequestRendersToString() {
-        DeparturesFromToRequest req = new DeparturesFromToRequest(Station.fromString("MCO"),Station.fromString("SLD"));
+        DeparturesFromToRequest req = new DeparturesFromToRequest(Stations.fromString("MCO"), Stations.fromString("SLD"));
         assertThat(req.asUrlString(),is(DeparturesFromToRequest.WS_URL_ROOT + "departures/MCO/to/SLD"));
     }
 }
