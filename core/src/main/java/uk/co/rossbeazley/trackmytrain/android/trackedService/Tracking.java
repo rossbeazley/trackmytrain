@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import uk.co.rossbeazley.time.NarrowScheduledExecutorService;
 import uk.co.rossbeazley.trackmytrain.android.CanTrackService;
+import uk.co.rossbeazley.trackmytrain.android.NetworkClient;
 import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
 
@@ -17,8 +18,8 @@ public class Tracking implements CanTrackService{
 
     private List<CanTrackService.TrackedServiceListener> trackedServiceListeners;
 
-    public Tracking(TrainRepository trainRepository, NarrowScheduledExecutorService executorService) {
-        this.trainRepository = trainRepository;
+    public Tracking(NarrowScheduledExecutorService executorService, NetworkClient networkClient) {
+        this.trainRepository = new TrainRepository(networkClient);
         this.executorService = executorService;
         this.cancelable = NarrowScheduledExecutorService.Cancelable.NULL;
         this.trackedServiceId = null;

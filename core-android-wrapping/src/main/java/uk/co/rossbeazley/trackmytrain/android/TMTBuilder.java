@@ -3,7 +3,10 @@ package uk.co.rossbeazley.trackmytrain.android;
 import uk.co.rossbeazley.time.DefaultNarrowScheduledExecutorService;
 import uk.co.rossbeazley.time.NarrowScheduledExecutorService;
 import uk.co.rossbeazley.trackmytrain.android.analytics.Analytics;
+import uk.co.rossbeazley.trackmytrain.android.departures.DepartureQueries;
 import uk.co.rossbeazley.trackmytrain.android.departures.DeparturesPerformanceMonitoring;
+import uk.co.rossbeazley.trackmytrain.android.departures.StationRepository;
+import uk.co.rossbeazley.trackmytrain.android.trackedService.Tracking;
 import uk.co.rossbeazley.trackmytrain.android.trackedService.TrackingAnalytics;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.StringNetworkClient;
 
@@ -45,11 +48,29 @@ public class TMTBuilder {
     }
 
     public TrackMyTrain build() {
-        TrackMyTrain trackMyTrain = new TrackMyTrain(networkClient, executorService, keyValuePersistence);
+
+        Tracking tracking = createTrackingJavaSubModule(this.networkClient, this.executorService);
+        DepartureQueries departureQueries = createDepartureQueriesJavaSubModule(this.networkClient, this.keyValuePersistence);
+
+        TrackMyTrain trackMyTrain = new TrackMyTrain(tracking, departureQueries);
 
         trackMyTrain.addDepartureQueryListener(new DeparturesPerformanceMonitoring(analytics, clock));
         trackMyTrain.addTrackedServiceListener(new TrackingAnalytics(analytics));
+
         return trackMyTrain;
+    }
+
+    public DepartureQueries createDepartureQueriesJavaSubModule(NetworkClient networkClient, KeyValuePersistence keyValuePersistence) {
+        return new DepartureQueries(new StationRepository(keyValuePersistence), networkClient);
+    }
+
+    public Tracking createTrackingJavaSubModule(NetworkClient networkClient, NarrowScheduledExecutorService executorService) {
+        return new Tracking(executorService, networkClient);
+    }
+
+
+    public Tracking createTrackingJNISubModule(NetworkClient networkClient, NarrowScheduledExecutorService executorService) {
+        return null;
     }
 
     public TMTBuilder with(NetworkClient networkClient) {

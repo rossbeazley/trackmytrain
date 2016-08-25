@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import uk.co.rossbeazley.trackmytrain.android.CanQueryDepartures;
+import uk.co.rossbeazley.trackmytrain.android.NetworkClient;
 import uk.co.rossbeazley.trackmytrain.android.TMTError;
 import uk.co.rossbeazley.trackmytrain.android.Train;
 import uk.co.rossbeazley.trackmytrain.android.trainRepo.TrainRepository;
@@ -16,8 +17,8 @@ public class DepartureQueries implements CanQueryDepartures {
     private Collection<DepartureQueryListener> departureQueryListeners;
 
 
-    public DepartureQueries(TrainRepository trainRepository, StationRepository stationRepository) {
-        this.trainRepository = trainRepository;
+    public DepartureQueries(StationRepository stationRepository, NetworkClient networkClient) {
+        this.trainRepository = new TrainRepository(networkClient);
         this.stationRepository = stationRepository;
         this.departureQueryListeners = new CopyOnWriteArrayList<>();
     }
