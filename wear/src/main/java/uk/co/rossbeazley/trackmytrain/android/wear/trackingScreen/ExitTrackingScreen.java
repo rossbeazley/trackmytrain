@@ -22,4 +22,8 @@ public class ExitTrackingScreen implements ServiceView {
         WearAppSingleton.instance.detach(this);
     }
 
+    @Override
+    public String toString() {
+        return "ExitTrackingScreen";
+    }
 }

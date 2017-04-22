@@ -65,7 +65,7 @@ public class TrackingActivity extends WearableActivity implements CanFinishWearA
 
     public static void launch(Context context) {
         Intent intent = new Intent(context, TrackingActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_SINGLE_TOP);
         context.startActivity(intent);
     }
 

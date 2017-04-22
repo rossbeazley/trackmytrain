@@ -78,7 +78,9 @@ public class WearApp implements CanPresentTrackedTrains {
 
     @Override
     public void attach(ServiceView serviceView) {
-        this.serviceViews.add(serviceView);
+        if (!this.serviceViews.contains(serviceView)) {
+            this.serviceViews.add(serviceView);
+        }
         announceServiceViewAttached(serviceView);
         notificationManager.serviceViewAttached();
     }

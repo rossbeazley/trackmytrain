@@ -17,4 +17,8 @@ public class StartsTrackingActivity implements ServiceViewNavigationController {
     }
 
 
+    @Override
+    public String toString() {
+        return "StartsTrackingActivity";
+    }
 }
