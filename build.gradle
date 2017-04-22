@@ -15,7 +15,7 @@ allprojects {
 
 project.ext.androidMinSdkVersion = 20
 project.ext.androidTargetSdkVersion = 23
-project.ext.androidVersionCode = 28
-project.ext.androidVersionName = "3.2.1"
+project.ext.androidVersionCode = 29
+project.ext.androidVersionName = "3.2.2"
 project.ext.androidCompileSdkVersion = 23
 project.ext.androidBuildToolsVersion = "23.0.2"
