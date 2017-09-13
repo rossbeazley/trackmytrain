@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="play-services-appstate-8.3.0">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-appstate/8.3.0/res" />
-      <root url="jar://$PROJECT_DIR$/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-appstate/8.3.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/265581e781ab2d5a8a537521618967470d8adb05/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/265581e781ab2d5a8a537521618967470d8adb05/output/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

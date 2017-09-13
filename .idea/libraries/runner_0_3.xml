@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="runner-0.3">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/mobile/build/intermediates/exploded-aar/com.android.support.test/runner/0.3/res" />
-      <root url="jar://$PROJECT_DIR$/mobile/build/intermediates/exploded-aar/com.android.support.test/runner/0.3/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/7413a3ab2899cd39d3726851ac81aa938edd3115/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/7413a3ab2899cd39d3726851ac81aa938edd3115/output/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar:///opt/google/android-sdk/extras/android/m2repository/com/android/support/test/runner/0.3/runner-0.3-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Android/extras/android/m2repository/com/android/support/test/runner/0.3/runner-0.3-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

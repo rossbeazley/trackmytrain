@@ -29,8 +29,8 @@
         </or>
     </condition>
 
-    <fail message="cxf requires Java version 1.6 or higher. You are currently using Java version ${ant.java.version}."
-          unless="is.java.version.16"/>
+    <!--fail message="cxf requires Java version 1.6 or higher. You are currently using Java version ${ant.java.version}."
+          unless="is.java.version.16"/-->
 
     <!-- Determine cxf.home, either from the environment variable CXF_HOME
          - or using ../..

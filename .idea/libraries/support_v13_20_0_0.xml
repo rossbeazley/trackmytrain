@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="support-v13-20.0.0">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/WearNetwork/build/intermediates/exploded-aar/com.android.support/support-v13/20.0.0/res" />
-      <root url="jar://$PROJECT_DIR$/WearNetwork/build/intermediates/exploded-aar/com.android.support/support-v13/20.0.0/jars/libs/internal_impl-20.0.0.jar!/" />
-      <root url="jar://$PROJECT_DIR$/WearNetwork/build/intermediates/exploded-aar/com.android.support/support-v13/20.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/6c3637e87509534c31784bc8e15e0a6fe47bfd86/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/6c3637e87509534c31784bc8e15e0a6fe47bfd86/output/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.android/build-cache/6c3637e87509534c31784bc8e15e0a6fe47bfd86/output/jars/libs/internal_impl-20.0.0.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar:///opt/google/android-sdk/extras/android/m2repository/com/android/support/support-v13/20.0.0/support-v13-20.0.0-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Android/extras/android/m2repository/com/android/support/support-v13/20.0.0/support-v13-20.0.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

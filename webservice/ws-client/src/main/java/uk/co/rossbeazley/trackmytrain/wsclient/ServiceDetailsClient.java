@@ -1,10 +1,10 @@
 package uk.co.rossbeazley.trackmytrain.wsclient;
 
 
-import com.thalesgroup.rtti._2016_02_16.ldb.types.ServiceDetails;
-import com.thalesgroup.rtti._2016_02_16.ldb.GetServiceDetailsRequestParams;
-import com.thalesgroup.rtti._2016_02_16.ldb.LDBServiceSoap;
-import com.thalesgroup.rtti._2016_02_16.ldb.ServiceDetailsResponseType;
+import com.thalesgroup.rtti._2017_02_02.ldb.GetServiceDetailsRequestParams;
+import com.thalesgroup.rtti._2017_02_02.ldb.LDBServiceSoap;
+import com.thalesgroup.rtti._2017_02_02.ldb.ServiceDetailsResponseType;
+import com.thalesgroup.rtti._2017_02_02.ldb.types.ServiceDetails;
 
 import static org.apache.cxf.common.util.StringUtils.isEmpty;
 

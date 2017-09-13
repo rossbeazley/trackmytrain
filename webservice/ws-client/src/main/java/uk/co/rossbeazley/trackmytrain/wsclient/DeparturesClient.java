@@ -1,16 +1,19 @@
 package uk.co.rossbeazley.trackmytrain.wsclient;
 
+
+
 import com.thalesgroup.rtti._2007_10_10.ldb.commontypes.FilterType;
-import com.thalesgroup.rtti._2016_02_16.ldb.GetBoardRequestParams;
-import com.thalesgroup.rtti._2016_02_16.ldb.LDBServiceSoap;
-import com.thalesgroup.rtti._2016_02_16.ldb.StationBoardResponseType;
-import com.thalesgroup.rtti._2016_02_16.ldb.types.ArrayOfServiceItems;
-import com.thalesgroup.rtti._2016_02_16.ldb.types.ServiceItem;
-import com.thalesgroup.rtti._2016_02_16.ldb.types.StationBoard;
+import com.thalesgroup.rtti._2017_02_02.ldb.GetBoardRequestParams;
+import com.thalesgroup.rtti._2017_02_02.ldb.LDBServiceSoap;
+import com.thalesgroup.rtti._2017_02_02.ldb.StationBoardResponseType;
+import com.thalesgroup.rtti._2017_02_02.ldb.types.ArrayOfServiceItems;
+import com.thalesgroup.rtti._2017_02_02.ldb.types.ServiceItem;
+import com.thalesgroup.rtti._2017_02_02.ldb.types.StationBoard;
 
 import java.util.List;
 
 import static org.apache.cxf.common.util.StringUtils.isEmpty;
+import static uk.co.rossbeazley.trackmytrain.wsclient.SoapPort.getLdbServiceSoap;
 
 public class DeparturesClient {
 
@@ -23,7 +26,7 @@ public class DeparturesClient {
     public static DeparturesResult services(String from, String to) {
         DeparturesResult result;
         try {
-            LDBServiceSoap port = SoapPort.getLdbServiceSoap();
+            LDBServiceSoap port = getLdbServiceSoap();
 
             GetBoardRequestParams params = new GetBoardRequestParams();
             params.setCrs(from);
