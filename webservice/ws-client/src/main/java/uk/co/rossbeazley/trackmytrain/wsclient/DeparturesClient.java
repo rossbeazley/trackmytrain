@@ -3,12 +3,12 @@ package uk.co.rossbeazley.trackmytrain.wsclient;
 
 
 import com.thalesgroup.rtti._2007_10_10.ldb.commontypes.FilterType;
-import com.thalesgroup.rtti._2017_02_02.ldb.GetBoardRequestParams;
-import com.thalesgroup.rtti._2017_02_02.ldb.LDBServiceSoap;
-import com.thalesgroup.rtti._2017_02_02.ldb.StationBoardResponseType;
-import com.thalesgroup.rtti._2017_02_02.ldb.types.ArrayOfServiceItems;
-import com.thalesgroup.rtti._2017_02_02.ldb.types.ServiceItem;
-import com.thalesgroup.rtti._2017_02_02.ldb.types.StationBoard;
+import com.thalesgroup.rtti._2017_10_01.ldb.GetBoardRequestParams;
+import com.thalesgroup.rtti._2017_10_01.ldb.LDBServiceSoap;
+import com.thalesgroup.rtti._2017_10_01.ldb.StationBoardResponseType;
+import com.thalesgroup.rtti._2017_10_01.ldb.types.ArrayOfServiceItems;
+import com.thalesgroup.rtti._2017_10_01.ldb.types.ServiceItem;
+import com.thalesgroup.rtti._2017_10_01.ldb.types.StationBoard;
 
 import java.util.List;
 

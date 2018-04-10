@@ -3,8 +3,9 @@ package uk.co.rossbeazley.trackmytrain.wsclient;
 
 import com.thalesgroup.rtti._2013_11_28.token.types.AccessToken;
 
-import com.thalesgroup.rtti._2017_02_02.ldb.LDBServiceSoap;
-import com.thalesgroup.rtti._2017_02_02.ldb.Ldb;
+import com.thalesgroup.rtti._2013_11_28.token.types.ObjectFactory;
+import com.thalesgroup.rtti._2017_10_01.ldb.LDBServiceSoap;
+import com.thalesgroup.rtti._2017_10_01.ldb.Ldb;
 
 
 import org.apache.cxf.headers.Header;
@@ -39,7 +40,7 @@ public class SoapPort {
         try {
             AccessToken accessToken = new AccessToken();
             accessToken.setTokenValue(LBDAuth.TOKEN_VALUE);
-            Header soapHeader = new Header(_AccessToken_QNAME, accessToken, new JAXBDataBinding(AccessToken.class));
+            Header soapHeader = new Header(new ObjectFactory().createAccessToken(null).getName(), accessToken, new JAXBDataBinding(AccessToken.class));
             headers.add(soapHeader);
         } catch (JAXBException ex) {
             ex.printStackTrace();
